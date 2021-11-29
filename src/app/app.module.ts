@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { TallerComponent } from './taller/taller.component';
 import { InformeReparacionComponent } from './taller/informe-reparacion/informe-reparacion.component';
+import { SolicitudRepuestoComponent } from './taller/solicitud-repuesto/solicitud-repuesto.component';
+import { RepuestoAgregadoComponent } from './taller/repuesto-agregado/repuesto-agregado.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     TallerComponent,
-    InformeReparacionComponent
+    InformeReparacionComponent,
+    SolicitudRepuestoComponent,
+    RepuestoAgregadoComponent
   ],
   imports: [
     BrowserModule,
