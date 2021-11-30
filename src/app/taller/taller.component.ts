@@ -11,5 +11,4 @@ export class TallerComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
