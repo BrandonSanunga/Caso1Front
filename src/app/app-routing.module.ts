@@ -7,26 +7,25 @@ import { TallerComponent } from './taller/taller.component';
 
 const routes: Routes = [
   {
-    path: '/taller',
-    component: TallerComponent
+    path: 'taller',
+    component: TallerComponent,
   },
   {
-    path: "/taller/informeReparacion",
-    component: InformeReparacionComponent
+    path: 'taller/orden/:id',
+    component: InformeReparacionComponent,
   },
   {
-    path: "/taller/repuestoAgregado",
-    component: RepuestoAgregadoComponent
+    path: 'taller/repuestoAgregado',
+    component: RepuestoAgregadoComponent,
   },
   {
-    path: "/taller/solicitudRepuesto",
-    component: SolicitudRepuestoComponent
-  }
-
+    path: 'taller/solicitudRepuesto',
+    component: SolicitudRepuestoComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

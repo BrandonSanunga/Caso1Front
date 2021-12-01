@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicesService } from './services.service';
 
 @Component({
   selector: 'app-taller',
   templateUrl: 'taller.component.html',
-  styleUrls: ['./taller.component.css']
+  styleUrls: ['./taller.component.css'],
 })
 export class TallerComponent implements OnInit {
+  public ordenes: any[] = [];
 
-  constructor() { }
+  constructor(public ordenesService: ServicesService) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.ordenes = await this.ordenesService.getOrdenes();
   }
 }

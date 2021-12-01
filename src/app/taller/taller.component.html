@@ -1,59 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
+<main class="container-fluid">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Solicitud de repuesto</title>
-    <link rel="stylesheet" href="taller.component.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
-
-<body>
-    <header class="header">
-        <nav style="text-align: center;">
-            <ul>
-                <li><a href="../home.html">HOME</a></li>
-                <li><a href="./taller.component.html">TALLER</a></li>
-            </ul>
-        </nav>
-        <div class="datos" style="text-align: center;">
-            <h1>TALLER</h1>
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4 text-center my-5">TALLER</h1>
         </div>
-        <table class="table table-dark table-striped">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>DUEÑO</th>
-                    <th>AUTOMOVIL</th>
-                    <th>ESTADO</th>
-                    <th>REPUESTO</th>
-                    <th>REPUESTO ESTADO</th>
-                    <th>ESTADO</th>
-                    <th>INFORME</th>
-                </tr>
-            </thead>
-            <tbody>
-                <td>1</td>
-                <td>Sr. JUAN</td>
-                <td>CHEVROLET CORSA</td>
-                <td>Reparacion</td>
-                <td>
-                    <li><a href="./solicitud-repuesto/solicitud-repuesto.component.html"
-                            style="color: yellow;">Solicitar Repuestos</a></li>
-                </td>
-                <td style="color: green;">DESPACHADO</td>
-                <td>
-                    <li style="color: red;">EN REPARACION</li>
-                </td>
-                <td>
-                    <li><a href="./informe-reparacion/informe-reparacion.component.html" style="color: yellow;">GENERRAR
-                            INFORME</a></li>
-                </td>
-            </tbody>
-        </table>
-    </header>
-</body>
 
-</html>
+        <div class="col-12">
+            <table class="table table-responsive table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>id</th>
+                        <th>CÉDULA</th>
+                        <th>DUEÑO</th>
+                        <th>AUTOMOVIL</th>
+                        <th>ESTADO</th>
+                        <th>FECHA DE SOLICITUD</th>
+                        <!-- <th>REPUESTO</th> -->
+                        <!-- <th>REPUESTO ESTADO</th> -->
+                        <!-- <th>ESTADO</th> -->
+                        <th>OPCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let orden of ordenes; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{orden.id}}</td>
+                        <td>{{orden.identificacionCliente}}</td>
+                        <td>{{orden.duenio}}</td>
+                        <td>{{orden.automovil}}</td>
+                        <td>{{orden.estado}}</td>
+                        <td>{{orden.fecha}}</td>
+                        <td>
+                            <a routerLink="/taller/orden/{{orden.id}}" class="btn btn-warning w-100">
+                                <i class="fas fa-thin fa-info">
+                                </i>
+                                Detalle
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
