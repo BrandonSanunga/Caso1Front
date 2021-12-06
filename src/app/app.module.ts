@@ -5,12 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FacturacliComponent } from './components/FacturaCli/facturacli/facturacli.component';
 import { DetallefacliComponent } from './components/DetalleFacturaCli/detallefacli/detallefacli.component';
+import { InformeReclamoComponent } from './components/informe-reclamo/informe-reclamo.component';
+import { InspeccionComponent } from './components/inspeccion/inspeccion.component';
+import { OrdenReparacionComponent } from './components/orden-reparacion/orden-reparacion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FacturacliComponent,
-    DetallefacliComponent
+    DetallefacliComponent,
+    InformeReclamoComponent,
+    InspeccionComponent,
+    OrdenReparacionComponent
   ],
   imports: [
     BrowserModule,
