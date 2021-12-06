@@ -8,6 +8,7 @@ import { DetallefacliComponent } from './components/DetalleFacturaCli/detallefac
 import { InformeReclamoComponent } from './components/informe-reclamo/informe-reclamo.component';
 import { InspeccionComponent } from './components/inspeccion/inspeccion.component';
 import { OrdenReparacionComponent } from './components/orden-reparacion/orden-reparacion.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { OrdenReparacionComponent } from './components/orden-reparacion/orden-re
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
