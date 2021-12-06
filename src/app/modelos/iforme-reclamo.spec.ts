@@ -1,4 +1,4 @@
-import { InformeReclamo } from './informe-reclamo';
+import { InformeReclamo } from './iforme-reclamo';
 
 describe('InformeReclamo', () => {
   it('should create an instance', () => {

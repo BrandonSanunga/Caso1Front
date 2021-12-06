@@ -1,4 +1,4 @@
-import { InformeReclamo } from "../informe-reclamo";
+import { InformeReclamo } from "../iforme-reclamo";
 
 export class InspeCavecera {
   idinspeccionCavecera?:number;
