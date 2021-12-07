@@ -1,0 +1,15 @@
+.facturarepuesto{
+    padding-left: 10%;
+    padding-right: 60%;
+  }
+  .contAutos{
+    padding-left: 10%;
+    padding-right: 10%;
+    column-count: 3;
+  }
+  .cards{
+    margin-top: 10%;
+    padding-top: 5%;
+    width: 90%;
+    height: 130%;
+  }

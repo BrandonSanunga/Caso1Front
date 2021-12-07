@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CarcaracteristicasService } from '../services/caracteristicas/carcaracteristicas.service';
+import { CarcaracteristicasService } from '../../services/caracteristicas/carcaracteristicas.service';
 
 @Component({
   selector: 'app-caracteristicas-vehiculo',
@@ -39,5 +39,4 @@ export class CaracteristicasVehiculoComponent implements OnInit {
 
     )
   }
-
 }

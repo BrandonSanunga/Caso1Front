@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DisenoService } from '../services/diseno/diseno.service';
+import { DisenoService } from '../../services/diseno/diseno.service';
 
 @Component({
   selector: 'app-diseno-vehiculo',

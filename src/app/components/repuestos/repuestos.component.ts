@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RepuestosService} from '../services/repuestos/repuestos.service';
+import {RepuestosService} from '../../services/repuestos/repuestos.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({

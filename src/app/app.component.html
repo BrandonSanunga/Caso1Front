@@ -7,9 +7,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-
   </head>
   <body>
       <h1><img src="https://th.bing.com/th/id/R.2b3c3eadd3c9c5f8f74efe6b8c9f3498?rik=cKrV3TBYiGfWmw&riu=http%3a%2f%2fwww.vintage-motors.net%2fimages%2fLOGO-STARMOTORS-VERTICAL.ai_.jpg&ehk=3jodzPMzbF9uzhBh7mwAKqjfNXdfyhfrPgGQHL1pKwI%3d&risl=&pid=ImgRaw&r=0" class="img-thumbnail" alt="40dp" width="40dp">Star Motor´s</h1>
@@ -33,11 +30,18 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" routerLink="/diseno">diseño de vehiculo</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" routerLink="/catalogo">catalogo de vehiculos</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              vehiculos
+            </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">repuesto</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" routerLink="/caracteristicas">caracteristicas del vehiculo</a>
+              <a class="dropdown-item" routerLink="/diseno">diseño de vehiculo</a>
+              <a class="dropdown-item" routerLink="/catalogo">catalogo de vehiculos</a>
             </div>
           </li>
 
@@ -62,4 +66,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
+<!--<app-facturacli></app-facturacli>
+<router-outlet>
+</router-outlet>-->
 
