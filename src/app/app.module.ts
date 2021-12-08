@@ -9,7 +9,10 @@ import { InformeReclamoComponent } from './components/informe-reclamo/informe-re
 import { InspeccionComponent } from './components/inspeccion/inspeccion.component';
 import { OrdenReparacionComponent } from './components/orden-reparacion/orden-reparacion.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ClienteComponent } from './components/Cliente/cliente/cliente.component'
+import { ClienteComponent } from './components/Cliente/cliente/cliente.component';
+import { SoligarantiaComponent } from './components/SolicitudGarantia/soligarantia/soligarantia.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,12 +22,16 @@ import { ClienteComponent } from './components/Cliente/cliente/cliente.component
     InformeReclamoComponent,
     InspeccionComponent,
     OrdenReparacionComponent,
-    ClienteComponent
+    ClienteComponent,
+    SoligarantiaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
