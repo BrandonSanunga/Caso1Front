@@ -42,7 +42,7 @@
                 <td>{{solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca}} {{solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo}}</td>
                 <td>{{solicitud.descripcion}}</td>
                 <td>{{solicitud.estado_solicitud}}</td>
-                <td><button class="btn btn-danger">ELIMINAR</button></td>
+                <td><button class="btn btn-danger" (click)="eliminarSoicitud(solicitud)">ELIMINAR</button></td>
             </tr>
         </tbody>
     </table>

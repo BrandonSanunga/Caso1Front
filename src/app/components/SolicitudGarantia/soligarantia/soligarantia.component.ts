@@ -32,7 +32,7 @@ export class SoligarantiaComponent implements OnInit {
     },
     error=>{console.error(console.error)});
 
-    this.soliGarantiaService.getAllGarantias().subscribe(resp=>{
+    this.soliGarantiaService.getAllGarantiasTrue().subscribe(resp=>{
       this.solGarantiasList= resp;
       console.log(resp);
     },
@@ -47,6 +47,15 @@ export class SoligarantiaComponent implements OnInit {
     }
     ,
     error=>{console.error(console.error)})
+  }
+
+  eliminarSoicitud(soli: any):void{
+    this.soliGarantiaService.deleteSoliGarantia(soli.id_solicitud).subscribe(resp=>{
+      console.log(resp);
+      if(resp==true){
+        this.solGarantiasList.pop(soli);
+      }
+    })
   }
 
 }
