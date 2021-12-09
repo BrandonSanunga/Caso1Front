@@ -6,6 +6,21 @@
         </div>
 
         <div class="col-12">
+            <div class="row g-5 align-items-center p-2 p-md-3">
+                <div class="col-auto">
+                    <label for="estado">Buscar por estado:</label>
+                </div>
+                <div class="col-auto ms-md-2">
+                    <select class="form-select" name="" id="estado" style="width: 15rem;"
+                        (change)="changeEstadoBuscador($event)">
+                        <option value="EN REVISION DEL TALLER">EN REVISION DEL TALLER</option>
+                        <option value="REVISADO POR EL TALLER">REVISADO POR EL TALLER</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
             <table class="table table-responsive table-dark table-striped">
                 <thead>
                     <tr>
@@ -16,9 +31,6 @@
                         <th>AUTOMOVIL</th>
                         <th>ESTADO</th>
                         <th>FECHA DE SOLICITUD</th>
-                        <!-- <th>REPUESTO</th> -->
-                        <!-- <th>REPUESTO ESTADO</th> -->
-                        <!-- <th>ESTADO</th> -->
                         <th>OPCIONES</th>
                     </tr>
                 </thead>
@@ -26,11 +38,11 @@
                     <tr *ngFor="let orden of ordenes; let i=index">
                         <td>{{i+1}}</td>
                         <td>{{orden.id}}</td>
-                        <td>{{orden.identificacionCliente}}</td>
-                        <td>{{orden.duenio}}</td>
-                        <td>{{orden.automovil}}</td>
+                        <td>{{orden.persona.identificacion}}</td>
+                        <td>{{orden.persona.label}}</td>
+                        <td>{{orden.vehiculo.label}}</td>
                         <td>{{orden.estado}}</td>
-                        <td>{{orden.fecha}}</td>
+                        <td>{{orden.fechaIngreso}}</td>
                         <td>
                             <a routerLink="/taller/orden/{{orden.id}}" class="btn btn-warning w-100">
                                 <i class="fas fa-thin fa-info">

@@ -14,4 +14,8 @@ export class TallerComponent implements OnInit {
   async ngOnInit() {
     this.ordenes = await this.ordenesService.getOrdenes();
   }
+
+  async changeEstadoBuscador(event: any) {
+    this.ordenes = await this.ordenesService.getOrdenes(event?.target?.value);
+  }
 }
