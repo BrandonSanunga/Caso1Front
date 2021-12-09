@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicesService } from './services.service';
+import { TallerService } from './services.service';
 
 @Component({
   selector: 'app-taller',
@@ -9,7 +9,7 @@ import { ServicesService } from './services.service';
 export class TallerComponent implements OnInit {
   public ordenes: any[] = [];
 
-  constructor(public ordenesService: ServicesService) {}
+  constructor(public ordenesService: TallerService) {}
 
   async ngOnInit() {
     this.ordenes = await this.ordenesService.getOrdenes();

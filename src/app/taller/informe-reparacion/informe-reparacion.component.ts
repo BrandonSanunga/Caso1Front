@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicesService } from '../services.service';
+import { TallerService } from '../services.service';
 
 @Component({
   selector: 'app-informe-reparacion',
@@ -11,7 +11,7 @@ export class InformeReparacionComponent implements OnInit {
   public id: any = null;
   public orden: any = null;
   constructor(
-    public ordenesService: ServicesService,
+    public ordenesService: TallerService,
     public router: Router,
     public route: ActivatedRoute
   ) {}
