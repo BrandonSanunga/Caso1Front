@@ -11,18 +11,25 @@ import { DisenoVehiculoComponent } from './components/diseno-vehiculo/diseno-veh
 import { FacturacliComponent } from './components/FacturaCli/facturacli/facturacli.component';
 import { DetallefacliComponent } from './components/DetalleFacturaCli/detallefacli/detallefacli.component';
 import { VehiculoCatalogoComponent } from './components/vehiculo-catalogo/vehiculo-catalogo.component';
+import { InformeReclamoComponent } from './components/informe-reclamo/informe-reclamo.component';
+import { InspeccionComponent } from './components/inspeccion/inspeccion.component';
+import { OrdenReparacionComponent } from './components/orden-reparacion/orden-reparacion.component';
+import { ClienteComponent } from './components/Cliente/cliente/cliente.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
-
     RepuestosComponent,
     CaracteristicasVehiculoComponent,
     DisenoVehiculoComponent,
     FacturacliComponent,
     DetallefacliComponent,
-    VehiculoCatalogoComponent
+    VehiculoCatalogoComponent,
+    InformeReclamoComponent,
+    InspeccionComponent,
+    OrdenReparacionComponent,
+    ClienteComponent
 
   ],
   imports: [
@@ -31,7 +38,9 @@ import { VehiculoCatalogoComponent } from './components/vehiculo-catalogo/vehicu
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

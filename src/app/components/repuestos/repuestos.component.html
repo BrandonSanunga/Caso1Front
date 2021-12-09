@@ -17,19 +17,20 @@
       <h4>--------- repuestos --------</h4>
       <form [formGroup]="repuestosform" (ngSubmit)="guardarrepuestos()">
         <div>
-          <label> id repuesto</label>
-          <input type="text" formControlName="id_repuesto" class="form-control">
+          <br>
+          <label> id diseno</label>
+          <!--seleccionar id directamente de la tabla de disenos-->
+          <select name="id_diseno" id="id_diseno" formControlName="id_diseno" class="form-control">
+            <option value="item.id_diseno" *ngFor="let item of disenos">{{item.id_diseno}}</option>
+          </select>
           <br>
           <label> nombre repuesto</label>
           <input type="text" formControlName="nombre_repuesto" class="form-control">
           <br>
-          <!--<label>fk id diseno</label>
-          <input type="text" formControlName="descripcion_repuesto" class="form-control">
-          -->
           <label> precio de venta</label>
           <input type="text" formControlName="precio" class="form-control">
           <br>
-          <button type="submit" class="btn btn-success">GUARDAR</button>
+          <button type="submit" class="btn btn-success" [disabled]="repuestosform.invalid">GUARDAR</button>
         </div>
       </form>
     </div>
