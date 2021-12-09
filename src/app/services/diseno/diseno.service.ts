@@ -15,7 +15,7 @@ export class DisenoService {
     return this.httpClient.get(this.API_SERVER+"all");
 
   }
-  public saveDiseno(caracteristicas: any): Observable<any>{
-    return this.httpClient.post(this.API_SERVER+"save",caracteristicas);
+  public saveDiseno(Disenos: any): Observable<any>{
+    return this.httpClient.post(this.API_SERVER+"save",Disenos);
   }
 }

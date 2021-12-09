@@ -1,0 +1,50 @@
+<div class="container">
+  <form [formGroup]="solGarantiaForm" (ngSubmit)="guardarSolicitud()">
+
+    <div class="form-group">
+      <label>Fecha: </label>
+      <input type="date" formControlName="fecha_solicitud" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Vehiculo:</label>
+      <select name="fk_chasis_vehiculo" id="fk_chasis_vehiculo" formControlName="fk_chasis_vehiculo"
+        class="form-control">
+        <option [ngValue]="vehiculo" *ngFor="let vehiculo of vehiculosList">{{vehiculo.chasis_vehiculo}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Descripción:</label>
+      <input type="text" formControlName="descripcion" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Estado:</label>
+      <input type="text" formControlName="estado_solicitud" class="form-controler">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="solGarantiaForm.invalid">GUARDAR</button>
+  </form>
+</div>
+
+<div class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>FECHA</th>
+        <th>CHASIS</th>
+        <th>VEHÍCULO</th>
+        <th>DESCRIPCIÓN</th>
+        <th>ESTADO</th>
+        <th>ELIMINAR</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let solicitud of solGarantiasList">
+        <td>{{solicitud.fecha_solicitud}}</td>
+        <td>{{solicitud.fk_chasis_vehiculo.chasis_vehiculo}}</td>
+        <td>{{solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca}}{{solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo}}</td>
+        <td>{{solicitud.descripcion}}</td>
+        <td>{{solicitud.estado_solicitud}}</td>
+        <td><button class="btn btn-danger" (click)="eliminarSoicitud(solicitud)">ELIMINAR</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

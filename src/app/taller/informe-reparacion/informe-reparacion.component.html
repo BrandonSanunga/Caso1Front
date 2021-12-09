@@ -1,0 +1,62 @@
+<main class="container-fluid">
+    <div class="row justify-content-center">
+
+        <button (click)="imprimirPantalla()">Imprimir</button>
+
+        <div class="col-12">
+            <h1 class="text-center my-5 display-4">Información de la orden</h1>
+        </div>
+
+
+
+
+        <div class="col-10 border p-2 p-md-5">
+
+            <div class="row my-2">
+                <div class="col-12 col-md-4 d-flex flex-row flex-wrap">
+                    <p class="font-bold">Orden No:</p>
+                    <p>{{orden.id}}</p>
+                </div>
+                <div class="col-12 col-md-4 d-flex flex-row flex-wrap">
+                    <p class="font-bold">Fecha de orden:</p>
+                    <p class="ms-2">{{orden.fecha}}</p>
+                </div>
+                <div class="col-12 col-md-4 d-flex flex-row flex-wrap">
+                    <p class="font-bold">Estado:</p>
+                    <p class="ms-2">{{orden.estado}}</p>
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col-12 col-md-6 d-flex flex-row flex-wrap">
+                    <p class="font-bold">Dueño:</p>
+                    <p class="ms-2">{{orden.duenio}}</p>
+                </div>
+                <div class="col-12 col-md-6 d-flex flex-row flex-wrap">
+                    <p class="font-bold">Automovil:</p>
+                    <p class="ms-2">{{orden.automovil}}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <h4>Repuestos solicitados:</h4>
+                    <hr>
+                </div>
+                <div class="col-12">
+                    <ul class="list-group list-group-flush">
+                        <li *ngFor="let repuesto of orden.repuestos; let i=index"
+                            class="list-group-item d-flex flex-row justify-content-around flex-wrap">
+                            <div>
+                                <strong>{{i+1}}.</strong>
+                                {{repuesto.nombre}}
+                            </div>
+                            <strong>{{repuesto.estado}}</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>

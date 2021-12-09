@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { VehiculoCatalogoService } from 'src/app/services/vehiculo_catalogo/vehiculo-catalogo.service';
-import { DisenoService } from 'src/app/services/diseno/diseno.service';
 import { CarcaracteristicasService } from 'src/app/services/caracteristicas/carcaracteristicas.service';
+import { DisenoService } from 'src/app/services/diseno/diseno.service';
+import { VehiculoCatalogoService } from 'src/app/services/vehiculo_catalogo/vehiculo-catalogo.service';
 
 @Component({
   selector: 'app-vehiculo-catalogo',
@@ -11,64 +11,60 @@ import { CarcaracteristicasService } from 'src/app/services/caracteristicas/carc
 })
 export class VehiculoCatalogoComponent implements OnInit {
   catalogoform!: FormGroup;
-  catalogos: any;
-  disenos: any;
-  caracteristicas: any;
+  catalogo: any;
+  catalogoList: any;
+  DisenoList: any;
+  caracteristicaList: any;
 
   constructor(
     public fb: FormBuilder,
     public catalogoservice: VehiculoCatalogoService,
     public disenoService: DisenoService,
-    public caracteristicasService: CarcaracteristicasService
+    public caracteristicasservice: CarcaracteristicasService
+
   ) { }
 
   ngOnInit(): void {
     this.catalogoform = this.fb.group({
-      id_diseno: ['', Validators.required],
-      year_vehiculo: ['', Validators.required],
-      id_caracteristica: ['', Validators.required],
-      links_imagen: ['', Validators.required],
-    });
+     diseno: ['',Validators.required],
+     year_vehiculo: ['',Validators.required],
+     caracteristica: ['',Validators.required],
+     links_imagen: ['',Validators.required],
+  });
+  this.disenoService.getAllDisenos().subscribe(resp=>{
+    this.DisenoList = resp;
+    console.log(resp);
+  },
+  error=>{console.error(console.error)});
 
-    this.disenoService.getAllDisenos().subscribe(resp => {
-      this.disenos = resp;
-      console.log(resp);
-    },
-      error => { console.error(error) }
-    );
+  this.caracteristicasservice.getAllCaracteristicas().subscribe(resp=>{
+    this.caracteristicaList= resp;
+    console.log(resp);
+  },
+  error=>{console.error(console.error)});
 
-    this.caracteristicasService.getAllCaracteristicas().subscribe(resp => {
-      this.caracteristicas = resp;
-      console.log(resp);
-    },
-      error => { console.error(error) }
-    );
-    
-    this.catalogoservice.getAllCatalogo().subscribe(resp => {
-      this.catalogos = resp;
-      console.log(resp);
-    },
-      error => { console.error(error) }
+  this.catalogoservice.getAllCatalogo().subscribe(resp=>{
+    this.catalogoList= resp;
+    console.log(resp);
+  },
+  error=>{console.error(console.error)})
+}
 
-    );
-  };
-
-  guardarCatalogo(): void {
+  guardarCatalogo(): void{
     this.catalogoservice.saveCatalogo(this.catalogoform.value).subscribe(resp => {
       this.catalogoform.reset();
-      this.catalogos.push(resp);
+      this.DisenoList.push(resp);
       console.log(resp);
     },
-      error => { console.error(error) }
+    error=>{console.error(error)}
+
     )
   }
-  eliminarCatalogo(catalogo: any) {
-    this.catalogoservice.deleteCatalogo(this.catalogos.id_vehiculo_catalogo).subscribe(resp => {
-      console.log(resp)
-      if (resp == true) {
-        this.catalogos.pop(catalogo)
+  eliminarCatalogo(soli: any):void{
+    this.catalogoservice.deleteCatalogo(soli.id_vehiculo_catalogo).subscribe(resp=>{
+      console.log(resp);
+      if(resp==true){
+        this.catalogoList.pop(soli);
       }
     })
-  }
-
-}
+  }}

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { InspeCaveServicesService } from './inspe-cave-services.service';
+import { InspeCaveTallerService } from './inspe-cave-services.service';
 
-describe('InspeCaveServicesService', () => {
-  let service: InspeCaveServicesService;
+describe('InspeCaveTallerService', () => {
+  let service: InspeCaveTallerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(InspeCaveServicesService);
+    service = TestBed.inject(InspeCaveTallerService);
   });
 
   it('should be created', () => {

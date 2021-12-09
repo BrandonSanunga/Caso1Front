@@ -9,7 +9,7 @@ import { DisenoService } from '../../services/diseno/diseno.service';
 })
 export class DisenoVehiculoComponent implements OnInit {
   disenoform!: FormGroup;
-  disenos: any;
+
   constructor(
     public fb: FormBuilder,
     public disenoService: DisenoService
@@ -30,6 +30,5 @@ export class DisenoVehiculoComponent implements OnInit {
 
     )
   }
-
 
 }

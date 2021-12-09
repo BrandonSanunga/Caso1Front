@@ -9,7 +9,6 @@ import { CarcaracteristicasService } from '../../services/caracteristicas/carcar
 })
 export class CaracteristicasVehiculoComponent implements OnInit {
   caracteristicasform!: FormGroup;
-  caracteristicas: any;
 
   constructor(
     public fb: FormBuilder,
@@ -18,7 +17,7 @@ export class CaracteristicasVehiculoComponent implements OnInit {
 
   ngOnInit(): void {
     this.caracteristicasform = this.fb.group({
-     id_caracteristica: [],
+     id_caracteristica: ['',Validators.required],
      capacidad_carga: ['',Validators.required],
      cilindros: ['',Validators.required],
      direccion: ['',Validators.required],

@@ -7,7 +7,7 @@ import { InformeReclamo } from 'src/app/modelos/iforme-reclamo';
 @Injectable({
   providedIn: 'root'
 })
-export class InformeReclamoServicesService {
+export class InformeReclamoTallerService {
   private URL='http://localhost:8080/inforech/api/v1'
   constructor(private http:HttpClient) { }
 

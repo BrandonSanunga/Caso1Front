@@ -1,31 +1,37 @@
 .facturarepuesto{
-    padding-left: 10%;
-    padding-right: 60%;
-  }
+  padding-left: 10%;
+  padding-right: 60%;
+}
+.contAutos{
+  padding-left:5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+
+}
+
+@media screen and (min-width: 590px){
   .contAutos{
-    padding-left:5%;
-    padding-right: 5%;
-    padding-bottom: 5%;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+}}
+.cards{
+  margin-top: 5%;
+  padding-top: 5%;
+  width: 90%;
+  height: 100%;
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 5px 0 rgb(0, 0, 0,0.95);
 
-  }
+}
+.imagecontainer{
+  padding-left:5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+.btnvermas {
+  background-color: #a3365c;
 
-  @media screen and (min-width: 590px){
-    .contAutos{
-    grid-template-columns: repeat(3, 1fr);
-  }}
-  .cards{
-    margin-top: 5%;
-    padding-top: 5%;
-    width: 90%;
-    height: 100%;
-    background-color: #fff;
-    cursor: pointer;
-    box-shadow: 0 0 5px 0 rgb(0, 0, 0,0.95);
-
-  }
-  .btnvermas {
-    background-color: #a3365c;
-
-  }
+}
