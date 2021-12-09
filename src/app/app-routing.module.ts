@@ -4,16 +4,36 @@ import { CaracteristicasVehiculoComponent } from './components/caracteristicas-v
 import { DisenoVehiculoComponent } from './components/diseno-vehiculo/diseno-vehiculo.component';
 import { VehiculoCatalogoComponent } from './components/vehiculo-catalogo/vehiculo-catalogo.component';
 import { RepuestosComponent } from './components/repuestos/repuestos.component';
+import { DetallefacliComponent } from './components/DetalleFacturaCli/detallefacli/detallefacli.component';
+import { FacturacliComponent } from './components/FacturaCli/facturacli/facturacli.component';
+import { InformeReclamoComponent } from './components/informe-reclamo/informe-reclamo.component';
+import { InspeccionComponent } from './components/inspeccion/inspeccion.component';
+import { OrdenReparacionComponent } from './components/orden-reparacion/orden-reparacion.component';
+import { SoligarantiaComponent } from './components/SolicitudGarantia/soligarantia/soligarantia.component';
+import { InformeReparacionComponent } from './taller/informe-reparacion/informe-reparacion.component';
+import { RepuestoAgregadoComponent } from './taller/repuesto-agregado/repuesto-agregado.component';
+import { SolicitudRepuestoComponent } from './taller/solicitud-repuesto/solicitud-repuesto.component';
+import { TallerComponent } from './taller/taller.component';
 
 const routes: Routes = [
   {path: 'repuestos',component: RepuestosComponent},
   {path: 'caracteristicas',component: CaracteristicasVehiculoComponent},
   {path: 'catalogo',component: VehiculoCatalogoComponent},
+  { path: 'informe-reclamo', component: InformeReclamoComponent },
+  { path: 'inspeccion', component: InspeccionComponent },
+  { path: 'orden-reparacion', component: OrdenReparacionComponent },
+  { path: 'factura', component: FacturacliComponent },
+  { path: 'detalle', component: DetallefacliComponent },
+  { path: 'solgarantia', component: SoligarantiaComponent },
+  {path: 'taller', component: TallerComponent },
+  { path: 'taller/orden/:id', component: InformeReparacionComponent },
+  { path: 'taller/repuestoAgregado', component: RepuestoAgregadoComponent },
+  { path: 'taller/solicitudRepuesto', component: SolicitudRepuestoComponent },
   {path: 'diseno',component: DisenoVehiculoComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

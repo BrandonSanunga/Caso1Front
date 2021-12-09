@@ -6,16 +6,16 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RepuestosService {
-private API_SERVER="http://localhost:8080/repuestos/api/v1/save"
+private API_SERVER="http://localhost:8080/repuestos/api/v1/"
   constructor(
     private httpClient: HttpClient
   ) { }
 
   public getAllRepuestos(): Observable<any>{
-    return this.httpClient.get(this.API_SERVER);
+    return this.httpClient.get(this.API_SERVER+"all");
 
   }
   public saveRepuestos(repuestos: any): Observable<any>{
-    return this.httpClient.post(this.API_SERVER,repuestos);
+    return this.httpClient.post(this.API_SERVER+"save",repuestos);
   }
 }

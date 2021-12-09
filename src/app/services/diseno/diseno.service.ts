@@ -6,16 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DisenoService {
-  private API_SERVER="http://localhost:8080/diseno/api/v1/save"
+  private API_SERVER="http://localhost:8080/diseno/api/v1/"
   constructor(
     private httpClient: HttpClient
   ) { }
 
   public getAllDisenos(): Observable<any>{
-    return this.httpClient.get(this.API_SERVER);
+    return this.httpClient.get(this.API_SERVER+"all");
 
   }
-  public saveDiseno(caracteristicas: any): Observable<any>{
-    return this.httpClient.post(this.API_SERVER,caracteristicas);
+  public saveDiseno(Disenos: any): Observable<any>{
+    return this.httpClient.post(this.API_SERVER+"save",Disenos);
   }
 }
