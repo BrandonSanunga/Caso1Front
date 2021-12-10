@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CaracteristicasVehiculoComponent } from './components/caracteristicas-vehiculo/caracteristicas-vehiculo.component';
+import { DisenoVehiculoComponent } from './components/diseno-vehiculo/diseno-vehiculo.component';
+import { VehiculoCatalogoComponent } from './components/vehiculo-catalogo/vehiculo-catalogo.component';
+import { RepuestosComponent } from './components/repuestos/repuestos.component';
 import { DetallefacliComponent } from './components/DetalleFacturaCli/detallefacli/detallefacli.component';
 import { FacturacliComponent } from './components/FacturaCli/facturacli/facturacli.component';
 import { InformeReclamoComponent } from './components/informe-reclamo/informe-reclamo.component';
@@ -12,29 +16,22 @@ import { SolicitudRepuestoComponent } from './taller/solicitud-repuesto/solicitu
 import { TallerComponent } from './taller/taller.component';
 
 const routes: Routes = [
+  {path: 'repuestos',component: RepuestosComponent},
+  {path: 'caracteristicas',component: CaracteristicasVehiculoComponent},
+  {path: 'catalogo',component: VehiculoCatalogoComponent},
   { path: 'informe-reclamo', component: InformeReclamoComponent },
   { path: 'inspeccion', component: InspeccionComponent },
   { path: 'orden-reparacion', component: OrdenReparacionComponent },
   { path: 'factura', component: FacturacliComponent },
   { path: 'detalle', component: DetallefacliComponent },
   { path: 'solgarantia', component: SoligarantiaComponent },
-  {
-    path: 'taller',
-    component: TallerComponent,
-  },
-  {
-    path: 'taller/orden/:id',
-    component: InformeReparacionComponent,
-  },
-  {
-    path: 'taller/repuestoAgregado',
-    component: RepuestoAgregadoComponent,
-  },
-  {
-    path: 'taller/solicitudRepuesto',
-    component: SolicitudRepuestoComponent,
-  },
+  {path: 'taller', component: TallerComponent },
+  { path: 'taller/orden/:id', component: InformeReparacionComponent },
+  { path: 'taller/repuestoAgregado', component: RepuestoAgregadoComponent },
+  { path: 'taller/solicitudRepuesto', component: SolicitudRepuestoComponent },
+  {path: 'diseno',component: DisenoVehiculoComponent}
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

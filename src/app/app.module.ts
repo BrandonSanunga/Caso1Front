@@ -1,13 +1,16 @@
-import { HttpClientModule } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { RepuestosComponent } from './components/repuestos/repuestos.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { CaracteristicasVehiculoComponent } from './components/caracteristicas-vehiculo/caracteristicas-vehiculo.component';
+import { DisenoVehiculoComponent } from './components/diseno-vehiculo/diseno-vehiculo.component';
+import { VehiculoCatalogoComponent } from './components/vehiculo-catalogo/vehiculo-catalogo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClienteComponent } from './components/Cliente/cliente/cliente.component';
-import { DetallefacliComponent } from './components/DetalleFacturaCli/detallefacli/detallefacli.component';
-import { FacturacliComponent } from './components/FacturaCli/facturacli/facturacli.component';
 import { InformeReclamoComponent } from './components/informe-reclamo/informe-reclamo.component';
 import { InspeccionComponent } from './components/inspeccion/inspeccion.component';
 import { OrdenReparacionComponent } from './components/orden-reparacion/orden-reparacion.component';
@@ -19,17 +22,20 @@ import { RepuestoAgregadoComponent } from './taller/repuesto-agregado/repuesto-a
 import { SolicitudRepuestoComponent } from './taller/solicitud-repuesto/solicitud-repuesto.component';
 import { TallerComponent } from './taller/taller.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    RepuestosComponent,
+    CaracteristicasVehiculoComponent,
+    DisenoVehiculoComponent,
+    VehiculoCatalogoComponent,
     LoginComponent,
     TallerComponent,
     InformeReparacionComponent,
     SolicitudRepuestoComponent,
     RepuestoAgregadoComponent,
     NavbarComponent,
-    FacturacliComponent,
-    DetallefacliComponent,
     InformeReclamoComponent,
     InspeccionComponent,
     OrdenReparacionComponent,
@@ -39,10 +45,12 @@ import { TallerComponent } from './taller/taller.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

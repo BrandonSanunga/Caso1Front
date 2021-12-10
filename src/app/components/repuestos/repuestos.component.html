@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <p>Repuestos</p>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Repuestos </title>
+  </head>
+  <body>
+    <div class="facturarepuesto">
+      <br>
+      <h4>--------- repuestos --------</h4>
+      <form [formGroup]="repuestosform" (ngSubmit)="guardarrepuestos()">
+        <div>
+          <br>
+          <label> nombre repuesto</label>
+          <input type="text" formControlName="nombre_repuesto" class="form-control">
+          <br>
+          <label>fk id diseno</label>
+          <select name="diseno" id="diseno" formControlName="diseno" class="form-control">
+            <option [ngValue]="diseno" *ngFor="let diseno of DisenoList">{{diseno.id_diseno}}</option>
+            </select>
+
+          <label> precio de venta</label>
+          <input type="text" formControlName="precio" class="form-control">
+          <br>
+          <button type="submit" class="btn btn-success">GUARDAR</button>
+        </div>
+      </form>
+    </div>
+
+
+    <div class="facturarepuesto">
+      <table class="table table-bordered">
+
+        <thead>
+          <tr>
+            <th>id repuesto </th>
+            <th> marca </th>
+            <th> modelo </th>
+            <th> nombre repuesto </th>
+            <th> precio de venta </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let repuestos of repuestosList">
+            <td>{{repuestos.id_repuesto}} </td>
+            <td>{{repuestos.diseno.marca}}</td>
+            <td>{{repuestos.diseno.modelo}}</td>
+            <td>{{repuestos.nombre_repuesto}} </td>
+            <td>{{repuestos.precio}}</td>
+            <td><button type="submit" class="btn btn-success" >Eliminar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
