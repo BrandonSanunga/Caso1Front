@@ -9,6 +9,7 @@ import { DisenoService } from '../../services/diseno/diseno.service';
 })
 export class DisenoVehiculoComponent implements OnInit {
   disenoform!: FormGroup;
+  disenoList: any;
 
   constructor(
     public fb: FormBuilder,
@@ -17,10 +18,15 @@ export class DisenoVehiculoComponent implements OnInit {
 
   ngOnInit(): void {
     this.disenoform = this.fb.group({
-     id_diseno: ['',Validators.required],
+
      marca: ['',Validators.required],
      modelo: ['',Validators.required] ,
-  });;
+  });
+  this.disenoService.getAllDisenos().subscribe(resp=>{
+    this.disenoList = resp;
+    console.log(resp);
+  },
+  error=>{console.error(console.error)});
   }
   guardarDiseno(): void{
     this.disenoService.saveDiseno(this.disenoform.value).subscribe(resp => {

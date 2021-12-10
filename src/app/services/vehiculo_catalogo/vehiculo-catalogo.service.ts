@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class VehiculoCatalogoService {
-  private API_SERVER="http://localhost:8080/vehiculo_catalogo/api/v1/"  
+  private API_SERVER="http://localhost:8080/vehiculo_catalogo/api/v1/"
     constructor(
     private httpClient: HttpClient
   ) { }
@@ -18,7 +18,8 @@ export class VehiculoCatalogoService {
   public saveCatalogo(catalogo: any): Observable<any>{
     return this.httpClient.post(this.API_SERVER+"save",catalogo);
   }
-  public deleteCatalogo(id_vehiculo_catalogo: any): Observable<any>{
-    return this.httpClient.delete(this.API_SERVER+"delete/"+id_vehiculo_catalogo);
+
+  public delete(id: any):Observable<any>{
+    return this.httpClient.delete(this.API_SERVER+"delete/"+id);
   }
 }

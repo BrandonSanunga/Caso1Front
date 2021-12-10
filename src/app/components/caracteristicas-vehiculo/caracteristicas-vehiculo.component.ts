@@ -9,6 +9,7 @@ import { CarcaracteristicasService } from '../../services/caracteristicas/carcar
 })
 export class CaracteristicasVehiculoComponent implements OnInit {
   caracteristicasform!: FormGroup;
+  caracteristicasList: any;
 
   constructor(
     public fb: FormBuilder,
@@ -17,7 +18,6 @@ export class CaracteristicasVehiculoComponent implements OnInit {
 
   ngOnInit(): void {
     this.caracteristicasform = this.fb.group({
-     id_caracteristica: ['',Validators.required],
      capacidad_carga: ['',Validators.required],
      cilindros: ['',Validators.required],
      direccion: ['',Validators.required],
@@ -29,7 +29,12 @@ export class CaracteristicasVehiculoComponent implements OnInit {
      tecnologia: ['',Validators.required],
      velocidades: ['',Validators.required],
      vidrios: ['',Validators.required],
-  });;
+  });
+  this.caracteristicaservice.getAllCaracteristicas().subscribe(resp=>{
+    this.caracteristicasList = resp;
+    console.log(resp);
+  },
+  error=>{console.error(console.error)});
   }
   guardarCaracteristicas(): void{
     this.caracteristicaservice.saveCaracteristicas(this.caracteristicasform.value).subscribe(resp => {
