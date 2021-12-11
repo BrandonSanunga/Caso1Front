@@ -21,6 +21,7 @@ import { InformeReparacionComponent } from './taller/informe-reparacion/informe-
 import { RepuestoAgregadoComponent } from './taller/repuesto-agregado/repuesto-agregado.component';
 import { SolicitudRepuestoComponent } from './taller/solicitud-repuesto/solicitud-repuesto.component';
 import { TallerComponent } from './taller/taller.component';
+import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-garantia.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { TallerComponent } from './taller/taller.component';
     OrdenReparacionComponent,
     ClienteComponent,
     SoligarantiaComponent,
+    ReclamoGarantiaComponent,
   ],
   imports: [
     BrowserModule,
