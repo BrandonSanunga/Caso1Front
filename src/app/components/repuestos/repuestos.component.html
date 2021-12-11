@@ -25,7 +25,10 @@
           <label> precio de venta</label>
           <input type="text" formControlName="precio" class="form-control">
           <br>
-          <button type="submit" class="btn btn-success">GUARDAR</button>
+          <label> estado</label>
+          <input type="text" formControlName="estado" class="form-control">
+          <br>
+          <button type="submit" class="btn btn-success" [disabled]="repuestosform.invalid">GUARDAR</button>
         </div>
       </form>
     </div>
@@ -41,6 +44,7 @@
             <th> modelo </th>
             <th> nombre repuesto </th>
             <th> precio de venta </th>
+            <th> estado </th>
           </tr>
         </thead>
         <tbody>
@@ -50,6 +54,7 @@
             <td>{{repuestos.diseno.modelo}}</td>
             <td>{{repuestos.nombre_repuesto}} </td>
             <td>{{repuestos.precio}}</td>
+            <td>{{repuestos.estado}}</td>
             <td><button type="submit" class="btn btn-success" >Eliminar</button></td>
           </tr>
         </tbody>

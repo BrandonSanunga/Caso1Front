@@ -25,6 +25,7 @@ export class RepuestosComponent implements OnInit {
      nombre_repuesto: ['',Validators.required],
      diseno: ['',Validators.required],
      precio: ['',Validators.required] ,
+     estado: ['',Validators.required] ,
   });
   this.disenoService.getAllDisenos().subscribe(resp=>{
     this.DisenoList = resp;
