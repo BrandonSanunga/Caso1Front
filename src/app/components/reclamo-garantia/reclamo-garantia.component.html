@@ -1,0 +1,21 @@
+<h2 style="text-align: center;">RECLAMOS REALIZADOS A LA COMERCIALIZADORA</h2>
+<div class="container" style="text-align: center;">
+    <p>La concesionaria solicita que se verifique la documentacion necesaria y que se notifique en el menor tiempo posible, tanto a nosotros como al cliente dueño del vehículo para saber si su reclamo aplica o no a una reparación por garantía de compra del
+        vehículo. A continuación les informamos los reclamos pendientes para su revisión.</p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>FECHA</th>
+                <th>CHASIS DEL VEHÍCULO</th>
+                <th>DESCRIPCIÓN</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reclamo of reclamosGaranList">
+                <td>{{reclamo.fecha_reclamo}}</td>
+                <td>{{reclamo.fk_id_solicitud.fk_chasis_vehiculo.chasis_vehiculo}}</td>
+                <td>{{reclamo.fk_id_solicitud.descripcion}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
