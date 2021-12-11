@@ -60,11 +60,12 @@ export class VehiculoCatalogoComponent implements OnInit {
 
     )
   }
-  eliminarCatalogo(soli: any):void{
-    this.catalogoservice.deleteCatalogo(soli.id_vehiculo_catalogo).subscribe(resp=>{
+  eliminarCatalogo(catal: any):void{
+    this.catalogoservice.delete(catal.id_vehiculo_catalogo).subscribe(resp=>{
       console.log(resp);
       if(resp==true){
-        this.catalogoList.pop(soli);
+        this.catalogoList.pop(catal);
       }
     })
-  }}
+  }
+}

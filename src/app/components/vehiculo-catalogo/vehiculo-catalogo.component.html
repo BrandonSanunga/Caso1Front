@@ -60,7 +60,14 @@
           <td>{{catalogo.year_vehiculo}} </td>
           <td>{{catalogo.caracteristica.id_caracteristica}} </td>
           <td>{{catalogo.links_imagen}}</td>
-          <td><button type="submit" class="btn btn-success" (click)="eliminarCatalogo(catalogo.id_vehiculo_catalogo)">Eliminar</button></td>
+          <br>
+          <br>
+          <td><button type="submit" class="btneditar btn-success" >Editar</button>
+            <br>
+            <br>
+            <button type="submit" class="btneliminar btn-warning" (click)="eliminarCatalogo(catalogo)">Eliminar</button>
+          </td>
+
         </tr>
       </tbody>
     </table>
@@ -71,7 +78,7 @@
       <div class="cards">
         <div class="imagecontainer">
           <img class="card-img-top"
-            src="https://th.bing.com/th/id/R.5fdd76145f754af1380adfea33d2dbc1?rik=0qxT3za%2ft0cQdA&pid=ImgRaw&r=0"
+            src="https://www.chevrolet.com.ec/content/dam/chevrolet/south-america/ecuador/espanol/vdc-collections/2019/cars/nuevo-beat/nuevo-beat/01-images/2019-beat-top-nav-jellybean.jpg?imwidth=1500"
             alt="Card image cap">
         </div>
         <div class="card-body">
@@ -81,9 +88,9 @@
         </div>
         <div class="card-footer">
           <small class="text-muted"> {{item.links_imagen}}</small>
+          <!--<td><button type="submit" class="btn btn-success">Ver Detalles</button></td>-->
         </div>
       </div>
-
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
