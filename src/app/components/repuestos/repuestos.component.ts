@@ -39,12 +39,19 @@ export class RepuestosComponent implements OnInit {
   error=>{console.error(console.error)})
   }
   guardarrepuestos(): void{
-    this.repuestosservice.saveRepuestos(this.repuestosform.value).subscribe(resp => {
-      this.repuestosform.reset();
-    },
-    error=>{console.error(error)}
-
-    )
+    this.repuestosservice.saveRepuestos(this.repuestosform.value).subscribe(resp=>{
+      this.repuestosform.reset;
+      this.repuestosList.push(resp);
+      console.log(resp);
+    })}
+  eliminarRepuestos(Repues: any):void{
+    this.repuestosservice.delete(Repues.id_repuesto).subscribe(resp=>{
+      console.log(resp);
+      if(resp==true){
+        this.repuestosList.pop(Repues);
+      }
+    })
   }
+
 
 }

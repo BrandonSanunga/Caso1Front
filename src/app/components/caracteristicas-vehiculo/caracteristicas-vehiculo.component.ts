@@ -37,11 +37,17 @@ export class CaracteristicasVehiculoComponent implements OnInit {
   error=>{console.error(console.error)});
   }
   guardarCaracteristicas(): void{
-    this.caracteristicaservice.saveCaracteristicas(this.caracteristicasform.value).subscribe(resp => {
-      this.caracteristicasform.reset();
-    },
-    error=>{console.error(error)}
-
-    )
+    this.caracteristicaservice.saveCaracteristicas(this.caracteristicasform.value).subscribe(resp=>{
+      this.caracteristicasform.reset;
+      this.caracteristicasList.push(resp);
+      console.log(resp);
+    })}
+  eliminarCaracteristica(carac: any):void{
+    this.caracteristicaservice.delete(carac.id_caracteristica).subscribe(resp=>{
+      console.log(resp);
+      if(resp==true){
+        this.caracteristicasList.pop(carac);
+      }
+    })
   }
 }

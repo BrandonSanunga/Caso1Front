@@ -48,18 +48,16 @@ export class VehiculoCatalogoComponent implements OnInit {
     console.log(resp);
   },
   error=>{console.error(console.error)})
-}
-
-  guardarCatalogo(): void{
-    this.catalogoservice.saveCatalogo(this.catalogoform.value).subscribe(resp => {
-      this.catalogoform.reset();
-      this.DisenoList.push(resp);
-      console.log(resp);
-    },
-    error=>{console.error(error)}
-
-    )
   }
+  guardarCatalogo():void{
+  this.catalogoservice.saveCatalogo(this.catalogoform.value).subscribe(resp=>{
+    this.catalogoform.reset;
+    this.catalogoList.push(resp);
+    console.log(resp);
+  }
+  ,
+  error=>{console.error(console.error)})
+}
   eliminarCatalogo(catal: any):void{
     this.catalogoservice.delete(catal.id_vehiculo_catalogo).subscribe(resp=>{
       console.log(resp);

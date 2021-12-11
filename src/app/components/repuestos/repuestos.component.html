@@ -1,13 +1,3 @@
-<!doctype html>
-<html lang="en">
-  <p>Repuestos</p>
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Repuestos </title>
-  </head>
-  <body>
     <div class="facturarepuesto">
       <br>
       <h4>--------- repuestos --------</h4>
@@ -19,7 +9,7 @@
           <br>
           <label>fk id diseno</label>
           <select name="diseno" id="diseno" formControlName="diseno" class="form-control">
-            <option [ngValue]="diseno" *ngFor="let diseno of DisenoList">{{diseno.id_diseno}}</option>
+            <option [ngValue]="diseno" *ngFor="let diseno of DisenoList">{{diseno.modelo}}</option>
             </select>
 
           <label> precio de venta</label>
@@ -40,6 +30,7 @@
         <thead>
           <tr>
             <th>id repuesto </th>
+            <th>id diseno </th>
             <th> marca </th>
             <th> modelo </th>
             <th> nombre repuesto </th>
@@ -50,15 +41,15 @@
         <tbody>
           <tr *ngFor="let repuestos of repuestosList">
             <td>{{repuestos.id_repuesto}} </td>
+            <td>{{repuestos.diseno.id_diseno}} </td>
             <td>{{repuestos.diseno.marca}}</td>
             <td>{{repuestos.diseno.modelo}}</td>
             <td>{{repuestos.nombre_repuesto}} </td>
             <td>{{repuestos.precio}}</td>
             <td>{{repuestos.estado}}</td>
-            <td><button type="submit" class="btn btn-success" >Eliminar</button></td>
+            <td><button type="submit" class="btn btn-success" (click)="eliminarRepuestos(repuestos)">Eliminar</button></td>
           </tr>
+
         </tbody>
       </table>
     </div>
-  </body>
-</html>
