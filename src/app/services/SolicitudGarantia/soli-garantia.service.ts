@@ -25,7 +25,7 @@ export class SoliGarantiaService {
     return this.httpClient.delete(this.API_SEVER+id)
   }
 
-  public getAllGarantiasTrue():Observable<any>{
-    return this.httpClient.get(this.API_SEVER+"pendientes");
+  public getAllGarantiasTrue(estado:any):Observable<any>{
+    return this.httpClient.get(this.API_SEVER+"pendientes/"+estado);
   }
 }
