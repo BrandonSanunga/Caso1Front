@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista Reclamos</title>
+</head>
+<body>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Tipo Informe</th>
+        <th scope="col" >Ver</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of this.listaInforme">
+        <th >{{i.idinformeRecha}}</th>
+        <td>{{i.fechaEmicion}}</td>
+        <td>{{i.client.cedulaClient}}</td>
+        <td>{{i.tipoInforme}}</td>
+        <td><Button (click)="Ver(i.client.cedulaClient,i.idinformeRecha)">Ver</Button></td>
+      </tr>
+       </tbody>
+  </table>
+</body>
+</html>
