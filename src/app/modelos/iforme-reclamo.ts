@@ -1,7 +1,9 @@
+import { Clientes } from "./clientes";
+
 export class InformeReclamo {
   idinformeRecha?:number;
   fechaEmicion?:Date;
-  client?:any;
+  client?:Clientes;
   // respuestaCliente?:respuestaCliente;
   descripcionInforme?:String;
   tipoInforme?:String;
