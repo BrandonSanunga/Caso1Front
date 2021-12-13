@@ -47,7 +47,11 @@
             <td>{{repuestos.nombre_repuesto}} </td>
             <td>{{repuestos.precio}}</td>
             <td>{{repuestos.estado}}</td>
-            <td><button type="submit" class="btn btn-success" (click)="eliminarRepuestos(repuestos)">Eliminar</button></td>
+            <td><button type="submit" class="btneditar btn-warning" (click)="editarRepuestos(repuestos)">Editar</button>
+              <br>
+              <br>
+              <button type="submit" class="btneliminar btn-danger" (click)="eliminarRepuestos(repuestos)">Eliminar</button>
+            </td>
           </tr>
 
         </tbody>

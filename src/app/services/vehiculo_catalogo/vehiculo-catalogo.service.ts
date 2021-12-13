@@ -22,4 +22,5 @@ export class VehiculoCatalogoService {
   public delete(id: any):Observable<any>{
     return this.httpClient.delete(this.API_SERVER+"delete/"+id);
   }
+
 }
