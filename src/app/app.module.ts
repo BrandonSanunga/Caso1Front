@@ -22,7 +22,8 @@ import { RepuestoAgregadoComponent } from './taller/repuesto-agregado/repuesto-a
 import { SolicitudRepuestoComponent } from './taller/solicitud-repuesto/solicitud-repuesto.component';
 import { TallerComponent } from './taller/taller.component';
 import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-garantia.component';
-
+import { ReclamoGarantiaFormComponent } from './components/reclamo-garantia/reclamo-garantia-form/reclamo-garantia-form.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-
     ClienteComponent,
     SoligarantiaComponent,
     ReclamoGarantiaComponent,
+    ReclamoGarantiaFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

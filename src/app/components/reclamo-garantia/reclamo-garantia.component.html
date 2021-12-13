@@ -1,3 +1,5 @@
+<br>
+<br>
 <h2 style="text-align: center;">RECLAMOS REALIZADOS A LA COMERCIALIZADORA</h2>
 <div class="container" style="text-align: center;">
     <p>La concesionaria solicita que se verifique la documentacion necesaria y que se notifique en el menor tiempo posible, tanto a nosotros como al cliente dueño del vehículo para saber si su reclamo aplica o no a una reparación por garantía de compra del
@@ -8,6 +10,7 @@
                 <th>FECHA</th>
                 <th>CHASIS DEL VEHÍCULO</th>
                 <th>DESCRIPCIÓN</th>
+                <th>VER EL RECLAMO</th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +18,7 @@
                 <td>{{reclamo.fecha_reclamo}}</td>
                 <td>{{reclamo.fk_id_solicitud.fk_chasis_vehiculo.chasis_vehiculo}}</td>
                 <td>{{reclamo.fk_id_solicitud.descripcion}}</td>
+                <td><button class="btn btn-success">PDF</button></td>
             </tr>
         </tbody>
     </table>

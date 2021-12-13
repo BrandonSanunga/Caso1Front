@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SoliGarantiaService {
   private API_SEVER = "http://localhost:8080/solicitud/garantia/api/v1/";
+  private API_SEVER2 = "http://localhost:8080/solicitud/garantia/api/v1/find/";
 
   constructor(
     private httpClient: HttpClient
@@ -26,6 +27,14 @@ export class SoliGarantiaService {
   }
 
   public getAllGarantiasTrue(estado:any):Observable<any>{
-    return this.httpClient.get(this.API_SEVER+"pendientes/"+estado);
+    return this.httpClient.get(this.API_SEVER+estado);
+  }
+
+  public cambiarEstadoSoli(id:any):Observable<any>{
+    return this.httpClient.put(this.API_SEVER+id, null);
+  }
+
+  public getSoliGarantiaByID(id:any):Observable<any>{
+    return this.httpClient.get(this.API_SEVER2+id);
   }
 }

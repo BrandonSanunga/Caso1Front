@@ -1,0 +1,12 @@
+<div class="container">
+    <form [formGroup]="reclamoForm" (ngSubmit)="guardarReclamo()">
+
+        <div class="form-group">
+            <label>Solicitud:</label>
+            <select name="fk_id_solicitud" id="fk_id_solicitud" formControlName="fk_id_solicitud" class="form-control">
+        <option [ngValue]="solicitudList">{{solicitudList.descripcion}}</option>
+      </select>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="reclamoForm.invalid">GUARDAR</button>
+    </form>
+</div>
