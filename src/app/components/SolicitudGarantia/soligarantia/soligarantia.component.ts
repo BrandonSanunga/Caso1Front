@@ -12,6 +12,7 @@ export class SoligarantiaComponent implements OnInit {
   solGarantiaForm!: FormGroup;
   vehiculosList: any;
   solGarantiasList: any;
+  estado!:boolean;
 
   constructor(
     public fb:FormBuilder,
@@ -32,11 +33,8 @@ export class SoligarantiaComponent implements OnInit {
     },
     error=>{console.error(console.error)});
 
-    this.soliGarantiaService.getAllGarantiasTrue().subscribe(resp=>{
-      this.solGarantiasList= resp;
-      console.log(resp);
-    },
-    error=>{console.error(console.error)})
+    this.listar();
+    
   }
 
   guardarSolicitud():void{
@@ -57,5 +55,27 @@ export class SoligarantiaComponent implements OnInit {
       }
     })
   }
-
+  listar():void{
+    if (this.estado==false) {
+      this.soliGarantiaService.getAllGarantiasTrue(false).subscribe(resp=>{
+        this.solGarantiasList= resp;
+        console.log(resp);
+      },
+      error=>{console.error(console.error)})
+    } 
+    if (this.estado==true) {
+      this.soliGarantiaService.getAllGarantiasTrue(true).subscribe(resp=>{
+        this.solGarantiasList= resp;
+        console.log(resp);
+      },
+      error=>{console.error(console.error)})
+    }
+    if (this.estado!=false && this.estado!=true) {
+      this.soliGarantiaService.getAllGarantias().subscribe(resp=>{
+        this.solGarantiasList= resp;
+        console.log(resp);
+      },
+      error=>{console.error(console.error)})
+    } 
+  }
 }

@@ -1,3 +1,120 @@
-<h1>
-    Pruebas para la funcionalidad de faturacion del cliente</h1>
-<p>facturacli works!</p>
+<div class="container">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form>
+          <div class="form-body">
+            <h3 class="card-title">Venta de Vehiculos</h3>
+            <hr />
+            <!--/row-->
+            <div class="row">
+              <!--/span-->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label">Nombre Empresa*</label>
+                  <input type="text" class="form-control" />
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Ruc Empresa*</label>
+                  <input type="text" class="form-control" />
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label class="control-label">Direccion*</label>
+                  <input type="text" class="form-control" />
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+
+              <!--/span-->
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="control-label">Descripcion*</label>
+                  <input type="text" class="form-control" />
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <!--/span-->
+              <!--/span-->
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Cliente*</label>
+                  <input type="text" class="form-control" />
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Filtrar Vehiculo*</label>
+                  <input type="text" class="form-control" />
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <!--/span-->
+              <!--/span-->
+            </div>
+            <!--/row-->
+          </div>
+          <hr />
+
+          <table
+            class="
+              table table-bordered table-responsive-sm table-sm
+              text-center
+            "
+          >
+            <thead class="bg-pri white">
+              <tr>
+                <th>Chasis Vehiculo</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Subtotal</th>
+                <th>Eliminar Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+
+                <td>
+                  <div class="row justify-content-center">
+                    <input
+                      type="number"
+                      class="form-control"
+                      style="width: 100px; height: 30px"
+                    />
+                  </div>
+                </td>
+
+                <td></td>
+                <td></td>
+                <td>
+                  <button class="btn bg-pri white btn-sm" type="button">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success mr-2">Guardar</button>
+            <button type="button" class="btn btn-danger">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
