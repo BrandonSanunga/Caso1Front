@@ -24,6 +24,7 @@ import { TallerComponent } from './taller/taller.component';
 import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-garantia.component';
 import { ReclamoGarantiaFormComponent } from './components/reclamo-garantia/reclamo-garantia-form/reclamo-garantia-form.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ListaReclamoComponent } from './components/informe-reclamo/lista-reclamo/lista-reclamo.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     SoligarantiaComponent,
     ReclamoGarantiaComponent,
     ReclamoGarantiaFormComponent,
+    ListaReclamoComponent,
   ],
   imports: [
     BrowserModule,
