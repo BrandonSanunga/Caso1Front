@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factura</title>
+</head>
+<body>
+  <div class="card-body">
+    <label for="basic-url" class="form-label">Nombre empresa</label>
+    <div class="input-group mb-1">
+      <input type="text" class="form-control"  id="nombre_empresa" [(ngModel)]="factura.nombre_empresa" aria-describedby="basic-addon3" disabled>
+    </div>
+    <label for="basic-url" class="form-label">Direccion</label>
+    <div class="input-group mb-1">
+      <input type="text" class="form-control"  id="direccion"[(ngModel)]="this.factura.direccion" aria-describedby="basic-addon3" disabled>
+    </div>
+    <div class="input-group">
+      <label for="basic-url" class="form-label">Ruc</label>
+      <label for="basic-url" class="form-label" style="margin-left: 220px;">Fecha</label>
+    </div>
+    <div class="input-group mb-1">
+      <input type="text" class="form-control" placeholder="Ruc" [(ngModel)]="this.factura.ruc_factura"  aria-label="Username" disabled>
+      <input type="text" class="form-control" placeholder="Fecha" [(ngModel)]="this.factura.fecha_emision" aria-label="Server" style="margin-left: 10px;" disabled>
+    </div>
+    <hr>
+    <hr>
+    <label for="basic-url" class="form-label">Cedula</label>
+    <div class="input-group mb-1">
+      <input type="text" class="form-control" [(ngModel)]="cliente.cedulaClient" id="cedula" aria-describedby="basic-addon3" disabled>
+    </div>
+    <label for="basic-url" class="form-label">Nombre</label>
+    <div class="input-group mb-1">
+      <input type="text" class="form-control" [(ngModel)]="cliente.nombresClient" id="cedula" aria-describedby="basic-addon3" disabled>
+    </div>
+    <div class="input-group">
+      <label for="basic-url" class="form-label">Celular</label>
+      <label for="basic-url" class="form-label" style="margin-left: 200px;">Correo</label>
+    </div>
+    <div class="input-group mb-1">
+      <input type="text" class="form-control" [(ngModel)]="cliente.celularClient" placeholder="Celular"  aria-label="Username" disabled>
+      <input type="text" class="form-control" [(ngModel)]="cliente.emailClient" placeholder="Correo"  aria-label="Server" style="margin-left: 10px;" disabled>
+    </div>
+    <label for="basic-url" class="form-label">Direccion</label>
+    <div class="input-group mb-1">
+      <input type="text" class="form-control" [(ngModel)]="cliente.direccionClient" id="cedula" aria-describedby="basic-addon3" disabled>
+    </div>
+    <hr>
+    <hr>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Vehiculo chasis</th>
+            <th scope="col">cantidad</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of detalleFactura">
+            <th>{{i.vehiculo.chasis_vehiculo}}</th>
+            <td>{{i.cantidad}}</td>
+            <td>{{i.total}}</td>
+          </tr>
+           </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

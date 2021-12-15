@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ClientFindidComponent } from './dialogos/client-findid/client-findid.component';
 import { VehicuFindidComponent } from './dialogos/vehicu-findid/vehicu-findid.component';
 import { InfoReclambyidComponent } from './dialogos/info-reclambyid/info-reclambyid.component';
+import { FacturaComVeDialogComponent } from './dialogos/factura-com-ve-dialog/factura-com-ve-dialog.component';
+import { InforReclComponent } from './dialogos/infor-recl/infor-recl.component';
 @Component({
   selector: 'app-informe-reclamo',
   templateUrl: './informe-reclamo.component.html',
@@ -20,6 +22,11 @@ export class InformeReclamoComponent implements OnInit {
   chasis:any;
   idinforme:any;
   informereclamo:InformeReclamo=new InformeReclamo();
+
+  vehiculo:any;
+  informeReclamo:any;
+  garantia:any;
+  factu:any;
   cliente:Clientes=new Clientes();
   reclamo:ReclamoGarantia=new ReclamoGarantia();
   constructor(public dialog: MatDialog,private reclamogarantiaService:ReclamoGarantiaService,private clienteServicio:ClienteService, private vehiculoServicio:VehiculoService, private informeReclamoSerivce:InformeReclamoTallerService) { }
@@ -28,23 +35,39 @@ export class InformeReclamoComponent implements OnInit {
   this.cedulaCliente=localStorage.getItem("cedulaCliente");
   this.chasis=localStorage.getItem("chasis");
   this.idinforme=localStorage.getItem("idinforme")
-  this.verCliente();
   this.verInformeReclamo();
+  this.optenerClienteFactura()
   }
   openDialogVehiculo() {
+    localStorage.setItem("vehiculoDialog",this.vehiculo)
     const dialogRef = this.dialog.open(VehicuFindidComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
   openDialogInformeReclamo() {
+    localStorage.setItem("inforReclDialog",this.informeReclamo)
     const dialogRef = this.dialog.open(InfoReclambyidComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
-  verCliente(){
-   this.clienteServicio.getFindByID(this.cedulaCliente).subscribe(data=>{
+  openDialogGarantia() {
+    localStorage.setItem("inforReclDialog",this.garantia)
+    const dialogRef = this.dialog.open(InforReclComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  openDialogFactura(){
+    localStorage.setItem("factuDialog",this.factu)
+    const dialogRef = this.dialog.open(FacturaComVeDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  verCliente(cedula:any){
+   this.clienteServicio.getFindByID(cedula).subscribe(data=>{
       this.cliente.cedulaClient=data.cedulaClient;
       this.cliente.celularClient=data.celularClient;
       this.cliente.direccionClient=data.direccionClient;
@@ -57,7 +80,24 @@ export class InformeReclamoComponent implements OnInit {
     var id =  localStorage.getItem("informe")
     this.reclamogarantiaService.getfindByid(id).subscribe(data=>{
         this.reclamo=data;
+        this.informeReclamo=id
+        this.chasis=data.fk_id_solicitud.fk_chasis_vehiculo.chasis_vehiculo
         console.log(data);
     })
+  }
+  optenerClienteFactura(){
+    this.informeReclamoSerivce.optenerFactura().subscribe(data=>{
+      for(let i of data){
+        for(let j of i.detallesfacturas){
+           if(j.vehiculo.chasis_vehiculo==this.chasis){
+            this.factu=i.id
+             this.vehiculo=j.vehiculo.chasis_vehiculo
+             this.garantia=j.vehiculo.id_garantia.id_garantia
+             this.verCliente(i.cliente.cedulaClient)
+           }
+        }
+         }
+    })
+
   }
 }

@@ -31,6 +31,7 @@ import { InforReclComponent } from './components/informe-reclamo/dialogos/infor-
 import { VehicuFindidComponent } from './components/informe-reclamo/dialogos/vehicu-findid/vehicu-findid.component';
 import { ClientFindidComponent } from './components/informe-reclamo/dialogos/client-findid/client-findid.component';
 import { InfoReclambyidComponent } from './components/informe-reclamo/dialogos/info-reclambyid/info-reclambyid.component';
+import { FacturaComVeDialogComponent } from './components/informe-reclamo/dialogos/factura-com-ve-dialog/factura-com-ve-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +58,7 @@ import { InfoReclambyidComponent } from './components/informe-reclamo/dialogos/i
     VehicuFindidComponent,
     ClientFindidComponent,
     InfoReclambyidComponent,
+    FacturaComVeDialogComponent,
   ],
   imports: [
     BrowserModule,

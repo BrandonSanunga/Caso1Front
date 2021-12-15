@@ -29,9 +29,11 @@
       <input type="text" class="form-control" [(ngModel)]="cliente.direccionClient" id="cedula" aria-describedby="basic-addon3" disabled>
     </div>
   </div>
-
-
-  <button mat-button (click)="openDialogVehiculo()">Vehiculo</button>
-  <button mat-button (click)="openDialogInformeReclamo()">Informe Reclamo</button>
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" (click)="openDialogVehiculo()" type="button">Informacion Vehiculo</button>
+      <button class="btn btn-primary" (click)="openDialogGarantia()" type="button">Garantia</button>
+      <button class="btn btn-primary" (click)="openDialogFactura()" type="button">Factura Compra</button>
+      <button class="btn btn-primary" (click)="openDialogInformeReclamo()" type="button">Reclamo Cliente</button>
+    </div>
 </body>
 </html>

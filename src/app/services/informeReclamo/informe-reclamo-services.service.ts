@@ -26,4 +26,12 @@ export class InformeReclamoTallerService {
     return this.http.put<InformeReclamo>(`${this.URL}/update/${id}`,informeReclamo);
   }
 
+  optenerFactura():Observable<any>{
+    return this.http.get(`http://localhost:8080/facturas/api/v1/`)
+  }
+
+  optenerVehiculoID(id:any):Observable<any>{
+    return this.http.get(`http://localhost:8080/vehiculo/api/v1/find/${id}`);
+  }
+
 }
