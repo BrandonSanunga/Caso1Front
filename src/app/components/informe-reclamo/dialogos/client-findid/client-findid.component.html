@@ -1,0 +1,22 @@
+<div class="card-body">
+  <label for="basic-url" class="form-label">Cedula</label>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" [(ngModel)]="cliente.cedulaClient" id="cedula" aria-describedby="basic-addon3" disabled>
+  </div>
+  <label for="basic-url" class="form-label">Nombre</label>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" [(ngModel)]="cliente.nombresClient" id="cedula" aria-describedby="basic-addon3" disabled>
+  </div>
+  <div class="input-group">
+    <label for="basic-url" class="form-label">Celular</label>
+    <label for="basic-url" class="form-label" style="margin-left: 480px;">Correo</label>
+  </div>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Celular" [(ngModel)]="cliente.celularClient" aria-label="Username" disabled>
+    <input type="text" class="form-control" placeholder="Correo" [(ngModel)]="cliente.emailClient" aria-label="Server" style="margin-left: 10px;" disabled>
+  </div>
+  <label for="basic-url" class="form-label">Direccion</label>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" [(ngModel)]="cliente.direccionClient" id="cedula" aria-describedby="basic-addon3" disabled>
+  </div>
+</div>

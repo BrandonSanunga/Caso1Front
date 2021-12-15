@@ -35,7 +35,8 @@ const routes: Routes = [
   {path: 'diseno',component: DisenoVehiculoComponent},
   {path: 'reclamo/garantia',component: ReclamoGarantiaComponent},
   {path: 'form/garantia',component: ReclamoGarantiaFormComponent},
-  { path: 'lista-reclamo', component: ListaReclamoComponent}
+  {path: 'lista-reclamo', component: ListaReclamoComponent},
+  {path: 'reclamo-garantia', component:ReclamoGarantiaComponent},
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ReclamoGarantiaService } from 'src/app/services/ReclamoGarantia/reclamo-garantia.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class ReclamoGarantiaComponent implements OnInit {
 
   constructor(
     public fb:FormBuilder,
-    public reclamoGarantiaService:ReclamoGarantiaService
+    public reclamoGarantiaService:ReclamoGarantiaService,
+    public root:Router
   ) { }
 
   ngOnInit(): void {
@@ -39,5 +41,10 @@ export class ReclamoGarantiaComponent implements OnInit {
       console.log(resp);
     },
     error=>{console.error(console.error)})
+  }
+
+  verInformeReclamo(InformeReclamo:any){
+    localStorage.setItem("informe",InformeReclamo);
+    this.root.navigate(['/informe-reclamo'])
   }
 }

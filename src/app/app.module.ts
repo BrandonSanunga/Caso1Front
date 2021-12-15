@@ -25,7 +25,12 @@ import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-
 import { ReclamoGarantiaFormComponent } from './components/reclamo-garantia/reclamo-garantia-form/reclamo-garantia-form.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ListaReclamoComponent } from './components/informe-reclamo/lista-reclamo/lista-reclamo.component';
-
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { InforReclComponent } from './components/informe-reclamo/dialogos/infor-recl/infor-recl.component';
+import { VehicuFindidComponent } from './components/informe-reclamo/dialogos/vehicu-findid/vehicu-findid.component';
+import { ClientFindidComponent } from './components/informe-reclamo/dialogos/client-findid/client-findid.component';
+import { InfoReclambyidComponent } from './components/informe-reclamo/dialogos/info-reclambyid/info-reclambyid.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,10 +52,17 @@ import { ListaReclamoComponent } from './components/informe-reclamo/lista-reclam
     ReclamoGarantiaComponent,
     ReclamoGarantiaFormComponent,
     ListaReclamoComponent,
+    ReclamoGarantiaComponent,
+    InforReclComponent,
+    VehicuFindidComponent,
+    ClientFindidComponent,
+    InfoReclambyidComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatIconModule,
+    MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

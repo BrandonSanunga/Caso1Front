@@ -4,6 +4,12 @@ import { VehiculoService } from 'src/app/services/Vehiculo/vehiculo.service';
 import { InformeReclamoTallerService } from 'src/app/services/informeReclamo/informe-reclamo-services.service';
 import { InformeReclamo } from 'src/app/modelos/iforme-reclamo';
 import { Clientes } from 'src/app/modelos/clientes';
+import { ReclamoGarantia } from 'src/app/modelos/ReclamoGarantia/reclamo-garantia';
+import { ReclamoGarantiaService } from 'src/app/services/ReclamoGarantia/reclamo-garantia.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ClientFindidComponent } from './dialogos/client-findid/client-findid.component';
+import { VehicuFindidComponent } from './dialogos/vehicu-findid/vehicu-findid.component';
+import { InfoReclambyidComponent } from './dialogos/info-reclambyid/info-reclambyid.component';
 @Component({
   selector: 'app-informe-reclamo',
   templateUrl: './informe-reclamo.component.html',
@@ -15,7 +21,8 @@ export class InformeReclamoComponent implements OnInit {
   idinforme:any;
   informereclamo:InformeReclamo=new InformeReclamo();
   cliente:Clientes=new Clientes();
-  constructor(private clienteServicio:ClienteService, private vehiculoServicio:VehiculoService, private informeReclamoSerivce:InformeReclamoTallerService) { }
+  reclamo:ReclamoGarantia=new ReclamoGarantia();
+  constructor(public dialog: MatDialog,private reclamogarantiaService:ReclamoGarantiaService,private clienteServicio:ClienteService, private vehiculoServicio:VehiculoService, private informeReclamoSerivce:InformeReclamoTallerService) { }
 
   ngOnInit(): void {
   this.cedulaCliente=localStorage.getItem("cedulaCliente");
@@ -24,11 +31,17 @@ export class InformeReclamoComponent implements OnInit {
   this.verCliente();
   this.verInformeReclamo();
   }
-  verInformeReclamo(){
-   this.informeReclamoSerivce.getById(this.idinforme).subscribe(data=>{
-     this.informereclamo.fechaEmicion=data.fechaEmicion;
-     this.informereclamo.descripcionInforme=data.descripcionInforme;
-   })
+  openDialogVehiculo() {
+    const dialogRef = this.dialog.open(VehicuFindidComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  openDialogInformeReclamo() {
+    const dialogRef = this.dialog.open(InfoReclambyidComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
   verCliente(){
    this.clienteServicio.getFindByID(this.cedulaCliente).subscribe(data=>{
@@ -40,13 +53,11 @@ export class InformeReclamoComponent implements OnInit {
       this.cliente.passwordClient=data.passwordClient;
    })
   }
-  verVehiculo(){
-     this.vehiculoServicio
-  }
-  verFacturaCompra(){
-
-  }
-  verGarantia(){
-
+  verInformeReclamo(){
+    var id =  localStorage.getItem("informe")
+    this.reclamogarantiaService.getfindByid(id).subscribe(data=>{
+        this.reclamo=data;
+        console.log(data);
+    })
   }
 }
