@@ -24,6 +24,7 @@ import { TallerComponent } from './taller/taller.component';
 import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-garantia.component';
 import { ReclamoGarantiaFormComponent } from './components/reclamo-garantia/reclamo-garantia-form/reclamo-garantia-form.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule, MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent],

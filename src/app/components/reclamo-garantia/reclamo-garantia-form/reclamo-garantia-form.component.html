@@ -1,12 +1,17 @@
+<h1 style="text-align: center;">
+    SELECCIONES EL RECLAMO Y GUÁRDELO</h1>
 <div class="container">
-    <form [formGroup]="reclamoForm" (ngSubmit)="guardarReclamo()">
+    <form [formGroup]="reclamoForm" (ngSubmit)="guardarReclamo(solicitudList)">
 
         <div class="form-group">
             <label>Solicitud:</label>
             <select name="fk_id_solicitud" id="fk_id_solicitud" formControlName="fk_id_solicitud" class="form-control">
-        <option [ngValue]="solicitudList">{{solicitudList.descripcion}}</option>
+        <option [ngValue]="solicitudList">{{solicitudList}}</option>
       </select>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="reclamoForm.invalid">GUARDAR</button>
+        <br>
+        <button type="submit" class="btn btn-primary" [disabled]="reclamoForm.invalid" [mat-dialog-close]>
+            GUARDAR</button>
+        <a type="button" class="btn btn-danger" [mat-dialog-close]>CANCELAR</a>
     </form>
 </div>

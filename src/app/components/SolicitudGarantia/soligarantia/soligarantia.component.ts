@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SoliGarantiaService } from '../../../services/SolicitudGarantia/soli-garantia.service';
 //import { VehiculoService } from '../../../services/Vehiculo/vehiculo.service';
@@ -21,7 +21,6 @@ export class SoligarantiaComponent implements OnInit {
     public fb: FormBuilder,
     public soliGarantiaService: SoliGarantiaService,
     public dialog: MatDialog
-    // public vehiculoService:VehiculoService
   ) { }
 
   ngOnInit(): void {
@@ -31,19 +30,11 @@ export class SoligarantiaComponent implements OnInit {
       descripcion: ['', Validators.required],
       estado_solicitud: ['true']
     });
-
     this.listar();
-    /*this.vehiculoService.getAllVehiculos().subscribe(resp=>{
-       this.vehiculosList = resp;
-       console.log(resp);
-     },
-     error=>{console.error(console.error)});*/
-
   }
 
   cambiarEstadoSoli(soli: any): void {
     this.dialog.open(ReclamoGarantiaFormComponent);
-
     /*this.soliGarantiaService.cambiarEstadoSoli(soli.id_solicitud).subscribe(resp => {
       console.log(resp);
       if (resp != null) {
@@ -52,31 +43,22 @@ export class SoligarantiaComponent implements OnInit {
     })*/
   }
 
-  openDialog() {
-    this.dialog.open(ReclamoGarantiaFormComponent);
-
-    
-  }
-
   listar(): void {
     if (this.estado == false) {
       this.soliGarantiaService.getAllGarantiasTrue(false).subscribe(resp => {
         this.solGarantiasList = resp;
-        console.log(resp);
       },
         error => { console.error(console.error) })
     }
     if (this.estado == true) {
       this.soliGarantiaService.getAllGarantiasTrue(true).subscribe(resp => {
         this.solGarantiasList = resp;
-        console.log(resp);
       },
         error => { console.error(console.error) })
     }
     if (this.estado != false && this.estado != true) {
       this.soliGarantiaService.getAllGarantias().subscribe(resp => {
         this.solGarantiasList = resp;
-        console.log(resp);
       },
         error => { console.error(console.error) })
     }
@@ -102,3 +84,9 @@ export class SoligarantiaComponent implements OnInit {
   },
   error=>{console.error(console.error)})
 }*/
+
+ /*this.vehiculoService.getAllVehiculos().subscribe(resp=>{
+       this.vehiculosList = resp;
+       console.log(resp);
+     },
+     error=>{console.error(console.error)});*/

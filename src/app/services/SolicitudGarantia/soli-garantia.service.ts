@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SoliGarantiaService {
   private API_SEVER = "http://localhost:8080/solicitud/garantia/api/v1/";
-  private API_SEVER2 = "http://localhost:8080/solicitud/garantia/api/v1/find/";
 
   constructor(
     private httpClient: HttpClient
@@ -35,6 +34,6 @@ export class SoliGarantiaService {
   }
 
   public getSoliGarantiaByID(id:any):Observable<any>{
-    return this.httpClient.get(this.API_SEVER2+id);
+    return this.httpClient.get(this.API_SEVER+"find/"+id);
   }
 }
