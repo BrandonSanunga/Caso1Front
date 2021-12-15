@@ -1,59 +1,66 @@
-    <div class="facturarepuesto">
-      <br>
-      <h4>--------- repuestos --------</h4>
-      <form [formGroup]="repuestosform" (ngSubmit)="guardarrepuestos()">
-        <div>
+<h1 class="display-4 text-center my-5">REPUESTOS</h1>
+<div class="repuesto">
+  <div class="card">
+    <form [formGroup]="repuestosform" (ngSubmit)="guardarrepuestos()">
+      <div>
+        <br>
+        <label> nombre repuesto</label>
+        <input type="text" formControlName="nombre_repuesto" class="form-control" placeholder="Ejm: Amortiguadores"
+          [maxLength]="45">
+        <br>
+        <label>fk id diseno</label>
+        <select name="diseno" id="diseno" formControlName="diseno" class="form-control">
+          <option [ngValue]="diseno" *ngFor="let diseno of DisenoList">{{diseno.modelo}}</option>
+        </select>
+
+        <label> precio de venta</label>
+        <input type="number" step="0.1" formControlName="precio" class="form-control" placeholder="Ejm: 20.2">
+        <br>
+        <label> estado</label>
+        <select type="text" formControlName="estado" class="form-control">
+          <option>true</option>
+          <option>false</option>
+        </select>
+        <br>
+        <button type="submit" class="btn btn-success" [disabled]="repuestosform.invalid">GUARDAR</button>
+
+      </div>
+    </form>
+  </div>
+</div>
+<br>
+<br>
+
+<div class="repuestolista">
+  <table class="table table-bordered">
+
+    <thead>
+      <tr>
+        <th>ID REPUESTO </th>
+        <th>ID DISENO </th>
+        <th> MARCA </th>
+        <th> MODELO </th>
+        <th> NOMBRE REPUESTO </th>
+        <th> PRECIO DE VENTA </th>
+        <th> ESTADO </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let repuestos of repuestosList">
+        <td>{{repuestos.id_repuesto}} </td>
+        <td>{{repuestos.diseno.id_diseno}} </td>
+        <td>{{repuestos.diseno.marca}}</td>
+        <td>{{repuestos.diseno.modelo}}</td>
+        <td>{{repuestos.nombre_repuesto}} </td>
+        <td>{{repuestos.precio}}</td>
+        <td>{{repuestos.estado}}</td>
+        <td><button type="submit" class="btneditar btn-warning" (click)="editarRepuestos(repuestos)">Editar</button>
           <br>
-          <label> nombre repuesto</label>
-          <input type="text" formControlName="nombre_repuesto" class="form-control">
           <br>
-          <label>fk id diseno</label>
-          <select name="diseno" id="diseno" formControlName="diseno" class="form-control">
-            <option [ngValue]="diseno" *ngFor="let diseno of DisenoList">{{diseno.modelo}}</option>
-            </select>
+          <button type="submit" class="btneliminar btn-danger" (click)="eliminarRepuestos(repuestos)">Eliminar</button>
+        </td>
+      </tr>
 
-          <label> precio de venta</label>
-          <input type="text" formControlName="precio" class="form-control">
-          <br>
-          <label> estado</label>
-          <input type="text" formControlName="estado" class="form-control">
-          <br>
-          <button type="submit" class="btn btn-success" [disabled]="repuestosform.invalid">GUARDAR</button>
-        </div>
-      </form>
-    </div>
-
-
-    <div class="facturarepuesto">
-      <table class="table table-bordered">
-
-        <thead>
-          <tr>
-            <th>id repuesto </th>
-            <th>id diseno </th>
-            <th> marca </th>
-            <th> modelo </th>
-            <th> nombre repuesto </th>
-            <th> precio de venta </th>
-            <th> estado </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let repuestos of repuestosList">
-            <td>{{repuestos.id_repuesto}} </td>
-            <td>{{repuestos.diseno.id_diseno}} </td>
-            <td>{{repuestos.diseno.marca}}</td>
-            <td>{{repuestos.diseno.modelo}}</td>
-            <td>{{repuestos.nombre_repuesto}} </td>
-            <td>{{repuestos.precio}}</td>
-            <td>{{repuestos.estado}}</td>
-            <td><button type="submit" class="btneditar btn-warning" (click)="editarRepuestos(repuestos)">Editar</button>
-              <br>
-              <br>
-              <button type="submit" class="btneliminar btn-danger" (click)="eliminarRepuestos(repuestos)">Eliminar</button>
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
+    </tbody>
+  </table>
+</div>

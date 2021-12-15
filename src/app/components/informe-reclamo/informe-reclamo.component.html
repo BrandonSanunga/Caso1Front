@@ -7,91 +7,33 @@
   <title>Informe Reclamo</title>
 </head>
 <body>
-  <div class="accordion accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingOne">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-          Cliente
-        </button>
-      </h2>
-      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-        <div class="card">
-          <div class="card-header">
-            Cliente
-          </div>
-          <div class="card-body">
-            <label for="basic-url" class="form-label">Cedula</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" [(ngModel)]="cedulaCliente" id="cedula" aria-describedby="basic-addon3" disabled>
-            </div>
-            <label for="basic-url" class="form-label">Nombre</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" [(ngModel)]="cliente.nombresClient" id="cedula" aria-describedby="basic-addon3" disabled>
-            </div>
-            <div class="input-group">
-              <label for="basic-url" class="form-label">Celular</label>
-              <label for="basic-url" class="form-label" style="margin-left: 480px;">Correo</label>
-            </div>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Celular" [(ngModel)]="cliente.celularClient" aria-label="Username" disabled>
-              <input type="text" class="form-control" placeholder="Correo" [(ngModel)]="cliente.emailClient" aria-label="Server" style="margin-left: 10px;" disabled>
-            </div>
-            <label for="basic-url" class="form-label">Direccion</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" [(ngModel)]="cliente.direccionClient" id="cedula" aria-describedby="basic-addon3" disabled>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="card-body">
+    <label for="basic-url" class="form-label">Cedula</label>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" [(ngModel)]="cliente.cedulaClient" id="cedula" aria-describedby="basic-addon3" disabled>
     </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-          Informe Reclamo del Cliente
-        </button>
-      </h2>
-      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-        <div class="card">
-          <div class="card-header">
-          </div>
-          <div class="card-body">
-            <label for="basic-url" class="form-label">Fecha</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" [(ngModel)]="informereclamo.fechaEmicion" id="cedula" aria-describedby="basic-addon3" disabled>
-            </div>
-            <label for="basic-url" class="form-label">Descripcion</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" [(ngModel)]="informereclamo.descripcionInforme" id="cedula" aria-describedby="basic-addon3" disabled>
-            </div>
-          </div>
-        </div>
-      </div>
+    <label for="basic-url" class="form-label">Nombre</label>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" [(ngModel)]="cliente.nombresClient" id="cedula" aria-describedby="basic-addon3" disabled>
     </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-          Factura de Compra
-        </button>
-      </h2>
-      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-      </div>
+    <div class="input-group">
+      <label for="basic-url" class="form-label">Celular</label>
+      <label for="basic-url" class="form-label" style="margin-left: 480px;">Correo</label>
     </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingFour">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseThree">
-          Vehiculo
-        </button>
-      </h2>
-      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-        <p>garantia</p>
-        <p>numero factura aduana</p>
-      </div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Celular" [(ngModel)]="cliente.celularClient" aria-label="Username" disabled>
+      <input type="text" class="form-control" placeholder="Correo" [(ngModel)]="cliente.emailClient" aria-label="Server" style="margin-left: 10px;" disabled>
+    </div>
+    <label for="basic-url" class="form-label">Direccion</label>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" [(ngModel)]="cliente.direccionClient" id="cedula" aria-describedby="basic-addon3" disabled>
     </div>
   </div>
-
-  <button>Aprobar</button>
-  <button>denegar</button>
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" (click)="openDialogVehiculo()" type="button">Informacion Vehiculo</button>
+      <button class="btn btn-primary" (click)="openDialogGarantia()" type="button">Garantia</button>
+      <button class="btn btn-primary" (click)="openDialogFactura()" type="button">Factura Compra</button>
+      <button class="btn btn-primary" (click)="openDialogInformeReclamo()" type="button">Reclamo Cliente</button>
+    </div>
 </body>
 </html>

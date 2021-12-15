@@ -1,4 +1,20 @@
-.facturarepuesto{
+.repuesto{
   padding-left: 10%;
   padding-right: 50%;
+}
+.repuestolista{
+  padding-left: 10%;
+  padding-right: 20%;
+}
+.card{
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.btneditar{
+  width: 100%;
+}
+.btneliminar{
+  width: 100%;
 }
