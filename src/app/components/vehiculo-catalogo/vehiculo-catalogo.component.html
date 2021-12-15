@@ -1,6 +1,6 @@
-  <div class="facturarepuesto">
-    <br>
-    <h1> catalogo </h1>
+<h1 class="display-4 text-center my-5">CATALOGO DE VEHICULOS</h1>
+<div class="facturarepuesto">
+    <div class="card">
     <form [formGroup]="catalogoform" (ngSubmit)="guardarCatalogo()">
       <div>
         <label>fk id diseno</label>
@@ -8,19 +8,19 @@
         <option [ngValue]="diseno" *ngFor="let diseno of DisenoList">{{diseno.id_diseno}}</option>
         </select>
         <label> año del vehiculo</label>
-        <input type="number" formControlName="year_vehiculo" class="form-control">
+        <input type="number" formControlName="year_vehiculo" class="form-control" min="1999" max="2021" placeholder="Ejm: 2015">
         <label>fk id caracteristicas</label>
         <select name="caracteristica" id="caracteristica" formControlName="caracteristica" class="form-control">
           <option [ngValue]="caracteristica" *ngFor="let caracteristica of caracteristicaList">{{caracteristica.id_caracteristica}}</option>
           </select>
         <br>
         <label>url de la imagen del vehiculo</label>
-        <input type="text" formControlName="links_imagen" class="form-control">
+        <input type="text" formControlName="links_imagen" class="form-control" >
         <br>
         <button type="submit" class="btn btn-success" [disabled]="catalogoform.invalid">GUARDAR</button>
       </div>
     </form>
-  </div>
+  </div></div>
   <br>
   <div class="facturarepuesto">
     <table class="table table-bordered">
