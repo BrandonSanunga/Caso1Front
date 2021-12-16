@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReclamoGarantiaService } from 'src/app/services/ReclamoGarantia/reclamo-garantia.service';
 import { SoliGarantiaService } from '../../../services/SolicitudGarantia/soli-garantia.service';
@@ -20,7 +20,7 @@ export class ReclamoGarantiaFormComponent implements OnInit {
  ) { }
 
   ngOnInit(): void {
-    this.reclamoForm = this.fb.group({
+      this.reclamoForm = this.fb.group({
       estado_reclamo:['true'],
       fecha_reclamo: [new Date()],
       fk_id_solicitud:['',Validators.required]
@@ -32,11 +32,19 @@ export class ReclamoGarantiaFormComponent implements OnInit {
     },
     error=>{console.error(console.error)})
   }
-  guardarReclamo():void{
+  guardarReclamo(id:any):void{
     this.reclamoGarantiaService.saveReclamos(this.reclamoForm.value).subscribe(resp=>{
       this.reclamoForm.reset;
       console.log(resp);
     },
     error=>{console.error(console.error)})
+
+    this.soliGarantiaService.cambiarEstadoSoli(id.id_solicitud).subscribe(resp => {
+      console.log("se cambio a false");
+    })
+  }
+
+  closeModal():void{
+    
   }
 }

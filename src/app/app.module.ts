@@ -24,6 +24,8 @@ import { TallerComponent } from './taller/taller.component';
 import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-garantia.component';
 import { ReclamoGarantiaFormComponent } from './components/reclamo-garantia/reclamo-garantia-form/reclamo-garantia-form.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
+
 import { ListaReclamoComponent } from './components/informe-reclamo/lista-reclamo/lista-reclamo.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -71,7 +73,7 @@ import { FacturaComVeDialogComponent } from './components/informe-reclamo/dialog
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule, MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent],
