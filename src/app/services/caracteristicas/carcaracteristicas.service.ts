@@ -18,4 +18,7 @@ export class CarcaracteristicasService {
   public saveCaracteristicas(caracteristicas: any): Observable<any>{
     return this.httpClient.post(this.API_SERVER+"save",caracteristicas);
   }
+  public delete(id: any):Observable<any>{
+    return this.httpClient.delete(this.API_SERVER+"delete/"+id)
+  }
 }

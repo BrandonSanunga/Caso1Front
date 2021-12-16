@@ -1,1 +1,44 @@
-<p>informe reclmo</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe Reclamo</title>
+</head>
+<body>
+  <div class="card-body">
+    <label for="basic-url" class="form-label">Cedula</label>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" [(ngModel)]="cliente.cedulaClient" id="cedula" aria-describedby="basic-addon3" disabled>
+    </div>
+    <label for="basic-url" class="form-label">Nombre</label>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" [(ngModel)]="cliente.nombresClient" id="cedula" aria-describedby="basic-addon3" disabled>
+    </div>
+    <div class="input-group">
+      <label for="basic-url" class="form-label">Celular</label>
+      <label for="basic-url" class="form-label" style="margin-left: 480px;">Correo</label>
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Celular" [(ngModel)]="cliente.celularClient" aria-label="Username" disabled>
+      <input type="text" class="form-control" placeholder="Correo" [(ngModel)]="cliente.emailClient" aria-label="Server" style="margin-left: 10px;" disabled>
+    </div>
+    <label for="basic-url" class="form-label">Direccion</label>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" [(ngModel)]="cliente.direccionClient" id="cedula" aria-describedby="basic-addon3" disabled>
+    </div>
+  </div>
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" (click)="openDialogVehiculo()" type="button">Informacion Vehiculo</button>
+      <button class="btn btn-primary" (click)="openDialogGarantia()" type="button">Garantia</button>
+      <button class="btn btn-primary" (click)="openDialogFactura()" type="button">Factura Compra</button>
+      <button class="btn btn-primary" (click)="openDialogInformeReclamo()" type="button">Reclamo Cliente</button>
+    </div>
+    <br><br><br>
+    <div class="card-group" style="text-align: center;margin-left: 35%;">
+    <button type="button" style="width: 130px;height: 60px;" (click)="rechazarSolicitud()" class="btn btn-danger">Rechazar Solicitud</button>
+    <button type="button"  style="margin-left: 10%;width: 130px;height: 60px;"(click)="aceptasolicitud()" class="btn btn-success">Aceptar Solicitud</button>
+  </div>
+</body>
+</html>

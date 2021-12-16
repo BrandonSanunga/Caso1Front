@@ -1,5 +1,15 @@
-.facturarepuesto{
+.caracteristicas{
     padding-left: 10%;
-    padding-right: 50%;
-  }
-  
+    padding-right: 10%;
+    width: 1200px;
+
+}
+.caracteristicaslista{
+    padding-left: 3%;
+    padding-right: 20%;
+
+}
+.btnguardar{
+  background-color: #db1d53;
+
+}

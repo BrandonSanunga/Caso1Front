@@ -18,4 +18,7 @@ private API_SERVER="http://localhost:8080/repuestos/api/v1/"
   public saveRepuestos(repuestos: any): Observable<any>{
     return this.httpClient.post(this.API_SERVER+"save",repuestos);
   }
+  public delete(id: any):Observable<any>{
+    return this.httpClient.delete(this.API_SERVER+"delete/"+id)
+  }
 }

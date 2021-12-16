@@ -22,9 +22,11 @@ export class RepuestosComponent implements OnInit {
 
   ngOnInit(): void {
     this.repuestosform = this.fb.group({
+     id_repuesto: [''],
      nombre_repuesto: ['',Validators.required],
      diseno: ['',Validators.required],
      precio: ['',Validators.required] ,
+     estado: ['',Validators.required] ,
   });
   this.disenoService.getAllDisenos().subscribe(resp=>{
     this.DisenoList = resp;
@@ -38,12 +40,27 @@ export class RepuestosComponent implements OnInit {
   error=>{console.error(console.error)})
   }
   guardarrepuestos(): void{
-    this.repuestosservice.saveRepuestos(this.repuestosform.value).subscribe(resp => {
+    this.repuestosservice.saveRepuestos(this.repuestosform.value).subscribe(resp=>{
       this.repuestosform.reset();
-    },
-    error=>{console.error(error)}
-
-    )
+      this.repuestosList = this.repuestosList.filter((repuesto: { id_repuesto: any; }) => resp.id_repuesto!=repuesto.id_repuesto);
+      this.repuestosList.push(resp);
+      console.log(resp);
+    })}
+  eliminarRepuestos(Repues: any):void{
+    this.repuestosservice.delete(Repues.id_repuesto).subscribe(resp=>{
+      console.log(resp);
+      if(resp==true){
+        this.repuestosList.pop(Repues);
+      }
+    })
   }
-
+  editarRepuestos(repuesto: any){
+    this.repuestosform.setValue({
+      id_repuesto: repuesto.id_repuesto,
+      nombre_repuesto: repuesto.nombre_repuesto,
+      diseno: repuesto.diseno.id_diseno,
+      precio: repuesto.precio,
+      estado: repuesto.estado,
+    })
+  }
 }

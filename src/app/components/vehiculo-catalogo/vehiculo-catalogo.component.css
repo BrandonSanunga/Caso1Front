@@ -10,7 +10,12 @@
   grid-template-columns: repeat(1, 1fr);
 
 }
-
+.card{
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
 @media screen and (min-width: 590px){
   .contAutos{
   grid-template-columns: repeat(3, 1fr);
@@ -34,4 +39,10 @@
 .btnvermas {
   background-color: #a3365c;
 
+}
+.btneditar{
+  width: 100%;
+}
+.btneliminar{
+  width: 100%;
 }

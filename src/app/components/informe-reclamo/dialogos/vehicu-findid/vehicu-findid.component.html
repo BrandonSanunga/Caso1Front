@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehiculo</title>
+</head>
+<body>
+  <div class="card-body" style="width: 1200px;">
+    <div class="input-group">
+      <label for="basic-url" class="form-label">Chasis</label>
+      <label for="basic-url" class="form-label" style="margin-left: 200px;">Marca</label>
+      <label for="basic-url" class="form-label" style="margin-left: 200px;">Modelo</label>
+      <label for="basic-url" class="form-label" style="margin-left: 200px;">Color</label>
+      <label for="basic-url" class="form-label" style="margin-left: 200px;">Precio venta</label>
+
+    </div>
+    <div class="input-group mb-1">
+      <input type="text" class="form-control"  placeholder="chasis" [(ngModel)]="vehiculo.chasis_vehiculo" aria-label="Username" disabled>
+      <input type="text" class="form-control"  placeholder="marca"  [(ngModel)]="vehiculo.vehiculoCatalogo.diseno.marca" aria-label="Username" style="margin-left: 10px;" disabled>
+      <input type="text" class="form-control"  placeholder="modelo" [(ngModel)]="vehiculo.vehiculoCatalogo.diseno.modelo" aria-label="Username" style="margin-left: 10px;" disabled>
+      <input type="text" class="form-control"  placeholder="color"  [(ngModel)]="vehiculo.color" aria-label="Username" style="margin-left: 10px;" disabled>
+      <input type="text" class="form-control"  placeholder="precio_venta" [(ngModel)]="vehiculo.precio_venta" aria-label="Username" style="margin-left: 10px;" disabled>
+    </div>
+    <hr>
+    <hr>
+    <div class="input-group">
+      <label for="basic-url" class="form-label" >Año fabricacion</label>
+      <label for="basic-url" class="form-label" style="margin-left: 135px;">Capacidad Carga</label>
+      <label for="basic-url" class="form-label" style="margin-left: 125px;">Cilindros</label>
+      <label for="basic-url" class="form-label" style="margin-left: 180px;">Direccion</label>
+      <label for="basic-url" class="form-label" style="margin-left: 180px;">Interior</label>
+
+    </div>
+    <div class="input-group mb-1">
+      <input type="text" class="form-control"  placeholder="año_fabricacion"  [(ngModel)]="vehiculo.vehiculoCatalogo.year_vehiculo" aria-label="Username"  disabled>
+      <input type="text" class="form-control"  placeholder="capacidad_carga" [(ngModel)]="vehiculo.vehiculoCatalogo.caracteristica.capacidad_carga" aria-label="Username" style="margin-left: 10px;" disabled>
+      <input type="text" class="form-control"  placeholder="cilindrois" [(ngModel)]="vehiculo.vehiculoCatalogo.caracteristica.cilindros" aria-label="Username" style="margin-left: 10px;" disabled>
+      <input type="text" class="form-control"  placeholder="Direccion" [(ngModel)]="vehiculo.vehiculoCatalogo.caracteristica.direccion"  aria-label="Username" style="margin-left: 10px;"disabled>
+      <input type="text" class="form-control"  placeholder="interior" [(ngModel)]="vehiculo.vehiculoCatalogo.caracteristica.interior" aria-label="Username" style="margin-left: 10px;"disabled>
+    </div>
+    <hr>
+    <hr>
+    <div class="input-group">
+      <label for="basic-url" class="form-label" >Motor</label>
+      <label for="basic-url" class="form-label" style="margin-left: 200px;">Numero de Puertas</label>
+      <label for="basic-url" class="form-label" style="margin-left: 119px;">Rines</label>
+      <label for="basic-url" class="form-label" style="margin-left: 200px;">Seguridad</label>
+      <label for="basic-url" class="form-label" style="margin-left: 170px;">Tecnologia</label>
+    </div>
+    <div class="input-group mb-1">
+      <input type="text" class="form-control"  placeholder="motor"  [(ngModel)]="vehiculo.vehiculoCatalogo.caracteristica.motor" aria-label="Username" disabled>
+      <input type="text" class="form-control"  placeholder="Velocidad" [(ngModel)]="vehiculo.vehiculoCatalogo.caracteristica.numero_de_puertas" aria-label="Username" style="margin-left: 10px;" disabled>
+      <input type="text" class="form-control"  placeholder="rines" [(ngModel)]="vehiculo.vehiculoCatalogo.caracteristica.rines" aria-label="Username" style="margin-left: 10px;" disabled>
+      <input type="text" class="form-control"  placeholder="seguridad" [(ngModel)]="vehiculo.vehiculoCatalogo.caracteristica.seguridad" aria-label="Username" style="margin-left: 10px;" disabled>
+      <input type="text" class="form-control"  placeholder="tecnologia" [(ngModel)]="vehiculo.vehiculoCatalogo.caracteristica.tecnologia" aria-label="Username" style="margin-left: 10px;"disabled>
+    </div>
+    <hr>
+    <hr>
+    <div class="input-group">
+      <label for="basic-url" class="form-label">Velocidad</label>
+      <label for="basic-url" class="form-label" style="margin-left: 340px;">Vidrios</label>
+      <label for="basic-url" class="form-label" style="margin-left: 360px;">Pais origen</label>
+    </div>
+    <div class="input-group mb-1">
+      <input type="text" class="form-control"  placeholder="Velocidad"  [(ngModel)]="vehiculo.vehiculoCatalogo.caracteristica.velocidades" aria-label="Username" disabled>
+      <input type="text" class="form-control"  placeholder="Vidrios"[(ngModel)]="vehiculo.vehiculoCatalogo.caracteristica.vidrios"  aria-label="Username" style="margin-left: 10px;" disabled>
+      <input type="text" class="form-control"  placeholder="Pais Origen" [(ngModel)]="vehiculo.id_pais.nombre_pais"  aria-label="Username" style="margin-left: 10px;"disabled>
+
+    </div>
+    <hr>
+    <hr>
+     </div>
+</body>
+</html>
