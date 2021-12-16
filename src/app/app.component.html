@@ -1,15 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 </head>
+
 <body>
+<nav>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/caracteristicas"
+              >caracteristicas del vehiculo</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/repuestos">Repuestos</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" routerLink="/diseno">diseño de vehiculo</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" routerLink="/catalogo">catalogo de vehiculos</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" routerLink="/lista-reclamo">Informe Reclamo</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" routerLink="/inspeccion">Inspeccion</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" routerLink="/garantiaV">Garantia Vehiculos</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" routerLink="/Vehiculo"> Vehiculos</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" routerLink="/InformeConcesionaria"> ConcecionariaInforme</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              vehiculos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/caracteristicas"
+                >caracteristicas del vehiculo</a
+              >
+              <a class="dropdown-item" routerLink="/diseno"
+                >diseño de vehiculo</a
+              >
+              <a class="dropdown-item" routerLink="/catalogo"
+                >catalogo de vehiculos</a
+              >
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+
+    <!-- *********************************************************************************************************************-->
+    <br />
+    <div class="facturarepuesto"></div>
+
   <div>
-    <img src="https://th.bing.com/th/id/OIP.b-g6X5Zq2BHtlEE0OX8NWAAAAA?pid=ImgDet&rs=1" class="img-thumbnail"
-      alt="100dp" width="100dp">
-    <app-navbar></app-navbar>
-    <router-outlet></router-outlet>
+  <h1 ><img
+      src="https://th.bing.com/th/id/OIP.b-g6X5Zq2BHtlEE0OX8NWAAAAA?pid=ImgDet&rs=1"
+      class="img-thumbnail" alt="100dp" width="100dp">Star Motor´s</h1>
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
   </div>
 </body>
+
 </html>

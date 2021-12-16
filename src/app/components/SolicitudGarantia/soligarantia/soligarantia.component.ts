@@ -33,7 +33,8 @@ export class SoligarantiaComponent implements OnInit {
     this.listar();
   }
 
-  cambiarEstadoSoli(soli: any): void {
+  cambiarEstadoSoli(soli: any, id:any): void {
+    localStorage.setItem("idlista",id);
     this.dialog.open(ReclamoGarantiaFormComponent);
     /*this.soliGarantiaService.cambiarEstadoSoli(soli.id_solicitud).subscribe(resp => {
       console.log(resp);

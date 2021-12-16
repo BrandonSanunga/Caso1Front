@@ -17,6 +17,10 @@ import { TallerComponent } from './taller/taller.component';
 import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-garantia.component';
 import { ReclamoGarantiaFormComponent } from './components/reclamo-garantia/reclamo-garantia-form/reclamo-garantia-form.component';
 import { ListaReclamoComponent } from './components/informe-reclamo/lista-reclamo/lista-reclamo.component';
+import { GarantiaVehiculoComponent } from './components/garantia-vehiculo/garantia-vehiculo.component';
+import { VehiculoComponent } from './components/vehiculo/vehiculo.component';
+import { InformeConcecionariaService } from './services/InformeConcecionaria/informe-concecionaria.service';
+import { InformeConcecionariaComponent } from './components/informe-concecionaria/informe-concecionaria.component';
 import { VehiculoCatalogoFormComponent } from './components/vehiculo-catalogo/vehiculo-catalogo-form/vehiculo-catalogo-form.component';
 
 const routes: Routes = [
@@ -35,6 +39,10 @@ const routes: Routes = [
   { path: 'taller/solicitudRepuesto', component: SolicitudRepuestoComponent },
   {path: 'diseno',component: DisenoVehiculoComponent},
   {path: 'reclamo/garantia',component: ReclamoGarantiaComponent},
+  {path: 'lista-reclamo', component:ListaReclamoComponent},
+  {path: 'garantiaV', component:GarantiaVehiculoComponent},
+  {path: 'Vehiculo', component:VehiculoComponent},
+  {path: 'InformeConcesionaria', component:InformeConcecionariaComponent},
   {path: 'form/garantia',component: ReclamoGarantiaFormComponent},
   {path: 'lista-reclamo', component: ListaReclamoComponent},
   {path: 'reclamo-garantia', component:ReclamoGarantiaComponent},

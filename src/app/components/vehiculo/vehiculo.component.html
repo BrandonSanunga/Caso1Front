@@ -1,0 +1,92 @@
+<div class="container">
+
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100"
+            aria-valuemin="0" style="width: 100%;"> </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Lista de Vehiculos </h1>
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <div class="col-ml-12">
+            <table class="table">
+                <thead>
+
+                    <th scope="col">CHASIS</th>
+                    <th scope="col">COLOR</th>
+                    <th scope="col">RAMV</th>
+                    <th scope="col">ESTADO</th>
+                    <th scope="col">PAIS</th>
+                    <th scope="col" >GARANTIA </th>
+                    <th scope="col"> MARCA </th>
+                    <th scope="col"> DISEÑO </th>
+                    <th scope="col"> ELIMINAR </th>
+                    <th scope="col"> EDITAR </th>
+
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vehiculo of vehiculo">
+                        <th scope="row">{{vehiculo.chasis}}</th>
+                        <th scope="row">{{vehiculo.color}}</th>
+                        <th scope="row">{{vehiculo.ramv}}</th>
+                        <th scope="row">{{vehiculo.estado}}</th>
+                        <th scope="row">{{vehiculo.pais.nombre}}</th>
+                        <th scope="row">{{vehiculo.garantia.descripcion}}</th>
+                        <th scope="row">{{vehiculo.vehiculoCatalogo.diseno.marca}}</th>
+                        <th scope="row"> {{vehiculo.vehiculoCatalogo.diseno.modelo}} </th>
+                        <th><button type="submit" class="btn btn-success" (click)="eliminar(vehiculo)">Eliminar</button></th>
+                        <th><button class="btn btn-primary" type="button" (click)="cargar(vehiculo.chasis )">Editar</button></th>
+   
+
+
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    <div class="col-md-3">
+        <br>
+        <form [formGroup]="Vehiculoform" (ngSubmit)="guardarV()" id="f">
+          <div>
+            
+            <label *ngIf="boton_pulsado" > CHASIS </label>
+            <input *ngIf="boton_pulsado" type="text"   formControlName="chasis" class="form-control"  >
+
+            <label  > COLOR</label>
+            <input type="text" formControlName="color" class="form-control">
+            
+            <label>  RAMV </label>
+            <input type="text" formControlName="ramv" class="form-control">
+      
+            <label>  PRECIO </label>
+            <input type="text" formControlName="precio" class="form-control">
+            <br>
+            <label>PAIS</label>
+            <select name="pais" id="pais" formControlName="pais" class="form-control" >
+              <option [ngValue]="pais" *ngFor="let pais of PaisList"  >{{pais.nombre}}</option>
+              </select>
+              <label>GARANTIA</label>
+            <select name="garantia" id="garantia" formControlName="garantia" class="form-control">
+              <option [ngValue]="garantia" *ngFor="let garantia of garantiaList">{{garantia.descripcion}}</option>
+              </select>
+
+              <label>CATALOGO</label>
+            <select name="vehiculoCatalogo" id="vehiculoCatalogo" formControlName="vehiculoCatalogo" class="form-control">
+              <option [ngValue]="vehiculoCatalogo" *ngFor="let vehiculoCatalogo of CatalogoList">{{vehiculoCatalogo.id_vehiculo_catalogo}}-{{vehiculoCatalogo.diseno.marca}}-{{vehiculoCatalogo.diseno.modelo}}</option>
+              </select>
+
+            <br>
+            <button type="submit" class="btn btn-success" [disabled]="Vehiculoform.invalid">GUARDAR</button>
+          </div>
+         
+        </form>
+   
+      </div>
+
+</div>

@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="progress" >
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100"
+            aria-valuemin="0" style="width: 100%;"> </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Lista Garantia de Vehiculos </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        
+    </div>
+    <div class="row">
+        <div class="col-ml-12">
+            <table class="table">
+                <thead>
+                  
+                    <th scope="col">ID</th>
+                    <th scope="col">DESCRIPCION</th>
+                    <th scope="col">DETALLE DE LA GARANTIA</th>
+
+                </thead>
+                <tbody>
+                    <tr *ngFor="let garantiavehiculo of garantiavehiculo">
+                        <th scope="row">{{garantiavehiculo.idGarantia}}</th>
+                        <th scope="row">{{garantiavehiculo.descripcion}}</th>
+                        <th scope="row">
+                            <ul *ngFor ="let detalle of garantiavehiculo.detallegarantia">
+                                <li>{{detalle.cobertura}}</li>
+                                <li>{{detalle.perido}}</li>
+                            </ul>
+                        </th>
+                        <td><button type="submit" class="btn btn-success" (click)="eliminarG(garantiavehiculo)">Eliminar</button></td>
+                        <!--
+                        <td><button class="btn btn-primary" type="button" (click)="cargar(garantiavehiculo.idGarantia )">Editar</button></td>
+                            -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Ingresar Nueva Garantia </h1>
+        </div>
+    </div>
+    <form (ngSubmit)="guardar()">
+        <div >
+            <label for="exampleInputPassword1">DESCRIPCION</label>
+            <input type="text" class="form-control"  [(ngModel)]="garantia.descripcion" [ngModelOptions]="{standalone: true}" >
+        </div>
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-md-3">
+                <label>DETALLE GARANTIA</label>
+            </div>
+            <div class="col-md-9">
+                <button type="button" class="btn btn-primary" (click)="agregarD()">AgregarDetalle</button>
+            </div>
+        </div>
+
+        <div class="row" *ngFor="let detalle of garantia.detallegarantia">
+            <div class="row-md-12">
+                <div class="btn btn-danger" (click)="eliminar(detalle)">Eliminar</div>
+
+            </div>
+          
+    
+            <div >
+                <label >Cobertura</label>
+                <input type="text" class="form-control" placeholder="cobertura" [(ngModel)]="detalle.cobertura" [ngModelOptions]="{standalone: true}" >
+            </div>
+            <div >
+                <label >periodo</label>
+                <input type="text" class="form-control" placeholder="periodo" [(ngModel)]="detalle.perido" [ngModelOptions]="{standalone: true}"    >
+            </div>
+        </div>
+        <input type="submit" class="btn btn-success" value="Guardar">
+    </form>
+
+ </div>
