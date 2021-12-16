@@ -38,16 +38,13 @@ const routes: Routes = [
   { path: 'taller/solicitudRepuesto', component: SolicitudRepuestoComponent },
   {path: 'diseno',component: DisenoVehiculoComponent},
   {path: 'reclamo/garantia',component: ReclamoGarantiaComponent},
-<<<<<<< HEAD
   {path: 'lista-reclamo', component:ListaReclamoComponent},
   {path: 'garantiaV', component:GarantiaVehiculoComponent},
   {path: 'Vehiculo', component:VehiculoComponent},
-  {path: 'InformeConcesionaria', component:InformeConcecionariaComponent}
-=======
+  {path: 'InformeConcesionaria', component:InformeConcecionariaComponent},
   {path: 'form/garantia',component: ReclamoGarantiaFormComponent},
   {path: 'lista-reclamo', component: ListaReclamoComponent},
   {path: 'reclamo-garantia', component:ReclamoGarantiaComponent},
->>>>>>> 5399f80813f0cdc5e924721f84485025c9535f05
 ];
 
 @NgModule({

@@ -22,19 +22,13 @@ import { RepuestoAgregadoComponent } from './taller/repuesto-agregado/repuesto-a
 import { SolicitudRepuestoComponent } from './taller/solicitud-repuesto/solicitud-repuesto.component';
 import { TallerComponent } from './taller/taller.component';
 import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-garantia.component';
-<<<<<<< HEAD
 import { ListaReclamoComponent } from './components/informe-reclamo/lista-reclamo/lista-reclamo.component';
 import { GarantiaVehiculoComponent } from './components/garantia-vehiculo/garantia-vehiculo.component';
 import { VehiculoComponent } from './components/vehiculo/vehiculo.component';
 import { InformeConcecionariaComponent } from './components/informe-concecionaria/informe-concecionaria.component';
-
-=======
 import { ReclamoGarantiaFormComponent } from './components/reclamo-garantia/reclamo-garantia-form/reclamo-garantia-form.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
->>>>>>> 5399f80813f0cdc5e924721f84485025c9535f05
-
-import { ListaReclamoComponent } from './components/informe-reclamo/lista-reclamo/lista-reclamo.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { InforReclComponent } from './components/informe-reclamo/dialogos/infor-recl/infor-recl.component';
@@ -63,18 +57,16 @@ import { FacturaComVeDialogComponent } from './components/informe-reclamo/dialog
     ReclamoGarantiaComponent,
     ReclamoGarantiaFormComponent,
     ListaReclamoComponent,
-<<<<<<< HEAD
     GarantiaVehiculoComponent,
     VehiculoComponent,
     InformeConcecionariaComponent,
-=======
+
     ReclamoGarantiaComponent,
     InforReclComponent,
     VehicuFindidComponent,
     ClientFindidComponent,
     InfoReclambyidComponent,
     FacturaComVeDialogComponent,
->>>>>>> 5399f80813f0cdc5e924721f84485025c9535f05
   ],
   imports: [
     BrowserModule,
