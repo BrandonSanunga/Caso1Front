@@ -44,6 +44,7 @@ export class RepuestosComponent implements OnInit {
       this.repuestosform.reset();
       this.repuestosList = this.repuestosList.filter((repuesto: { id_repuesto: any; }) => resp.id_repuesto!=repuesto.id_repuesto);
       this.repuestosList.push(resp);
+      alert("Repuesto guardado correctamente");
       console.log(resp);
     })}
   eliminarRepuestos(Repues: any):void{
@@ -51,6 +52,8 @@ export class RepuestosComponent implements OnInit {
       console.log(resp);
       if(resp==true){
         this.repuestosList.pop(Repues);
+        this.repuestosList.push();
+        alert("Repuesto: "+Repues.id_repuesto+" eliminado correctamente");
       }
     })
   }
