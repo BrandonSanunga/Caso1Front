@@ -12,6 +12,7 @@ import { VehicuFindidComponent } from './dialogos/vehicu-findid/vehicu-findid.co
 import { InfoReclambyidComponent } from './dialogos/info-reclambyid/info-reclambyid.component';
 import { FacturaComVeDialogComponent } from './dialogos/factura-com-ve-dialog/factura-com-ve-dialog.component';
 import { InforReclComponent } from './dialogos/infor-recl/infor-recl.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-informe-reclamo',
   templateUrl: './informe-reclamo.component.html',
@@ -21,6 +22,8 @@ export class InformeReclamoComponent implements OnInit {
   cedulaCliente:any;
   chasis:any;
   idinforme:any;
+  reclamo2:any;
+  fechaactual:any=Date;
   informereclamo:InformeReclamo=new InformeReclamo();
 
   vehiculo:any;
@@ -29,7 +32,8 @@ export class InformeReclamoComponent implements OnInit {
   factu:any;
   cliente:Clientes=new Clientes();
   reclamo:ReclamoGarantia=new ReclamoGarantia();
-  constructor(public dialog: MatDialog,private reclamogarantiaService:ReclamoGarantiaService,private clienteServicio:ClienteService, private vehiculoServicio:VehiculoService, private informeReclamoSerivce:InformeReclamoTallerService) { }
+  informeReclamomodelo:InformeReclamo=new InformeReclamo();
+  constructor(private root:Router,public dialog: MatDialog,private reclamogarantiaService:ReclamoGarantiaService,private clienteServicio:ClienteService, private vehiculoServicio:VehiculoService, private informeReclamoSerivce:InformeReclamoTallerService) { }
 
   ngOnInit(): void {
   this.cedulaCliente=localStorage.getItem("cedulaCliente");
@@ -98,6 +102,33 @@ export class InformeReclamoComponent implements OnInit {
         }
          }
     })
-
+  }
+  aceptasolicitud(){
+    var fecha=new Date();
+    var alerta = confirm("Esta seguro de aceptar la solicitud del Cliente")
+    if(alerta==true){
+      var id =  localStorage.getItem("informe")
+    this.reclamogarantiaService.getfindByid(id).subscribe(data=>{
+        this.reclamo2=data;
+        this.informeReclamoSerivce.updateInforme(data.id_reclamo).subscribe(data=>{
+          alert("Solicitud Aceptada");
+        this.informeReclamomodelo.client=this.cliente;
+         this.informeReclamomodelo.descripcionInforme=this.reclamo2?.fk_id_solicitud?.descripcion;
+         this.informeReclamomodelo.id_informe=this.reclamo2
+         this.informeReclamomodelo.respuestaCliente="Aceptado"
+         this.informeReclamomodelo.tipoInforme="Aceptado";
+         this.informeReclamomodelo.fechaEmicion=fecha;
+         this.informeReclamoSerivce.postInforme(this.informeReclamomodelo).subscribe(data=>{
+           this.root.navigate(["/inspeccion"]);
+         });
+         })
+              })
+    }
+  }
+  rechazarSolicitud(){
+    var alerta = confirm("Esta seguro de rechazar la solicitud del Cliente")
+    if(alerta==true){
+      alert("notificacion enviada");
+    }
   }
 }
