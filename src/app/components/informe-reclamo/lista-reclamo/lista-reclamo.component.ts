@@ -15,6 +15,7 @@ export class ListaReclamoComponent implements OnInit {
 
   ngOnInit(): void {
     this.CargarTable();
+    console.log(this.listaInforme)
   }
 
   CargarTable(){

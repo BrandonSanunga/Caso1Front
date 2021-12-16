@@ -1,11 +1,12 @@
 import { Clientes } from "./clientes";
+import { ReclamoGarantia } from "./ReclamoGarantia/reclamo-garantia";
 
 export class InformeReclamo {
-  idinformeRecha?:number;
+  idinforme_recha?:number;
   fechaEmicion?:Date;
   client?:Clientes;
-  // respuestaCliente?:respuestaCliente;
   descripcionInforme?:String;
+  id_informe?:ReclamoGarantia;
   tipoInforme?:String;
   respuestaCliente?:String;
 }

@@ -22,6 +22,7 @@ export class RepuestosComponent implements OnInit {
 
   ngOnInit(): void {
     this.repuestosform = this.fb.group({
+     id_repuesto: [''],
      nombre_repuesto: ['',Validators.required],
      diseno: ['',Validators.required],
      precio: ['',Validators.required] ,
@@ -40,7 +41,8 @@ export class RepuestosComponent implements OnInit {
   }
   guardarrepuestos(): void{
     this.repuestosservice.saveRepuestos(this.repuestosform.value).subscribe(resp=>{
-      this.repuestosform.reset;
+      this.repuestosform.reset();
+      this.repuestosList = this.repuestosList.filter((repuesto: { id_repuesto: any; }) => resp.id_repuesto!=repuesto.id_repuesto);
       this.repuestosList.push(resp);
       console.log(resp);
     })}
@@ -52,6 +54,13 @@ export class RepuestosComponent implements OnInit {
       }
     })
   }
-
-
+  editarRepuestos(repuesto: any){
+    this.repuestosform.setValue({
+      id_repuesto: repuesto.id_repuesto,
+      nombre_repuesto: repuesto.nombre_repuesto,
+      diseno: repuesto.diseno.id_diseno,
+      precio: repuesto.precio,
+      estado: repuesto.estado,
+    })
+  }
 }

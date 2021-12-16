@@ -15,4 +15,10 @@ export class ReclamoGarantiaService {
   public getAllReclamos():Observable<any>{
     return this.httpClient.get(this.API_SEVER);
   }
+  public saveReclamos(reclamo:any):Observable<any>{
+    return this.httpClient.post(this.API_SEVER,reclamo);
+  }
+  public getfindByid(id:any):Observable<any>{
+    return this.httpClient.get(`${this.API_SEVER}findId/${id}`)
+  }
 }

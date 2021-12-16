@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -26,6 +26,14 @@ export class SoliGarantiaService {
   }
 
   public getAllGarantiasTrue(estado:any):Observable<any>{
-    return this.httpClient.get(this.API_SEVER+"pendientes/"+estado);
+    return this.httpClient.get(this.API_SEVER+estado);
+  }
+
+  public cambiarEstadoSoli(id:any):Observable<any>{
+    return this.httpClient.put(this.API_SEVER+id, null);
+  }
+
+  public getSoliGarantiaByID(id:any):Observable<any>{
+    return this.httpClient.get(this.API_SEVER+"find/"+id);
   }
 }

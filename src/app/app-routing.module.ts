@@ -15,6 +15,7 @@ import { RepuestoAgregadoComponent } from './taller/repuesto-agregado/repuesto-a
 import { SolicitudRepuestoComponent } from './taller/solicitud-repuesto/solicitud-repuesto.component';
 import { TallerComponent } from './taller/taller.component';
 import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-garantia.component';
+import { ReclamoGarantiaFormComponent } from './components/reclamo-garantia/reclamo-garantia-form/reclamo-garantia-form.component';
 import { ListaReclamoComponent } from './components/informe-reclamo/lista-reclamo/lista-reclamo.component';
 import { GarantiaVehiculoComponent } from './components/garantia-vehiculo/garantia-vehiculo.component';
 import { VehiculoComponent } from './components/vehiculo/vehiculo.component';
@@ -37,10 +38,16 @@ const routes: Routes = [
   { path: 'taller/solicitudRepuesto', component: SolicitudRepuestoComponent },
   {path: 'diseno',component: DisenoVehiculoComponent},
   {path: 'reclamo/garantia',component: ReclamoGarantiaComponent},
+<<<<<<< HEAD
   {path: 'lista-reclamo', component:ListaReclamoComponent},
   {path: 'garantiaV', component:GarantiaVehiculoComponent},
   {path: 'Vehiculo', component:VehiculoComponent},
   {path: 'InformeConcesionaria', component:InformeConcecionariaComponent}
+=======
+  {path: 'form/garantia',component: ReclamoGarantiaFormComponent},
+  {path: 'lista-reclamo', component: ListaReclamoComponent},
+  {path: 'reclamo-garantia', component:ReclamoGarantiaComponent},
+>>>>>>> 5399f80813f0cdc5e924721f84485025c9535f05
 ];
 
 @NgModule({
