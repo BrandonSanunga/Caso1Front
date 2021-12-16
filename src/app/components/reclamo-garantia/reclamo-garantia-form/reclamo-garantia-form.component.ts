@@ -12,7 +12,7 @@ import { SoliGarantiaService } from '../../../services/SolicitudGarantia/soli-ga
 export class ReclamoGarantiaFormComponent implements OnInit {
   reclamoForm!: FormGroup;
   solicitudList: any;
-
+   idsolicitud:any;
   constructor(
     public fb:FormBuilder,
     public reclamoGarantiaService:ReclamoGarantiaService,
@@ -25,8 +25,8 @@ export class ReclamoGarantiaFormComponent implements OnInit {
       fecha_reclamo: [new Date()],
       fk_id_solicitud:['',Validators.required]
     });
-
-    this.soliGarantiaService.getSoliGarantiaByID(2).subscribe(resp=>{
+    this.idsolicitud = localStorage.getItem("idlista")
+    this.soliGarantiaService.getSoliGarantiaByID(this.idsolicitud).subscribe(resp=>{
       this.solicitudList=resp;
       console.log(resp);
     },
@@ -45,6 +45,6 @@ export class ReclamoGarantiaFormComponent implements OnInit {
   }
 
   closeModal():void{
-    
+
   }
 }

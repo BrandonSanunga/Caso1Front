@@ -20,11 +20,12 @@
         </thead>
         <tbody>
             <tr *ngFor="let solicitud of solGarantiasList">
+              <td style="display: none;">{{solicitud.id_solicitud}}</td>
                 <td>{{solicitud.fecha_solicitud}}</td>
                 <td>{{solicitud.fk_chasis_vehiculo.chasis_vehiculo}}</td>
                 <td>{{solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca}}{{solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo}}</td>
                 <td>{{solicitud.descripcion}}</td>
-                <td><button class="btn btn-success" *ngIf="estado" (click)="cambiarEstadoSoli(solicitud)">RECLAMAR</button></td>
+                <td><button class="btn btn-success" *ngIf="estado" (click)="cambiarEstadoSoli(solicitud,solicitud.id_solicitud)">RECLAMAR</button></td>
                 <!--<td><button class="btn btn-danger" (click)="eliminarSoicitud(solicitud)">ELIMINAR</button></td>-->
             </tr>
         </tbody>

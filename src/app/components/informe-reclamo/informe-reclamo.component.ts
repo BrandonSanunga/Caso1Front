@@ -110,7 +110,7 @@ export class InformeReclamoComponent implements OnInit {
       var id =  localStorage.getItem("informe")
     this.reclamogarantiaService.getfindByid(id).subscribe(data=>{
         this.reclamo2=data;
-        this.informeReclamoSerivce.updateInforme(data.id_reclamo).subscribe(data=>{
+     //   this.informeReclamoSerivce.updateInforme(data.id_reclamo).subscribe(data=>{
           alert("Solicitud Aceptada");
         this.informeReclamomodelo.client=this.cliente;
          this.informeReclamomodelo.descripcionInforme=this.reclamo2?.fk_id_solicitud?.descripcion;
@@ -121,7 +121,7 @@ export class InformeReclamoComponent implements OnInit {
          this.informeReclamoSerivce.postInforme(this.informeReclamomodelo).subscribe(data=>{
            this.root.navigate(["/inspeccion"]);
          });
-         })
+       //  })
               })
     }
   }
