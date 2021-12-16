@@ -16,6 +16,8 @@ export class VehiculoCatalogoComponent implements OnInit {
   catalogoList: any;
   DisenoList: any;
   caracteristicaList: any;
+  url: any; //url de la imagen
+	msg = "";
 
 
   constructor(
@@ -80,4 +82,23 @@ export class VehiculoCatalogoComponent implements OnInit {
     })
 
   }
+  selectFile(event: any) {
+		if(!event.target.files[0] || event.target.files[0].length == 0) {
+			this.msg = 'correcto';
+			return;
+		}
+		var mimeType = event.target.files[0].type;
+		if (mimeType.match(/image\/*/) == null) {
+			this.msg = "solo debe ser imagen";
+			return;
+		}
+		var reader = new FileReader();
+		reader.readAsDataURL(event.target.files[0]);
+		reader.onload = (_event) => {
+			this.msg = "";
+			this.url = reader.result;
+		}
+	}
+
+
 }
