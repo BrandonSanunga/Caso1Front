@@ -23,6 +23,9 @@ import { SolicitudRepuestoComponent } from './taller/solicitud-repuesto/solicitu
 import { TallerComponent } from './taller/taller.component';
 import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-garantia.component';
 import { ListaReclamoComponent } from './components/informe-reclamo/lista-reclamo/lista-reclamo.component';
+import { GarantiaVehiculoComponent } from './components/garantia-vehiculo/garantia-vehiculo.component';
+import { VehiculoComponent } from './components/vehiculo/vehiculo.component';
+import { InformeConcecionariaComponent } from './components/informe-concecionaria/informe-concecionaria.component';
 
 
 @NgModule({
@@ -45,6 +48,9 @@ import { ListaReclamoComponent } from './components/informe-reclamo/lista-reclam
     SoligarantiaComponent,
     ReclamoGarantiaComponent,
     ListaReclamoComponent,
+    GarantiaVehiculoComponent,
+    VehiculoComponent,
+    InformeConcecionariaComponent,
   ],
   imports: [
     BrowserModule,

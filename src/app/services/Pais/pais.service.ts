@@ -1,0 +1,16 @@
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PaisService {
+  private API_SEVER = "http://localhost:8080/pais/api/v1/all";
+
+  constructor(private httpClient: HttpClient) { }
+
+  public getAllPaises():Observable<any>{
+    return this.httpClient.get(this.API_SEVER);
+  }
+}
