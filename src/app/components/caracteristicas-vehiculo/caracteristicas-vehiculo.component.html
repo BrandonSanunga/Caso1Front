@@ -1,17 +1,133 @@
 <br>
-<h1 class="display-4 text-center my-5">CARACTERISTICA DEL VEHICULO</h1>
+<h1 class="card-title" style="text-align: center;">CARACTERISTICAS DEL VEHICULO</h1>
+<div class="caracteristicas">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="caracteristicasform" (ngSubmit)="guardarCaracteristicas()">
+          <div class="form-body">
+            <h3 class="card-title" style="text-align: center; font-style: bold;">INGRESAR NUEVAS CARACTERISTICAS DE VEHICULO</h3>
+            <br>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label> CAPACIDAD DE CARGA</label>
+                  <input type="text" formControlName="capacidad_carga" class="form-control" placeholder="Ejm: 1000kg">
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label> CILINDROS</label>
+                  <select type="number" formControlName="cilindros" class="form-control" >
+                    <option>3</option>
+                    <option>4</option>
+                    <option>6</option>
+                    <option>8</option>
+                    <option>12</option>
+                  </select>
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label> DIRECCION</label>
+                  <select type="text" formControlName="direccion" class="form-control">
+                    <option>HIDRAULICA</option>
+                    <option>MECANICA</option>
+                    <option>ELECTRICA</option>
+                    <option>ELECTRO-HIDRAULICA</option>
+                  </select>
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label> DISEÑO INTERIOR</label>
+                  <input type="text" formControlName="interior" class="form-control" placeholder="Ejm: Cuero">
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label> TIPO DE MOTOR</label>
+                  <input type="text" formControlName="motor" class="form-control" placeholder="Ejm: 1.2 L 4 cilindros" [maxLength]="45">
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label> NUMERO DE PUERTAS</label>
+                  <input type="number" formControlName="numero_de_puertas" class="form-control" min="2" max="5">
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label> AROS </label>
+                  <input type="text" formControlName="rines" class="form-control" placeholder="Ejm: Aluminio" [maxLength]="30">
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label> SEGURIDAD DEL VEHICULO</label>
+                  <input   type="text" formControlName="seguridad" class="form-control" placeholder="Cuatro airbags">
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label> TECNOLOGIA DEL VEHICULO</label>
+                  <input type="text" formControlName="tecnologia" class="form-control" placeholder="Smartphone Integration">
+                  <div class="text-danger"></div>
+                </div>
+              </div></div>
+              <br>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label> NUMERO DE CAMBIOS</label>
+                    <input type="number" formControlName="velocidades" class="form-control" min="4" max="7">
+                    <div class="text-danger"></div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label> VIDRIOS DEL VEHICULO</label>
+                    <input type="text" formControlName="vidrios" class="form-control" placeholder="Ejm: Polarizados">
+                    <div class="text-danger"></div>
+                  </div>
+                </div>
+
+              </div>
+
+            <br>
+            <button type="submit" class="btn btn-primary" [disabled]="caracteristicasform.invalid">GUARDAR</button>
+          </div>
+        </form>
+      </div></div></div></div>
+<br>
+<br>
+<h3 class="display-4 text-center my-5">LISTADO DE CARACTERISTICAS DE LOS VEHICULOS</h3>
 <div class="caracteristicaslista">
   <table class="table table-bordered">
 
     <thead>
       <tr>
-        <th style="text-align: center;"> ID CARACTERISTICA </th>
+        <th style="text-align: center;"> CARACTERISTICA </th>
         <th style="text-align: center;"> CAPACIDAD DE CARGA </th>
         <th style="text-align: center;"> CILIINDROS </th>
         <th style="text-align: center;"> DIRECCION </th>
         <th style="text-align: center;"> INTERIOR </th>
         <th style="text-align: center;"> MOTOR </th>
-        <th style="text-align: center;"> NUMERO DE PUERTAS </th>
+        <th style="text-align: center;"> PUERTAS </th>
         <th style="text-align: center;"> AROS </th>
         <th style="text-align: center;"> SEGURIDAD </th>
         <th style="text-align: center;"> TECNOLOGIA </th>
@@ -21,18 +137,18 @@
     </thead>
     <tbody>
       <tr *ngFor="let caracteristicas of caracteristicasList">
-        <td>{{caracteristicas.id_caracteristica}} </td>
-        <td>{{caracteristicas.capacidad_carga}} </td>
-        <td>{{caracteristicas.cilindros}} </td>
-        <td>{{caracteristicas.direccion}} </td>
-        <td>{{caracteristicas.interior}} </td>
-        <td>{{caracteristicas.motor}} </td>
-        <td>{{caracteristicas.numero_de_puertas}} </td>
-        <td>{{caracteristicas.rines}} </td>
-        <td>{{caracteristicas.seguridad}} </td>
-        <td>{{caracteristicas.tecnologia}} </td>
-        <td>{{caracteristicas.velocidades}} </td>
-        <td>{{caracteristicas.vidrios}} </td>
+        <td style="text-align: center;">{{caracteristicas.id_caracteristica}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.capacidad_carga}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.cilindros}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.direccion}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.interior}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.motor}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.numero_de_puertas}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.rines}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.seguridad}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.tecnologia}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.velocidades}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.vidrios}} </td>
 
         <td><button type="submit" class="btn btn-danger"
             (click)="eliminarCaracteristica(caracteristicas)">Eliminar</button></td>
@@ -40,115 +156,3 @@
     </tbody>
   </table>
   <br>
-  <br>
-  <div class="caracteristicas">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <form [formGroup]="caracteristicasform" (ngSubmit)="guardarCaracteristicas()">
-            <div class="form-body">
-              <h3 class="card-title">Caracteristicas del Vehiculo</h3>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label> Capacidad de carga</label>
-                    <input type="text" formControlName="capacidad_carga" class="form-control" placeholder="Ejm: 1000kg">
-                    <div class="text-danger"></div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label> Cilindros</label>
-                    <select type="number" formControlName="cilindros" class="form-control" >
-                      <option>3</option>
-                      <option>4</option>
-                      <option>6</option>
-                      <option>8</option>
-                      <option>12</option>
-
-                    </select>
-                    <div class="text-danger"></div>
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div class="form-group">
-                    <label> Direccion</label>
-                    <select type="text" formControlName="direccion" class="form-control">
-                      <option>Hidraulica</option>
-                      <option>Mecanica</option>
-                      <option>Electrica</option>
-                      <option>Electro-Hidraulica</option>
-                    </select>
-                    <div class="text-danger"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label> Interior</label>
-                    <input type="text" formControlName="interior" class="form-control" placeholder="Ejm: Cuero">
-                    <div class="text-danger"></div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label> Motor</label>
-                    <input type="text" formControlName="motor" class="form-control" placeholder="Ejm: 1.2 L 4 cilindros" [maxLength]="45">
-
-                    <div class="text-danger"></div>
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div class="form-group">
-                    <label> Numero de puertas</label>
-                    <input type="number" formControlName="numero_de_puertas" class="form-control" min="2" max="5">
-                    <div class="text-danger"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label> Aros</label>
-                    <input type="text" formControlName="rines" class="form-control" placeholder="Ejm: Aluminio" [maxLength]="30">
-                    <div class="text-danger"></div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label> Seguridad</label>
-                    <input type="text" formControlName="seguridad" class="form-control" placeholder="Cuatro airbags">
-                    <div class="text-danger"></div>
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div class="form-group">
-                    <label> Tecnologia</label>
-                    <input type="text" formControlName="tecnologia" class="form-control" placeholder="Smartphone Integration">
-                    <div class="text-danger"></div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label> Velocidades</label>
-                      <input type="number" formControlName="velocidades" class="form-control" min="4" max="7">
-                      <div class="text-danger"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-5">
-                    <div class="form-group">
-                      <label> Vidrios</label>
-                      <input type="text" formControlName="vidrios" class="form-control" placeholder="Ejm: Polarizados">
-                      <div class="text-danger"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <br>
-              <button type="submit" class="btn btn-danger" [disabled]="caracteristicasform.invalid">GUARDAR</button>
-            </div>
-          </form>
-        </div>

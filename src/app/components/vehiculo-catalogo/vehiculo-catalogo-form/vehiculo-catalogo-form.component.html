@@ -1,10 +1,5 @@
 <br>
-<h1 class="display-4 text-center my-5">CATALOGO DE VEHICULOS</h1>
-<br>
-<button class="btnadmin btn-primary" (click)="verInformeReclamo()" style="text-transform:uppercase;"> administrar catalogo</button>
-<br>
-
-<!--<div class="facturarepuesto2">
+<div class="facturarepuesto2">
   <div class="card">
     <form [formGroup]="catalogoform" (ngSubmit)="guardarCatalogo()">
       <h3 class="card-title" style="text-align: center; font-style: bold;">INGRESAR NUEVO CATALOGO</h3>
@@ -67,36 +62,4 @@
       </tr>
     </tbody>
   </table></div>
--->
 
-<div class="contAutos">
-  <div class="card-group mt-3" *ngFor="let item of catalogoList">
-    <div class="cards">
-      <div class="imagecontainer">
-        <img class="card-img-top"
-          src="https://www.chevrolet.com.ec/content/dam/chevrolet/south-america/ecuador/espanol/vdc-collections/2019/cars/nuevo-beat/nuevo-beat/01-images/2019-beat-top-nav-jellybean.jpg?imwidth=1500"
-          alt="Card image cap">
-      </div>
-      <div class="card-body">
-        <h2 class="card-title" style="text-transform:capitalize;">{{item.diseno.marca}}, {{item.diseno.modelo}}
-        </h2>
-
-        <p class="card-text">Año: {{item.year_vehiculo}}</p>
-        <p class="card-text">Motor: {{item.caracteristica.motor}}</p>
-
-      </div>
-      <div class="card-footer">
-        <!--<small class="text-muted"> {{item.links_imagen}}</small>-->
-        <!--<td><button type="submit" class="btn btn-success">Ver Detalles</button></td>-->
-      </div>
-    </div>
-  </div>
-</div>
-<!--
-<div style="text-align:center">
-  <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
-  <div><img [src]="url" *ngIf="url"></div>
-  <p>
-    <input type="file" (change)="selectFile($event)">
-  </p>
-</div>-->

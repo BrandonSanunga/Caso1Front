@@ -25,7 +25,6 @@ import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-
 import { ReclamoGarantiaFormComponent } from './components/reclamo-garantia/reclamo-garantia-form/reclamo-garantia-form.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
-
 import { ListaReclamoComponent } from './components/informe-reclamo/lista-reclamo/lista-reclamo.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -34,6 +33,7 @@ import { VehicuFindidComponent } from './components/informe-reclamo/dialogos/veh
 import { ClientFindidComponent } from './components/informe-reclamo/dialogos/client-findid/client-findid.component';
 import { InfoReclambyidComponent } from './components/informe-reclamo/dialogos/info-reclambyid/info-reclambyid.component';
 import { FacturaComVeDialogComponent } from './components/informe-reclamo/dialogos/factura-com-ve-dialog/factura-com-ve-dialog.component';
+import { VehiculoCatalogoFormComponent } from './components/vehiculo-catalogo/vehiculo-catalogo-form/vehiculo-catalogo-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +61,7 @@ import { FacturaComVeDialogComponent } from './components/informe-reclamo/dialog
     ClientFindidComponent,
     InfoReclambyidComponent,
     FacturaComVeDialogComponent,
+    VehiculoCatalogoFormComponent,
   ],
   imports: [
     BrowserModule,

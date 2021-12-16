@@ -17,6 +17,7 @@ import { TallerComponent } from './taller/taller.component';
 import { ReclamoGarantiaComponent } from './components/reclamo-garantia/reclamo-garantia.component';
 import { ReclamoGarantiaFormComponent } from './components/reclamo-garantia/reclamo-garantia-form/reclamo-garantia-form.component';
 import { ListaReclamoComponent } from './components/informe-reclamo/lista-reclamo/lista-reclamo.component';
+import { VehiculoCatalogoFormComponent } from './components/vehiculo-catalogo/vehiculo-catalogo-form/vehiculo-catalogo-form.component';
 
 const routes: Routes = [
   {path: 'repuestos',component: RepuestosComponent},
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path: 'form/garantia',component: ReclamoGarantiaFormComponent},
   {path: 'lista-reclamo', component: ListaReclamoComponent},
   {path: 'reclamo-garantia', component:ReclamoGarantiaComponent},
+  {path: 'catalogo/admin', component:VehiculoCatalogoFormComponent},
 ];
 
 @NgModule({

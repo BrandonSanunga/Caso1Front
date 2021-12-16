@@ -1,17 +1,16 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { CarcaracteristicasService } from 'src/app/services/caracteristicas/carcaracteristicas.service';
 import { DisenoService } from 'src/app/services/diseno/diseno.service';
 import { VehiculoCatalogoService } from 'src/app/services/vehiculo_catalogo/vehiculo-catalogo.service';
 
+
 @Component({
-  selector: 'app-vehiculo-catalogo',
-  templateUrl: './vehiculo-catalogo.component.html',
-  styleUrls: ['./vehiculo-catalogo.component.css']
+  selector: 'app-vehiculo-catalogo-form',
+  templateUrl: './vehiculo-catalogo-form.component.html',
+  styleUrls: ['./vehiculo-catalogo-form.component.css']
 })
-export class VehiculoCatalogoComponent implements OnInit {
+export class VehiculoCatalogoFormComponent implements OnInit {
   catalogoform!: FormGroup;
   catalogo: any;
   catalogoList: any;
@@ -25,8 +24,7 @@ export class VehiculoCatalogoComponent implements OnInit {
     public fb: FormBuilder,
     public catalogoservice: VehiculoCatalogoService,
     public disenoService: DisenoService,
-    public caracteristicasservice: CarcaracteristicasService,
-    public root:Router
+    public caracteristicasservice: CarcaracteristicasService
 
   ) { }
 
@@ -56,7 +54,7 @@ export class VehiculoCatalogoComponent implements OnInit {
     },
       error => { console.error(console.error) })
   }
- /* guardarCatalogo(): void {
+  guardarCatalogo(): void {
     this.catalogoservice.saveCatalogo(this.catalogoform.value).subscribe(resp => {
       this.catalogoform.reset();
       this.catalogoList = this.catalogoList.filter((catalogo: { id_vehiculo_catalogo: any; }) => resp.id_vehiculo_catalogo!=catalogo.id_vehiculo_catalogo);
@@ -83,26 +81,4 @@ export class VehiculoCatalogoComponent implements OnInit {
       links_imagen: catal.links_imagen,
     })
 
-  }*/
-  selectFile(event: any) {
-		if(!event.target.files[0] || event.target.files[0].length == 0) {
-			this.msg = 'correcto';
-			return;
-		}
-		var mimeType = event.target.files[0].type;
-		if (mimeType.match(/image\/*/) == null) {
-			this.msg = "solo debe ser imagen";
-			return;
-		}
-		var reader = new FileReader();
-		reader.readAsDataURL(event.target.files[0]);
-		reader.onload = (_event) => {
-			this.msg = "";
-			this.url = reader.result;
-		}
-	}
-  verInformeReclamo(){
-    this.root.navigate(['catalogo/admin'])
-  }
-
-}
+  }}

@@ -3,26 +3,27 @@
   <div class="card">
     <form [formGroup]="repuestosform" (ngSubmit)="guardarrepuestos()">
       <div>
-        <br>
-        <label> nombre repuesto</label>
+        <h3 class="display-4 text-center my-5">INGRESAR NUEVO REPUESTO</h3>
+
+        <label style="text-align: center;text-transform:uppercase;"> nombre del repuesto</label>
         <input type="text" formControlName="nombre_repuesto" class="form-control" placeholder="Ejm: Amortiguadores"
           [maxLength]="45">
         <br>
-        <label>fk id diseno</label>
+        <label style="text-align: center;text-transform:uppercase;">diseño del vehiculo</label>
         <select name="diseno" id="diseno" formControlName="diseno" class="form-control">
           <option [ngValue]="diseno" *ngFor="let diseno of DisenoList">{{diseno.modelo}}</option>
         </select>
 
-        <label> precio de venta</label>
+        <label style="text-align: center;text-transform:uppercase;"> precio del repuesto</label>
         <input type="number" step="0.1" formControlName="precio" class="form-control" min="0.1"  placeholder="Ejm: 20.2">
         <br>
-        <label> estado</label>
+        <label style="text-align: center;text-transform:uppercase;"> estado del repuesto</label>
         <select type="text" formControlName="estado" class="form-control">
           <option>true</option>
           <option>false</option>
         </select>
         <br>
-        <button type="submit" class="btn btn-success" [disabled]="repuestosform.invalid">GUARDAR</button>
+        <button type="submit" class="btn btn-primary" [disabled]="repuestosform.invalid">GUARDAR</button>
 
       </div>
     </form>
@@ -32,28 +33,30 @@
 <br>
 
 <div class="repuestolista">
+  <h3 class="display-4 text-center my-5">LISTADO DE REPUESTOS</h3>
   <table class="table table-bordered">
-
     <thead>
       <tr>
-        <th>ID REPUESTO </th>
-        <th>ID DISENO </th>
-        <th> MARCA </th>
-        <th> MODELO </th>
-        <th> NOMBRE REPUESTO </th>
-        <th> PRECIO DE VENTA </th>
-        <th> ESTADO </th>
+      </tr>
+      <tr>
+        <th style="text-align: center"> ID REPUESTO </th>
+        <th style="text-align: center">ID DISENO </th>
+        <th style="text-align: center"> MARCA </th>
+        <th style="text-align: center"> MODELO </th>
+        <th style="text-align: center"> NOMBRE REPUESTO </th>
+        <th style="text-align: center"> PRECIO DE VENTA </th>
+        <th style="text-align: center"> ESTADO </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let repuestos of repuestosList">
-        <td>{{repuestos.id_repuesto}} </td>
-        <td>{{repuestos.diseno.id_diseno}} </td>
-        <td>{{repuestos.diseno.marca}}</td>
-        <td>{{repuestos.diseno.modelo}}</td>
-        <td>{{repuestos.nombre_repuesto}} </td>
-        <td>{{repuestos.precio}}</td>
-        <td>{{repuestos.estado}}</td>
+        <td style="text-align: center;">{{repuestos.id_repuesto}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{repuestos.diseno.id_diseno}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{repuestos.diseno.marca}}</td>
+        <td style="text-align: center;text-transform:uppercase;">{{repuestos.diseno.modelo}}</td>
+        <td style="text-align: center;text-transform:uppercase;">{{repuestos.nombre_repuesto}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{repuestos.precio}}</td>
+        <td style="text-align: center;text-transform:uppercase;">{{repuestos.estado}}</td>
         <td><button type="submit" class="btneditar btn-warning" (click)="editarRepuestos(repuestos)">Editar</button>
           <br>
           <br>

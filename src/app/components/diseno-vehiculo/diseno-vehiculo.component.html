@@ -5,16 +5,16 @@
 
         <thead>
           <tr>
-            <th> ID DISEÑO </th>
-            <th> MARCA </th>
-            <th> MODELO </th>
+            <th style="text-align: center;"> ID DISEÑO </th>
+            <th style="text-align: center;"> MARCA </th>
+            <th style="text-align: center;"> MODELO </th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let disenos of disenoList">
-            <td>{{disenos.id_diseno}} </td>
-            <td>{{disenos.marca}}</td>
-            <td>{{disenos.modelo}}</td>
+            <td style="text-transform:uppercase;text-align: center;">{{disenos.id_diseno}} </td>
+            <td style="text-transform:uppercase;text-align: center;">{{disenos.marca}}</td>
+            <td style="text-transform:uppercase;text-align: center;">{{disenos.modelo}}</td>
             <!--<td><button type="submit" class="btn btn-success" >Eliminar</button></td>-->
           </tr>
         </tbody>
