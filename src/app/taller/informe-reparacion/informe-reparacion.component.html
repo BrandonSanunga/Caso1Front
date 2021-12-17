@@ -54,6 +54,29 @@
 
       <div class="row">
         <div class="col-12 col-md-6 d-flex flex-row flex-wrap">
+          <p class="font-bold">Costo mano de obra:</p>
+          <div class="input-group">
+            <input
+              class="form-control"
+              type="number"
+              min="1"
+              max="50000"
+              [disabled]="guardandoCosto"
+              [(ngModel)]="orden.costoManoObra"
+            />
+            <button
+              class="btn btn-primary px-3"
+              [disabled]="guardandoCosto"
+              (click)="guardarCosto()"
+            >
+              Guardar costo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-6 d-flex flex-row flex-wrap">
           <p class="font-bold">Observaciones:</p>
           <p class="ms-2">{{ orden?.observaciones }}</p>
         </div>

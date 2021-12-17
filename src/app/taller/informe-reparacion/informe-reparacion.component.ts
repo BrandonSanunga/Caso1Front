@@ -20,6 +20,7 @@ export class InformeReparacionComponent implements OnInit {
   public idEliminando = null;
   public imprimiendoReporte: boolean = false;
   public enviandoReporte: boolean = false;
+  public guardandoCosto: boolean = false;
 
   constructor(
     public tallerService: TallerService,
@@ -117,5 +118,23 @@ export class InformeReparacionComponent implements OnInit {
       alert('Ha ocurrido un problema al enviar el correo');
     }
     this.enviandoReporte = false;
+  }
+
+  async guardarCosto() {
+    this.guardandoCosto = true;
+    try {
+      const res = await this.tallerService.editarCostoManoObra(
+        this.id,
+        this.orden?.costoManoObra || 0
+      );
+      if (res.status === 'editado') {
+        alert(`Se ha editado el costo correctamente`);
+      } else {
+        alert('Ha ocurrido un problema');
+      }
+    } catch (error) {
+      alert('Ha ocurrido un problema');
+    }
+    this.guardandoCosto = false;
   }
 }

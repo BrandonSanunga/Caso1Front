@@ -109,4 +109,13 @@ export class TallerService {
       )
       .toPromise<EnvioCorreoResponse>();
   }
+
+  public editarCostoManoObra(id: any, costo: number): Promise<any> {
+    return this.http
+      .put<any>(
+        `${environment.urlBase}${this.URL_TALLER}editar-costo-mano-obra/${id}`,
+        costo
+      )
+      .toPromise<any>();
+  }
 }
