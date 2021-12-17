@@ -1,62 +1,119 @@
-<main class="container-fluid">
-    <div class="row justify-content-center">
-
-        <button (click)="imprimirPantalla()">Imprimir</button>
-
-        <div class="col-12">
-            <h1 class="text-center my-5 display-4">Información de la orden</h1>
-        </div>
-
-
-
-
-        <div class="col-10 border p-2 p-md-5">
-
-            <div class="row my-2">
-                <div class="col-12 col-md-4 d-flex flex-row flex-wrap">
-                    <p class="font-bold">Orden  No:</p>
-                    <p>{{orden.id}}</p>
-                </div>
-                <div class="col-12 col-md-4 d-flex flex-row flex-wrap">
-                    <p class="font-bold">Fecha de  orden:</p>
-                    <p class="ms-2">{{orden.fecha}}</p>
-                </div>
-                <div class="col-12 col-md-4 d-flex flex-row flex-wrap">
-                    <p class="font-bold">Estados: </p>
-                    <p class="ms-2">{{orden.estado}}</p>
-                </div>
-            </div>
-
-            <div class="row my-2">
-                <div class="col-12 col-md-6 d-flex flex-row flex-wrap">
-                    <p class="font-bold">Dueño: </p>
-                    <p class="ms-2">{{orden.duenio}}</p>
-                </div>
-                <div class="col-12 col-md-6 d-flex flex-row flex-wrap">
-                    <p class="font-bold">Automovil: </p>
-                    <p class="ms-2">{{orden.automovil}}</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 mb-3">
-                    <h4>Repuestos solicitados: </h4>
-                    <hr>
-                </div>
-                <div class="col-12">
-                    <ul class="list-group list-group-flush">
-                        <li *ngFor="let repuesto of orden.repuestos; let i=index"
-                            class="list-group-item d-flex flex-row justify-content-around flex-wrap">
-                            <div>
-                                <strong>{{i+1}}.</strong>
-                                {{repuesto.nombre}}
-                            </div>
-                            <strong>{{repuesto.estado}}</strong>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
+<main class="container-fluid mb-5">
+  <div class="row justify-content-center mb-5">
+    <div class="col-12">
+      <h1 class="text-center my-5 display-4">Información de la orden</h1>
     </div>
+
+    <div class="col-10 border p-2 p-md-5 mb-5">
+      <div class="row my-2">
+        <div class="col-12 col-md-4 d-flex flex-row flex-wrap">
+          <p class="font-bold">Orden No:</p>
+          <p>{{ orden?.id }}</p>
+        </div>
+        <div class="col-12 col-md-4 d-flex flex-row flex-wrap">
+          <p class="font-bold">Fecha de orden:</p>
+          <p class="ms-2">{{ orden?.fechaIngreso }}</p>
+        </div>
+        <div class="col-12 col-md-4 d-flex flex-row flex-wrap">
+          <p class="font-bold">Estado:</p>
+          <p class="ms-2">
+            <select [(ngModel)]="orden.estado" (change)="changeEstado($event)">
+              <option [value]="tallerService.ESTADOS.EN_REVISION">
+                {{ tallerService.ESTADOS.EN_REVISION }}
+              </option>
+              <option [value]="tallerService.ESTADOS.REVISADO">
+                {{ tallerService.ESTADOS.REVISADO }}
+              </option>
+            </select>
+          </p>
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-12 col-md-6 d-flex flex-row flex-wrap">
+          <p class="font-bold">Dueño:</p>
+          <p class="ms-2">{{ orden?.persona?.label }}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-6 d-flex flex-row flex-wrap">
+          <p class="font-bold">Observaciones:</p>
+          <p class="ms-2">{{ orden?.observaciones }}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <button class="btn w-100 btn-lg border" (click)="onClickDetalles()">
+            Detalles
+          </button>
+        </div>
+        <div class="col-12 border p-3" *ngIf="mostrarDetalles">
+          <h3 class="text-center mt-3">Detalles del vehiculo</h3>
+          <p class="w-100" *ngFor="let detalle of orden.detallesVehiculo">
+            <strong>{{ detalle?.label }}: </strong>{{ detalle?.value }}
+          </p>
+        </div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-10">
+          <select class="w-100 form-select" [(ngModel)]="repuestoSeleccionado">
+            <option value="">SELECCIONE</option>
+            <option
+              *ngFor="let repuesto of repuestos"
+              value="{{ repuesto.value }}"
+            >
+              {{ repuesto.label }}
+            </option>
+          </select>
+        </div>
+        <div class="col-2">
+          <button
+            [disabled]="solicitandoRepuesto"
+            class="btn btn-primary px-3 w-100"
+            (click)="solicitarRepuesto()"
+          >
+            Solicitar
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 mb-3">
+          <h4>Repuestos solicitados:</h4>
+          <hr />
+        </div>
+        <div class="col-12">
+          <table class="table table-bordered text-center">
+            <thead>
+              <tr>
+                <th style="width: 80px">#</th>
+                <th>Nombre</th>
+                <th style="width: 150px">Estado</th>
+                <th style="width: 50px"><i class="fa fa-trash"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let detalle of detallesRepuestos; let i = index">
+                <td class="font-bold">{{ i + 1 }}</td>
+                <td>{{ detalle?.repuesto?.nombre }}</td>
+                <td class="font-bold">{{ detalle?.estado }}</td>
+                <td class="font-bold">
+                  <button
+                    class="btn btn-outline-danger px-3 py-2"
+                    (click)="deleteDetalleItem(detalle?.id)"
+                    [disabled]="idEliminando === detalle?.id"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>

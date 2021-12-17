@@ -2,65 +2,34 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
+export type LabelValue = {
+  label: string;
+  value?: string | number | any;
+};
+export type SolicitarRepuestoResponse = {
+  id: number;
+  status: 'created' | string;
+};
 @Injectable({
   providedIn: 'root',
 })
 export class TallerService {
   private ordenes: any[] = [];
 
-  constructor(private http: HttpClient) {
-    // this.ordenes.push({
-    //   id: '135123123123',
-    //   identificacionCliente: '010203040506',
-    //   duenio: 'MARCELO VIDAL',
-    //   automovil: 'TOYOTA',
-    //   estado: 'EN REPARACION',
-    //   fecha: '12-11-2021',
-    //   repuestos: [
-    //     {
-    //       id: '35454645646123',
-    //       nombre: 'BUJIAS',
-    //       estado: 'PENDIENTE',
-    //     },
-    //     {
-    //       id: '23412341234123',
-    //       nombre: 'BUJIAS',
-    //       estado: 'PENDIENTE',
-    //     },
-    //     {
-    //       id: '23412341234',
-    //       nombre: 'BUJIAS',
-    //       estado: 'PENDIENTE',
-    //     },
-    //     {
-    //       id: '1234546435634',
-    //       nombre: 'BUJIAS',
-    //       estado: 'PENDIENTE',
-    //     },
-    //   ],
-    // });
-    // this.ordenes.push({
-    //   id: '65874562311236',
-    //   identificacionCliente: '090807060504',
-    //   duenio: 'WILLIAM',
-    //   automovil: 'TOYOTA',
-    //   estado: 'EN REPARACION',
-    //   fecha: '11-11-2021',
-    //   repuestos: [
-    //     {
-    //       id: '8974561321235456564',
-    //       nombre: 'BUJIAS',
-    //       estado: 'PENDIENTE',
-    //     },
-    //   ],
-    // });
-  }
+  private URL_TALLER = 'taller/api/v1/';
+
+  public ESTADOS = {
+    EN_REVISION: 'EN REVISION DEL TALLER',
+    REVISADO: 'REVISADO POR EL TALLER',
+  };
+  constructor(private http: HttpClient) {}
 
   public async getOrdenes(estado = 'EN REVISION DEL TALLER') {
-    const res = await this.http.get<any[]>(
-      `${environment.urlBase}ordecuerpo/api/v1/ordenes-taller/${estado}`
-    );
-    return res.toPromise<any[]>();
+    return this.http
+      .get<any[]>(
+        `${environment.urlBase}ordecuerpo/api/v1/ordenes-taller/${estado}`
+      )
+      .toPromise<any[]>();
   }
 
   public async getOrdenesByIdentificacion(identificacion: string) {
@@ -72,6 +41,50 @@ export class TallerService {
   }
 
   public async getOrdenById(id: any) {
-    return this.ordenes.find((orden) => orden.id === id);
+    return this.http
+      .get<any>(`${environment.urlBase}ordecuerpo/api/v1/orden-by-id/${id}/`)
+      .toPromise<any[]>();
+  }
+  public async cambiarEstado(id: any, estado: string) {
+    return this.http
+      .put<any>(
+        `${environment.urlBase}ordecuerpo/api/v1/cambiar-estado-orden/${id}/`,
+        estado
+      )
+      .toPromise<any>();
+  }
+
+  public async getRepuestos(): Promise<LabelValue[]> {
+    return this.http
+      .get<LabelValue[]>(`${environment.urlBase}${this.URL_TALLER}respuestos`)
+      .toPromise<LabelValue[]>();
+  }
+
+  public async solicitarRepuesto(
+    ordenId: any,
+    repuestoId: any
+  ): Promise<SolicitarRepuestoResponse> {
+    return this.http
+      .post<SolicitarRepuestoResponse>(
+        `${environment.urlBase}${this.URL_TALLER}add-repuesto/${ordenId}/${repuestoId}`,
+        {}
+      )
+      .toPromise<SolicitarRepuestoResponse>();
+  }
+
+  public async detalleRepuestos(ordenId: any): Promise<any[]> {
+    return this.http
+      .get<any[]>(
+        `${environment.urlBase}${this.URL_TALLER}repuesto-solicitados/${ordenId}`
+      )
+      .toPromise<any[]>();
+  }
+
+  public async deleteDetalleItem(id: any): Promise<any[]> {
+    return this.http
+      .delete<any[]>(
+        `${environment.urlBase}${this.URL_TALLER}delete-detalle-repuesto/${id}`
+      )
+      .toPromise<any[]>();
   }
 }
