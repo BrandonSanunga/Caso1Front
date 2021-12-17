@@ -18,6 +18,8 @@ export class InformeReparacionComponent implements OnInit {
   public solicitandoRepuesto = false;
 
   public idEliminando = null;
+  public imprimiendoReporte: boolean = false;
+  public enviandoReporte: boolean = false;
 
   constructor(
     public tallerService: TallerService,
@@ -90,5 +92,30 @@ export class InformeReparacionComponent implements OnInit {
       }
     } catch (error) {}
     this.idEliminando = null;
+  }
+  async imprimirReporte() {
+    this.imprimiendoReporte = true;
+    try {
+      const res = await this.tallerService.imprimirInformeReparacion(this.id);
+      const url = window.URL.createObjectURL(res);
+      window.open(url);
+    } catch (error) {
+      console.log(error);
+    }
+    this.imprimiendoReporte = false;
+  }
+  async enviarReporte() {
+    this.enviandoReporte = true;
+    try {
+      const res = await this.tallerService.enviarInformeReparacion(this.id);
+      if (res.status === 'enviado') {
+        alert(`Se ha notificado al cliente ${res?.email} correctamente`);
+      } else {
+        alert('Ha ocurrido un problema al enviar el correo');
+      }
+    } catch (error) {
+      alert('Ha ocurrido un problema al enviar el correo');
+    }
+    this.enviandoReporte = false;
   }
 }

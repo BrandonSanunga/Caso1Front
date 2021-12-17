@@ -1,7 +1,23 @@
 <main class="container-fluid mb-5">
   <div class="row justify-content-center mb-5">
     <div class="col-12">
-      <h1 class="text-center my-5 display-4">Información de la orden</h1>
+      <h1 class="text-center my-5 display-4">
+        Información de la orden
+        <button
+          class="btn btn-outline-primary px-3 py-2"
+          (click)="imprimirReporte()"
+          [disabled]="imprimiendoReporte"
+        >
+          <i class="fa fa-print"></i>
+        </button>
+        <button
+          class="btn btn-outline-success ms-3 px-3 py-2"
+          (click)="enviarReporte()"
+          [disabled]="enviandoReporte"
+        >
+          <i class="fa fa-mail-bulk"></i>
+        </button>
+      </h1>
     </div>
 
     <div class="col-10 border p-2 p-md-5 mb-5">

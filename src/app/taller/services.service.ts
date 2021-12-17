@@ -10,6 +10,11 @@ export type SolicitarRepuestoResponse = {
   id: number;
   status: 'created' | string;
 };
+
+export type EnvioCorreoResponse = {
+  status: 'enviado' | 'error';
+  email?: string;
+};
 @Injectable({
   providedIn: 'root',
 })
@@ -86,5 +91,22 @@ export class TallerService {
         `${environment.urlBase}${this.URL_TALLER}delete-detalle-repuesto/${id}`
       )
       .toPromise<any[]>();
+  }
+
+  public imprimirInformeReparacion(id: any): Promise<any> {
+    return fetch(
+      `${environment.urlBase}${this.URL_TALLER}informe-reparacion-pdf/${id}`,
+      {
+        method: 'GET',
+      }
+    ).then((res) => res.blob());
+  }
+
+  public enviarInformeReparacion(id: any): Promise<EnvioCorreoResponse> {
+    return this.http
+      .get<EnvioCorreoResponse>(
+        `${environment.urlBase}${this.URL_TALLER}enviar-correo-informe-reparacion/${id}`
+      )
+      .toPromise<EnvioCorreoResponse>();
   }
 }
