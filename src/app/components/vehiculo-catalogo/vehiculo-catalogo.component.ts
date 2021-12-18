@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { CarcaracteristicasService } from 'src/app/services/caracteristicas/carcaracteristicas.service';
 import { DisenoService } from 'src/app/services/diseno/diseno.service';
 import { VehiculoCatalogoService } from 'src/app/services/vehiculo_catalogo/vehiculo-catalogo.service';
-
+import { VehiculoCatalogoFormComponent } from './vehiculo-catalogo-form/vehiculo-catalogo-form.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-vehiculo-catalogo',
   templateUrl: './vehiculo-catalogo.component.html',
@@ -26,8 +27,8 @@ export class VehiculoCatalogoComponent implements OnInit {
     public catalogoservice: VehiculoCatalogoService,
     public disenoService: DisenoService,
     public caracteristicasservice: CarcaracteristicasService,
-    public root:Router
-
+    public root:Router,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -99,10 +100,18 @@ export class VehiculoCatalogoComponent implements OnInit {
 		reader.onload = (_event) => {
 			this.msg = "";
 			this.url = reader.result;
+
 		}
 	}
-  verInformeReclamo(){
+  verCatalogo(){
     this.root.navigate(['catalogo/admin'])
   }
 
+  openDialogVehiculo() {
+    localStorage.setItem("catalogoDialog",this.catalogo)
+    const dialogRef = this.dialog.open(VehiculoCatalogoFormComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

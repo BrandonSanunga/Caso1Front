@@ -6,14 +6,26 @@
         <h3 class="display-4 text-center my-5">INGRESAR NUEVO REPUESTO</h3>
 
         <label style="text-align: center;text-transform:uppercase;"> nombre del repuesto</label>
-        <input type="text" formControlName="nombre_repuesto" class="form-control" placeholder="Ejm: Amortiguadores"
-          [maxLength]="45">
+        <select type="text" formControlName="nombre_repuesto" class="form-control" placeholder="Ejm: Amortiguadores">
+        <option>Aceite de motor</option>
+        <option>Discos de freno</option>
+        <option>Pastillas de freno</option>
+        <option>Filtro de aceite</option>
+        <option>Bujía de encendido</option>
+        <option>Amortiguadores</option>
+        <option>Filtro de aire</option>
+        <option>Escobillas limpiaparabrisas</option>
+        <option>Buje de rueda</option>
+        <option>Filtro de habitáculo</option>
+        <option>Discos de embrague</option>
+        <option>Caja de cambios</option>
+      </select>
         <br>
         <label style="text-align: center;text-transform:uppercase;">diseño del vehiculo</label>
         <select name="diseno" id="diseno" formControlName="diseno" class="form-control">
           <option [ngValue]="diseno" *ngFor="let diseno of DisenoList">{{diseno.modelo}}</option>
         </select>
-
+        <br>
         <label style="text-align: center;text-transform:uppercase;"> precio del repuesto</label>
         <input type="number" step="0.1" formControlName="precio" class="form-control" min="0.1"  placeholder="Ejm: 20.2">
         <br>

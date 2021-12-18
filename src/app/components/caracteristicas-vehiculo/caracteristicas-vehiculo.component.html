@@ -12,7 +12,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label> CAPACIDAD DE CARGA</label>
-                  <input type="text" formControlName="capacidad_carga" class="form-control" placeholder="Ejm: 1000kg">
+                  <input type="text" formControlName="capacidad_carga" class="form-control" placeholder="Ejm: 400kg">
                   <div class="text-danger"></div>
                 </div>
               </div>
@@ -47,14 +47,26 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label> DISEÑO INTERIOR</label>
-                  <input type="text" formControlName="interior" class="form-control" placeholder="Ejm: Cuero">
+                  <select type="text" formControlName="interior" class="form-control" placeholder="Ejm: Cuero">
+                    <option>Sintetico</option>
+                    <option>Cuero</option>
+                    <option>Sintetico color gris</option>
+                    <option>Sintetico color crema</option>
+                    <option>Tapizado</option>
+                  </select>
                   <div class="text-danger"></div>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <label> TIPO DE MOTOR</label>
-                  <input type="text" formControlName="motor" class="form-control" placeholder="Ejm: 1.2 L 4 cilindros" [maxLength]="45">
+                  <select type="text" formControlName="motor" class="form-control" placeholder="Ejm: 1.2 L 4 cilindros" >
+                    <option>Turbo diésel CRDI</option>
+                    <option>1.2 L </option>
+                    <option>Motor Turbo Torque 160 NM</option>
+                    <option>1.5L dohc vvt</option>
+                    <option>Motor V8 5.3L Ecotec 355HP / 519Nm</option>
+                  </select>
                   <div class="text-danger"></div>
                 </div>
               </div>
@@ -71,21 +83,51 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label> AROS </label>
-                  <input type="text" formControlName="rines" class="form-control" placeholder="Ejm: Aluminio" [maxLength]="30">
+                  <select type="text" formControlName="rines" class="form-control" placeholder="Ejm: Aluminio" >
+                    <option>17 pulgadas, Aleacion de cobre y niquel</option>
+                    <option>17 pulgadas, Acero</option>
+                    <option>17, pulgadas, Aluminio</option>
+                    <option>17 pulgadas, Titanio</option>
+                    <option>19 pulgadas, Aleacion de cobre y niquel</option>
+                    <option>19 pulgadas, Acero</option>
+                    <option>19, pulgadas, Aluminio</option>
+                    <option>19 pulgadas, Titanio</option>
+
+                  </select>
                   <div class="text-danger"></div>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <label> SEGURIDAD DEL VEHICULO</label>
-                  <input   type="text" formControlName="seguridad" class="form-control" placeholder="Cuatro airbags">
+                  <select   type="text" formControlName="seguridad" class="form-control" placeholder="Cuatro airbags">
+                    <option> Cuatro airbags</option>
+                    <option> Sistema de frenos</option>
+                    <option> Control Electronico de estabilidad</option>
+                    <option> Asistente de arranque en pendiente</option>
+                    <option> Asistente semi- automatico de estacionamiento</option>
+                    <option> Distribucion electronica de frenado</option>
+                    <option> Alerta de punto ciego</option>
+
+                  </select>
                   <div class="text-danger"></div>
                 </div>
               </div>
               <div class="col-md-5">
                 <div class="form-group">
                   <label> TECNOLOGIA DEL VEHICULO</label>
-                  <input type="text" formControlName="tecnologia" class="form-control" placeholder="Smartphone Integration">
+                  <select type="text" formControlName="tecnologia" class="form-control" placeholder="Smartphone Integration">
+                    <option> Conectividad 4g</option>
+                    <option> Wi-Fi en un radio de hasta 15m del vehículo</option>
+                    <option> Wi-Fi® en un radio de hasta 15m del vehículo</option>
+                    <option> Conexión automática</option>
+                    <option> Pantalla tactil</option>
+                    <option> GPS</option>
+                    <option> Servicio OnStar</option>
+                    <option> Aire acondicionado electronico</option>
+                    <option> Camara de reversa digital de alta resolucion</option>
+
+                  </select>
                   <div class="text-danger"></div>
                 </div>
               </div></div>
@@ -101,7 +143,17 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <label> VIDRIOS DEL VEHICULO</label>
-                    <input type="text" formControlName="vidrios" class="form-control" placeholder="Ejm: Polarizados">
+                    <select type="text" formControlName="vidrios" class="form-control" placeholder="Ejm: Polarizados">
+                      <option> Vidrio laminado</option>
+                      <option> Vidrio laminado tintado</option>
+                      <option> Vidrio termico tintado</option>
+                      <option> Vidrio termico</option>
+                      <option>Vidrio atérmico o con control solar</option>
+                      <option>Vidrio hidrófobo</option>
+                      <option>Vidrio acustico</option>
+
+
+                    </select>
                     <div class="text-danger"></div>
                   </div>
                 </div>

@@ -38,8 +38,9 @@ export class CaracteristicasVehiculoComponent implements OnInit {
   }
   guardarCaracteristicas(): void{
     this.caracteristicaservice.saveCaracteristicas(this.caracteristicasform.value).subscribe(resp=>{
-      this.caracteristicasform.reset;
+      this.caracteristicasform.reset();
       this.caracteristicasList.push(resp);
+      alert("Caracteristica guardado correctamente");
       console.log(resp);
     })}
   eliminarCaracteristica(carac: any):void{
@@ -47,6 +48,8 @@ export class CaracteristicasVehiculoComponent implements OnInit {
       console.log(resp);
       if(resp==true){
         this.caracteristicasList.pop(carac);
+        this.caracteristicasList.push();
+        alert("Caracteristica: "+carac.id_caracteristica+" eliminado correctamente");
       }
     })
   }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CarcaracteristicasService } from 'src/app/services/caracteristicas/carcaracteristicas.service';
 import { DisenoService } from 'src/app/services/diseno/diseno.service';
 import { VehiculoCatalogoService } from 'src/app/services/vehiculo_catalogo/vehiculo-catalogo.service';
-
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-vehiculo-catalogo-form',
@@ -20,10 +21,13 @@ export class VehiculoCatalogoFormComponent implements OnInit {
 	msg = "";
 
 
+
   constructor(
     public fb: FormBuilder,
     public catalogoservice: VehiculoCatalogoService,
     public disenoService: DisenoService,
+    public root:Router,
+    public dialog: MatDialog,
     public caracteristicasservice: CarcaracteristicasService
 
   ) { }
@@ -59,6 +63,7 @@ export class VehiculoCatalogoFormComponent implements OnInit {
       this.catalogoform.reset();
       this.catalogoList = this.catalogoList.filter((catalogo: { id_vehiculo_catalogo: any; }) => resp.id_vehiculo_catalogo!=catalogo.id_vehiculo_catalogo);
       this.catalogoList.push(resp);
+      alert("Catalogo guardado correctamente");
       console.log(resp);
     }
       ,
@@ -69,6 +74,8 @@ export class VehiculoCatalogoFormComponent implements OnInit {
       console.log(resp);
       if (resp == true) {
         this.catalogoList.pop(catal);
+        this.catalogoList.push();
+        alert("Catalogo: "+catal.id_vehiculo_catalogo+" eliminado correctamente");
       }
     })
   }
@@ -79,6 +86,11 @@ export class VehiculoCatalogoFormComponent implements OnInit {
       year_vehiculo: catal.year_vehiculo,
       caracteristica: catal.caracteristica.id_caracteristica,
       links_imagen: catal.links_imagen,
+
     })
 
-  }}
+  }
+  verCatalogo(){
+    this.root.navigate(['/catalogo'])
+  }
+}

@@ -23,6 +23,7 @@ import { InformeConcecionariaService } from './services/InformeConcecionaria/inf
 import { InformeConcecionariaComponent } from './components/informe-concecionaria/informe-concecionaria.component';
 import { VehiculoCatalogoFormComponent } from './components/vehiculo-catalogo/vehiculo-catalogo-form/vehiculo-catalogo-form.component';
 import { FormVehiculoComponent } from './components/vehiculo/form-vehiculo/form-vehiculo.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path: 'repuestos',component: RepuestosComponent},
@@ -49,6 +50,8 @@ const routes: Routes = [
   {path: 'reclamo-garantia', component:ReclamoGarantiaComponent},
   {path: 'catalogo/admin', component:VehiculoCatalogoFormComponent},
   {path: 'formVehiculo', component:FormVehiculoComponent}
+
+  //{path: 'login', component:LoginComponent},
 ];
 
 @NgModule({
