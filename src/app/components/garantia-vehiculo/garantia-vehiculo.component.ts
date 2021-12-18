@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GarantiaVehiculoService } from 'src/app/services/GarantiaVehiculo/garantia-vehiculo.service';;
 import { HttpHeaders,HttpClient } from '@angular/common/http';
+import {MatDialog} from '@angular/material/dialog';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { FormGarantiaVehiculoComponent } from './form-garantia-vehiculo/form-garantia-vehiculo.component';
 
 @Component({
   selector: 'app-garantia-vehiculo',
@@ -17,11 +19,10 @@ export class GarantiaVehiculoComponent implements OnInit {
   descripcion: FormControl =new FormControl('');
   perido: FormControl =new FormControl('');
   cobertura: FormControl =new FormControl('');
-  idGarantia='';
-  idGarantiaD='';
   constructor(private servicioG:GarantiaVehiculoService,
     private http:HttpClient,
-    public fb: FormBuilder) { }
+    public fb: FormBuilder,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
  
@@ -30,45 +31,15 @@ export class GarantiaVehiculoComponent implements OnInit {
   }
   cargargarantia(){
    
-    this.servicioG.getAllGarantiasV().subscribe(
-      (response:any)=>this.mostrar(response)
-    )
-  
-  }
-  mostrar(response:any){
+    this.servicioG.getAllGarantiasV().subscribe(e=>{
+      this.garantiavehiculo=e;
 
-    this.garantiavehiculo=response;
+    });
   
   }
- 
-  agregarD(){
-    this.garantia.detallegarantia.push({});
-  
-  }
-  guardar(){
-  this.serviceguardar().subscribe(
-    (response:any)=> this.resultado(response)
-    
-  );
-  location.href="/garantiaV"
-  
-  }
-  resultado(res:any){
-    this.garantia={detallegarantia:[]};
-    alert("Guardado:"+res.id_garantia)
-  }
-  eliminar(detalle:any){
-    this.garantia.detallegarantia.splice(this.garantia.detallegarantia.indexOf(detalle),1)
-  
-  }
-  serviceguardar(){
-    var httpo={
-      headers: new HttpHeaders({
-        'Content-Tipe':'application/json'
-      })
-    }
-    return this.http.post<any>("http://localhost:8080/garantia/api/v1/save",this.garantia,httpo)
-  }
+
+
+
   eliminarG(garantiavehiculo:any){
     this.servicioG.delete(garantiavehiculo.idGarantia).subscribe( 
       res=> this.servicioG.getAllGarantiasV().subscribe(
@@ -77,13 +48,15 @@ export class GarantiaVehiculoComponent implements OnInit {
     location.href="/garantiaV"
 
   }
-  /*
+  agregarG(){
+    this.dialog.open(FormGarantiaVehiculoComponent);
+  }
+ 
   cargar (id:any):void{
     this.servicioG.get(id).subscribe(es=>{
-      console.log(es)
-      this.descripcion.setValue(es.descripcion)
-      this.idGarantia=es.idGarantia});
+      console.log(es)});
 }
+ /*
 cargars (ids:any):void{
  this.servicioG.getD(ids).subscribe(error =>{
     console.log(error);
