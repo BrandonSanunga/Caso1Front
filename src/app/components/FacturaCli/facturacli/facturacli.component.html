@@ -49,8 +49,26 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label class="control-label">Cliente*</label>
-                  <input type="text" class="form-control" />
-                  <div class="text-danger"></div>
+                  <!--   <select
+                    [compareWith]="compararCliente"
+                    class="form-control"
+                    name="client"
+                    [(ngModel)]="factura.client"
+                    required
+                    #client="ngModel"
+                  >
+                    <option [ngValue]="undefined">
+                      --Seleccionar cliente--
+                    </option>
+                    <option *ngFor="let client of clientes">
+                      {{ client.nombresClient }}
+                    </option>
+                  </select>
+                  <div class="text-danger">
+                    <p *ngIf="client.hasError('required') && client.touched">
+                      Cliente es requerido
+                    </p>
+                  </div> -->
                 </div>
               </div>
               <div class="col-md-6">
