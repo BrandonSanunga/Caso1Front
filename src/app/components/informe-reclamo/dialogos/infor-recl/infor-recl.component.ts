@@ -18,6 +18,7 @@ export class InforReclComponent implements OnInit {
   optenerGarantia(){
     var id = localStorage.getItem("inforReclDialog")
     this.reclamoService.optenerGarantiaID(id).subscribe(data=>{
+      console.log(data)
       this.garantia=data
     })
   }

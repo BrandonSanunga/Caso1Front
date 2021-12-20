@@ -15,15 +15,18 @@
         <th scope="col">Cliente</th>
         <th scope="col">Tipo Informe</th>
         <th scope="col" >Ver</th>
+        <th scope="col">Inspeccion</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let i of this.listaInforme">
+        <th style="display: none;">{{i.reclamogarantia?.id_reclamo}}</th>
         <th >{{i.idinformeRecha}}</th>
         <td>{{i.fechaEmicion}}</td>
         <td>{{i.client.cedulaClient}}</td>
         <td>{{i.tipoInforme}}</td>
-        <td><Button (click)="Ver(i.client.cedulaClient,i.idinformeRecha)">Ver</Button></td>
+        <td><Button (click)="Ver(i.client.cedulaClient,i.reclamogarantia?.id_reclamo)">Ver</Button></td>
+        <td><Button (click)="abrirInspeccion(i.reclamogarantia?.id_reclamo,i.idinformeRecha)">Inspeccion</Button></td>
       </tr>
        </tbody>
   </table>
