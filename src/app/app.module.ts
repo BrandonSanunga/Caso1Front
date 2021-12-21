@@ -1,3 +1,8 @@
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { FacturacliComponent } from "./components/FacturaCli/facturacli/facturacli.component";
+import { DetallefacliComponent } from "./components/DetalleFacturaCli/detallefacli/detallefacli.component";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RepuestosComponent } from "./components/repuestos/repuestos.component";
@@ -30,9 +35,6 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
-import { MatInputModule } from "@angular/material/input";
-import { MatFormFieldModule } from "@angular/material/form-field";
 import { InforReclComponent } from "./components/informe-reclamo/dialogos/infor-recl/infor-recl.component";
 import { VehicuFindidComponent } from "./components/informe-reclamo/dialogos/vehicu-findid/vehicu-findid.component";
 import { ClientFindidComponent } from "./components/informe-reclamo/dialogos/client-findid/client-findid.component";
@@ -42,8 +44,7 @@ import { VehiculoCatalogoFormComponent } from "./components/vehiculo-catalogo/ve
 import { FormVehiculoComponent } from "./components/vehiculo/form-vehiculo/form-vehiculo.component";
 import { FormGarantiaVehiculoComponent } from "./components/garantia-vehiculo/form-garantia-vehiculo/form-garantia-vehiculo.component";
 import { FormInformeConecesionariaComponent } from "./components/informe-concecionaria/form-informe-conecesionaria/form-informe-conecesionaria.component";
-import { FacturacliComponent } from "./components/FacturaCli/facturacli/facturacli.component";
-import { DetallefacliComponent } from "./components/DetalleFacturaCli/detallefacli/detallefacli.component";
+import { ListaEntregarRepuestosComponent } from "./components/lista-entregar-repuestos/lista-entregar-repuestos.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +80,7 @@ import { DetallefacliComponent } from "./components/DetalleFacturaCli/detallefac
     FormInformeConecesionariaComponent,
     FacturacliComponent,
     DetallefacliComponent,
+    ListaEntregarRepuestosComponent,
   ],
   imports: [
     BrowserModule,

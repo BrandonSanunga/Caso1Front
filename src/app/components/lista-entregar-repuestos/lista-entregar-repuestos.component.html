@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista Reclamos</title>
+</head>
+<body>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id Orden Reparacion</th>
+        <th scope="col">Cantidad Repuestos</th>
+        <th scope="col">Aceptar peticion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of arrayRepuestos;let j = index">
+        <th >{{j}}</th>
+        <th >{{i.idordenCuerpo}}</th>
+        <td>{{i.detalleRepuestos.length}}</td>
+        <td>{{i.detalleRepuestos.estado}}</td>
+        <td *ngIf="i.detalleRepuestos.estado==null">
+          <div class="example-button-row">
+            <button mat-fab color="primary" (click)="actualizarestado(i.idordenCuerpo)">Aceptar</button>
+          </div></td>
+      </tr>
+       </tbody>
+  </table>
+</body>
+</html>

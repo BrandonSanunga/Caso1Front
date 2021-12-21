@@ -11,6 +11,7 @@ import { ReclamoGarantiaService } from 'src/app/services/ReclamoGarantia/reclamo
 export class ReclamoGarantiaComponent implements OnInit {
   reclamosGaranList: any;
   reclamoForm!: FormGroup;
+  estado:any;
 
   constructor(
     public fb:FormBuilder,
@@ -44,6 +45,8 @@ export class ReclamoGarantiaComponent implements OnInit {
   }
 
   verInformeReclamo(InformeReclamo:any){
+    this.estado = false;
+    localStorage.setItem("estado",this.estado)
     localStorage.setItem("informe",InformeReclamo);
     this.root.navigate(['/informe-reclamo'])
   }
