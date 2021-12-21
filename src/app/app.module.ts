@@ -40,6 +40,7 @@ import { VehiculoCatalogoFormComponent } from './components/vehiculo-catalogo/ve
 import { FormVehiculoComponent } from './components/vehiculo/form-vehiculo/form-vehiculo.component';
 import { FormGarantiaVehiculoComponent } from './components/garantia-vehiculo/form-garantia-vehiculo/form-garantia-vehiculo.component';
 import { FormInformeConecesionariaComponent } from './components/informe-concecionaria/form-informe-conecesionaria/form-informe-conecesionaria.component';
+import { ListaEntregarRepuestosComponent } from './components/lista-entregar-repuestos/lista-entregar-repuestos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +74,7 @@ import { FormInformeConecesionariaComponent } from './components/informe-conceci
     FormVehiculoComponent,
     FormGarantiaVehiculoComponent,
     FormInformeConecesionariaComponent,
+    ListaEntregarRepuestosComponent,
   ],
   imports: [
     BrowserModule,

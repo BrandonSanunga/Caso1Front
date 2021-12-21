@@ -24,6 +24,7 @@ import { InformeConcecionariaComponent } from './components/informe-concecionari
 import { VehiculoCatalogoFormComponent } from './components/vehiculo-catalogo/vehiculo-catalogo-form/vehiculo-catalogo-form.component';
 import { FormVehiculoComponent } from './components/vehiculo/form-vehiculo/form-vehiculo.component';
 import { LoginComponent } from './login/login.component';
+import { ListaEntregarRepuestosComponent } from './components/lista-entregar-repuestos/lista-entregar-repuestos.component';
 
 const routes: Routes = [
   {path: 'repuestos',component: RepuestosComponent},
@@ -49,7 +50,8 @@ const routes: Routes = [
   {path: 'lista-reclamo', component: ListaReclamoComponent},
   {path: 'reclamo-garantia', component:ReclamoGarantiaComponent},
   {path: 'catalogo/admin', component:VehiculoCatalogoFormComponent},
-  {path: 'formVehiculo', component:FormVehiculoComponent}
+  {path: 'formVehiculo', component:FormVehiculoComponent},
+  {path: 'lista-entregar-repuestos', component:ListaEntregarRepuestosComponent}
 
   //{path: 'login', component:LoginComponent},
 ];
