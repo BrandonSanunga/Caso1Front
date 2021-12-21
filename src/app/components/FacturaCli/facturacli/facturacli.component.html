@@ -2,33 +2,51 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <form>
+        <form #form="ngForm" (submit)="guardarFactura(form)">
           <div class="form-body">
-            <h3 class="card-title">Venta de Vehiculos</h3>
+            <h3 class="card-title">VENTA DE VEHICULOS</h3>
             <hr />
             <!--/row-->
             <div class="row">
               <!--/span-->
               <div class="col-md-4">
                 <div class="form-group">
-                  <label class="control-label">Nombre Empresa*</label>
-                  <input type="text" class="form-control" />
-                  <div class="text-danger"></div>
+                  <label class="control-label">NOMBRE EMPRESA*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="nombre_empresa"
+                    [(ngModel)]="factura.nombre_empresa"
+                    disabled
+                    #nombre_empresa="ngModel"
+                  />
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <label class="control-label">Ruc Empresa*</label>
-                  <input type="text" class="form-control" />
-                  <div class="text-danger"></div>
+                  <label class="control-label">RUC EMPRESA*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="ruc_factura"
+                    [(ngModel)]="factura.ruc_factura"
+                    disabled
+                    #ruc_factura="ngModel"
+                  />
                 </div>
               </div>
 
               <div class="col-md-5">
                 <div class="form-group">
-                  <label class="control-label">Direccion*</label>
-                  <input type="text" class="form-control" />
-                  <div class="text-danger"></div>
+                  <label class="control-label">DIRECCION*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="direccion"
+                    [(ngModel)]="factura.direccion"
+                    disabled
+                    #direccion="ngModel"
+                  />
                 </div>
               </div>
 
@@ -37,9 +55,24 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label class="control-label">Descripcion*</label>
-                  <input type="text" class="form-control" />
-                  <div class="text-danger"></div>
+                  <label class="control-label">DESCRIPCION*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="descripcion"
+                    [(ngModel)]="factura.descripcion"
+                    required
+                    #descripcion="ngModel"
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      (descripcion.invalid && descripcion.touched) ||
+                      (descripcion.invalid && form.submitted)
+                    "
+                  >
+                    Descripcion es requerido
+                  </div>
                 </div>
               </div>
               <!--/span-->
@@ -48,34 +81,73 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="control-label">Cliente*</label>
-                  <!--   <select
+                  <label class="control-label">CLIENTE*</label>
+                  <select
                     [compareWith]="compararCliente"
                     class="form-control"
-                    name="client"
-                    [(ngModel)]="factura.client"
+                    name="cliente"
+                    [(ngModel)]="factura.cliente"
                     required
-                    #client="ngModel"
+                    #cliente="ngModel"
                   >
                     <option [ngValue]="undefined">
                       --Seleccionar cliente--
                     </option>
-                    <option *ngFor="let client of clientes">
-                      {{ client.nombresClient }}
+                    <option
+                      *ngFor="let cliente of clientes"
+                      [ngValue]="cliente"
+                    >
+                      {{ cliente.nombresClient }}
                     </option>
                   </select>
                   <div class="text-danger">
-                    <p *ngIf="client.hasError('required') && client.touched">
+                    <p
+                      *ngIf="
+                        (cliente.invalid && cliente.touched) ||
+                        (cliente.invalid && form.submitted)
+                      "
+                    >
                       Cliente es requerido
                     </p>
-                  </div> -->
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="control-label">Filtrar Vehiculo*</label>
-                  <input type="text" class="form-control" />
-                  <div class="text-danger"></div>
+                  <mat-form-field
+                    style="width: 500px !important"
+                    [style.fontSize.px]="17"
+                  >
+                    <input
+                      type="text"
+                      placeholder="AÑADIR VEHICULOS "
+                      aria-label="Vehiculos"
+                      matInput
+                      [formControl]="autocompleteControl"
+                      [matAutocomplete]="auto"
+                    />
+                    <mat-autocomplete
+                      #auto="matAutocomplete"
+                      [displayWith]="mostrarNombreVehiculo"
+                      (optionSelected)="seleccionarVehiculo($event)"
+                    >
+                      <mat-option
+                        *ngFor="let vehiculo of vehiculosFiltrados | async"
+                        [value]="vehiculo"
+                      >
+                        {{ vehiculo.vehiculoCatalogo?.diseno?.marca }}
+                        {{ vehiculo.vehiculoCatalogo?.diseno?.modelo }}
+                        {{ vehiculo.vehiculoCatalogo?.year_vehiculo }}
+                        {{ vehiculo.chasis }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                  <div
+                    class="text-danger"
+                    *ngIf="autocompleteControl.invalid && form.submitted"
+                  >
+                    Debe incluir vehiculos
+                  </div>
                 </div>
               </div>
               <!--/span-->
@@ -84,27 +156,38 @@
             <!--/row-->
           </div>
           <hr />
+          <div
+            class="alert alert-info my-4"
+            *ngIf="factura.detallesfacturas!.length == 0"
+          >
+            No hay lineas asignadas para el factura. Debe agregar al menos una
+          </div>
 
           <table
             class="
               table table-bordered table-responsive-sm table-sm
               text-center
             "
+            *ngIf="factura.detallesfacturas!.length > 0"
           >
             <thead class="bg-pri white">
               <tr>
-                <th>Chasis Vehiculo</th>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-                <th>Precio</th>
-                <th>Subtotal</th>
-                <th>Eliminar Item</th>
+                <th>VEHICULO</th>
+                <th>CHASIS</th>
+                <th>CANTIDAD</th>
+                <th>PRECIO</th>
+                <th>SUBTOTAL</th>
+                <th>ELIMINAR ITEM</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
+              <tr *ngFor="let det of factura.detallesfacturas">
+                <td>
+                  {{ det.vehiculo?.vehiculoCatalogo?.diseno?.marca }}
+                  {{ det.vehiculo?.vehiculoCatalogo?.diseno?.modelo }}
+                  {{ det.vehiculo?.vehiculoCatalogo?.year_vehiculo }}
+                </td>
+                <td>{{ det.vehiculo?.chasis }}</td>
 
                 <td>
                   <div class="row justify-content-center">
@@ -112,23 +195,43 @@
                       type="number"
                       class="form-control"
                       style="width: 100px; height: 30px"
+                      value="{{ det.cantidad }}"
+                      (change)="
+                        actualizarCantidad(det.vehiculo?.chasis!, $event)
+                      "
                     />
                   </div>
                 </td>
 
-                <td></td>
-                <td></td>
+                <td>{{ det.vehiculo?.precio_venta | currency }}</td>
+                <td>{{ det.calcularImporte() | currency }}</td>
                 <td>
-                  <button class="btn bg-pri white btn-sm" type="button">
+                  <button
+                    class="btn bg-pri white btn-sm"
+                    type="button"
+                    (click)="eliminarItemFactura(det.vehiculo?.chasis!)"
+                  >
                     <i class="fas fa-trash-alt"></i>
                   </button>
                 </td>
               </tr>
             </tbody>
           </table>
+          <div
+            class="row justify-content-end"
+            *ngIf="factura.detallesfacturas!.length > 0"
+          >
+            <div class="col-3 text-center">
+              <h1 style="color: blue">
+                Total {{ factura.calcularGranTotal() | currency }}
+              </h1>
+            </div>
+          </div>
 
           <div class="form-actions">
-            <button type="submit" class="btn btn-success mr-2">Guardar</button>
+            <button type="submit" class="btn btn-success mr-3">
+              Realizar Venta
+            </button>
             <button type="button" class="btn btn-danger">Cancelar</button>
           </div>
         </form>
