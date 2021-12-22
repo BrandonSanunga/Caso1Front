@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'inspeccion', component: InspeccionComponent },
   { path: 'orden-reparacion', component: OrdenReparacionComponent },
   { path: 'factura', component: FacturacliComponent },
-  { path: 'detalle', component: DetallefacliComponent },
+  { path: 'facturas', component: DetallefacliComponent },
   { path: 'solicitud/garantia', component: SoligarantiaComponent },
   {path: 'taller', component: TallerComponent },
   { path: 'taller/orden/:id', component: InformeReparacionComponent },
