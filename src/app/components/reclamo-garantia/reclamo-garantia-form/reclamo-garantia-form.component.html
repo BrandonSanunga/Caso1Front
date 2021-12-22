@@ -6,7 +6,9 @@
         <div class="form-group">
             <label>Solicitud:</label>
             <select name="fk_id_solicitud" id="fk_id_solicitud" formControlName="fk_id_solicitud" class="form-control">
-        <option [ngValue]="solicitudList">{{solicitudList.id_solicitud}}</option>
+        <option [ngValue]="solicitudList">{{solicitudList.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca}}
+            {{solicitudList.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo}}
+        </option>
       </select>
         </div>
         <br>
