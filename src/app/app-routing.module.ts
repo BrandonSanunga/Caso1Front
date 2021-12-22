@@ -22,7 +22,8 @@ import { VehiculoComponent } from './components/vehiculo/vehiculo.component';
 import { InformeConcecionariaService } from './services/InformeConcecionaria/informe-concecionaria.service';
 import { InformeConcecionariaComponent } from './components/informe-concecionaria/informe-concecionaria.component';
 import { VehiculoCatalogoFormComponent } from './components/vehiculo-catalogo/vehiculo-catalogo-form/vehiculo-catalogo-form.component';
-import { LoginComponent } from './login/login.component';
+import { AgregarimagenComponent } from './components/vehiculo-catalogo/vehiculo-catalogo-form/agregarimagen/agregarimagen.component';
+
 
 const routes: Routes = [
   {path: 'repuestos',component: RepuestosComponent},
@@ -48,7 +49,8 @@ const routes: Routes = [
   {path: 'lista-reclamo', component: ListaReclamoComponent},
   {path: 'reclamo-garantia', component:ReclamoGarantiaComponent},
   {path: 'catalogo/admin', component:VehiculoCatalogoFormComponent},
-  //{path: 'login', component:LoginComponent},
+  {path: 'imagenCatalogo', component: AgregarimagenComponent},
+
 ];
 
 @NgModule({

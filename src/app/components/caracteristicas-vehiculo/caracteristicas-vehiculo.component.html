@@ -6,7 +6,7 @@
       <div class="card-body">
         <form [formGroup]="caracteristicasform" (ngSubmit)="guardarCaracteristicas()">
           <div class="form-body">
-            <h3 class="card-title" style="text-align: center; font-style: bold;">INGRESAR NUEVAS CARACTERISTICAS DE VEHICULO</h3>
+            <h3 class="card-title1" >INGRESAR NUEVAS CARACTERISTICAS DE VEHICULO</h3>
             <br>
             <div class="row">
               <div class="col-md-4">
@@ -72,12 +72,19 @@
               </div>
               <div class="col-md-5">
                 <div class="form-group">
-                  <label> NUMERO DE PUERTAS</label>
-                  <input type="number" formControlName="numero_de_puertas" class="form-control" min="2" max="5">
+                  <label> VIDRIOS DEL VEHICULO</label>
+                  <select type="text" formControlName="vidrios" class="form-control" placeholder="Ejm: Polarizados">
+                    <option> Vidrio laminado</option>
+                    <option> Vidrio laminado tintado</option>
+                    <option> Vidrio termico tintado</option>
+                    <option> Vidrio termico</option>
+                    <option>Vidrio atérmico o con control solar</option>
+                    <option>Vidrio hidrófobo</option>
+                    <option>Vidrio acustico</option>
+                  </select>
                   <div class="text-danger"></div>
                 </div>
-              </div>
-            </div>
+              </div></div>
             <br>
             <div class="row">
               <div class="col-md-4">
@@ -119,7 +126,7 @@
                   <select type="text" formControlName="tecnologia" class="form-control" placeholder="Smartphone Integration">
                     <option> Conectividad 4g</option>
                     <option> Wi-Fi en un radio de hasta 15m del vehículo</option>
-                    <option> Wi-Fi® en un radio de hasta 15m del vehículo</option>
+                    <option> Wi-Fi en un radio de hasta 15m del vehículo</option>
                     <option> Conexión automática</option>
                     <option> Pantalla tactil</option>
                     <option> GPS</option>
@@ -133,7 +140,7 @@
               </div></div>
               <br>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="form-group">
                     <label> NUMERO DE CAMBIOS</label>
                     <input type="number" formControlName="velocidades" class="form-control" min="4" max="7">
@@ -142,21 +149,13 @@
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label> VIDRIOS DEL VEHICULO</label>
-                    <select type="text" formControlName="vidrios" class="form-control" placeholder="Ejm: Polarizados">
-                      <option> Vidrio laminado</option>
-                      <option> Vidrio laminado tintado</option>
-                      <option> Vidrio termico tintado</option>
-                      <option> Vidrio termico</option>
-                      <option>Vidrio atérmico o con control solar</option>
-                      <option>Vidrio hidrófobo</option>
-                      <option>Vidrio acustico</option>
-
-
-                    </select>
+                    <label> NUMERO DE PUERTAS</label>
+                    <input type="number" formControlName="numero_de_puertas" class="form-control" min="2" max="5" [maxLength]="1">
                     <div class="text-danger"></div>
                   </div>
                 </div>
+
+
 
               </div>
 
@@ -168,9 +167,8 @@
 <br>
 <br>
 <h3 class="display-4 text-center my-5">LISTADO DE CARACTERISTICAS DE LOS VEHICULOS</h3>
-<div class="caracteristicaslista">
+<div class="container1" style="text-align: center;">
   <table class="table table-bordered">
-
     <thead>
       <tr>
         <th style="text-align: center;"> CARACTERISTICA </th>
@@ -185,6 +183,7 @@
         <th style="text-align: center;"> TECNOLOGIA </th>
         <th style="text-align: center;"> VELOCIDADES </th>
         <th style="text-align: center;"> VIDRIOS </th>
+        <th style="width: 50px"><i class="fa fa-trash"></i></th>
       </tr>
     </thead>
     <tbody>
@@ -202,9 +201,10 @@
         <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.velocidades}} </td>
         <td style="text-align: center;text-transform:uppercase;">{{caracteristicas.vidrios}} </td>
 
-        <td><button type="submit" class="btn btn-danger"
-            (click)="eliminarCaracteristica(caracteristicas)">Eliminar</button></td>
+        <td><button type="submit" class="btn btn-outline-danger px-3 py-2"
+            (click)="eliminarCaracteristica(caracteristicas)"><i class="fa fa-trash"></i></button></td>
       </tr>
     </tbody>
   </table>
-  <br>
+</div>
+<br>

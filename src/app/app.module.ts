@@ -37,6 +37,7 @@ import { ClientFindidComponent } from './components/informe-reclamo/dialogos/cli
 import { InfoReclambyidComponent } from './components/informe-reclamo/dialogos/info-reclambyid/info-reclambyid.component';
 import { FacturaComVeDialogComponent } from './components/informe-reclamo/dialogos/factura-com-ve-dialog/factura-com-ve-dialog.component';
 import { VehiculoCatalogoFormComponent } from './components/vehiculo-catalogo/vehiculo-catalogo-form/vehiculo-catalogo-form.component';
+import { AgregarimagenComponent } from './components/vehiculo-catalogo/vehiculo-catalogo-form/agregarimagen/agregarimagen.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +68,7 @@ import { VehiculoCatalogoFormComponent } from './components/vehiculo-catalogo/ve
     InfoReclambyidComponent,
     FacturaComVeDialogComponent,
     VehiculoCatalogoFormComponent,
+    AgregarimagenComponent,
   ],
   imports: [
     BrowserModule,

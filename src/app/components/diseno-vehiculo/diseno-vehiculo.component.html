@@ -1,11 +1,10 @@
 <h1 class="display-4 text-center my-5">DISEÑO DE VEHICULO</h1>
-<div class="facturarepuesto">
-
-      <table class="table table-bordered">
+<div class="container" style="text-align: center;">
+  <table class="table table-bordered">
 
         <thead>
           <tr>
-            <th style="text-align: center;"> ID DISEÑO </th>
+            <th style="text-align: center;"> DISEÑO </th>
             <th style="text-align: center;"> MARCA </th>
             <th style="text-align: center;"> MODELO </th>
           </tr>
@@ -19,4 +18,22 @@
           </tr>
         </tbody>
       </table>
+
+    <!--
     </div>
+    <form [formGroup]="disenoform" (ngSubmit)="guardarDiseno()">
+      <div>
+        <label> temporal para ingresar por aqui XD</label>
+        <br>
+
+
+        <br>
+        <label> marca</label>
+        <input type="text" formControlName="marca" class="form-control">
+        <br>
+        <label> modelo</label>
+        <input type="text" formControlName="modelo" class="form-control">
+        <br>
+        <button type="submit" class="btn btn-success" [disabled]="disenoform.invalid">GUARDAR</button>
+      </div>
+    </form>-->

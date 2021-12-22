@@ -36,7 +36,6 @@
         </select>
         <br>
         <button type="submit" class="btn btn-primary" [disabled]="repuestosform.invalid">GUARDAR</button>
-
       </div>
     </form>
   </div>
@@ -44,7 +43,7 @@
 <br>
 <br>
 
-<div class="repuestolista">
+<div class="container" style="text-align: center;">
   <h3 class="display-4 text-center my-5">LISTADO DE REPUESTOS</h3>
   <table class="table table-bordered">
     <thead>
@@ -58,6 +57,7 @@
         <th style="text-align: center"> NOMBRE REPUESTO </th>
         <th style="text-align: center"> PRECIO DE VENTA </th>
         <th style="text-align: center"> ESTADO </th>
+        <th style="width: 50px"><i class="fa fa-cog"></i></th>
       </tr>
     </thead>
     <tbody>
@@ -69,10 +69,10 @@
         <td style="text-align: center;text-transform:uppercase;">{{repuestos.nombre_repuesto}} </td>
         <td style="text-align: center;text-transform:uppercase;">{{repuestos.precio}}</td>
         <td style="text-align: center;text-transform:uppercase;">{{repuestos.estado}}</td>
-        <td><button type="submit" class="btneditar btn-warning" (click)="editarRepuestos(repuestos)">Editar</button>
+        <td><button type="submit" class="btn btn-outline-warning px-3 py-2"  (click)="editarRepuestos(repuestos)"><i class="fa fa-pencil"></i></button>
           <br>
           <br>
-          <button type="submit" class="btneliminar btn-danger" (click)="eliminarRepuestos(repuestos)">Eliminar</button>
+          <button type="submit" class="btn btn-outline-danger px-3 py-2" (click)="eliminarRepuestos(repuestos)"><i class="fa fa-trash"></i></button>
         </td>
       </tr>
 
