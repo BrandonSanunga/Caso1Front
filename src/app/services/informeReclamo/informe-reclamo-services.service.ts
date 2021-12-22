@@ -39,8 +39,18 @@ export class InformeReclamoTallerService {
     return this.http.get(`http://localhost:8080/garantia/api/v1/find/${id}`)
   }
 
-  actualizarReclamocliente(id:any,reclamo:any):Observable<any>{
-    return this.http.put(`http://localhost:8080/vehiculo/api/v1/${id}`,reclamo);
+  actualizarReclamocliente(id:any):Observable<any>{
+    return this.http.put(`http://localhost:8080/reclamo/garantia/api/v1/${id}`,null);
+  }
+
+  optenerRepuestosDetalle():Observable<any>{
+    return this.http.get(`http://localhost:8080/ordecuerpo/api/v1/getall`);
+  }
+  actualizarestadoRepuesto(repuesto:any,id:any):Observable<any>{
+    return this.http.put(`http://localhost:8080/ordecuerpo/api/v1/update/${id}`,repuesto);
+  }
+  buscarRepuestoid(id:any):Observable<any>{
+    return this.http.get(`http://localhost:8080/ordecuerpo/api/v1/find/${id}`);
   }
 
 }

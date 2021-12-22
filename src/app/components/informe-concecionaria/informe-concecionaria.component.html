@@ -1,9 +1,5 @@
 <div class="container">
 
-    <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100"
-            aria-valuemin="0" style="width: 100%;"> </div>
-    </div>
     <div class="row">
         <div class="col-md-12">
             <h1> Informes Para La Concesionaria </h1>
@@ -14,6 +10,7 @@
     </div>
     <div class="row">
         <div class="col-ml-12">
+            <button type="button" class="btn btn-primary" (click)="agregar()">AGREGAR</button>
             <table class="table">
                 <thead>
 
@@ -21,7 +18,7 @@
                     <th scope="col">DESCRIPCION</th>
                     <th scope="col">COSTO</th>
                     <th scope="col">PORCENTAJE</th>
-                    <th scope="col">ESTADO</th>
+                    <th scope="col">TOTAL</th>
 
                 </thead>
                 <tbody>
@@ -30,10 +27,12 @@
                         <th scope="row">{{informe.descricion}}</th>
                         <th scope="row">{{informe.costo}}</th>
                         <th scope="row">{{informe.porcentaje}}</th>
-                        <th scope="row">{{informe.estado}}</th>
+                        <th scope="row">{{informe.total}}</th>
             
-                        <td><button type="submit" class="btn btn-success" (click)="eliminar(informe)">Eliminar</button></td>
+                        <td><button type="submit" class="btn btn-danger" (click)="eliminar(informe)">Eliminar</button></td>
+                        <!--
                         <td><button class="btn btn-primary" type="button"  (click)="cargar(informe.idConcesionaria )">Editar</button></td>
+                        -->
                         <td><button class="btn btn-success" type="button"  >PDF</button></td>
 
 
@@ -44,27 +43,5 @@
             </table>
         </div>
 
-        <div class="col-md-3">
-            <br>
-            <form [formGroup]="Informeform" (ngSubmit)="guardarI()" id="f">
-              <div>
-                
-                <label> DESCRIPCION </label>
-                <input  type="text"   formControlName="descricion" class="form-control"  >
-    
-                <label> COSTO TOTAL</label>
-                <input type="text" formControlName="costo" class="form-control">
-                
-                <label>  PORCENTAJE DESCUENTO </label>
-                <input type="text" formControlName="porcentaje" class="form-control">
-          
-                <label>  ESTADO </label>
-                <input type="text" formControlName="estado" class="form-control">
-                <button type="submit" class="btn btn-success" [disabled]="Informeform.invalid">GUARDAR</button>
-              </div>
-             
-            </form>
-       
-          </div>
 
     </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
 import { InformeConcecionariaService } from 'src/app/services/InformeConcecionaria/informe-concecionaria.service';
+import { FormInformeConecesionariaComponent } from './form-informe-conecesionaria/form-informe-conecesionaria.component';
 
 
 @Component({
@@ -12,7 +14,8 @@ export class InformeConcecionariaComponent implements OnInit {
   Informeform!: FormGroup;
   informe:any=[]
   constructor( private informeS:InformeConcecionariaService,
-    public fb: FormBuilder) { }
+    public fb: FormBuilder,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.Informeform = this.fb.group({
@@ -58,8 +61,9 @@ export class InformeConcecionariaComponent implements OnInit {
         }, error =>{
           console.log(error)
         });
-
-       
+}
+agregar(){
+  this.dialog.open(FormInformeConecesionariaComponent);
 }
 
 

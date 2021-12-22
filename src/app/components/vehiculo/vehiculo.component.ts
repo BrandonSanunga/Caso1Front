@@ -4,6 +4,9 @@ import { PaisService } from 'src/app/services/Pais/pais.service';
 import { VehiculoService } from 'src/app/services/Vehiculo/vehiculo.service';
 import { VehiculoCatalogoService } from 'src/app/services/vehiculo_catalogo/vehiculo-catalogo.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import { FormVehiculoComponent } from './form-vehiculo/form-vehiculo.component';
+
 
 
 
@@ -21,13 +24,14 @@ export class VehiculoComponent implements OnInit {
   CatalogoList: any=[];
  
    boton_pulsado: boolean = true;
-   estado: boolean = true;
+   estado!: boolean ;
 
   constructor(private serviciov:VehiculoService, 
     private garantia: GarantiaVehiculoService,
     private pais:PaisService,
     private catalogo:VehiculoCatalogoService,
     public fb: FormBuilder,
+    public dialog: MatDialog
     
     ) { }
 
@@ -56,60 +60,53 @@ export class VehiculoComponent implements OnInit {
       this.CatalogoList=e;
       console.log(e);
     });
-
-
-
-    this.cargarvehiculos();
-    
-   
-    
+this.listar();
   }
+ 
   
-  cargarvehiculos(){
-    this.serviciov.getEstado(this.estado).subscribe(
-      (response:any)=>this.mostrar(response)
-    )
 
-  
-  }
-  cargaT(){
-    this.serviciov.getAllVehiculos().subscribe(
-      (response:any)=>this.mostrar(response)
-    )
-  
-  }
-  mostrar(response:any){
-    this.vehiculo=response;
-  
-  }
-  guardarV(): void{
-    this.serviciov.create(this.Vehiculoform.value).subscribe(resp=>{
-      this.Vehiculoform.reset;
-      this.vehiculo.push(resp);
-      console.log(resp);
-      location.href="/Vehiculo"
-    })}
-
-    eliminar(garantia:any):void{
-
-      this.serviciov.delete(garantia.chasis).subscribe( 
-        res=> this.serviciov.getAllVehiculos().subscribe(
-          response=> this.garantia=response));
-      console.log("Prueba");
-      location.href="/Vehiculo"
+      listar(): void {
+        if (this.estado == false) {
+          this.serviciov.getEstado(false).subscribe(resp => {
+            this.vehiculo = resp;
+          },
+            error => { console.error(console.error) })
+        }
+        if (this.estado == true) {
+          this.serviciov.getEstado(true).subscribe(resp => {
+            this.vehiculo = resp;
+          },
+            error => { console.error(console.error) })
+        }
+        if (this.estado != false && this.estado != true) {
+          this.serviciov.getAllVehiculos().subscribe(resp => {
+            this.vehiculo = resp;
+          },
+            error => { console.error(console.error) })
+        }
       }
+      eliminar(garantia:any):void{
 
-      cargar (chasis:any):void{
-              this.serviciov.get(chasis).subscribe(es=>{
-                const {
-                chasis,color, ramv, estado , precio ,pais, garantia,vehiculoCatalogo}=es
-                  this.Vehiculoform.setValue({chasis,color, ramv, estado , precio ,pais, garantia,vehiculoCatalogo})
-              }, error =>{
-                console.log(error)
-              });
-              this.boton_pulsado = !this.boton_pulsado;
+        this.serviciov.delete(garantia.chasis).subscribe( 
+          res=> this.serviciov.getAllVehiculos().subscribe(
+            response=> this.garantia=response));
+        console.log("Prueba");
+        location.href="/Vehiculo"
+        }
+  
+        cargar (chas:any):void{  
+          localStorage.setItem("idlista",chas);  
+          this.dialog.open(FormVehiculoComponent);
+          
+         
+    }
+    agregarV ():void{  
+      
+      this.dialog.open(FormVehiculoComponent);
+      
+     
+}
 
-             
-      }
+    
   
 }

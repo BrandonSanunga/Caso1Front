@@ -1,0 +1,25 @@
+
+        <div class="container">
+            <h1>            GENERAR NUEVO INFORME            </h1>
+     
+            <form [formGroup]="Informeform" (ngSubmit)="guardarI()" id="f">
+                <br>
+              <div>
+                
+                <label> DESCRIPCION </label>
+                <input  type="text"   formControlName="descricion" class="form-control"  >
+    
+                <label> COSTO TOTAL</label>
+                <input type="text" formControlName="costo" class="form-control">
+                
+                <label>  PORCENTAJE DESCUENTO </label>
+                <input type="text" formControlName="porcentaje" class="form-control">
+          
+                <label>  ESTADO </label>
+                <input type="text" formControlName="estado" class="form-control">
+                <button type="submit" class="btn btn-success" [disabled]="Informeform.invalid">GUARDAR</button>
+              </div>
+             
+            </form>
+       
+          </div>

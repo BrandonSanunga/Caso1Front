@@ -1,0 +1,53 @@
+  <div class="container" >
+    <p>Insertar Vehiculo</p>
+    <br>
+  
+    <form [formGroup]="Vehiculoform" (ngSubmit)="guardarV()" id="f">
+  
+        
+        <label *ngIf="boton_pulsado" > CHASIS </label>
+        <input *ngIf="boton_pulsado" type="text"   formControlName="chasis" class="form-control"  >
+
+        <label  > COLOR</label>
+        
+        <select name="color" id="color" formControlName="color" class="form-control">
+          <option  >NEGRO</option>
+          <option  >ROJO</option>
+          <option  >AZUL</option>
+          <option  >GRIS</option>
+          <option  >VERDE</option>
+          <option  >BLANCO</option>
+          </select>
+        
+        <label>  RAMV </label>
+        <input type="text" formControlName="ramv" class="form-control">
+  
+        <label>  PRECIO </label>
+        <input type="number" formControlName="precio" class="form-control">
+        <br>
+        <label>PAIS</label>
+        <select name="pais" id="pais" formControlName="pais" class="form-control" >
+          <option [ngValue]="pais" *ngFor="let pais of PaisList"  >{{pais.nombre}}</option>
+          </select>
+          <label>GARANTIA</label>
+        <select name="garantia" id="garantia" formControlName="garantia" class="form-control">
+          <option [ngValue]="garantia" *ngFor="let garantia of garantiaList">{{garantia.descripcion}}</option>
+          </select>
+
+          <label>CATALOGO</label>
+        <select name="vehiculoCatalogo" id="vehiculoCatalogo" formControlName="vehiculoCatalogo" class="form-control">
+          <option [ngValue]="vehiculoCatalogo" *ngFor="let vehiculoCatalogo of CatalogoList">{{vehiculoCatalogo.id_vehiculo_catalogo}}-{{vehiculoCatalogo.diseno.marca}}-{{vehiculoCatalogo.diseno.modelo}}</option>
+          </select>
+
+    <br>
+        
+        <div class="btn-toolbar">
+          <button type="submit" class="btn btn-success" [disabled]="Vehiculoform.invalid">GUARDAR</button>
+          <ul></ul>
+          <button type="submit" class="btn btn-danger" (click)="cancelar()">CANCELAR</button>
+          
+        </div>
+     
+    </form>
+
+  </div>

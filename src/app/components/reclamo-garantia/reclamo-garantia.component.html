@@ -18,7 +18,7 @@
             <tr *ngFor="let reclamo of reclamosGaranList">
               <td style="display: none;">{{reclamo.id_reclamo}}</td>
                 <td>{{reclamo.fecha_reclamo}}</td>
-                <td>{{reclamo.fk_id_solicitud.fk_chasis_vehiculo.chasis_vehiculo}}</td>
+                <td>{{reclamo.fk_id_solicitud.fk_chasis_vehiculo.chasis}}</td>
                 <td>{{reclamo.fk_id_solicitud.descripcion}}</td>
                 <td><button class="btn btn-success">PDF</button></td>
                 <td>
