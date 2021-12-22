@@ -18,38 +18,42 @@ export class CaracteristicasVehiculoComponent implements OnInit {
 
   ngOnInit(): void {
     this.caracteristicasform = this.fb.group({
-     capacidad_carga: ['',Validators.required],
-     cilindros: ['',Validators.required],
-     direccion: ['',Validators.required],
-     interior: ['',Validators.required],
-     motor: ['',Validators.required],
-     numero_de_puertas: ['',Validators.required],
-     rines: ['',Validators.required],
-     seguridad: ['',Validators.required],
-     tecnologia: ['',Validators.required],
-     velocidades: ['',Validators.required],
-     vidrios: ['',Validators.required],
-  });
-  this.caracteristicaservice.getAllCaracteristicas().subscribe(resp=>{
-    this.caracteristicasList = resp;
-    console.log(resp);
-  },
-  error=>{console.error(console.error)});
+      capacidad_carga: ['', Validators.required],
+      cilindros: ['', Validators.required],
+      direccion: ['', Validators.required],
+      interior: ['', Validators.required],
+      motor: ['', Validators.required],
+      numero_de_puertas: ['', Validators.required],
+      rines: ['', Validators.required],
+      seguridad: ['', Validators.required],
+      tecnologia: ['', Validators.required],
+      velocidades: ['', Validators.required],
+      vidrios: ['', Validators.required],
+    });
+
+
+    this.caracteristicaservice.getAllCaracteristicas().subscribe(resp => {
+      this.caracteristicasList = resp;
+      console.log(resp);
+    },
+      error => { console.error(console.error) });
   }
-  guardarCaracteristicas(): void{
-    this.caracteristicaservice.saveCaracteristicas(this.caracteristicasform.value).subscribe(resp=>{
+  guardarCaracteristicas(): void {
+    this.caracteristicaservice.saveCaracteristicas(this.caracteristicasform.value).subscribe(resp => {
       this.caracteristicasform.reset();
       this.caracteristicasList.push(resp);
+
       alert("Caracteristica guardado correctamente");
       console.log(resp);
-    })}
-  eliminarCaracteristica(carac: any):void{
-    this.caracteristicaservice.delete(carac.id_caracteristica).subscribe(resp=>{
+    })
+  }
+  eliminarCaracteristica(carac: any): void {
+    this.caracteristicaservice.delete(carac.id_caracteristica).subscribe(resp => {
       console.log(resp);
-      if(resp==true){
+      if (resp == true) {
         this.caracteristicasList.pop(carac);
         this.caracteristicasList.push();
-        alert("Caracteristica: "+carac.id_caracteristica+" eliminado correctamente");
+        alert("Caracteristica: " + carac.id_caracteristica + " eliminado correctamente");
       }
     })
   }

@@ -4,7 +4,36 @@
 <button class="btnadmin btn-primary" (click)="verCatalogo()" style="text-transform:uppercase;">
   <i class="fa fa-pencil" aria-hidden="true"></i>   administrar catalogo</button>
 <br>
+<div class="contAutos">
+  <div class="card-group mt-3" *ngFor="let item of catalogoList">
+    <div class="cards">
+      <div class="imagecontainer">
+        <img class="card-img-top"  src
+          alt="Card image cap">
+      </div>
+      <div class="card-body">
+        <i class="fa fa-car" aria-hidden="true"></i>
+        <h2 class="card-title" style="text-transform:capitalize;">{{item.diseno.marca}}, {{item.diseno.modelo}}
+        </h2>
 
+        <h3 class="card-text">Año: {{item.year_vehiculo}}</h3>
+        <h3 class="card-text"> Motor: {{item.caracteristica.motor}}</h3>
+      </div>
+      <div class="card-footer">
+        <h4 class="card-text">Seguridad: {{item.caracteristica.seguridad}}</h4>
+        <h4 class="card-text">Tecnologia: {{item.caracteristica.tecnologia}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<div style="text-align:center">
+  <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+  <div><img [src]="url" *ngIf="url"></div>
+  <p>
+    <input type="file" (change)="selectFile($event)">
+  </p>
+</div>-->
 <!--<div class="facturarepuesto2">
   <div class="card">
     <form [formGroup]="catalogoform" (ngSubmit)="guardarCatalogo()">
@@ -69,34 +98,3 @@
     </tbody>
   </table></div>
 -->
-
-<div class="contAutos">
-  <div class="card-group mt-3" *ngFor="let item of catalogoList">
-    <div class="cards">
-      <div class="imagecontainer">
-        <img class="card-img-top"
-          src="https://www.chevrolet.com.ec/content/dam/chevrolet/south-america/ecuador/espanol/vdc-collections/2019/cars/nuevo-beat/nuevo-beat/01-images/2019-beat-top-nav-jellybean.jpg?imwidth=1500"
-          alt="Card image cap">
-      </div>
-      <div class="card-body">
-        <h2 class="card-title" style="text-transform:capitalize;">{{item.diseno.marca}}, {{item.diseno.modelo}}
-        </h2>
-
-        <h3 class="card-text">Año: {{item.year_vehiculo}}</h3>
-        <h3 class="card-text">Motor: {{item.caracteristica.motor}}</h3>
-      </div>
-      <div class="card-footer">
-        <h4 class="card-text">Seguridad: {{item.caracteristica.seguridad}}</h4>
-        <h4 class="card-text">Tecnologia: {{item.caracteristica.tecnologia}}</h4>
-      </div>
-    </div>
-  </div>
-</div>
-<!--
-<div style="text-align:center">
-  <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
-  <div><img [src]="url" *ngIf="url"></div>
-  <p>
-    <input type="file" (change)="selectFile($event)">
-  </p>
-</div>-->

@@ -22,8 +22,10 @@ import { VehiculoComponent } from './components/vehiculo/vehiculo.component';
 import { InformeConcecionariaService } from './services/InformeConcecionaria/informe-concecionaria.service';
 import { InformeConcecionariaComponent } from './components/informe-concecionaria/informe-concecionaria.component';
 import { VehiculoCatalogoFormComponent } from './components/vehiculo-catalogo/vehiculo-catalogo-form/vehiculo-catalogo-form.component';
+import { AgregarimagenComponent } from './components/vehiculo-catalogo/vehiculo-catalogo-form/agregarimagen/agregarimagen.component';
 import { FormVehiculoComponent } from './components/vehiculo/form-vehiculo/form-vehiculo.component';
-import { LoginComponent } from './login/login.component';
+import { ListaEntregarRepuestosComponent } from './components/lista-entregar-repuestos/lista-entregar-repuestos.component';
+
 
 const routes: Routes = [
   {path: 'repuestos',component: RepuestosComponent},
@@ -33,7 +35,7 @@ const routes: Routes = [
   { path: 'inspeccion', component: InspeccionComponent },
   { path: 'orden-reparacion', component: OrdenReparacionComponent },
   { path: 'factura', component: FacturacliComponent },
-  { path: 'detalle', component: DetallefacliComponent },
+  { path: 'facturas', component: DetallefacliComponent },
   { path: 'solicitud/garantia', component: SoligarantiaComponent },
   {path: 'taller', component: TallerComponent },
   { path: 'taller/orden/:id', component: InformeReparacionComponent },
@@ -49,9 +51,9 @@ const routes: Routes = [
   {path: 'lista-reclamo', component: ListaReclamoComponent},
   {path: 'reclamo-garantia', component:ReclamoGarantiaComponent},
   {path: 'catalogo/admin', component:VehiculoCatalogoFormComponent},
-  {path: 'formVehiculo', component:FormVehiculoComponent}
-
-  //{path: 'login', component:LoginComponent},
+  {path: 'imagenCatalogo', component: AgregarimagenComponent},
+  { path: "formVehiculo", component: FormVehiculoComponent },
+  {path: "lista-entregar-repuestos", component: ListaEntregarRepuestosComponent,},
 ];
 
 @NgModule({

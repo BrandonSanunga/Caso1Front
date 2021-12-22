@@ -1,1 +1,77 @@
-<p>detallefacli works!</p>
+<div class="container">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="form-body">
+          <h3 class="card-title">VENTAS REALIZDAS DE VEHICULOS</h3>
+          <hr />
+
+          <table
+            class="
+              table table-bordered table-responsive-sm table-sm
+              text-center
+            "
+          >
+            <thead class="bg-pri white">
+              <tr>
+                <th>CLIENTE</th>
+                <th>FACTURA N°</th>
+                <th>DESCRIPCION</th>
+                <th>DETALLE FACTURA</th>
+                <th>TOTAL FACTURA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let factura of facturas">
+                <td>
+                  {{ factura.cliente?.cedulaClient }}
+                  {{ factura.cliente?.nombresClient }}
+                  {{ factura.cliente?.emailClient }}
+                </td>
+                <td>{{ factura.id }}</td>
+                <td>{{ factura.descripcion }}</td>
+
+                <td>
+                  <table
+                    class="
+                      table table-bordered table-responsive-sm table-sm
+                      text-center
+                    "
+                  >
+                    <thead class="bg-pri white">
+                      <tr>
+                        <th>VEHICULO</th>
+                        <th>CHASIS</th>
+                        <th>CANTIDAD</th>
+                        <th>PRECIO</th>
+                        <th>SUBTOTAL</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let det of factura.detallesfacturas">
+                        <td>
+                          {{ det.vehiculo?.vehiculoCatalogo?.diseno?.marca }}
+                          {{ det.vehiculo?.vehiculoCatalogo?.diseno?.modelo }}
+                          {{ det.vehiculo?.vehiculoCatalogo?.year_vehiculo }}
+                        </td>
+                        <td>{{ det.vehiculo?.chasis }}</td>
+                        <td>{{ det.cantidad }}</td>
+                        <td>{{ det.vehiculo?.precio_venta | currency }}</td>
+                        <td>
+                          {{ det.total | currency }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td>
+                  <strong> {{ factura.total | currency }}</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

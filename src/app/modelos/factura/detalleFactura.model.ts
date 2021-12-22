@@ -5,4 +5,8 @@ export class DetalleFactura {
   cantidad?: number;
   total?: number;
   vehiculo?: Vehiculo;
+
+  public calcularImporte(): number {
+    return (this.total = this.cantidad! * this.vehiculo?.precio_venta!);
+  }
 }
