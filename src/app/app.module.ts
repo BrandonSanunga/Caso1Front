@@ -46,6 +46,8 @@ import { FormVehiculoComponent } from "./components/vehiculo/form-vehiculo/form-
 import { FormGarantiaVehiculoComponent } from "./components/garantia-vehiculo/form-garantia-vehiculo/form-garantia-vehiculo.component";
 import { FormInformeConecesionariaComponent } from "./components/informe-concecionaria/form-informe-conecesionaria/form-informe-conecesionaria.component";
 import { ListaEntregarRepuestosComponent } from "./components/lista-entregar-repuestos/lista-entregar-repuestos.component";
+import { AddCotizacionComponent } from './components/cotizacion/add-cotizacion/add-cotizacion.component';
+import { ListCotizacionComponent } from './components/cotizacion/list-cotizacion/list-cotizacion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +85,8 @@ import { ListaEntregarRepuestosComponent } from "./components/lista-entregar-rep
     FacturacliComponent,
     DetallefacliComponent,
     ListaEntregarRepuestosComponent,
+    AddCotizacionComponent,
+    ListCotizacionComponent,
   ],
   imports: [
     BrowserModule,
