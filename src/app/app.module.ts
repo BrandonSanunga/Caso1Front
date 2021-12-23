@@ -1,4 +1,4 @@
-import { AgregarimagenComponent } from './components/vehiculo-catalogo/vehiculo-catalogo-form/agregarimagen/agregarimagen.component';
+import { AgregarimagenComponent } from "./components/vehiculo-catalogo/vehiculo-catalogo-form/agregarimagen/agregarimagen.component";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -46,8 +46,9 @@ import { FormVehiculoComponent } from "./components/vehiculo/form-vehiculo/form-
 import { FormGarantiaVehiculoComponent } from "./components/garantia-vehiculo/form-garantia-vehiculo/form-garantia-vehiculo.component";
 import { FormInformeConecesionariaComponent } from "./components/informe-concecionaria/form-informe-conecesionaria/form-informe-conecesionaria.component";
 import { ListaEntregarRepuestosComponent } from "./components/lista-entregar-repuestos/lista-entregar-repuestos.component";
-import { AddCotizacionComponent } from './components/cotizacion/add-cotizacion/add-cotizacion.component';
-import { ListCotizacionComponent } from './components/cotizacion/list-cotizacion/list-cotizacion.component';
+import { AddCotizacionComponent } from "./components/cotizacion/add-cotizacion/add-cotizacion.component";
+import { ListCotizacionComponent } from "./components/cotizacion/list-cotizacion/list-cotizacion.component";
+import { NgSelectModule } from "@ng-select/ng-select";
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,6 +104,7 @@ import { ListCotizacionComponent } from './components/cotizacion/list-cotizacion
     MatTableModule,
     MatAutocompleteModule,
     MatInputModule,
+    NgSelectModule,
     MatFormFieldModule,
   ],
   providers: [],

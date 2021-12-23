@@ -1,1 +1,54 @@
-<p>add-cotizacion works!</p>
+<div class="container">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form #MyForm="ngForm" (submit)="guardarCotizacion(MyForm)">
+          <div class="form-body">
+            <h3 class="card-title">Nueva Cotizacion</h3>
+            <hr />
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Cliente*</label>
+                  <ng-select
+                    class="form-control"
+                    [compareWith]="compararCliente"
+                    name="cliente"
+                    #cliente="ngModel"
+                    [(ngModel)]="cotizacion.cliente"
+                    required
+                  >
+                    <ng-option
+                      *ngFor="let cliente of clientes"
+                      [value]="cliente"
+                    >
+                      {{ cliente.cedulaClient }}
+                      {{ cliente.nombresClient }}
+                    </ng-option>
+                  </ng-select>
+
+                  <div
+                    class="text-danger"
+                    *ngIf="cliente.hasError('required') && cliente.touched"
+                  >
+                    Cliente es requerido!
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6"></div>
+            </div>
+          </div>
+          <br />
+          <hr />
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success mr-2">
+              <i class="fa fa-check"></i> Guardar
+            </button>
+            <button type="button" class="btn btn-inverse">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

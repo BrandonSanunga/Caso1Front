@@ -2,7 +2,7 @@ import { Clientes } from "../clientes";
 import { DetalleFactura } from "./detalleFactura.model";
 
 export class Factura {
-  id?: string;
+  id?: number;
   fecha_emision?: string;
   descripcion?: string;
   ruc_factura?: string = "1234567890";
