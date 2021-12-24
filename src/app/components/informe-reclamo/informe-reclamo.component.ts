@@ -41,10 +41,10 @@ export class InformeReclamoComponent implements OnInit {
   ngOnInit(): void {
     this.idinforme=localStorage.getItem("idinforme")
     this.estado = localStorage.getItem("estado")
-  this.cedulaCliente=localStorage.getItem("cedulaCliente");
-  this.chasis=localStorage.getItem("chasis");
-  this.verInformeReclamo();
-  this.optenerClienteFactura()
+    this.verInformeReclamo();
+  //this.cedulaCliente=localStorage.getItem("cedulaCliente");
+   this.chasis=localStorage.getItem("chasis");
+   this.optenerClienteFactura()
   }
   openDialogVehiculo() {
     localStorage.setItem("vehiculoDialog",this.vehiculo)
@@ -85,17 +85,26 @@ export class InformeReclamoComponent implements OnInit {
    })
   }
   verInformeReclamo(){
-    if(this.estado==true){
-      this.id=this.idinforme
+    var id = localStorage.getItem("idverifi")
+    this.informeReclamoSerivce.getById(id).subscribe(data=>{
+      if(data!=null){
+        this.id=this.idinforme
       console.log(this.id);
-    }else{
-    this.id =  localStorage.getItem("informe")
-    }
-    this.reclamogarantiaService.getfindByid(this.id).subscribe(data=>{
+      document.getElementById("cancel")?.remove()
+      document.getElementById("acept")?.remove()
+      this.reclamogarantiaService.getfindByid(this.id).subscribe(data=>{
         this.reclamo=data;
         this.informeReclamo=this.id
         this.chasis=data.fk_id_solicitud.fk_chasis_vehiculo.chasis
-        console.log(this.chasis+" "+this.id)
+        })
+      }else{
+        this.id =  localStorage.getItem("informe")
+        this.reclamogarantiaService.getfindByid(this.id).subscribe(data=>{
+          this.reclamo=data;
+          this.informeReclamo=this.id
+          this.chasis=data.fk_id_solicitud.fk_chasis_vehiculo.chasis
+         })
+      }
     })
   }
   optenerClienteFactura(){
@@ -125,7 +134,7 @@ export class InformeReclamoComponent implements OnInit {
         this.informeReclamomodelo.client=this.cliente;
          this.informeReclamomodelo.descripcionInforme=this.reclamo2?.fk_id_solicitud?.descripcion;
          this.informeReclamomodelo.reclamogarantia=this.reclamo2
-         this.informeReclamomodelo.respuestaCliente="Aceptado"
+        // this.informeReclamomodelo.respuestaCliente=
          this.informeReclamomodelo.tipoInforme="Aceptado";
          this.informeReclamomodelo.fechaEmicion=fecha;
          this.informeReclamoSerivce.postInforme(this.informeReclamomodelo).subscribe(data=>{
@@ -149,7 +158,7 @@ export class InformeReclamoComponent implements OnInit {
           this.informeReclamomodelo.client=this.cliente;
            this.informeReclamomodelo.descripcionInforme=this.reclamo2?.fk_id_solicitud?.descripcion;
            this.informeReclamomodelo.reclamogarantia=this.reclamo2
-           this.informeReclamomodelo.respuestaCliente="Aceptado"
+           this.informeReclamomodelo.respuestaCliente="Rechazado"
            this.informeReclamomodelo.tipoInforme="Rechazado";
            this.informeReclamomodelo.fechaEmicion=fecha;
            this.informeReclamoSerivce.postInforme(this.informeReclamomodelo).subscribe(data=>{

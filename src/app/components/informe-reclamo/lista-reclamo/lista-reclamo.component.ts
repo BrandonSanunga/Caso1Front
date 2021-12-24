@@ -13,6 +13,8 @@ export class ListaReclamoComponent implements OnInit {
    listaInforme:any=[];
    estado:any;
    chasis:any;
+   aceptado:any="ACEPTADO"
+   rechazado:any="RECHAZADO"
    informeReclamo:InformeReclamo = new InformeReclamo();
   constructor(private root:Router, private inforReclamoService:InformeReclamoTallerService, private reclamoservice:ReclamoGarantiaService) { }
 
@@ -30,10 +32,11 @@ export class ListaReclamoComponent implements OnInit {
     console.log(this.listaInforme);
   }
 
-Ver(cedula:any,id:any){
+Ver(cedula:any,id:any, idverifi:any){
   this.reclamoservice.getfindByid(id).subscribe(data=>{
     console.log(data)
     this.estado = true
+    localStorage.setItem("idverifi",idverifi)
     this.chasis=data.fk_id_solicitud.fk_chasis_vehiculo.chasis
     localStorage.setItem("estado",this.estado)
    localStorage.setItem("chasis",this.chasis);
@@ -48,6 +51,16 @@ abrirInspeccion(id:any, idinspeccion:any){
   console.log(idinspeccion)
   localStorage.setItem("idvehiculo",id);
   this.root.navigate(["/inspeccion"])
+}
+aceptarCliente(id:any){
+this.inforReclamoService.updateAceptar(id).subscribe(data=>{
+ console.log(data)
+})
+}
+canceladoCliente(id:any){
+this.inforReclamoService.updateCancelar(id).subscribe(data=>{
+  console.log(data)
+})
 }
 
 }

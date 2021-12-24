@@ -1,1 +1,96 @@
-<p>orden-reparacion works!</p>
+<br>
+<h1 class="card-title" style="text-align: center;">ORDEN REPARACION</h1>
+<div class="caracteristicas">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="ordenform" (ngSubmit)="guardarOrden()">
+          <div class="form-body">
+            <h3 class="card-title" style="text-align: center; font-style: bold;">INGRESAR NUEVAS ORDEN</h3>
+            <br>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label> FECHA EMISION:</label><br>
+                  <input type="date" class="form-control" [(ngModel)]="ordenCave.fecha_emision"id="fecha_ini" name="trip-start"
+                  value="2020-07-22"
+                  min="2020-01-01" max="2020-12-31">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label> FECHA INGRESO</label> <br>
+                  <input type="date" class="form-control" [(ngModel)]="ordenCave.fechaIngreso" id="start" name="trip-start"
+                         value="2020-07-22"
+                         min="2020-01-01" max="2020-12-31">
+                          <div class="text-danger"></div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label> ESTADO:</label>
+                  <select type="number" class="form-control" [(ngModel)]="ordenCave.estado" formControlName="estado" class="form-control" >
+                    <option>Activo</option>
+                    <option>Inactivo</option>
+                  </select>
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label> Trabajo Solicitado</label>
+                  <input type="text" class="form-control" [(ngModel)]="ordenCuerpos.trabajoSolicitado" formControlName="capacidad_carga" class="form-control" placeholder="Escribir..">
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label> Trabajo a Realizar</label>
+                  <input type="text" class="form-control" [(ngModel)]="ordenCuerpos.trabajoRealizar" formControlName="capacidad_carga" class="form-control" placeholder="Escribir..">
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Observaciones</label>
+                  <input type="text"  class="form-control" [(ngModel)]="ordenCuerpos.observaciones" formControlName="capacidad_carga" class="form-control" placeholder="Escribir..">
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+
+              </div>
+
+            <br>
+            <button type="submit" class="btn btn-primary" [disabled]="ordenform.invalid">GUARDAR</button>
+          </div>
+        </form>
+      </div></div></div></div>
+<br>
+<br>
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Id </th>
+      <th scope="col">trabajo Solicitado</th>
+      <th scope="col">trabajo Realizar</th>
+      <th scope="col"> observaciones</th>
+      <th scope="col">estadoOrden</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let orden of ordenList">
+      <td style="text-align: center;">{{orden.id} </td>
+      <td>{{orden.id}}</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td style="text-align: center;text-transform:uppercase;">{{orden.id}} </td>
+      <td style="text-align: center;text-transform:uppercase;">{{ordenList.fecha_ini}} </td>
+
+      <td><button type="submit" class="btn btn-danger"
+          (click)="editarOrden()">Editar</button></td>
+    </tr>
+  </tbody>
+</table>

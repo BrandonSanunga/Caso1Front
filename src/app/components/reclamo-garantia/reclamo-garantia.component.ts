@@ -44,8 +44,11 @@ export class ReclamoGarantiaComponent implements OnInit {
     error=>{console.error(console.error)})
   }
 
-  verInformeReclamo(InformeReclamo:any){
+  verInformeReclamo(InformeReclamo:any, chasis:any){
+    var id="9999292929"
+    localStorage.setItem("idverifi",id)
     this.estado = false;
+    localStorage.setItem("chasis",chasis)
     localStorage.setItem("estado",this.estado)
     localStorage.setItem("informe",InformeReclamo);
     this.root.navigate(['/informe-reclamo'])

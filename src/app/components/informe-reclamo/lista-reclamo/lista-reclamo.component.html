@@ -14,6 +14,7 @@
         <th scope="col">Fecha</th>
         <th scope="col">Cliente</th>
         <th scope="col">Tipo Informe</th>
+         <th scope="col">Respuesta Cliente</th>
         <th scope="col" >Ver</th>
         <th scope="col">Inspeccion</th>
       </tr>
@@ -22,11 +23,74 @@
       <tr *ngFor="let i of this.listaInforme">
         <th style="display: none;">{{i.reclamogarantia?.id_reclamo}}</th>
         <th >{{i.idinformeRecha}}</th>
-        <td>{{i.fechaEmicion}}</td>
+        <td>{{i.fechaEmicion | date:'yyyy-MM-dd'}}</td>
         <td>{{i.client.cedulaClient}}</td>
         <td>{{i.tipoInforme}}</td>
-        <td><Button (click)="Ver(i.client.cedulaClient,i.reclamogarantia?.id_reclamo)">Ver</Button></td>
-        <td><Button (click)="abrirInspeccion(i.reclamogarantia?.id_reclamo,i.idinformeRecha)">Inspeccion</Button></td>
+        <td>{{i.respuestaCliente}}
+          <div class="card-group">
+          <div *ngIf="i.respuestaCliente==null">sin respuesta</div>
+          <!--opcion btn 1-->
+          <div *ngIf="i.respuestaCliente == null" style="margin-left: 30px;">
+          <div>
+            <div class="example-flex-container">
+            <div class="example-button-container">
+              <button (click)="aceptarCliente(i.idinformeRecha)" mat-mini-fab style="background-color:green;" aria-label="Example icon button with a menu icon">
+                <mat-icon>done</mat-icon>
+              </button>
+            </div>
+          </div>
+          </div>
+          <div>
+            <div class="example-flex-container">
+            <div class="example-button-container">
+              <button (click)="canceladoCliente(i.idinformeRecha)" mat-mini-fab color="warn">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </div>
+          </div>
+          </div>
+        </div>
+        <!--opcion btn 2-->
+        <div *ngIf="i.respuestaCliente != null" style="margin-left: 30px;">
+          <div *ngIf="i.respuestaCliente == rechazado">
+            <div class="example-flex-container">
+            <div class="example-button-container">
+              <button (click)="aceptarCliente(i.idinformeRecha)" mat-mini-fab style="background-color:green;" aria-label="Example icon button with a menu icon">
+                <mat-icon>done</mat-icon>
+              </button>
+            </div>
+          </div>
+          </div>
+          <div *ngIf="i.respuestaCliente == aceptado">
+            <div class="example-flex-container">
+            <div class="example-button-container">
+              <button (click)="canceladoCliente(i.idinformeRecha)" mat-mini-fab color="warn">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      </td>
+        <td>
+          <div class="example-flex-container">
+            <div class="example-button-container">
+              <button (click)="Ver(i.client.cedulaClient,i.reclamogarantia?.id_reclamo,i.idinformeRecha)" mat-mini-fab style="background-color: cadetblue;">
+                <mat-icon>visibility</mat-icon>
+              </button>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="example-flex-container">
+            <div class="example-button-container">
+              <button (click)="abrirInspeccion(i.reclamogarantia?.id_reclamo,i.idinformeRecha)" mat-mini-fab style="background-color: darkgray;">
+                <mat-icon>receipt</mat-icon>
+              </button>
+            </div>
+          </div>
+          </td>
       </tr>
        </tbody>
   </table>

@@ -39,8 +39,6 @@ export class InspeccionComponent implements OnInit {
        if(data!=null){
       for(let i of data){
         if(i.informeReclamo.idinformeRecha==id){
-         // document.getElementById("btnGuardar")?.remove()
-          //document.getElementById("idbtnActualizar")?.remove()
           this.inspeccionCave=i
           this.inspeServiceCuerpo.all().subscribe(data=>{
             for(let j of data){
