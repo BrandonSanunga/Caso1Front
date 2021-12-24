@@ -4,6 +4,15 @@
       <div class="card-body">
         <form #form="ngForm" (submit)="guardarFactura(form)">
           <div class="form-body">
+            <h3 class="card-title text-end">
+              <button
+                type="button"
+                class="btn btn-link btn-sm"
+                [routerLink]="['/facturas']"
+              >
+                IR LISTA FACTURAS
+              </button>
+            </h3>
             <h3 class="card-title">VENTA DE VEHICULOS</h3>
             <hr />
             <!--/row-->

@@ -10,11 +10,18 @@
             Nueva Cotizacion
           </button>
           <hr />
+          <div
+            class="alert alert-info text-center"
+            *ngIf="cotizaciones?.length == 0"
+          >
+            NO HAY DATOS DISPONIBLES
+          </div>
           <table
             class="
               table table-bordered table-responsive-sm table-sm
               text-center
             "
+            *ngIf="cotizaciones!.length > 0"
           >
             <thead class="bg-pri white">
               <tr>
@@ -41,12 +48,21 @@
 
                 <td>
                   <button
+                    class="btn btn-primary btn-sm mr-2 mb-1"
+                    [routerLink]="['/cotizacion/', cotizacion.id]"
+                  >
+                    <i class="far fa-edit"></i>
+                  </button>
+                  <button
                     class="btn btn-danger btn-sm mr-2 mb-1"
                     (click)="delete(cotizacion)"
                   >
                     <i class="fa fa-trash"></i>
                   </button>
-                  <button class="btn btn-primary btn-sm mr-2 mb-1">
+                  <button
+                    class="btn btn-primary btn-sm mr-2 mb-1"
+                    [routerLink]="['/factura/', cotizacion.id]"
+                  >
                     <i class="fas fa-cart-arrow-down"></i>
                   </button>
                 </td>

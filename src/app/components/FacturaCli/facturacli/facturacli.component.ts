@@ -2,14 +2,16 @@ import { flatten } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, NgForm } from "@angular/forms";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { flatMap, map } from "rxjs/operators";
 import { Clientes } from "src/app/modelos/clientes";
+import { Cotizacion } from "src/app/modelos/cotizacion/cotizacion.model";
 import { DetalleFactura } from "src/app/modelos/factura/detalleFactura.model";
 import { Factura } from "src/app/modelos/factura/factura.model";
 import { Vehiculo } from "src/app/modelos/factura/vehiculo.model";
 import { ClienteService } from "src/app/services/Cliente/cliente.service";
+import { CotizacionService } from "src/app/services/cotizacion/cotizacion.service";
 import { FacturaService } from "src/app/services/Factura/factura.service";
 import Swal from "sweetalert2";
 
@@ -21,16 +23,22 @@ import Swal from "sweetalert2";
 export class FacturacliComponent implements OnInit {
   public clientes: Clientes[] = [];
   public factura = new Factura();
+  public cotizacion = new Cotizacion();
   public vehiculosFiltrados?: Observable<Vehiculo[]>;
   public autocompleteControl = new FormControl();
   importe?: number;
   constructor(
     private clienteService: ClienteService,
     private facturaService: FacturaService,
+    private cotizacionService: CotizacionService,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(({ idc }) =>
+      this.cargarCotizacionById(idc)
+    );
     this.cargarClientes();
     this.vehiculosFiltrados = this.autocompleteControl.valueChanges.pipe(
       map((value) => (typeof value === "string" ? value : value.chasis)),
@@ -136,5 +144,24 @@ export class FacturacliComponent implements OnInit {
       this.importe = det.cantidad! * det.vehiculo?.precio_venta!;
     });
     return this.importe!;
+  }
+  cargarCotizacionById(idc: number) {
+    if (!idc) {
+      return;
+    }
+    this.cotizacionService.getCotizacionById(idc).subscribe((cotizacion) => {
+      this.cotizacion = cotizacion;
+      this.factura.cliente = this.cotizacion.cliente;
+      this.facturaService
+        .getVehiculoByVehiculoCatalogo(
+          this.cotizacion.vehiculo_catalogo?.id_vehiculo_catalogo!
+        )
+        .subscribe((vehiculo) => {
+          let nuevoDetalleFac = new DetalleFactura();
+          nuevoDetalleFac.vehiculo = vehiculo;
+          nuevoDetalleFac.cantidad = 1;
+          this.factura.detallesfacturas?.push(nuevoDetalleFac);
+        });
+    });
   }
 }

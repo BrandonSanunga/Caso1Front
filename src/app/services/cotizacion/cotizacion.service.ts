@@ -40,9 +40,9 @@ export class CotizacionService {
     return this.http.get<Cotizacion>(`${this.API_SEVER}/${id}`);
   }
 
-  update(cotizacion: Cotizacion): Observable<Cotizacion> {
+  update(cotizacion: Cotizacion, id: number): Observable<Cotizacion> {
     return this.http
-      .put<Cotizacion>(`${this.API_SEVER}/${cotizacion.id}`, cotizacion)
+      .put<Cotizacion>(`${this.API_SEVER}/${id}`, cotizacion)
       .pipe(
         map((response: any) => response.cotizacion as Cotizacion),
         catchError((e) => {

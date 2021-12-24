@@ -19,6 +19,11 @@ export class FacturaService {
       `http://localhost:8080/vehiculo/api/v1/all-filtrar/${marcaOrModelo}`
     );
   }
+  getVehiculoByVehiculoCatalogo(id: number): Observable<Vehiculo> {
+    return this.http.get<Vehiculo>(
+      `http://localhost:8080/vehiculo/api/v1/vc/${id}`
+    );
+  }
 
   crearFactura(factura: Factura): Observable<Factura> {
     return this.http.post<Factura>(`${this.API_SEVER}/`, factura).pipe(
