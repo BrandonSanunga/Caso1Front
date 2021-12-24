@@ -27,6 +27,13 @@ export class InformeReclamoTallerService {
     return this.http.options<InformeReclamo>(`${this.URL}/update/${id}`);
   }
 
+  updateAceptar(id:any):Observable<any>{
+    return this.http.put(`${this.URL}/aceptado/${id}`,null);
+  }
+  updateCancelar(id:any):Observable<any>{
+    return this.http.put(`${this.URL}/rechazado/${id}`,null);
+  }
+
   optenerFactura():Observable<any>{
     return this.http.get(`http://localhost:8080/facturas/api/v1/`)
   }
