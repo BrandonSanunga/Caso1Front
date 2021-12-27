@@ -59,5 +59,8 @@ export class InformeReclamoTallerService {
   buscarRepuestoid(id:any):Observable<any>{
     return this.http.get(`http://localhost:8080/ordecuerpo/api/v1/find/${id}`);
   }
+  enviarCorreo(cavecera:any,mensaje:any,destinatario:any):Observable<any>{
+    return this.http.get(`${this.URL}/email/${cavecera}/${mensaje}/${destinatario}`);
+  }
 
 }
