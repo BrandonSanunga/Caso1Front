@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InformeReclamo } from 'src/app/modelos/iforme-reclamo';
 import { InformeReclamoTallerService } from 'src/app/services/informeReclamo/informe-reclamo-services.service';
+import { ReclamoGarantiaService } from 'src/app/services/ReclamoGarantia/reclamo-garantia.service';
 
 @Component({
   selector: 'app-lista-reclamo',
@@ -10,8 +11,12 @@ import { InformeReclamoTallerService } from 'src/app/services/informeReclamo/inf
 })
 export class ListaReclamoComponent implements OnInit {
    listaInforme:any=[];
+   estado:any;
+   chasis:any;
+   aceptado:any="ACEPTADO"
+   rechazado:any="RECHAZADO"
    informeReclamo:InformeReclamo = new InformeReclamo();
-  constructor(private root:Router, private inforReclamoService:InformeReclamoTallerService) { }
+  constructor(private root:Router, private inforReclamoService:InformeReclamoTallerService, private reclamoservice:ReclamoGarantiaService) { }
 
   ngOnInit(): void {
     this.CargarTable();
@@ -19,6 +24,7 @@ export class ListaReclamoComponent implements OnInit {
   }
 
   CargarTable(){
+    this.listaInforme=[]
     this.inforReclamoService.getAllInforme().subscribe(data => {
        for(let i of data){
         this.listaInforme.push(i);
@@ -27,12 +33,38 @@ export class ListaReclamoComponent implements OnInit {
     console.log(this.listaInforme);
   }
 
-Ver(cedula:any,id:any){
+Ver(cedula:any,id:any, idverifi:any){
+  this.reclamoservice.getfindByid(id).subscribe(data=>{
+    console.log(data)
+    this.estado = true
+    localStorage.setItem("idverifi",idverifi)
+    this.chasis=data.fk_id_solicitud.fk_chasis_vehiculo.chasis
+    localStorage.setItem("estado",this.estado)
+   localStorage.setItem("chasis",this.chasis);
   localStorage.setItem("cedulaCliente",cedula);
-  localStorage.setItem("idinforme",id);
-  var chasis="1"
-  localStorage.setItem("chasis",chasis);
+    localStorage.setItem("idinforme",id);
   this.root.navigate(['informe-reclamo']);
+  })
+}
+
+abrirInspeccion(id:any, idinspeccion:any){
+  localStorage.setItem("idInformeReclamo",idinspeccion)
+  console.log(idinspeccion)
+  localStorage.setItem("idvehiculo",id);
+  this.root.navigate(["/inspeccion"])
+}
+aceptarCliente(id:any){
+this.inforReclamoService.updateAceptar(id).subscribe(data=>{
+ console.log(data)
+ this.CargarTable()
+})
+
+}
+canceladoCliente(id:any){
+this.inforReclamoService.updateCancelar(id).subscribe(data=>{
+  console.log(data)
+  this.CargarTable()
+})
 }
 
 }

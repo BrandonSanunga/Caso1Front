@@ -38,7 +38,7 @@ export class FormInformeConecesionariaComponent implements OnInit {
   
   this.cargaT();
 
-  this.detalle.getAllordenes().subscribe(e=>{
+  this.detalle.all().subscribe(e=>{
     this.garantiaList=e;
     console.log(e);
   });
@@ -46,7 +46,7 @@ export class FormInformeConecesionariaComponent implements OnInit {
   }
   cargaT(){
    
-    this.detalle.getAllordenes().subscribe(
+    this.detalle.all().subscribe(
       (response:any)=>this.mostrar(response)
      
       

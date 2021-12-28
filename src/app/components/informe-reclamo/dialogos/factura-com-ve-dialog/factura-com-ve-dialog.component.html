@@ -22,7 +22,7 @@
     </div>
     <div class="input-group mb-1">
       <input type="text" class="form-control" placeholder="Ruc" [(ngModel)]="this.factura.ruc_factura"  aria-label="Username" disabled>
-      <input type="text" class="form-control" placeholder="Fecha" [(ngModel)]="this.factura.fecha_emision" aria-label="Server" style="margin-left: 10px;" disabled>
+      <input type="text" class="form-control" placeholder="Fecha" [(ngModel)]="this.factura.fecha_emision" [ngModel]="this.factura.fecha_emision | date:'yyyy-MM-dd'" aria-label="Server" style="margin-left: 10px;" disabled>
     </div>
     <hr>
     <hr>
@@ -59,7 +59,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let i of detalleFactura">
-            <th>{{i.vehiculo.chasis_vehiculo}}</th>
+            <th>{{i.vehiculo.chasis}}</th>
             <td>{{i.cantidad}}</td>
             <td>{{i.total}}</td>
           </tr>

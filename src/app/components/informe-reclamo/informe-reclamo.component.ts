@@ -13,12 +13,15 @@ import { InfoReclambyidComponent } from './dialogos/info-reclambyid/info-reclamb
 import { FacturaComVeDialogComponent } from './dialogos/factura-com-ve-dialog/factura-com-ve-dialog.component';
 import { InforReclComponent } from './dialogos/infor-recl/infor-recl.component';
 import { Router } from '@angular/router';
+import { NgStyle } from '@angular/common';
+import { EmailComponent } from './dialogos/email/email.component';
 @Component({
   selector: 'app-informe-reclamo',
   templateUrl: './informe-reclamo.component.html',
   styleUrls: ['./informe-reclamo.component.css']
 })
 export class InformeReclamoComponent implements OnInit {
+  id:any;
   cedulaCliente:any;
   chasis:any;
   idinforme:any;
@@ -30,17 +33,19 @@ export class InformeReclamoComponent implements OnInit {
   informeReclamo:any;
   garantia:any;
   factu:any;
+  estado:any;
   cliente:Clientes=new Clientes();
   reclamo:ReclamoGarantia=new ReclamoGarantia();
   informeReclamomodelo:InformeReclamo=new InformeReclamo();
   constructor(private root:Router,public dialog: MatDialog,private reclamogarantiaService:ReclamoGarantiaService,private clienteServicio:ClienteService, private vehiculoServicio:VehiculoService, private informeReclamoSerivce:InformeReclamoTallerService) { }
 
   ngOnInit(): void {
-  this.cedulaCliente=localStorage.getItem("cedulaCliente");
-  this.chasis=localStorage.getItem("chasis");
-  this.idinforme=localStorage.getItem("idinforme")
-  this.verInformeReclamo();
-  this.optenerClienteFactura()
+    this.idinforme=localStorage.getItem("idinforme")
+    this.estado = localStorage.getItem("estado")
+    this.verInformeReclamo();
+  //this.cedulaCliente=localStorage.getItem("cedulaCliente");
+   this.chasis=localStorage.getItem("chasis");
+   this.optenerClienteFactura()
   }
   openDialogVehiculo() {
     localStorage.setItem("vehiculoDialog",this.vehiculo)
@@ -70,6 +75,15 @@ export class InformeReclamoComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+  openDialogEmail(){
+    localStorage.setItem("email",this.cliente.emailClient+"");
+    localStorage.setItem("emailSaludo",this.cliente.nombresClient+"");
+    localStorage.setItem("emailvehiculo",this.vehiculo);
+    const dialogRef = this.dialog.open(EmailComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
   verCliente(cedula:any){
    this.clienteServicio.getFindByID(cedula).subscribe(data=>{
       this.cliente.cedulaClient=data.cedulaClient;
@@ -81,54 +95,92 @@ export class InformeReclamoComponent implements OnInit {
    })
   }
   verInformeReclamo(){
-    var id =  localStorage.getItem("informe")
-    this.reclamogarantiaService.getfindByid(id).subscribe(data=>{
+    var id = localStorage.getItem("idverifi")
+    this.informeReclamoSerivce.getById(id).subscribe(data=>{
+      if(data!=null){
+        this.id=this.idinforme
+      console.log(this.id);
+      document.getElementById("cancel")?.remove()
+      document.getElementById("acept")?.remove()
+      document.getElementById("sendemanil")?.remove()
+      this.reclamogarantiaService.getfindByid(this.id).subscribe(data=>{
         this.reclamo=data;
-        this.informeReclamo=id
-        this.chasis=data.fk_id_solicitud.fk_chasis_vehiculo.chasis_vehiculo
-        console.log(data);
+        this.informeReclamo=this.id
+        this.chasis=data.fk_id_solicitud.fk_chasis_vehiculo.chasis
+        })
+      }else{
+        document.getElementById("repsendemanil")?.remove()
+        this.id =  localStorage.getItem("informe")
+        this.reclamogarantiaService.getfindByid(this.id).subscribe(data=>{
+          this.reclamo=data;
+          this.informeReclamo=this.id
+          this.chasis=data.fk_id_solicitud.fk_chasis_vehiculo.chasis
+         })
+      }
     })
   }
   optenerClienteFactura(){
     this.informeReclamoSerivce.optenerFactura().subscribe(data=>{
       for(let i of data){
         for(let j of i.detallesfacturas){
-           if(j.vehiculo.chasis_vehiculo==this.chasis){
+           if(j.vehiculo.chasis==this.chasis){
+            this.verCliente(i.cliente.cedulaClient)
             this.factu=i.id
-             this.vehiculo=j.vehiculo.chasis_vehiculo
-             this.garantia=j.vehiculo.id_garantia.id_garantia
-             this.verCliente(i.cliente.cedulaClient)
+            this.garantia=j.vehiculo.garantia.idGarantia
+           this.vehiculo=j.vehiculo.chasis
            }
         }
          }
     })
   }
   aceptasolicitud(){
+    this.openDialogEmail()
     var fecha=new Date();
     var alerta = confirm("Esta seguro de aceptar la solicitud del Cliente")
     if(alerta==true){
       var id =  localStorage.getItem("informe")
     this.reclamogarantiaService.getfindByid(id).subscribe(data=>{
         this.reclamo2=data;
-     //   this.informeReclamoSerivce.updateInforme(data.id_reclamo).subscribe(data=>{
+        console.log(data.id_reclamo)
+        this.informeReclamoSerivce.actualizarReclamocliente(data.id_reclamo).subscribe(data=>{
           alert("Solicitud Aceptada");
         this.informeReclamomodelo.client=this.cliente;
          this.informeReclamomodelo.descripcionInforme=this.reclamo2?.fk_id_solicitud?.descripcion;
-         this.informeReclamomodelo.id_informe=this.reclamo2
-         this.informeReclamomodelo.respuestaCliente="Aceptado"
+         this.informeReclamomodelo.reclamogarantia=this.reclamo2
+        // this.informeReclamomodelo.respuestaCliente=
          this.informeReclamomodelo.tipoInforme="Aceptado";
          this.informeReclamomodelo.fechaEmicion=fecha;
          this.informeReclamoSerivce.postInforme(this.informeReclamomodelo).subscribe(data=>{
-           this.root.navigate(["/inspeccion"]);
+           this.root.navigate(["/lista-reclamo"]);
          });
-       //  })
+         })
               })
     }
+    this.idinforme=null;
   }
   rechazarSolicitud(){
+    this.openDialogEmail()
+    var fecha=new Date();
     var alerta = confirm("Esta seguro de rechazar la solicitud del Cliente")
     if(alerta==true){
-      alert("notificacion enviada");
+      var id =  localStorage.getItem("informe")
+      this.reclamogarantiaService.getfindByid(id).subscribe(data=>{
+          this.reclamo2=data;
+          console.log(data.id_reclamo)
+          this.informeReclamoSerivce.actualizarReclamocliente(data.id_reclamo).subscribe(data=>{
+            alert("Solicitud Aceptada");
+          this.informeReclamomodelo.client=this.cliente;
+           this.informeReclamomodelo.descripcionInforme=this.reclamo2?.fk_id_solicitud?.descripcion;
+           this.informeReclamomodelo.reclamogarantia=this.reclamo2
+           this.informeReclamomodelo.respuestaCliente="Rechazado"
+           this.informeReclamomodelo.tipoInforme="Rechazado";
+           this.informeReclamomodelo.fechaEmicion=fecha;
+           this.informeReclamoSerivce.postInforme(this.informeReclamomodelo).subscribe(data=>{
+             this.root.navigate(["/lista-reclamo"]);
+           });
+           })
+                })
     }
+    this.idinforme=null;
   }
 }

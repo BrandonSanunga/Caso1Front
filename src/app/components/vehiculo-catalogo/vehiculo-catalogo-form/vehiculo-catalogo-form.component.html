@@ -25,19 +25,31 @@
         </select>
         <br>
         <label style="text-align: center;text-transform:uppercase;">imagen del vehiculo</label>
-        <input type="text" formControlName="links_imagen" class="form-control">
         <br>
-        <button type="submit" class="btn btn-success" [disabled]="catalogoform.invalid">GUARDAR</button>
+        <button class="btn btn-info" (click)="openDialogVehiculo()" type="button">Agregar Imagen</button>
+        <select name="links_imagen" id="links_imagen" formControlName="links_imagen" class="form-control">
+          <option [ngValue]="links_imagen" *ngFor="let links_imagen of imagenList">
+            {{links_imagen.name}}</option>
+        </select>
+        <br>
+        <!--<input type="file" class="form-control" id="links_imagen" name="links_imagen" formControlName="links_imagen" />-->
+        <!--<input type="file" (change)="onFileSelected($event)" formControlName="links_imagen" class="form-control">
+        <input type="file" formControlName="links_imagen" class="form-control" >
+        <img [src]="imgURL" height="200" width="200" *ngIf="imgURL">-->
+        <br>
+        <button type="submit" class="btn btn-primary" [disabled]="catalogoform.invalid">GUARDAR</button>
       </div>
     </form>
   </div>
 </div>
 <br><br>
 
-<h3 class="card-title" style="text-align: center;">LISTADO DE CATALOGOS</h3>
-<div class="facturarepuesto">
 
 
+
+
+<div class="container" style="text-align: center;">
+  <h3 class="display-4 text-center my-5">LISTADO DE CATALOGO</h3>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -47,6 +59,7 @@
         <th style="text-align: center;text-transform:uppercase;"> año del vehiculo </th>
         <th style="text-align: center;text-transform:uppercase;"> caracteristicas </th>
         <th style="text-align: center;text-transform:uppercase;"> imagen del vehiculo </th>
+        <th style="width: 50px"><i class="fa fa-cog"></i></th>
       </tr>
     </thead>
     <tbody>
@@ -56,15 +69,17 @@
         <td style="text-align: center;text-transform:uppercase;">{{catalogo.diseno.modelo}}</td>
         <td style="text-align: center;text-transform:uppercase;">{{catalogo.year_vehiculo}} </td>
         <td style="text-align: center;text-transform:uppercase;">{{catalogo.caracteristica.id_caracteristica}} </td>
-        <td style="text-align: center;text-transform:uppercase;">{{catalogo.links_imagen}}</td>
-        <br>
-        <br>
-        <td><button type="submit" class="btneditar btn-warning" (click)="editarCatalogo(catalogo)">Editar</button>
+        <td style="text-align: center;">{{catalogo.links_imagen.name}}
+
+        </td>
+        <td><button type="submit" class="btn btn-outline-warning px-3 py-2" (click)="editarCatalogo(catalogo)"><i
+              class="fa fa-pencil"></i></button>
           <br>
           <br>
-          <button type="submit" class="btneliminar btn-danger" (click)="eliminarCatalogo(catalogo)">Eliminar</button>
+          <button type="submit" class="btn btn-outline-danger px-3 py-2" (click)="eliminarCatalogo(catalogo)"><i
+              class="fa fa-trash"></i></button>
         </td>
       </tr>
     </tbody>
-  </table></div>
-
+  </table>
+</div>

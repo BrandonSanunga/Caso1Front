@@ -4,5 +4,6 @@ export class OrdenRepCavecera {
   idordenCave?:number;
   fecha_emision?:Date;
   fechaIngreso?:Date;
+  estado?:boolean;
   inspeCuerpo?:InspeCuerpo;
 }

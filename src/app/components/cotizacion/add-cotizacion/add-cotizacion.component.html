@@ -1,0 +1,127 @@
+<div class="container">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form #form="ngForm" (submit)="guardarCotizacion(form)">
+          <div class="form-body">
+            <h3 class="card-title">NUEVA COTIZACION</h3>
+            <hr />
+            <br />
+            <br />
+            <br />
+
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label class="control-label">CLIENTE*</label>
+                  <select
+                    class="form-control"
+                    [compareWith]="compararCliente"
+                    name="cliente"
+                    #cliente="ngModel"
+                    [(ngModel)]="cotizacion.cliente"
+                    required
+                  >
+                    <option [ngValue]="undefined">SELECCIONE UN CLIENTE</option>
+                    <option
+                      *ngFor="let cliente of clientes"
+                      [ngValue]="cliente"
+                    >
+                      {{ cliente.cedulaClient }}
+                      {{ cliente.nombresClient }}
+                    </option>
+                  </select>
+
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      (cliente.invalid && cliente.touched) ||
+                      (cliente.invalid && form.submitted)
+                    "
+                  >
+                    Cliente es requerido!
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label class="control-label">VEHICULO CATALOGO*</label>
+                  <select
+                    class="form-control"
+                    [compareWith]="compararVehiculoCatalogo"
+                    name="vehiculo_catalogo"
+                    #vehiculo_catalogo="ngModel"
+                    [(ngModel)]="cotizacion.vehiculo_catalogo"
+                    required
+                  >
+                    <option [ngValue]="undefined">
+                      SELECCIONE UN VEHICULO DEL CATALOGO
+                    </option>
+                    <option
+                      *ngFor="let vehiculo_catalogo of vehiculos_catalogo"
+                      [ngValue]="vehiculo_catalogo"
+                    >
+                      {{ vehiculo_catalogo.diseno?.marca }}
+                      {{ vehiculo_catalogo.diseno?.modelo }}
+                      {{ vehiculo_catalogo.year_vehiculo }}
+                    </option>
+                  </select>
+
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      (vehiculo_catalogo.invalid &&
+                        vehiculo_catalogo.touched) ||
+                      (vehiculo_catalogo.invalid && form.submitted)
+                    "
+                  >
+                    Vehiculo Catalogo es requerido!
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="control-label">PRECIO*</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="total"
+                    #total="ngModel"
+                    [(ngModel)]="cotizacion.total"
+                    required
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      (total.invalid && total.touched) ||
+                      (total.invalid && form.submitted)
+                    "
+                  >
+                    Total es requerido!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br />
+          <br />
+          <br />
+          <hr />
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success mr-2">
+              <i class="fa fa-check"></i> Guardar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="irListaCotizaciones()"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

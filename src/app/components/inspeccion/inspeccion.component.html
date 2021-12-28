@@ -1,1 +1,230 @@
-<p>inspeccion works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspeccion</title>
+</head>
+<body>
+  <div class="card">
+    <div class="card-group" style="text-align: center;margin-left: 90%;">
+      <button type="button" id="idbtnActualizar" (click)="actulizardetalle()" style="margin-left: 10%;width: 130px;height: 60px;" class="btn btn-success">Actualizar</button>
+    </div>
+
+    <div class="card-body">
+      <div class="input-group">
+        <label for="basic-url" class="form-label" style="margin-left: 5px;">Chasis</label>
+        <label for="basic-url" class="form-label" style="margin-left: 412px;">Marca</label>
+        <label for="basic-url" class="form-label" style="margin-left: 420px;">Modelo</label>
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="chasis" [(ngModel)]="chasisve"  aria-label="Username" disabled>
+        <input type="text" class="form-control" placeholder="marca"  [(ngModel)]="marcave" aria-label="Server" style="margin-left: 10px;" disabled>
+        <input type="text" class="form-control" placeholder="modelo" [(ngModel)]="modelo"  aria-label="Server" style="margin-left: 10px;" disabled>
+      </div>
+       </div>
+   <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+      <div class="card" >
+        <br>
+        <div class="input-group mb-3">
+          <div class="form-floating" style="margin-left: 30px;">
+            <select [(ngModel)]="inspeccionCuerpos.luces" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccione el estado de la luces</option>
+              <option value="Buena">Buena</option>
+              <option value="Regular">Regular</option>
+              <option value="Mala">Mala</option>
+            </select>
+            <label for="floatingSelect">Luces</label>
+          </div>
+          <div class="form-floating" style="margin-left: 20px;">
+            <select [(ngModel)]="inspeccionCuerpos.parabrisas" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccione el estado del parabrisas</option>
+              <option value="Bueno">Bueno</option>
+              <option value="Con perforaciones leves">Con perforaciones leves</option>
+              <option value="Daño parcial y agrietamientos">Daño parcial y agrietamientos</option>
+              <option value="Daño total y agrietamientos">Daño total y agrietamientos</option>
+              <option value="Sin parabrisas">Sin parabrisas</option>
+            </select>
+            <label for="floatingSelect">Parabrisas</label>
+          </div>
+        </div>
+        <br>
+        <div class="input-group mb-3">
+          <div class="form-floating" style="margin-left: 30px;">
+            <select [(ngModel)]="inspeccionCuerpos.direccion" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccione la Calidad de la direccion</option>
+              <option value="Buena">Buena </option>
+              <option value="Regular">Regular</option>
+              <option value="Mala">Mala</option>
+            </select>
+            <label for="floatingSelect">Direccion</label>
+          </div>
+          <div class="form-floating" style="margin-left: 20px;">
+            <select [(ngModel)]="inspeccionCuerpos.refrigerante" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option  selected>Seleccione la calidad de Refrigerante</option>
+              <option value="Buena">Buena</option>
+              <option value="Regular">Regular</option>
+              <option value="Mala">Mala</option>
+              <option value="Sin Refrigerante">Sin Refrigerante</option>
+            </select>
+            <label for="floatingSelect">Refrigerante</label>
+          </div>
+        </div>
+        <br>
+        <div class="input-group mb-3">
+          <div class="form-floating" style="margin-left: 30px;">
+            <select [(ngModel)]="inspeccionCuerpos.filtro_cabina" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccione la calidad del filtro de la cabina</option>
+              <option value="Bueno">Bueno</option>
+              <option value="Regular">Regular</option>
+              <option value="Mala">Mala</option>
+              <option value="Sin filtro de Cabina">Sin filtro de Cabina</option>
+            </select>
+            <label for="floatingSelect">Filtro Cabina</label>
+          </div>
+          <div class="form-floating" style="margin-left: 20px;">
+            <select [(ngModel)]="inspeccionCuerpos.filtro_aire" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccione la calidad del Filtro del aire</option>
+              <option value="Bueno">Bueno</option>
+              <option value="Regular">Regular</option>
+              <option value="Con perforaciones leves">Con perforaciones leves</option>
+              <option value="Mala">Mala</option>
+              <option value="Sin Filtro de aire">Sin Filtro de aire</option>
+            </select>
+            <label for="floatingSelect">Filtro aire</label>
+          </div>
+          <br>
+        </div>
+        <br>
+        <div class="input-group mb-3">
+          <div class="form-floating" style="margin-left: 30px;">
+            <select [(ngModel)]="inspeccionCuerpos.bateria" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccione la calidad de la Bateria</option>
+              <option value="Buena">Buena</option>
+              <option value="Regular">Regular</option>
+              <option value="Con carga electrica media">Con carga electrica media</option>
+              <option value="Con carga electrica baja">Con carga electrica baja</option>
+              <option value="Reutilizada">Reutilizada</option>
+              <option value="Deteriorada y sin carga">Deteriorada y sin carga</option>
+            </select>
+            <label for="floatingSelect">Bateria</label>
+          </div>
+          <div class="form-floating" style="margin-left: 20px;">
+            <select [(ngModel)]="inspeccionCuerpos.liquido_transmicion" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccione la calidad del Liquido de Transmicion</option>
+              <option value="Buena">Buena</option>
+              <option value="Regular">Regular</option>
+              <option value="Mala">Mala</option>
+              <option value="Sin liquido de transmicion">Sin liquido de transmicion</option>
+            </select>
+            <label for="floatingSelect">Liquido transmicion</label>
+          </div>
+          <br>
+        </div>
+        <br>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <br>
+        <div class="input-group mb-3">
+          <div class="form-floating" style="margin-left: 30px;">
+            <select [(ngModel)]="inspeccionCuerpos.cinturones" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccione la calidad de los Cinturones</option>
+              <option value="Bueno">Bueno</option>
+              <option value="Rotos">Rotos</option>
+              <option value="Sin cinturones de seguridad">Sin cinturones de seguridad</option>
+            </select>
+            <label for="floatingSelect">Cinturones</label>
+          </div>
+          <div class="form-floating" style="margin-left: 20px;">
+            <select [(ngModel)]="inspeccionCuerpos.frenos" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccione la calidad de los Frenos</option>
+              <option value="Bueno">Bueno</option>
+              <option value="Sin liquido de frenos">Sin liquido de frenos</option>
+              <option value="Frenos desgastados">Frenos desgastados</option>
+              <option value="Sin frenos">Sin frenos</option>
+            </select>
+            <label for="floatingSelect">Frenos</label>
+          </div>
+        </div>
+        <br>
+        <div class="input-group mb-3">
+          <div class="form-floating" style="margin-left: 30px;">
+            <select [(ngModel)]="inspeccionCuerpos.suspencion" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Selecione la calidad de la Suspencion</option>
+              <option value="Buena">Buena</option>
+              <option value="Regular">Regular</option>
+              <option value="Mala">Mala</option>
+              <option value="Sin Suspencion">Sin Suspencion</option>
+            </select>
+            <label for="floatingSelect">Suspencion</label>
+          </div>
+          <div class="form-floating" style="margin-left: 20px;">
+            <select [(ngModel)]="inspeccionCuerpos.eje" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccione la calidad del Eje</option>
+              <option value="Buena">Buena</option>
+              <option value="Regular">Regular</option>
+              <option value="Mala">Mala</option>
+              <option value="Sin Eje">Sin Eje</option>
+            </select>
+            <label for="floatingSelect">Eje</label>
+          </div>
+        </div>
+        <br>
+        <div class="input-group mb-3">
+          <div class="form-floating" style="margin-left: 30px;">
+            <select [(ngModel)]="inspeccionCuerpos.escape" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccion la calidad del Escape</option>
+              <option value="Buena">Buena</option>
+              <option value="Regular">Regular</option>
+              <option value="Mala">Mala</option>
+            </select>
+            <label for="floatingSelect">Escape</label>
+          </div>
+          <div class="form-floating" style="margin-left: 20px;">
+            <select [(ngModel)]="inspeccionCuerpos.patron_desgaste_neomatico" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccione el Patron de desgaste del neumatico</option>
+              <option value="Sobreinflación">Sobreinflación</option>
+              <option value="Inflación insuficiente">Inflación insuficiente</option>
+              <option value="Desgaste de comba">Desgaste de comba</option>
+              <option value="Desgaste emplumado">Desgaste emplumado</option>
+              <option value="Desgaste Picado">Desgaste Picado</option>
+              <option value="Sin desgaste">Sin desgaste</option>
+            </select>
+            <label for="floatingSelect">Patron desgaste neumatico</label>
+          </div>
+        </div>
+        <br>
+        <div class="input-group mb-3">
+          <div class="form-floating" style="margin-left: 30px;">
+            <select [(ngModel)]="inspeccionCuerpos.tipo_reparacion_neomatico" class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 300px;">
+              <option selected>Seleccione el tipo de reparación del neumatico</option>
+              <option value="Alineación">Alineación</option>
+              <option value="Reencauchamiento">Reencauchamiento</option>
+              <option value="Balanceo">Balanceo</option>
+              <option value="Reparación Suspensión">Reparación Suspensión</option>
+              <option value="Cambio Suspensión">Cambio Suspensión</option>
+              <option value="Cambio de Neumaticos">Cambio de Neumaticos</option>
+            </select>
+            <label for="floatingSelect">Tipo reparación neoumatico</label>
+          </div>
+          <div class="form-floating" style="margin-left: 20px;">
+             <textarea [(ngModel)]="inspeccionCuerpos.observaciones" name="observaciones" placeholder="Observaciones" style="height: 55px;width: 300px;" id="observaciones" cols="30" rows="10"></textarea>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+  </div>
+  <br><br><br>
+  <div class="card-group" style="text-align: center;margin-left: 35%;">
+  <button type="button"  (click)="cancelar()" style="width: 130px;height: 60px;"  class="btn btn-danger">Cancelar</button>
+  <button type="button" id="btnGuardar" (click)="guardar()" style="margin-left: 10%;width: 130px;height: 60px;" class="btn btn-success">Guardar</button>
+</div>
+<br><br><br><br>
+</body>
+</html>

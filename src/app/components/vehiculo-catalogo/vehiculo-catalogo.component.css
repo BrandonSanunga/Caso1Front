@@ -35,7 +35,6 @@
   grid-template-columns: repeat(3, 1fr);
 }}
 .cards{
-
   margin-top: 5%;
   height: auto;
   width: 90%;
