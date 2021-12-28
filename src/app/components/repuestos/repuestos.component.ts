@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RepuestosService } from '../../services/repuestos/repuestos.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { DisenoService } from 'src/app/services/diseno/diseno.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-repuestos',
@@ -45,7 +46,8 @@ export class RepuestosComponent implements OnInit {
       this.repuestosform.reset();
       this.repuestosList = this.repuestosList.filter((catalogo: { id_vehiculo_catalogo: any; }) => resp.id_vehiculo_catalogo != catalogo.id_vehiculo_catalogo);
       this.repuestosList.push(resp);
-      alert("Repuesto guardado correctamente");
+      //alert("Repuesto guardado correctamente");
+      Swal.fire("Repuesto Agregado", "Guardado del repuesto exitoso!", "success");
       console.log(resp);
     }
       ,
@@ -57,7 +59,8 @@ export class RepuestosComponent implements OnInit {
       if (resp == true) {
         this.repuestosList.pop(Repues);
         this.repuestosList.push();
-        alert("Repuesto: " + Repues.id_repuesto + " eliminado correctamente");
+        //alert("Repuesto: " + Repues.id_repuesto + " eliminado correctamente");
+        Swal.fire("Repuesto Eliminado", "Eliminado del repuesto exitoso!", "error");
       }
     })
   }
