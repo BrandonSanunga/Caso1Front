@@ -6,9 +6,6 @@
         </div>
     </div>
     <div class="row">
-
-    </div>
-    <div class="row">
         <div class="col-ml-12">
             <button type="button" class="btn btn-primary" (click)="agregar()">AGREGAR</button>
             <table class="table">
@@ -16,8 +13,8 @@
 
                     <th scope="col">ID</th>
                     <th scope="col">DESCRIPCION</th>
-                    <th scope="col">COSTO</th>
                     <th scope="col">PORCENTAJE</th>
+                    <th scope="col">ESTADO</th>
                     <th scope="col">TOTAL</th>
 
                 </thead>
@@ -25,14 +22,12 @@
                     <tr *ngFor="let informe of informe">
                         <th scope="row">{{informe.idConcesionaria}}</th>
                         <th scope="row">{{informe.descricion}}</th>
-                        <th scope="row">{{informe.costo}}</th>
                         <th scope="row">{{informe.porcentaje}}</th>
+                        <th scope="row">{{informe.estado}}</th>
                         <th scope="row">{{informe.total}}</th>
             
                         <td><button type="submit" class="btn btn-danger" (click)="eliminar(informe)">Eliminar</button></td>
-                        <!--
-                        <td><button class="btn btn-primary" type="button"  (click)="cargar(informe.idConcesionaria )">Editar</button></td>
-                        -->
+                       
                         <td><button class="btn btn-success" type="button"  >PDF</button></td>
 
 

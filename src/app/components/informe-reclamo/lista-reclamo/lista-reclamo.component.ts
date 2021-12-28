@@ -24,6 +24,7 @@ export class ListaReclamoComponent implements OnInit {
   }
 
   CargarTable(){
+    this.listaInforme=[]
     this.inforReclamoService.getAllInforme().subscribe(data => {
        for(let i of data){
         this.listaInforme.push(i);
@@ -55,11 +56,14 @@ abrirInspeccion(id:any, idinspeccion:any){
 aceptarCliente(id:any){
 this.inforReclamoService.updateAceptar(id).subscribe(data=>{
  console.log(data)
+ this.CargarTable()
 })
+
 }
 canceladoCliente(id:any){
 this.inforReclamoService.updateCancelar(id).subscribe(data=>{
   console.log(data)
+  this.CargarTable()
 })
 }
 
