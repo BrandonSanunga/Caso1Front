@@ -33,7 +33,11 @@
         <div class="col-12 col-md-4 d-flex flex-row flex-wrap">
           <p class="font-bold">Estado:</p>
           <p class="ms-2">
-            <select [(ngModel)]="orden.estado" (change)="changeEstado($event)">
+            <select
+              id="select"
+              [(ngModel)]="orden.estado"
+              (change)="changeEstado($event)"
+            >
               <option [value]="tallerService.ESTADOS.EN_REVISION">
                 {{ tallerService.ESTADOS.EN_REVISION }}
               </option>
@@ -49,6 +53,10 @@
         <div class="col-12 col-md-6 d-flex flex-row flex-wrap">
           <p class="font-bold">Dueño:</p>
           <p class="ms-2">{{ orden?.persona?.label }}</p>
+        </div>
+        <div class="col-12 col-md-6 d-flex flex-row flex-wrap">
+          <p class="font-bold">Email:</p>
+          <p class="ms-2">{{ orden?.persona?.email }}</p>
         </div>
       </div>
 

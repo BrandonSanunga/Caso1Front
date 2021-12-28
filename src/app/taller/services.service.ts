@@ -32,7 +32,7 @@ export class TallerService {
   public async getOrdenes(estado = 'EN REVISION DEL TALLER') {
     return this.http
       .get<any[]>(
-        `${environment.urlBase}ordecuerpo/api/v1/ordenes-taller/${estado}`
+        `${environment.urlBase}taller/api/v1/ordenes-taller/${estado}`
       )
       .toPromise<any[]>();
   }
