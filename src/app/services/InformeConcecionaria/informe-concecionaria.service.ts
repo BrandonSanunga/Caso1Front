@@ -22,7 +22,7 @@ export class InformeConcecionariaService {
     return this.httpClient.delete(this.API_SEVER+"delete/"+id)
   }
   get(id:any):Observable<any>{
-    return this.httpClient.get<any>(this.API_SEVER+"find/"+id);
+    return this.httpClient.get<any>(this.API_SEVER+"cars/"+id);
   }
 
   

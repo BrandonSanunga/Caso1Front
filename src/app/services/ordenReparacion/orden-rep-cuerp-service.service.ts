@@ -1,12 +1,16 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OrdenRepCuerpo } from 'src/app/modelos/ordenReclamo/orden-rep-cuerpo';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdenRepCuerpServiceService {
+
+  private API_SEVER = "http://localhost:8080/ordecuerpo/api/v1/getall";
+
   private ordenCuerpo :OrdenRepCuerpo= new OrdenRepCuerpo;
   private url="http://localhost:8080/ordecuerpo/api/v1"
   httpClient: any;
