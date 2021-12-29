@@ -20,11 +20,13 @@ export class ListaEntregarRepuestosComponent implements OnInit {
     this.cargarRepuestos()
   }
   cargarRepuestos(){
+    this.arrayRepuestos=[]
     this.ordeRepuestoService.optenerRepuestosDetalle().subscribe(data=>{
       for(let i of data){
+        console.log(i)
         if(i.detalleRepuestos.length!=0){
           this.arrayRepuestos.push(i)
-           console.log(i.idordenCuerpo)
+
         }
       }
     })
@@ -40,15 +42,9 @@ export class ListaEntregarRepuestosComponent implements OnInit {
     })
   }
   actualizarestado(id:any){
-    this.ordeRepuestoService.buscarRepuestoid(id).subscribe(data=>{
-      this.ordenReclamoany=data
-      this.optenerCliente(this.ordenReclamoany.ordenRepCavecera.inspeCuerpo.inspeCavecera.informeReclamo.client.cedulaClient)
-      this.ordenReclamoany.ordenRepCavecera.inspeCuerpo.inspeCavecera.informeReclamo.client=this.cliente
-      this.ordenReclamoany.detalleRepuestos.estado="Aceptado"
-      console.log(this.ordenReclamoany)
-      this.ordeRepuestoService.actualizarestadoRepuesto(this.ordenReclamoany,id).subscribe(data=>{
+      this.ordeRepuestoService.actualizarestadoRepuesto(id).subscribe(data=>{
          console.log(data);
+         this.cargarRepuestos()
       });
-    });
   }
 }

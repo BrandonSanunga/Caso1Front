@@ -24,13 +24,13 @@ export class DisenoVehiculoComponent implements OnInit {
   });
   this.disenoService.getAllDisenos().subscribe(resp=>{
     this.disenoList = resp;
-    console.log(resp);
+    //console.log(resp);
   },
   error=>{console.error(console.error)});
   }
   guardarDiseno(): void{
     this.disenoService.saveDiseno(this.disenoform.value).subscribe(resp => {
-      this.disenoform.reset();
+      //this.disenoform.reset();
     },
     error=>{console.error(error)}
 

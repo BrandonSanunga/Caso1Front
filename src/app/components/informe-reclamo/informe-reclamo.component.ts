@@ -15,6 +15,7 @@ import { InforReclComponent } from './dialogos/infor-recl/infor-recl.component';
 import { Router } from '@angular/router';
 import { NgStyle } from '@angular/common';
 import { EmailComponent } from './dialogos/email/email.component';
+import { Vehiculo } from 'src/app/modelos/factura/vehiculo.model';
 @Component({
   selector: 'app-informe-reclamo',
   templateUrl: './informe-reclamo.component.html',
@@ -121,6 +122,7 @@ export class InformeReclamoComponent implements OnInit {
   }
   optenerClienteFactura(){
     this.informeReclamoSerivce.optenerFactura().subscribe(data=>{
+      console.log(data)
       for(let i of data){
         for(let j of i.detallesfacturas){
            if(j.vehiculo.chasis==this.chasis){
