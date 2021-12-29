@@ -7,24 +7,39 @@
   <title>Lista Reclamos</title>
 </head>
 <body>
-  <table class="table">
+  <div class="card-group">
+    <p>Type something in the input field to search the table for first names, last names or emails:</p>
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  </div>
+  <table class="table table-bordered table-striped">
     <thead>
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Fecha</th>
         <th scope="col">Cliente</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Modelo</th>
+        <th scope="col">Año de fabricación</th>
+        <th scope="col">Pais de origen</th>
+        <th scope="col">Color</th>
         <th scope="col">Tipo Informe</th>
          <th scope="col">Respuesta Cliente</th>
         <th scope="col" >Ver</th>
         <th scope="col">Inspeccion</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="myTable">
       <tr *ngFor="let i of this.listaInforme">
         <th style="display: none;">{{i.reclamogarantia?.id_reclamo}}</th>
         <th >{{i.idinformeRecha}}</th>
         <td>{{i.fechaEmicion | date:'yyyy-MM-dd'}}</td>
         <td>{{i.client.cedulaClient}}</td>
+        <td>{{i.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca}}</td>
+        <td>{{i.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo}}</td>
+        <td>{{i.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.year_vehiculo}}</td>
+        <td>{{i.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.pais.nombre}}</td>
+        <td>{{i.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.color}}</td>
         <td>{{i.tipoInforme}}</td>
         <td>{{i.respuestaCliente}}
           <div class="card-group">
@@ -94,5 +109,15 @@
       </tr>
        </tbody>
   </table>
+  <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+    </script>
 </body>
 </html>

@@ -53,8 +53,8 @@ export class InformeReclamoTallerService {
   optenerRepuestosDetalle():Observable<any>{
     return this.http.get(`http://localhost:8080/ordecuerpo/api/v1/getall`);
   }
-  actualizarestadoRepuesto(repuesto:any,id:any):Observable<any>{
-    return this.http.put(`http://localhost:8080/ordecuerpo/api/v1/update/${id}`,repuesto);
+  actualizarestadoRepuesto(id:any):Observable<any>{
+    return this.http.put(`http://localhost:8080/ordecuerpo/api/v1/updatestadorep/${id}`,null);
   }
   buscarRepuestoid(id:any):Observable<any>{
     return this.http.get(`http://localhost:8080/ordecuerpo/api/v1/find/${id}`);
