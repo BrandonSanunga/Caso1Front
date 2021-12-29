@@ -27,6 +27,8 @@ import { FormVehiculoComponent } from "./components/vehiculo/form-vehiculo/form-
 import { ListaEntregarRepuestosComponent } from "./components/lista-entregar-repuestos/lista-entregar-repuestos.component";
 import { AddCotizacionComponent } from "./components/cotizacion/add-cotizacion/add-cotizacion.component";
 import { ListCotizacionComponent } from "./components/cotizacion/list-cotizacion/list-cotizacion.component";
+import { AuthGuard } from "./guards/auth.guard";
+//import { AuthGuard } from "@auth0/auth0-angular";
 
 const routes: Routes = [
   { path: "repuestos", component: RepuestosComponent },
@@ -41,20 +43,20 @@ const routes: Routes = [
   { path: "cotizacion", component: AddCotizacionComponent },
   { path: "cotizacion/:id", component: AddCotizacionComponent },
   { path: "cotizaciones", component: ListCotizacionComponent },
-  { path: "solicitud/garantia", component: SoligarantiaComponent },
+  { path: "solicitud/garantia", component: SoligarantiaComponent, canActivate:[AuthGuard]},
   { path: "taller", component: TallerComponent },
   { path: "taller/orden/:id", component: InformeReparacionComponent },
   { path: "taller/repuestoAgregado", component: RepuestoAgregadoComponent },
   { path: "taller/solicitudRepuesto", component: SolicitudRepuestoComponent },
   { path: "diseno", component: DisenoVehiculoComponent },
-  { path: "reclamo/garantia", component: ReclamoGarantiaComponent },
+  { path: "reclamo/garantia", component: ReclamoGarantiaComponent, canActivate:[AuthGuard]},
   { path: "lista-reclamo", component: ListaReclamoComponent },
   { path: "garantiaV", component: GarantiaVehiculoComponent },
   { path: "Vehiculo", component: VehiculoComponent },
   { path: "InformeConcesionaria", component: InformeConcecionariaComponent },
   { path: "form/garantia", component: ReclamoGarantiaFormComponent },
   { path: "lista-reclamo", component: ListaReclamoComponent },
-  { path: "reclamo-garantia", component: ReclamoGarantiaComponent },
+  { path: "reclamo-garantia", component: ReclamoGarantiaComponent},
   { path: "catalogo/admin", component: VehiculoCatalogoFormComponent },
   { path: "imagenCatalogo", component: AgregarimagenComponent },
   { path: "formVehiculo", component: FormVehiculoComponent },
@@ -62,6 +64,7 @@ const routes: Routes = [
     path: "lista-entregar-repuestos",
     component: ListaEntregarRepuestosComponent,
   },
+  { path: "**", pathMatch: "full", redirectTo:"catalogo"},
 ];
 
 @NgModule({
