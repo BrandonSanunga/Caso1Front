@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { CarcaracteristicasService } from '../../services/caracteristicas/carcaracteristicas.service';
 
 @Component({
@@ -34,7 +35,7 @@ export class CaracteristicasVehiculoComponent implements OnInit {
 
     this.caracteristicaservice.getAllCaracteristicas().subscribe(resp => {
       this.caracteristicasList = resp;
-      console.log(resp);
+      //console.log(resp);
     },
       error => { console.error(console.error) });
   }
@@ -42,9 +43,12 @@ export class CaracteristicasVehiculoComponent implements OnInit {
     this.caracteristicaservice.saveCaracteristicas(this.caracteristicasform.value).subscribe(resp => {
       this.caracteristicasform.reset();
       this.caracteristicasList.push(resp);
-
-      alert("Caracteristica guardado correctamente");
-      console.log(resp);
+      Swal.fire(
+        "Nueva Caracteristica",
+        `¡Nuevas Caracteristicas agregadas con exito!`,
+        "success"
+      );
+      //console.log(resp);
     })
   }
   eliminarCaracteristica(carac: any): void {
@@ -53,7 +57,11 @@ export class CaracteristicasVehiculoComponent implements OnInit {
       if (resp == true) {
         this.caracteristicasList.pop(carac);
         this.caracteristicasList.push();
-        alert("Caracteristica: " + carac.id_caracteristica + " eliminado correctamente");
+        Swal.fire(
+          "Eliminado",
+          `¡Caracteristica eliminada correctamente!`,
+          "success"
+        );
       }
     })
   }

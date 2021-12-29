@@ -6,6 +6,9 @@ import { DisenoService } from 'src/app/services/diseno/diseno.service';
 import { VehiculoCatalogoService } from 'src/app/services/vehiculo_catalogo/vehiculo-catalogo.service';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
+import { async } from '@angular/core/testing';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ImagenCatalogoService } from 'src/app/services/ImagenCatalogo/imagen-catalogo.service';
 
 @Component({
   selector: 'app-vehiculo-catalogo',
@@ -19,16 +22,19 @@ export class VehiculoCatalogoComponent implements OnInit {
   catalogoList: any;
   DisenoList: any;
   caracteristicaList: any;
+  imagenList: any;
   url: any; //url de la imagenk
 	msg = "";
   retrievedImage: any;
   base64Data: any;
   retrieveResonse: any;
-  imageName: any;
   imageDirectory: any= "http://localhost:8080/imagencatalogo/api/v1/get/";
+  imageName: any;
+  public archivos: any= [];
+  public previsualizacion!: String;
 
   constructor(
-
+    private sanitizer: DomSanitizer,
     public fb: FormBuilder,
     public catalogoservice: VehiculoCatalogoService,
     public disenoService: DisenoService,
@@ -36,6 +42,7 @@ export class VehiculoCatalogoComponent implements OnInit {
     public root:Router,
     public dialog: MatDialog,
     private httpClient: HttpClient,
+    public imagenservice: ImagenCatalogoService,
 
   ) { }
 
@@ -49,21 +56,32 @@ export class VehiculoCatalogoComponent implements OnInit {
     });
     this.disenoService.getAllDisenos().subscribe(resp => {
       this.DisenoList = resp;
-      console.log(resp);
+      //console.log(resp);
     },
       error => { console.error(console.error) });
 
     this.caracteristicasservice.getAllCaracteristicas().subscribe(resp => {
       this.caracteristicaList = resp;
-      console.log(resp);
+      //console.log(resp);
     },
       error => { console.error(console.error) });
 
     this.catalogoservice.getAllCatalogo().subscribe(resp => {
       this.catalogoList = resp;
-      console.log(resp);
+      //console.log(resp);
     },
       error => { console.error(console.error) })
+      this.getimagenes();
+
+      this.getImage();
+  }
+
+  getimagenes(){
+    this.imagenservice.getAllImagenes().subscribe(resp => {
+      this.imagenList = resp;
+      //console.log(resp);
+    },
+      error => { console.error(console.error) });
   }
 
   verCatalogo(){
@@ -96,14 +114,38 @@ onUpload() {
 
   getImage() {
   this.httpClient.get('http://localhost:8080/imagencatalogo/api/v1/get/' + this.imageName)
+
     .subscribe(
       res => {
+        console.log(this.httpClient.get('http://localhost:8080/imagencatalogo/api/v1/get/' + this.imageName));
         this.retrieveResonse = res;
         this.base64Data = this.retrieveResonse.picByte;
         this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
       }
     );
 }
+
+
+extraerBase64 = async($event:any)=> new Promise((resolve, reject)=>{
+  try{
+    const unsafeImg = window.URL.createObjectURL($event);
+    const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+  const reader = new FileReader();
+  reader.readAsDataURL($event);
+  reader.onload=()=>{
+    resolve({
+       base: reader.result
+    });
+  };
+  reader.onerror= error =>{
+    resolve({
+      base: null
+    });
+  }
+  }catch(e){
+    return null;
+  }return null;
+})
 }
  /* guardarCatalogo(): void {
     this.catalogoservice.saveCatalogo(this.catalogoform.value).subscribe(resp => {

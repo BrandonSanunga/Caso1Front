@@ -27,13 +27,13 @@
         </select>
         <br>
         <label style="text-align: center;text-transform:uppercase;"> precio del repuesto</label>
-        <input type="number" step="0.1" formControlName="precio" class="form-control" min="0.1"  placeholder="Ejm: 20.2">
-        <br>
+        <input type="number" step="0.01" formControlName="precio" class="form-control" min="0.1"  placeholder="Ejm: 20.2">
+        <!--<br>
         <label style="text-align: center;text-transform:uppercase;"> estado del repuesto</label>
         <select type="text" formControlName="estado" class="form-control">
           <option>true</option>
           <option>false</option>
-        </select>
+        </select>-->
         <br>
         <button type="submit" class="btn btn-primary" [disabled]="repuestosform.invalid">GUARDAR</button>
       </div>
@@ -56,7 +56,7 @@
         <th style="text-align: center"> MODELO </th>
         <th style="text-align: center"> NOMBRE REPUESTO </th>
         <th style="text-align: center"> PRECIO DE VENTA </th>
-        <th style="text-align: center"> ESTADO </th>
+        <!--<th style="text-align: center"> ESTADO </th>-->
         <th style="width: 50px"><i class="fa fa-cog"></i></th>
       </tr>
     </thead>
@@ -68,7 +68,7 @@
         <td style="text-align: center;text-transform:uppercase;">{{repuestos.diseno.modelo}}</td>
         <td style="text-align: center;text-transform:uppercase;">{{repuestos.nombre_repuesto}} </td>
         <td style="text-align: center;text-transform:uppercase;">{{repuestos.precio}}</td>
-        <td style="text-align: center;text-transform:uppercase;">{{repuestos.estado}}</td>
+        <!--<td style="text-align: center;text-transform:uppercase;">{{repuestos.estado}}</td>-->
         <td><button type="submit" class="btn btn-outline-warning px-3 py-2"  (click)="editarRepuestos(repuestos)"><i class="fa fa-pencil"></i></button>
           <br>
           <br>
