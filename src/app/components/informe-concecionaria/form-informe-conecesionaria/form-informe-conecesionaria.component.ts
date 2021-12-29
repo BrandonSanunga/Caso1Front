@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { InformeConcecionariaService } from 'src/app/services/InformeConcecionaria/informe-concecionaria.service';
 import { OrdenRepCuerpServiceService } from 'src/app/services/ordenReparacion/orden-rep-cuerp-service.service';
+import { HttpHeaders,HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-form-informe-conecesionaria',
@@ -22,7 +24,8 @@ export class FormInformeConecesionariaComponent implements OnInit {
 
   constructor( private informeS:InformeConcecionariaService,
     public fb: FormBuilder,
-    private detalle:OrdenRepCuerpServiceService) { 
+    private detalle:OrdenRepCuerpServiceService,
+    private http:HttpClient) { 
       
     }
 
@@ -32,16 +35,13 @@ export class FormInformeConecesionariaComponent implements OnInit {
       porcentaje: ['',Validators.required] ,
       estado: ['true',Validators.required],
       total: ['',Validators.required],
-      detalle: ['',Validators.required]
+      
 
    });
   
   this.cargaT();
 
-  this.detalle.all().subscribe(e=>{
-    this.garantiaList=e;
-    console.log(e);
-  });
+ 
 
   }
   cargaT(){
@@ -86,5 +86,4 @@ this.informeS.get(id).subscribe(res=>{
 }
 )
 }
-
 }

@@ -14,6 +14,9 @@ export class FormGarantiaVehiculoComponent implements OnInit {
   garantiavehiculo:any=[];
   garantia:any={detallegarantia:[]};
   detallegarantia:any=[]
+  estado:any =true;
+  res!:any;
+
 
 
   constructor(private servicioG:GarantiaVehiculoService,
@@ -25,6 +28,7 @@ export class FormGarantiaVehiculoComponent implements OnInit {
   }
   agregarD(){
     this.garantia.detallegarantia.push({});
+    this.res=this.estado;
   
   }
   guardar(){

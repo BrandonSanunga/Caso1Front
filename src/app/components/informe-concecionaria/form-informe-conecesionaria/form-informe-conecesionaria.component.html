@@ -1,82 +1,82 @@
+<div class="container">
+  <h1> GENERAR NUEVO INFORME </h1>
 
-        <div class="container">
-            <h1>            GENERAR NUEVO INFORME            </h1>
+  <form [formGroup]="Informeform" (ngSubmit)="guardarI()" id="f">
+    <br>
+    <label>Seleccionar el informe a calcular</label>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar" style="text-align: center;">
+
+      <table class="table table-bordered table-striped mb-0">
+        <thead>
+          <tr>
+            <th scope="col">ID ORDEN</th>
+            <th scope="col">ESTADO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let informe of informe">
+            <th scope="row">{{informe.idordenCuerpo}}</th>
+            <th scope="row">{{informe.estadoOrden}}</th>
+            <td><button class="btn btn-success" type="button" (click)="cargar(informe.idordenCuerpo )">Buscar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div>
+
+
+
+      <label> DESCRIPCION </label>
+      <input type="text" formControlName="descricion" class="form-control">
+
+
+
+      <div *ngFor="let informe of datos">
+        <label> ID </label>
+        <input class="form-control" [(ngModel)]="informe.id" readonly="readonly" [ngModelOptions]="{standalone: true}">
+      </div>
+
+      <div *ngFor="let informe of datos">
+        <label> COSTO MMANO DE OBRA </label>
+        <input type="number" class="form-control" id="v3" [(ngModel)]="informe.mano_obra" readonly="readonly"
+          [ngModelOptions]="{standalone: true}">
+      </div>
+
+
+
+      <div *ngFor="let informe of datos">
+        <label> COSTO TOTAL RESPUESTOS </label>
+        <input type="number" class="form-control" id="v1" [(ngModel)]="informe.precio"
+          [ngModelOptions]="{standalone: true}" readonly="readonly">
+      </div>
+
+
+
+
+      <label> PORCENTAJE DESCUENTO </label>
+      <input type="number" formControlName="porcentaje" class="form-control" id="v2" [(ngModel)]="v2" min="1" max="5"
+        pattern="^[0-9]+">
+
+      <label> ESTADO </label>
+      <input type="text" formControlName="estado" class="form-control">
+
+      <label> TOTAL </label>
+      <input type="number" formControlName="total" class="form-control" id="res" [(ngModel)]="res" readonly="readonly">
+
      
-            <form [formGroup]="Informeform" (ngSubmit)="guardarI()" id="f">
-                <br>
-                <label >Seleccionar el informe a calcular</label>
-                <div class="table-wrapper-scroll-y my-custom-scrollbar" style="text-align: center;">
-                  
-                  <table class="table table-bordered table-striped mb-0">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID ORDEN</th>
-                        <th scope="col">ESTADO</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let informe of informe" >
-                        <th scope="row">{{informe.idordenCuerpo}}</th>
-                        <th scope="row">{{informe.estadoOrden}}</th>
-                        <td><button class="btn btn-success" type="button" (click)="cargar(informe.idordenCuerpo )" >Buscar</button></td>
-                    </tr>
-                    </tbody>
-                  </table>
-                
-                </div>
-              <div>
 
-               
-                
-                <label> DESCRIPCION </label>
-                <input  type="text"   formControlName="descricion" class="form-control"  >
+      <div class="btn-toolbar">
+        <button type="button" class="btn btn-primary" (click)="calcula()">CALCULAR </button>
 
-               
+        <button type="submit" class="btn btn-success" [disabled]="Informeform.invalid">GUARDAR</button>
+        <button class="btn btn-danger" [mat-dialog-close]>CANCELAR</button>
 
-                <div *ngFor="let informe of datos">
-                  <label> ID </label>
-                  <input class="form-control"   [(ngModel)]="informe.id"readonly="readonly"[ngModelOptions]="{standalone: true}">
-                  </div>
+      </div>
+    </div>
 
-                <div *ngFor="let informe of datos">
-                <label> COSTO MMANO DE OBRA </label>
-                <input type="number" class="form-control"  id="v3" [(ngModel)]="informe.mano_obra" readonly="readonly"  [ngModelOptions]="{standalone: true}" >
-                </div>
-
-                
-                
-                <div *ngFor="let informe of datos">
-                <label> COSTO TOTAL RESPUESTOS </label>
-                <input type="number"  class="form-control" id="v1" [(ngModel)]="informe.precio" [ngModelOptions]="{standalone: true}" readonly="readonly">
-                </div>
-
-                
-                
-                
-                <label>  PORCENTAJE DESCUENTO </label>
-                <input type="number" formControlName="porcentaje" class="form-control" id="v2" [(ngModel)]="v2" min="1" max="5" pattern="^[0-9]+">
-          
-                <label>  ESTADO </label>
-                <input type="text" formControlName="estado" class="form-control">
-
-                <label>  TOTAL </label>
-                <input type="number" formControlName="total" class="form-control" id="res" [(ngModel)]="res" readonly="readonly">
-
-                <label>GARANTIA</label>
-        <select name="detalle" id="detalle" formControlName="detalle" class="form-control">
-          <option [ngValue]="detalle" *ngFor="let detalle of garantiaList">{{detalle.idordenCuerpo}}</option>
-          </select>  
-                
-                <div class="btn-toolbar">
-                  <button type="button" class="btn btn-primary" (click)="calcula()">CALCULAR </button>
-                
-                <button type="submit" class="btn btn-success" [disabled]="Informeform.invalid">GUARDAR</button>
-                <button  class="btn btn-danger" [mat-dialog-close]>CANCELAR</button>
-                  
-                </div>
-              </div>
-          
-            </form>
+  </form>
 
 
 </div>
