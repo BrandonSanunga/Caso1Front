@@ -1,10 +1,3 @@
-<script>
-    function inicio(){
-           document.f1.f1t1.value = 30
-        };
-        window.onload = inicio;
-     
-      </script>
 
 <div class="container" style="text-align: center;">
  <form (ngSubmit)="guardar()">
@@ -24,22 +17,26 @@
                         </div>
                         <div class="panel-body" >
                             <label >COBERTURA</label>
-                            <input type="text" class="form-control" placeholder="Cobertura" [(ngModel)]="detalle.cobertura" [ngModelOptions]="{standalone: true}"  >
+                            <input type="text" class="form-control" [(ngModel)]="detalle.cobertura" [ngModelOptions]="{standalone: true}"  >
                         
                         
                             <label >PERIODO</label>
-                            <input type="text" class="form-control" placeholder="Periodo" [(ngModel)]="detalle.perido" [ngModelOptions]="{standalone: true}" >
+                            <input type="text" class="form-control" [(ngModel)]="detalle.perido" [ngModelOptions]="{standalone: true}" >
                             
                         </div>
                         
                     </div>
                 </div>
+                
         <hr>
-    </form>
 
+       
+    </form>
     <div class="btn-toolbar">
         <button type="submit" class="btn btn-success" (click)="guardar()">GUARDAR</button>
         <ul></ul>
-        <button type="submit" class="btn btn-danger" (click)="cancelar()">CANCELAR</button>
+        <button class="btn btn-danger" (click)="cancelar()">CANCELAR</button>
       </div>
+     
+  
 </div>
