@@ -36,30 +36,9 @@ export class VehiculoComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.Vehiculoform = this.fb.group({
-      chasis: ['',Validators.required],
-      color: ['',Validators.required],
-      ramv: ['',Validators.required] ,
-      estado: ['true',Validators.required] ,
-      precio: ['',Validators.required],
-      pais: ['',Validators.required],
-      garantia: ['',Validators.required],
-      vehiculoCatalogo: ['',Validators.required]
-
-   });
+  
    
-    this.garantia.getAllGarantiasV().subscribe(e=>{
-      this.garantiaList=e;
-      console.log(e);
-    });
-    this.pais.getAllPaises().subscribe(e=>{
-      this.PaisList=e;
-      console.log(e);
-    });
-    this.catalogo.getAllCatalogo().subscribe(e=>{
-      this.CatalogoList=e;
-      console.log(e);
-    });
+  
 this.listar();
   }
  
@@ -103,6 +82,9 @@ this.listar();
     agregarV ():void{  
       
       this.dialog.open(FormVehiculoComponent);
+ 
+      
+
       
      
 }

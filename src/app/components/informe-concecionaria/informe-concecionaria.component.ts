@@ -3,6 +3,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import { InformeConcecionariaService } from 'src/app/services/InformeConcecionaria/informe-concecionaria.service';
 import { FormInformeConecesionariaComponent } from './form-informe-conecesionaria/form-informe-conecesionaria.component';
+import { PdfMakeWrapper, Txt, Columns } from 'pdfmake-wrapper';
+
 
 
 @Component({
@@ -64,6 +66,59 @@ export class InformeConcecionariaComponent implements OnInit {
 }
 agregar(){
   this.dialog.open(FormInformeConecesionariaComponent);
+}
+public reclamoPDF(soli: any) {
+  const pdf = new PdfMakeWrapper();
+  pdf.info({
+    title: 'Reclamo de Garantía',
+    author: 'StarMotors',
+    subject: 'Vista PDF de un reclamo realizado',
+});
+
+  pdf.pageSize('A4');
+  pdf.pageOrientation('landscape');
+  pdf.add(
+    new Txt('RECLAMO DE GARANTÍA').alignment('center').color('red').bold().fontSize(30).italics().end
+  )
+  pdf.add(
+    pdf.ln(1)
+  )
+
+  pdf.add(
+    new Columns(["ID", "DESCRIPCION", "PORCENTAJE DESCUENTO ", "TOTAL", "ESTADO INFORME"
+  ])
+      .style("text-center border").alignment('center').bold().end
+  )
+
+  pdf.add(
+    pdf.ln(1)
+  )
+  
+  pdf.add(
+    new Columns([
+      soli.idConcesionaria,
+      soli.descricion,
+      soli.porcentaje+"%",
+      soli.total,
+      soli.estado
+    ])
+      .style("text-center").alignment('center').end
+  )
+
+  pdf.add({
+    table: {
+      body: [
+        [
+          'col 1'
+        ]
+      ]
+      }
+    })
+
+  pdf.watermark(new Txt('StarMotors').color('#ff7979').alignment('center').fontSize(40).end);
+  pdf.create().open();
+
+
 }
 
 

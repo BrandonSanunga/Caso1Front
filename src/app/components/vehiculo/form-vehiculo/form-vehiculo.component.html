@@ -1,7 +1,10 @@
-  <div class="container" >
-    <p>Insertar Vehiculo</p>
+  <div class="container" style="text-align: center;" >
+
+     <button class="btn btn-primary" (click)="carga()" style="float: right;">Cargar</button> 
     <br>
-  
+     <br>
+    <br>
+    <p>Insertar Vehiculo </p> 
     <form [formGroup]="Vehiculoform" (ngSubmit)="guardarV()" id="f">
   
         
@@ -16,7 +19,10 @@
           <option  >AZUL</option>
           <option  >GRIS</option>
           <option  >VERDE</option>
+          <option  >AMARILLO</option>
+          <option  >CAFE</option>
           <option  >BLANCO</option>
+
           </select>
         
         <label>  RAMV </label>
@@ -44,7 +50,8 @@
         <div class="btn-toolbar">
           <button type="submit" class="btn btn-success" [disabled]="Vehiculoform.invalid">GUARDAR</button>
           <ul></ul>
-          <button type="submit" class="btn btn-danger" (click)="cancelar()">CANCELAR</button>
+          <button class="btn btn-danger" (click)="cancelar()">CANCELAR</button>
+          
           
         </div>
      

@@ -16,6 +16,7 @@ export class FormGarantiaVehiculoComponent implements OnInit {
   detallegarantia:any=[]
   estado:any =true;
   res!:any;
+  Vehiculoform!: FormGroup;
 
 
 
@@ -24,6 +25,7 @@ export class FormGarantiaVehiculoComponent implements OnInit {
     public fb: FormBuilder) { }
 
   ngOnInit(): void {
+ 
  
   }
   agregarD(){

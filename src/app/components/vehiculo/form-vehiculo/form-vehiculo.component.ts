@@ -53,17 +53,9 @@ export class FormVehiculoComponent implements OnInit {
     this.CatalogoList=e;
     console.log(e);
   });
-/*
-  this.id = localStorage.getItem("idlista")
-  this.serviciov.get(this.id).subscribe(es=>{
-    const {
-    chasis,color, ramv, estado , precio,pais , garantia,vehiculoCatalogo}=es
-      this.Vehiculoform.setValue({chasis,color, ramv, estado , precio ,pais, garantia,vehiculoCatalogo})        
-     
-  }, error =>{
-    console.log(error)
-  });
-*/
+
+
+
   }
   guardarV(): void{
     
@@ -81,5 +73,17 @@ export class FormVehiculoComponent implements OnInit {
 cancelar(){
  
   location.href="/Vehiculo"
+}
+carga(){
+  this.id = localStorage.getItem("idlista")
+  this.serviciov.get(this.id).subscribe(es=>{
+    const {
+    chasis,color, ramv, estado , precio,pais , garantia,vehiculoCatalogo}=es
+      this.Vehiculoform.setValue({chasis,color, ramv, estado , precio ,pais, garantia,vehiculoCatalogo})        
+     
+  }, error =>{
+    console.log(error)
+  });
+  
 }
 }
