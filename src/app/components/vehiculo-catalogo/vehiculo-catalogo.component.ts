@@ -6,6 +6,7 @@ import { DisenoService } from 'src/app/services/diseno/diseno.service';
 import { VehiculoCatalogoService } from 'src/app/services/vehiculo_catalogo/vehiculo-catalogo.service';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-vehiculo-catalogo',
@@ -28,7 +29,7 @@ export class VehiculoCatalogoComponent implements OnInit {
   imageDirectory: any= "http://localhost:8080/imagencatalogo/api/v1/get/";
 
   constructor(
-
+    public auth:AuthService,
     public fb: FormBuilder,
     public catalogoservice: VehiculoCatalogoService,
     public disenoService: DisenoService,

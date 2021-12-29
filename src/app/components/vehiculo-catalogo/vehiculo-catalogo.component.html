@@ -1,30 +1,29 @@
 <br>
 <h1 class="display-4 text-center my-5">CATALOGO DE VEHICULOS</h1>
 <br>
-<button class="btnadmin btn-primary" (click)="verCatalogo()" style="text-transform:uppercase;">
+<button class="btnadmin btn-primary" (click)="verCatalogo()" style="text-transform:uppercase;" *ngIf="(auth.isAuthenticated$ | async)">
   <i class="fa fa-pencil" aria-hidden="true"></i>   administrar catalogo</button>
 <br>
 <div class="contAutos">
-  <div class="card-group mt-3" *ngFor="let item of catalogoList">
-    <div class="cards">
-      <div class="imagecontainer">
-        <img class="card-img-top"  src
-          alt="Card image cap">
-      </div>
-      <div class="card-body">
-        <i class="fa fa-car" aria-hidden="true"></i>
-        <h2 class="card-title" style="text-transform:capitalize;">{{item.diseno.marca}}, {{item.diseno.modelo}}
-        </h2>
+    <div class="card-group mt-3" *ngFor="let item of catalogoList">
+        <div class="cards">
+            <div class="imagecontainer">
+                <img class="card-img-top" src alt="Card image cap">
+            </div>
+            <div class="card-body">
+                <i class="fa fa-car" aria-hidden="true"></i>
+                <h2 class="card-title" style="text-transform:capitalize;">{{item.diseno.marca}}, {{item.diseno.modelo}}
+                </h2>
 
-        <h3 class="card-text">Año: {{item.year_vehiculo}}</h3>
-        <h3 class="card-text"> Motor: {{item.caracteristica.motor}}</h3>
-      </div>
-      <div class="card-footer">
-        <h4 class="card-text">Seguridad: {{item.caracteristica.seguridad}}</h4>
-        <h4 class="card-text">Tecnologia: {{item.caracteristica.tecnologia}}</h4>
-      </div>
+                <h3 class="card-text">Año: {{item.year_vehiculo}}</h3>
+                <h3 class="card-text"> Motor: {{item.caracteristica.motor}}</h3>
+            </div>
+            <div class="card-footer">
+                <h4 class="card-text">Seguridad: {{item.caracteristica.seguridad}}</h4>
+                <h4 class="card-text">Tecnologia: {{item.caracteristica.tecnologia}}</h4>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <!--
 <div style="text-align:center">
