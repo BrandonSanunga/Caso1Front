@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { async } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImagenCatalogoService } from 'src/app/services/ImagenCatalogo/imagen-catalogo.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-vehiculo-catalogo',
@@ -43,6 +44,7 @@ export class VehiculoCatalogoComponent implements OnInit {
     public dialog: MatDialog,
     private httpClient: HttpClient,
     public imagenservice: ImagenCatalogoService,
+    public auth: AuthService,
 
   ) { }
 
@@ -85,119 +87,3 @@ export class VehiculoCatalogoComponent implements OnInit {
     this.root.navigate(['catalogo/admin'])
 
   }}
-  /*
-//seleccionar imagen
-public onFileChanged(event: any) {
-  //Selecciona el archivo en este caso la imagen
-  this.selectedFile = event.target.files[0];
-}
-
-//metodo para cargar la imagen
-onUpload() {
-  console.log(this.selectedFile);
-  const uploadImageData = new FormData();
-  uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-  alert("Imagen ( "+ this.selectedFile.name+" ) Guardada Correctamente");
-  this.dialog.closeAll();
-  this.httpClient.post('http://localhost:8080/imagencatalogo/api/v1/upload', uploadImageData, { observe: 'response' })
-    .subscribe((response) => {
-      if (response.status === 200) {
-        alert("Imagen Guardada Correctamente");
-      } else {
-        alert("Error la Imagen no se Guardo");
-      }
-    }
-    );
-}
-
-  getImage() {
-  this.httpClient.get('http://localhost:8080/imagencatalogo/api/v1/get/' + this.imageName)
-
-    .subscribe(
-      res => {
-        console.log(this.httpClient.get('http://localhost:8080/imagencatalogo/api/v1/get/' + this.imageName));
-        this.retrieveResonse = res;
-        this.base64Data = this.retrieveResonse.picByte;
-        this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-      }
-    );
-}
-
-
-extraerBase64 = async($event:any)=> new Promise((resolve, reject)=>{
-  try{
-    const unsafeImg = window.URL.createObjectURL($event);
-    const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
-  const reader = new FileReader();
-  reader.readAsDataURL($event);
-  reader.onload=()=>{
-    resolve({
-       base: reader.result
-    });
-  };
-  reader.onerror= error =>{
-    resolve({
-      base: null
-    });
-  }
-  }catch(e){
-    return null;
-  }return null;
-})
-}
-  guardarCatalogo(): void {
-    this.catalogoservice.saveCatalogo(this.catalogoform.value).subscribe(resp => {
-      this.catalogoform.reset();
-      this.catalogoList = this.catalogoList.filter((catalogo: { id_vehiculo_catalogo: any; }) => resp.id_vehiculo_catalogo!=catalogo.id_vehiculo_catalogo);
-      this.catalogoList.push(resp);
-      console.log(resp);
-    }
-      ,
-      error => { console.error(console.error) })
-  }
-  eliminarCatalogo(catal: any): void {
-    this.catalogoservice.delete(catal.id_vehiculo_catalogo).subscribe(resp => {
-      console.log(resp);
-      if (resp == true) {
-        this.catalogoList.pop(catal);
-      }
-    })
-  }
-  editarCatalogo(catal: any){
-    this.catalogoform.setValue({
-      id_vehiculo_catalogo: catal.id_vehiculo_catalogo,
-      diseno: catal.diseno.id_diseno,
-      year_vehiculo: catal.year_vehiculo,
-      caracteristica: catal.caracteristica.id_caracteristica,
-      links_imagen: catal.links_imagen,
-    })
-
-  }
-  selectFile(event: any) {
-		if(!event.target.files[0] || event.target.files[0].length == 0) {
-			this.msg = 'correcto';
-			return;
-		}
-		var mimeType = event.target.files[0].type;
-		if (mimeType.match(/image\//) == null) {
-			this.msg = "solo debe ser imagen";
-			return;
-		}
-		var reader = new FileReader();
-		reader.readAsDataURL(event.target.files[0]);
-		reader.onload = (_event) => {
-			this.msg = "";
-			this.url = reader.result;
-
-		}
-	}
-
-
-  openDialogVehiculo() {
-    localStorage.setItem("catalogoDialog",this.catalogo)
-    const dialogRef = this.dialog.open(VehiculoCatalogoFormComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }*/
-

@@ -22,17 +22,16 @@ import { VehiculoComponent } from "./components/vehiculo/vehiculo.component";
 import { InformeConcecionariaService } from "./services/InformeConcecionaria/informe-concecionaria.service";
 import { InformeConcecionariaComponent } from "./components/informe-concecionaria/informe-concecionaria.component";
 import { VehiculoCatalogoFormComponent } from "./components/vehiculo-catalogo/vehiculo-catalogo-form/vehiculo-catalogo-form.component";
-import { AgregarimagenComponent } from "./components/vehiculo-catalogo/vehiculo-catalogo-form/agregarimagen/agregarimagen.component";
 import { FormVehiculoComponent } from "./components/vehiculo/form-vehiculo/form-vehiculo.component";
 import { ListaEntregarRepuestosComponent } from "./components/lista-entregar-repuestos/lista-entregar-repuestos.component";
 import { AddCotizacionComponent } from "./components/cotizacion/add-cotizacion/add-cotizacion.component";
 import { ListCotizacionComponent } from "./components/cotizacion/list-cotizacion/list-cotizacion.component";
 import { AuthGuard } from "./guards/auth.guard";
-//import { AuthGuard } from "@auth0/auth0-angular";
+
 
 const routes: Routes = [
-  { path: "repuestos", component: RepuestosComponent },
-  { path: "caracteristicas", component: CaracteristicasVehiculoComponent },
+  { path: "repuestos", component: RepuestosComponent, canActivate:[AuthGuard] },
+  { path: "caracteristicas", component: CaracteristicasVehiculoComponent, canActivate:[AuthGuard] },
   { path: "catalogo", component: VehiculoCatalogoComponent },
   { path: "informe-reclamo", component: InformeReclamoComponent },
   { path: "inspeccion", component: InspeccionComponent },
@@ -48,7 +47,7 @@ const routes: Routes = [
   { path: "taller/orden/:id", component: InformeReparacionComponent },
   { path: "taller/repuestoAgregado", component: RepuestoAgregadoComponent },
   { path: "taller/solicitudRepuesto", component: SolicitudRepuestoComponent },
-  { path: "diseno", component: DisenoVehiculoComponent },
+  { path: "diseno", component: DisenoVehiculoComponent, canActivate:[AuthGuard] },
   { path: "reclamo/garantia", component: ReclamoGarantiaComponent, canActivate:[AuthGuard]},
   { path: "lista-reclamo", component: ListaReclamoComponent },
   { path: "garantiaV", component: GarantiaVehiculoComponent },
@@ -57,8 +56,7 @@ const routes: Routes = [
   { path: "form/garantia", component: ReclamoGarantiaFormComponent },
   { path: "lista-reclamo", component: ListaReclamoComponent },
   { path: "reclamo-garantia", component: ReclamoGarantiaComponent},
-  { path: "catalogo/admin", component: VehiculoCatalogoFormComponent },
-  { path: "imagenCatalogo", component: AgregarimagenComponent },
+  { path: "catalogo/admin", component: VehiculoCatalogoFormComponent, canActivate:[AuthGuard] },
   { path: "formVehiculo", component: FormVehiculoComponent },
   {
     path: "lista-entregar-repuestos",

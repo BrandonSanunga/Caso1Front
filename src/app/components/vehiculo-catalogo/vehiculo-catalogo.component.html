@@ -1,8 +1,8 @@
 <br>
 <h1 class="display-4 text-center my-5">CATALOGO DE VEHICULOS</h1>
 <br>
-<button class="btnadmin btn-primary" (click)="verCatalogo()" style="text-transform:uppercase;">
-  <i class="fa fa-pencil" aria-hidden="true"></i> administrar catalogo</button>
+<button class="btnadmin btn-primary" (click)="verCatalogo()" style="text-transform:uppercase;" *ngIf="(auth.isAuthenticated$ | async)">
+  <i class="fa fa-pencil" aria-hidden="true" ></i> administrar catalogo</button>
 <br>
 <div class="contAutos">
     <div class="card-group mt-3" *ngFor="let item of catalogoList">
