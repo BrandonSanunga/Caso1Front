@@ -46,3 +46,5 @@ testem.log
 Thumbs.db
 yarn.lock
 package-lock.json
+src/app/navbar/navbar.component.html
+src/app/services/Vehiculo/vehiculo.service.ts

@@ -54,40 +54,38 @@ export class VehiculoCatalogoComponent implements OnInit {
       caracteristica: ['', Validators.required],
       links_imagen: ['', Validators.required],
     });
+    this.getDisenos();
+    this.getCaracteristicas();
+    this.getcatalogo();
+  }
+  getDisenos(){
     this.disenoService.getAllDisenos().subscribe(resp => {
       this.DisenoList = resp;
       //console.log(resp);
     },
       error => { console.error(console.error) });
-
+  }
+  getCaracteristicas(){
     this.caracteristicasservice.getAllCaracteristicas().subscribe(resp => {
       this.caracteristicaList = resp;
       //console.log(resp);
     },
       error => { console.error(console.error) });
-
+  }
+  getcatalogo(){
     this.catalogoservice.getAllCatalogo().subscribe(resp => {
       this.catalogoList = resp;
       //console.log(resp);
     },
       error => { console.error(console.error) })
-      this.getimagenes();
 
-      this.getImage();
+
   }
-
-  getimagenes(){
-    this.imagenservice.getAllImagenes().subscribe(resp => {
-      this.imagenList = resp;
-      //console.log(resp);
-    },
-      error => { console.error(console.error) });
-  }
-
   verCatalogo(){
     this.root.navigate(['catalogo/admin'])
 
-  }
+  }}
+  /*
 //seleccionar imagen
 public onFileChanged(event: any) {
   //Selecciona el archivo en este caso la imagen
@@ -147,7 +145,7 @@ extraerBase64 = async($event:any)=> new Promise((resolve, reject)=>{
   }return null;
 })
 }
- /* guardarCatalogo(): void {
+  guardarCatalogo(): void {
     this.catalogoservice.saveCatalogo(this.catalogoform.value).subscribe(resp => {
       this.catalogoform.reset();
       this.catalogoList = this.catalogoList.filter((catalogo: { id_vehiculo_catalogo: any; }) => resp.id_vehiculo_catalogo!=catalogo.id_vehiculo_catalogo);

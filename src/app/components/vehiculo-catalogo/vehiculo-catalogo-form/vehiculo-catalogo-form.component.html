@@ -18,19 +18,26 @@
         <input type="number" formControlName="year_vehiculo" class="form-control" min="1999" max="2021"
           placeholder="Ejm: 2015">
         <br>
+
         <label style="text-align: center;text-transform:uppercase;">caracteristicas del vehiculo</label>
-        <select name="caracteristica" id="caracteristica" formControlName="caracteristica" class="form-control">
-          <option [ngValue]="caracteristica" *ngFor="let caracteristica of caracteristicaList">
-            {{caracteristica.id_caracteristica}}</option>
-        </select>
+
+        <div class="row">
+          <div class="col-md-6">
+            <select name="caracteristica" id="caracteristica" formControlName="caracteristica" class="form-control">
+              <option [ngValue]="caracteristica" *ngFor="let caracteristica of caracteristicaList">
+                {{caracteristica.id_caracteristica}}</option>
+
+            </select>
+          </div>
+          <div class="col-md-5">
+            <button class="btn btn-info" (click)="verCaracteristicas()" type="button">Ver Caracteristicas</button>
+          </div>
+        </div>
         <br>
         <label style="text-align: center;text-transform:uppercase;">imagen del vehiculo</label>
         <br>
-        <!--<button class="btn btn-info" (click)="openDialogVehiculo()" type="button">Agregar Imagen</button>-->
-        <input type="text" name="links_imagen" id="links_imagen" formControlName="links_imagen" class="form-control" >
 
-        <!--</select>
-        <br>-->
+        <input type="text" name="links_imagen" id="links_imagen" formControlName="links_imagen" class="form-control">
         <br>
         <button type="submit" class="btn btn-primary" [disabled]="catalogoform.invalid">GUARDAR</button>
       </div>

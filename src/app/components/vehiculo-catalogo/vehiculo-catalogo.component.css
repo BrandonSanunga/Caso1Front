@@ -59,3 +59,9 @@
 .btnadmin {
   margin-left: 5%;
 }
+.imagenAuto{
+  height: 200 ;
+  width:330;
+  margin-left: auto;
+  margin-right: auto;
+}
