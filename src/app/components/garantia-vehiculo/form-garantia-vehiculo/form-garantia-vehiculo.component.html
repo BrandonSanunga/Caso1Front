@@ -1,8 +1,16 @@
+<script>
+    function inicio(){
+           document.f1.f1t1.value = 30
+        };
+        window.onload = inicio;
+     
+      </script>
+
 <div class="container" style="text-align: center;">
  <form (ngSubmit)="guardar()">
-            <label for="exampleInputPassword1">DESCRIPCION</label>
+            <label >DESCRIPCION</label>
            <input type="text" class="form-control"  [(ngModel)]="garantia.descripcion" [ngModelOptions]="{standalone: true}" > 
-           
+
            <br>      
                 <label>DETALLE GARANTIA</label>
                 <br>
@@ -28,8 +36,7 @@
                 </div>
         <hr>
     </form>
-    
-  
+
     <div class="btn-toolbar">
         <button type="submit" class="btn btn-success" (click)="guardar()">GUARDAR</button>
         <ul></ul>

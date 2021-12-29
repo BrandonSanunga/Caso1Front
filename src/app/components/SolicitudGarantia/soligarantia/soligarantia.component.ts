@@ -5,6 +5,7 @@ import { SoliGarantiaService } from '../../../services/SolicitudGarantia/soli-ga
 //import { SolicitudGarantia } from '../../../modelos/SolicitudGarantia/solicitud-garantia';
 import {MatDialog} from '@angular/material/dialog';
 import { ReclamoGarantiaFormComponent } from '../../reclamo-garantia/reclamo-garantia-form/reclamo-garantia-form.component';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-soligarantia',
@@ -20,7 +21,8 @@ export class SoligarantiaComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public soliGarantiaService: SoliGarantiaService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public auth: AuthService
   ) { }
 
   ngOnInit(): void {

@@ -32,7 +32,12 @@ export class OrdenRepCuerpServiceService {
 
   public getAll(): Observable<any>{
     return this.httpClient.get(this.API_SERVER+"all");
-
   }
+
+  getEstado(estado:any):Observable<any>{
+    return this.http.get(`${this.url}/est/${estado}`)
+  }
+  
+  
 }
 
