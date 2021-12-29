@@ -1,8 +1,8 @@
-import { flatten } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, NgForm } from "@angular/forms";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Columns, PdfMakeWrapper, Txt } from "pdfmake-wrapper";
 import { Observable } from "rxjs";
 import { flatMap, map } from "rxjs/operators";
 import { Clientes } from "src/app/modelos/clientes";
@@ -13,6 +13,7 @@ import { Vehiculo } from "src/app/modelos/factura/vehiculo.model";
 import { ClienteService } from "src/app/services/Cliente/cliente.service";
 import { CotizacionService } from "src/app/services/cotizacion/cotizacion.service";
 import { FacturaService } from "src/app/services/Factura/factura.service";
+import { UtilReportService } from "src/app/services/Factura/util-report.service";
 import Swal from "sweetalert2";
 
 @Component({
@@ -31,6 +32,7 @@ export class FacturacliComponent implements OnInit {
     private clienteService: ClienteService,
     private facturaService: FacturaService,
     private cotizacionService: CotizacionService,
+    private srvUr: UtilReportService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
@@ -55,6 +57,7 @@ export class FacturacliComponent implements OnInit {
       console.log(this.factura);
       this.facturaService.crearFactura(this.factura).subscribe((factura) => {
         Swal.fire("Nueva Factura", "Venta realizada con exito!", "success");
+        this.reporteFacturaPDF();
         this.router.navigateByUrl("/facturas");
       });
     }
@@ -163,5 +166,79 @@ export class FacturacliComponent implements OnInit {
           this.factura.detallesfacturas?.push(nuevoDetalleFac);
         });
     });
+  }
+
+  public reporteFacturaPDF() {
+    const pdf = new PdfMakeWrapper();
+    pdf.pageMargins([40, 60, 40, 60]);
+    pdf.pageSize("A4");
+    pdf.info({
+      title: "Factura",
+      author: "START-MOTORS",
+      subject: "Factura de Vehiculos",
+    });
+    pdf.add(
+      new Txt(`Empresa:${this.factura.nombre_empresa}`)
+        .alignment("left")
+        .italics()
+        .bold().end
+    );
+    pdf.add(
+      new Txt(`${this.srvUr.fecha()}`).alignment("left").italics().bold().end
+    );
+
+    pdf.add(
+      new Txt(`Ruc:${this.factura.ruc_factura}`)
+        .alignment("left")
+        .italics()
+        .bold().end
+    );
+    pdf.add(
+      new Txt(`Direccion:${this.factura.direccion}`)
+        .alignment("left")
+        .italics()
+        .bold().end
+    );
+    pdf.add(
+      new Txt(`Cliente:${this.factura.cliente?.nombresClient}`)
+        .alignment("left")
+        .bold()
+        .italics().end
+    );
+    pdf.add(pdf.ln(1));
+    pdf.add(new Txt("Factura").alignment("left").bold().italics().end);
+    pdf.add(pdf.ln(1));
+    pdf.add(
+      new Columns(["Vehiculo", "Cantidad", "Precio U", "SubTotal"])
+        .columnGap(3)
+        .style("text-center")
+        .bold().end
+    );
+    this.factura.detallesfacturas?.forEach((detFac) => {
+      pdf.add(
+        new Columns([
+          ` ${detFac.vehiculo?.vehiculoCatalogo?.diseno?.marca} ${detFac.vehiculo?.vehiculoCatalogo?.diseno?.modelo} ${detFac.vehiculo?.vehiculoCatalogo?.year_vehiculo} `,
+          detFac.cantidad,
+          `$${this.srvUr.formateaValor(detFac.vehiculo?.precio_venta)}`,
+          `$${this.srvUr.formateaValor(
+            detFac.vehiculo?.precio_venta! * detFac.cantidad!
+          )}`,
+        ])
+          .columnGap(3)
+          .style("text-center").end
+      );
+    });
+    pdf.add(
+      new Columns([
+        "Total",
+        "",
+        "",
+        `$${this.srvUr.formateaValor(this.factura.calcularGranTotal())}`,
+      ])
+        .columnGap(3)
+        .style("text-center")
+        .bold().end
+    );
+    pdf.create().open();
   }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReclamoGarantiaService } from 'src/app/services/ReclamoGarantia/reclamo-garantia.service';
 import { SoliGarantiaService } from '../../../services/SolicitudGarantia/soli-garantia.service';
-
+import Swal from "sweetalert2";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reclamo-garantia-form',
@@ -16,7 +17,8 @@ export class ReclamoGarantiaFormComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public reclamoGarantiaService: ReclamoGarantiaService,
-    public soliGarantiaService: SoliGarantiaService
+    public soliGarantiaService: SoliGarantiaService,
+    public root:Router
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +42,12 @@ export class ReclamoGarantiaFormComponent implements OnInit {
       error => { console.error(console.error) })
 
     this.soliGarantiaService.cambiarEstadoSoli(id.id_solicitud).subscribe(resp => {
+      Swal.fire("Reclamo de Garantía", "Reclamo generado con exito!", "success");
       console.log("se cambio a false");
+      this.root.navigate(['reclamo/garantia'])
     })
+  }
+  cerrar():void{
+    Swal.fire("Reclamo de Garantía", "Reclamo cancelado con exito!", "error");
   }
 }

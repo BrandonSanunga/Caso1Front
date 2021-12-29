@@ -14,6 +14,7 @@ import { FacturaComVeDialogComponent } from './dialogos/factura-com-ve-dialog/fa
 import { InforReclComponent } from './dialogos/infor-recl/infor-recl.component';
 import { Router } from '@angular/router';
 import { NgStyle } from '@angular/common';
+import { EmailComponent } from './dialogos/email/email.component';
 @Component({
   selector: 'app-informe-reclamo',
   templateUrl: './informe-reclamo.component.html',
@@ -74,6 +75,15 @@ export class InformeReclamoComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+  openDialogEmail(){
+    localStorage.setItem("email",this.cliente.emailClient+"");
+    localStorage.setItem("emailSaludo",this.cliente.nombresClient+"");
+    localStorage.setItem("emailvehiculo",this.vehiculo);
+    const dialogRef = this.dialog.open(EmailComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
   verCliente(cedula:any){
    this.clienteServicio.getFindByID(cedula).subscribe(data=>{
       this.cliente.cedulaClient=data.cedulaClient;
@@ -92,12 +102,14 @@ export class InformeReclamoComponent implements OnInit {
       console.log(this.id);
       document.getElementById("cancel")?.remove()
       document.getElementById("acept")?.remove()
+      document.getElementById("sendemanil")?.remove()
       this.reclamogarantiaService.getfindByid(this.id).subscribe(data=>{
         this.reclamo=data;
         this.informeReclamo=this.id
         this.chasis=data.fk_id_solicitud.fk_chasis_vehiculo.chasis
         })
       }else{
+        document.getElementById("repsendemanil")?.remove()
         this.id =  localStorage.getItem("informe")
         this.reclamogarantiaService.getfindByid(this.id).subscribe(data=>{
           this.reclamo=data;
@@ -122,6 +134,7 @@ export class InformeReclamoComponent implements OnInit {
     })
   }
   aceptasolicitud(){
+    this.openDialogEmail()
     var fecha=new Date();
     var alerta = confirm("Esta seguro de aceptar la solicitud del Cliente")
     if(alerta==true){
@@ -146,6 +159,7 @@ export class InformeReclamoComponent implements OnInit {
     this.idinforme=null;
   }
   rechazarSolicitud(){
+    this.openDialogEmail()
     var fecha=new Date();
     var alerta = confirm("Esta seguro de rechazar la solicitud del Cliente")
     if(alerta==true){

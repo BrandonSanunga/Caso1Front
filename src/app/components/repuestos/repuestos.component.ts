@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RepuestosService } from '../../services/repuestos/repuestos.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { DisenoService } from 'src/app/services/diseno/diseno.service';
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-repuestos',
@@ -47,6 +47,7 @@ export class RepuestosComponent implements OnInit {
       this.repuestosform.reset();
       this.repuestosList = this.repuestosList.filter((repuesto: { id_repuesto: any; }) => resp.id_repuesto != repuesto.id_repuesto);
       this.repuestosList.push(resp);
+
       Swal.fire(
         "Nuevo Repuesto",
         '¡Repuesto ' +resp.nombre_repuesto+ ' agregado con exito!',

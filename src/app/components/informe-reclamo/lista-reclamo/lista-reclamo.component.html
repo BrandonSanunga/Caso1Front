@@ -55,8 +55,8 @@
           <div *ngIf="i.respuestaCliente == rechazado">
             <div class="example-flex-container">
             <div class="example-button-container">
-              <button (click)="aceptarCliente(i.idinformeRecha)" mat-mini-fab style="background-color:green;" aria-label="Example icon button with a menu icon">
-                <mat-icon>done</mat-icon>
+              <button (click)="aceptarCliente(i.idinformeRecha)" mat-mini-fab  color="warn" aria-label="Example icon button with a menu icon">
+                <mat-icon>cancel</mat-icon>
               </button>
             </div>
           </div>
@@ -64,8 +64,8 @@
           <div *ngIf="i.respuestaCliente == aceptado">
             <div class="example-flex-container">
             <div class="example-button-container">
-              <button (click)="canceladoCliente(i.idinformeRecha)" mat-mini-fab color="warn">
-                <mat-icon>cancel</mat-icon>
+              <button (click)="canceladoCliente(i.idinformeRecha)" mat-mini-fab  style="background-color:green;">
+                <mat-icon>done</mat-icon>
               </button>
             </div>
           </div>

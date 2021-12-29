@@ -49,6 +49,16 @@ import { ListaEntregarRepuestosComponent } from "./components/lista-entregar-rep
 import { AddCotizacionComponent } from "./components/cotizacion/add-cotizacion/add-cotizacion.component";
 import { ListCotizacionComponent } from "./components/cotizacion/list-cotizacion/list-cotizacion.component";
 import { NgSelectModule } from "@ng-select/ng-select";
+// Import pdfmake-wrapper and the fonts to use
+import { PdfMakeWrapper } from "pdfmake-wrapper";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
+import { EmailComponent } from './components/informe-reclamo/dialogos/email/email.component'; // fonts provided for pdfmake
+
+// If any issue using previous fonts import. you can try this:
+// import pdfFonts from "pdfmake/build/vfs_fonts";
+
+// Set the fonts to use
+PdfMakeWrapper.setFonts(pdfFonts);
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,6 +98,7 @@ import { NgSelectModule } from "@ng-select/ng-select";
     ListaEntregarRepuestosComponent,
     AddCotizacionComponent,
     ListCotizacionComponent,
+    EmailComponent,
   ],
   imports: [
     BrowserModule,

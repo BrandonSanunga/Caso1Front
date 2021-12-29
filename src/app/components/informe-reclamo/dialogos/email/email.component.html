@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email</title>
+</head>
+<body>
+  <div class="form-floating">
+    <select (change)="cargartipocorreo()" [(ngModel)]="this.tipoCorreo" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+      <option selected>Seleccione el tipo de correo a enviar</option>
+      <option value="Aceptado">Aceptado</option>
+      <option value="Rechazado">Rechazado</option>
+    </select>
+    <label for="floatingSelect">Seleccione el tipo de correo</label>
+  </div>
+  <div class="card-body" style="width: 900px;">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control"  id="para" [(ngModel)]="this.correo" aria-describedby="basic-addon3" placeholder="Para :">
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control"  id="encavezado" [(ngModel)]="this.encavezado" aria-describedby="basic-addon3" placeholder="Asunto :">
+    </div>
+    <div class="input-group mb-3">
+      <textarea  type="text" class="form-control" id="descripcion" [(ngModel)]="this.descripcion" aria-describedby="basic-addon3" name="" cols="30" rows="10"></textarea>
+    </div>
+    <button style="background-color: blue;color: aliceblue;" (click)="enviarCorreo()">Enviar</button>
+  </div>
+   <br>
+</body>
+</html>
