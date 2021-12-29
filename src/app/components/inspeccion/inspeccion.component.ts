@@ -115,7 +115,7 @@ export class InspeccionComponent implements OnInit {
     }
     actulizardetalle(){
       console.log(this.inspeccionCuerpos)
-      this.inspeServiceCuerpo.update(this.inspeccionCuerpos.idinspeCuerpo,this.inspeccionCuerpos).subscribe(data=>{
+      this.inspeServiceCuerpo.update(this.inspeccionCuerpos).subscribe(data=>{
         console.log(data)
       })
     }

@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { AgregarimagenComponent } from './agregarimagen/agregarimagen.component';
 import { ImagenCatalogoService } from 'src/app/services/ImagenCatalogo/imagen-catalogo.service';
+import Swal from "sweetalert2";
+
 
 @Component({
   selector: 'app-vehiculo-catalogo-form',
@@ -26,6 +28,8 @@ export class VehiculoCatalogoFormComponent implements OnInit {
   base64Data: any;
   retrieveResonse: any;
   imageName: any;
+
+
 
   constructor(
     public fb: FormBuilder,
@@ -49,47 +53,51 @@ export class VehiculoCatalogoFormComponent implements OnInit {
     });
     this.disenoService.getAllDisenos().subscribe(resp => {
       this.DisenoList = resp;
-      console.log(resp);
+      //console.log(resp);
     },
       error => { console.error(console.error) });
 
     this.caracteristicasservice.getAllCaracteristicas().subscribe(resp => {
       this.caracteristicaList = resp;
-      console.log(resp);
+      //console.log(resp);
     },
       error => { console.error(console.error) });
 
     this.catalogoservice.getAllCatalogo().subscribe(resp => {
       this.catalogoList = resp;
-      console.log(resp);
+      //console.log(resp);
     },
       error => { console.error(console.error) });
 
-    this.imagenservice.getAllImagenes().subscribe(resp => {
-      this.imagenList = resp;
-      console.log(resp);
-    },
-      error => { console.error(console.error) });
   }
+
   guardarCatalogo(): void {
     this.catalogoservice.saveCatalogo(this.catalogoform.value).subscribe(resp => {
-      console.log(resp);
+      //console.log(resp);
       this.catalogoform.reset();
       this.catalogoList = this.catalogoList.filter((catalogo: { id_vehiculo_catalogo: any; }) => resp.id_vehiculo_catalogo != catalogo.id_vehiculo_catalogo);
       this.catalogoList.push(resp);
-      alert("Catalogo guardado correctamente");
-      console.log(resp);
+      Swal.fire(
+        "Nuevo Catalogo",
+        `¡Vehiculo Agregado al Catalogo con exito!`,
+        "success"
+      );
+      //console.log(resp);
     }
       ,
       error => { console.error(console.error) })
   }
   eliminarCatalogo(catal: any): void {
     this.catalogoservice.delete(catal.id_vehiculo_catalogo).subscribe(resp => {
-      console.log(resp);
+      //console.log(resp);
       if (resp == true) {
         this.catalogoList.pop(catal);
         this.catalogoList.push();
-        alert("Catalogo: " + catal.id_vehiculo_catalogo + " eliminado correctamente");
+        Swal.fire(
+          "Eliminado",
+          `¡Vehiculo eliminado del catalogo correctamente!`,
+          "success"
+        );
       }
     })
   }
@@ -99,7 +107,7 @@ export class VehiculoCatalogoFormComponent implements OnInit {
       diseno: catal.diseno.id_diseno,
       year_vehiculo: catal.year_vehiculo,
       caracteristica: catal.caracteristica.id_caracteristica,
-      links_imagen: null,
+      links_imagen: catal.links_imagen,
 
     })
 
@@ -111,18 +119,6 @@ export class VehiculoCatalogoFormComponent implements OnInit {
     localStorage.setItem("vehiculoDialog",this.imagen)
     const dialogRef = this.dialog.open(AgregarimagenComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
-  }
-
-  getImage() {
-    this.httpClient.get('http://localhost:8080/imagencatalogo/api/v1/get/' + this.imageName)
-      .subscribe(
-        res => {
-          this.retrieveResonse = res;
-          this.base64Data = this.retrieveResonse.picByte;
-          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-        }
-      );
   }
 }

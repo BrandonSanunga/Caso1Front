@@ -26,16 +26,11 @@
         <br>
         <label style="text-align: center;text-transform:uppercase;">imagen del vehiculo</label>
         <br>
-        <button class="btn btn-info" (click)="openDialogVehiculo()" type="button">Agregar Imagen</button>
-        <select name="links_imagen" id="links_imagen" formControlName="links_imagen" class="form-control">
-          <option [ngValue]="links_imagen" *ngFor="let links_imagen of imagenList">
-            {{links_imagen.name}}</option>
-        </select>
-        <br>
-        <!--<input type="file" class="form-control" id="links_imagen" name="links_imagen" formControlName="links_imagen" />-->
-        <!--<input type="file" (change)="onFileSelected($event)" formControlName="links_imagen" class="form-control">
-        <input type="file" formControlName="links_imagen" class="form-control" >
-        <img [src]="imgURL" height="200" width="200" *ngIf="imgURL">-->
+        <!--<button class="btn btn-info" (click)="openDialogVehiculo()" type="button">Agregar Imagen</button>-->
+        <input type="text" name="links_imagen" id="links_imagen" formControlName="links_imagen" class="form-control" >
+
+        <!--</select>
+        <br>-->
         <br>
         <button type="submit" class="btn btn-primary" [disabled]="catalogoform.invalid">GUARDAR</button>
       </div>
@@ -43,10 +38,6 @@
   </div>
 </div>
 <br><br>
-
-
-
-
 
 <div class="container" style="text-align: center;">
   <h3 class="display-4 text-center my-5">LISTADO DE CATALOGO</h3>
@@ -69,7 +60,7 @@
         <td style="text-align: center;text-transform:uppercase;">{{catalogo.diseno.modelo}}</td>
         <td style="text-align: center;text-transform:uppercase;">{{catalogo.year_vehiculo}} </td>
         <td style="text-align: center;text-transform:uppercase;">{{catalogo.caracteristica.id_caracteristica}} </td>
-        <td style="text-align: center;">{{catalogo.links_imagen.name}}
+        <td style="text-align: center;">{{catalogo.links_imagen}}
 
         </td>
         <td><button type="submit" class="btn btn-outline-warning px-3 py-2" (click)="editarCatalogo(catalogo)"><i

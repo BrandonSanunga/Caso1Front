@@ -13,6 +13,7 @@
         <th scope="col">#</th>
         <th scope="col">Id Orden Reparacion</th>
         <th scope="col">Cantidad Repuestos</th>
+        <th scope="col">Estado</th>
         <th scope="col">Aceptar peticion</th>
       </tr>
     </thead>
@@ -21,8 +22,8 @@
         <th >{{j}}</th>
         <th >{{i.idordenCuerpo}}</th>
         <td>{{i.detalleRepuestos.length}}</td>
-        <td>{{i.detalleRepuestos.estado}}</td>
-        <td *ngIf="i.detalleRepuestos.estado==null">
+        <td>{{i.estadoOrden}}</td>
+        <td *ngIf="i.estadoOrden==null">
           <div class="example-button-row">
             <button mat-fab color="primary" (click)="actualizarestado(i.idordenCuerpo)">Aceptar</button>
           </div></td>

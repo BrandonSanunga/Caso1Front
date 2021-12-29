@@ -6,15 +6,18 @@
 <br>
 <div class="container1 row">
   <div class="col-md-6">
-      <input type="file" (change)="onFileChanged($event)">
-      <!--<img [src]="imgURL" height="200" width="200" *ngIf="imgURL">-->
-      <div><img [src]="url" *ngIf="url"></div>
+      <input class="input1" type="file" (change)="onFileChanged($event)" width="700">
+      <br>
+    <br>
+      <div *ngIf="previsualizacion">
+        <img class="imgn"
+        [src]="previsualizacion" height="300" width="400">
+      </div>
   </div>
   <br>
-
-
-  <div class="col-md-6">
-      <input type="button" (click)="onUpload()" value="Guardar imagen">
+<br><br>
+  <div class="col-md-8">
+      <input class="btnguardar"  type="button" (click)="onUpload()" value="Guardar imagen">
   </div></div>
 <!--
 <hr />
