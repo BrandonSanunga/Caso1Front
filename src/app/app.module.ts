@@ -52,7 +52,7 @@ import { NgSelectModule } from "@ng-select/ng-select";
 // Import pdfmake-wrapper and the fonts to use
 import { PdfMakeWrapper } from "pdfmake-wrapper";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
-import { EmailComponent } from './components/informe-reclamo/dialogos/email/email.component'; // fonts provided for pdfmake
+import { EmailComponent } from './components/informe-reclamo/dialogos/email/email.component';
 
 // If any issue using previous fonts import. you can try this:
 // import pdfFonts from "pdfmake/build/vfs_fonts";

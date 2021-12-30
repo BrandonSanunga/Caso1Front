@@ -8,6 +8,7 @@ import { InformeReclamo } from 'src/app/modelos/iforme-reclamo';
 })
 export class InformeReclamoTallerService {
   private URL='http://localhost:8080/inforech/api/v1'
+  filtroCliente='';
   constructor(private http:HttpClient) { }
 
   postInforme(informeReclamo:InformeReclamo):Observable<any>{
