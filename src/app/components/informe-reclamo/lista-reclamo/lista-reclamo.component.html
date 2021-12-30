@@ -7,11 +7,6 @@
   <title>Lista Reclamos</title>
 </head>
 <body>
-  <div class="card-group">
-    <p>Type something in the input field to search the table for first names, last names or emails:</p>
-  <input class="form-control" id="myInput" type="text" placeholder="Search..">
-  <br>
-  </div>
   <div class="row">
     <div class="col-sm-2">
             <div class="card-body">
@@ -82,12 +77,10 @@
                     <div class="accordion-body">
                       <label for="basic-url" class="form-label">Vehiculo Reclamos Aprobados</label>
                       <div class="input-group mb-3">
-                        <input type="text" class="form-control" [(ngModel)]="mayorcantida" id="mayorcantida" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control" [(ngModel)]="mayorcantida" id="mayorcantida" aria-describedby="basic-addon3" disabled>
+
                       </div>
-                      <label for="basic-url" class="form-label">Vehiculo con menos reclamos</label>
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" [(ngModel)]="menorcantidad" id="menorcantidad" aria-describedby="basic-addon3">
-                      </div>
+                      <button type="button" (click)="filtroreclamo()" class="btn btn-success">Buscar</button>
                       <label for="basic-url" class="form-label">Fecha Inicio</label>
                       <div class="input-group mb-3">
                         <input type="text" class="form-control" [(ngModel)]="fechainicio" id="fechainicio" aria-describedby="basic-addon3">
@@ -96,7 +89,7 @@
                       <div class="input-group mb-3">
                         <input type="text" class="form-control" [(ngModel)]="fechafin" id="fechafin" aria-describedby="basic-addon3">
                       </div>
-                      <button type="button" (click)="filtroreclamo()" class="btn btn-success">Buscar</button>
+                      <button type="button" (click)="filtroFecha()" class="btn btn-success">Buscar</button>
                     </div>
                   </div>
                 </div>
@@ -107,6 +100,7 @@
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
+        <th scope="col">#</th>
         <th scope="col">Id</th>
         <th scope="col">Fecha</th>
         <th scope="col">Cliente</th>
@@ -122,8 +116,9 @@
       </tr>
     </thead>
     <tbody id="myTable">
-  <tr *ngFor="let i of this.listaInforme">
+  <tr *ngFor="let i of this.listaInforme; let j=index">
         <th style="display: none;">{{i.reclamogarantia?.id_reclamo}}</th>
+        <th>{{j+1}}</th>
         <th >{{i.idinformeRecha}}</th>
         <td>{{i.fechaEmicion | date:'yyyy-MM-dd'}}</td>
         <td>{{i.client.cedulaClient}}</td>

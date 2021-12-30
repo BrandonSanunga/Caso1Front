@@ -36,6 +36,9 @@ export class ListaReclamoComponent implements OnInit {
 
   cantidad:any=[]
   temporal:any=[]
+
+  arr:any=[];
+  filtrocantida:any=[]
   constructor(private root:Router, private inforReclamoService:InformeReclamoTallerService, private reclamoservice:ReclamoGarantiaService) { }
 
   ngOnInit(): void {
@@ -43,25 +46,71 @@ export class ListaReclamoComponent implements OnInit {
     console.log(this.listaInforme)
   }
   filtroreclamo(){
-    for(var i=0;i<this.listaInforme.length;i++){
-      var marca = this.listaInforme[i].reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca
-      var modelo = this.listaInforme[i].reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo
-      const result = this.listaInforme.filter((listaInform: any)=>
-      listaInform.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca == marca &&
-      listaInform.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo == modelo )
-      if(result.length>1){
-        for(var i=0;i>result;i++){
-          for(var j=0;j>result;j++){
-          this.temporal.push(result[i][j])
-        const dataArr = new Set(this.temporal);
-            let result1 = [...dataArr];
-        console.log(this.temporal)
-      }
-      }
-      }
-
-    }
+    let mayor=[0]
+    this.arr=[]
+    this.filtrocantida=[]
+    let duplicados = [];
+    let cantidad = [];
+    let can=0;
+    let dater="";
+    for(let i of this.listaInforme){
+      this.arr.push([i.idinformeRecha,i.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca,i.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo,i.tipoInforme,i.respuestaCliente])
+}
+var sorted = this.arr.sort();
+for (let j = 0; j < sorted.length; j++) {
+  if (sorted[j + 1] != sorted[j]) {
+     dater=sorted[j];
+     duplicados.push(dater)
   }
+}
+for(let a = 0; a < duplicados.length; a++){
+  for(let s = -1; s < this.arr.length; s++){
+    if(dater==duplicados[a]){
+      can=can+1
+      if(duplicados[a]==this.arr[s]){
+        var dat = duplicados[a]
+        const result = this.listaInforme.filter((listaInform: any)=>
+        listaInform.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca == dat[1] &&
+        listaInform.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo == dat[2] &&
+        listaInform.tipoInforme == "Aceptado" && listaInform.respuestaCliente == "ACEPTADO" );
+        if(result.length>1){
+          cantidad.push([this.arr[s],result.length]);
+        }
+      }
+    }else{
+      can=0
+    }
+    dater=duplicados[a];
+  }
+}
+const dataArr = new Set(cantidad);
+let result = [...dataArr];
+for(let i of result){
+    if(i[1]>mayor || i[1]==mayor){
+     mayor=i[1]
+     for(let h of this.listaInforme){
+      var datais=h.idinformeRecha
+      var data2id=i[0][0]
+      if(data2id==datais){
+         this.filtrocantida.push(h)
+      }
+   }
+    }
+}
+this.listaInforme=[]
+  this.listaInforme=this.filtrocantida
+  var cantidadvehiculo=this.listaInforme.length
+  var marcvehiculo=this.listaInforme.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca
+  this.mayorcantida=marcvehiculo
+}
+filtroFecha(){
+  if(this.comprobartabla.size>this.listaInforme.size){
+    this.CargarTable()
+  }
+  if(this.tipoinformecavehiculo == null && this.marcavehiculo==null && this.modelocavehiculo==null && this.anofabricavehiculo==null && this.paiscavehiculo==null && this.colorcavehiculo==null){
+    this.CargarTable()
+  }
+}
 filtrovehiculo(){
 if(this.comprobartabla.size>this.listaInforme.size){
     this.CargarTable()
