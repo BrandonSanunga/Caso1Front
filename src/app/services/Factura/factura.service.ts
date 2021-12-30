@@ -9,19 +9,19 @@ import { Vehiculo } from "src/app/modelos/factura/vehiculo.model";
   providedIn: "root",
 })
 export class FacturaService {
-  private API_SEVER = "http://localhost:8080/facturas/api/v1";
+  private API_SEVER = "https://starmotors1.herokuapp.com/facturas/api/v1";
   constructor(private http: HttpClient) {}
 
   getVehiculosByMarcaOrModeloAndEstado(
     marcaOrModelo: string
   ): Observable<Vehiculo[]> {
     return this.http.get<Vehiculo[]>(
-      `http://localhost:8080/vehiculo/api/v1/all-filtrar/${marcaOrModelo}`
+      `https://starmotors1.herokuapp.com/vehiculo/api/v1/all-filtrar/${marcaOrModelo}`
     );
   }
   getVehiculoByVehiculoCatalogo(id: number): Observable<Vehiculo> {
     return this.http.get<Vehiculo>(
-      `http://localhost:8080/vehiculo/api/v1/vc/${id}`
+      `https://starmotors1.herokuapp.com/vehiculo/api/v1/vc/${id}`
     );
   }
 

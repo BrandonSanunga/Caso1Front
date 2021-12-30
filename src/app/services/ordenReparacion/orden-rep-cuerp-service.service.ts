@@ -9,10 +9,10 @@ import { OrdenRepCuerpo } from 'src/app/modelos/ordenReclamo/orden-rep-cuerpo';
 })
 export class OrdenRepCuerpServiceService {
 
-  private API_SEVER = "http://localhost:8080/ordecuerpo/api/v1/getall";
+  private API_SEVER = "https://starmotors1.herokuapp.com/ordecuerpo/api/v1/getall";
 
   private ordenCuerpo :OrdenRepCuerpo= new OrdenRepCuerpo;
-  private url="http://localhost:8080/ordecuerpo/api/v1"
+  private url="https://starmotors1.herokuapp.com/ordecuerpo/api/v1"
   httpClient: any;
   API_SERVER: string | undefined;
   constructor(private http:HttpClient) { }
@@ -32,7 +32,12 @@ export class OrdenRepCuerpServiceService {
 
   public getAll(): Observable<any>{
     return this.httpClient.get(this.API_SERVER+"all");
-
   }
+
+  getEstado(estado:any):Observable<any>{
+    return this.http.get(`${this.url}/est/${estado}`)
+  }
+  
+  
 }
 

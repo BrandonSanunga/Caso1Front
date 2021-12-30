@@ -1,105 +1,31 @@
 <br>
 <h1 class="display-4 text-center my-5">CATALOGO DE VEHICULOS</h1>
 <br>
-<button class="btnadmin btn-primary" (click)="verCatalogo()" style="text-transform:uppercase;">
-  <i class="fa fa-pencil" aria-hidden="true"></i> administrar catalogo</button>
+<button class="btnadmin btn-primary" (click)="verCatalogo()" style="text-transform:uppercase;" *ngIf="(auth.isAuthenticated$ | async)">
+  <i class="fa fa-pencil" aria-hidden="true" ></i> administrar catalogo</button>
 <br>
 <div class="contAutos">
-  <div class="card-group mt-3" *ngFor="let item of catalogoList">
-    <div class="cards">
-     <!--<label type="text" class="form-control" id="name" [(ngModel)]="imageName"
+    <div class="card-group mt-3" *ngFor="let item of catalogoList">
+        <div class="cards">
+            <!--<label type="text" class="form-control" id="name" [(ngModel)]="imageName"
           name="name" [textContent]="item.links_imagen.name"></label>-->
-      <div class="imagecontainer" >
-        <img [src]="item.links_imagen"  height="200" width="330"
-          style="margin-left: auto;margin-right: auto;">
-          <label>{{item.links_imagen.name}}</label>
-      </div>
-      <div class="card-body">
-        <i class="fa fa-car" aria-hidden="true"></i>
-        <h2 class="card-title" style="text-transform:capitalize;">{{item.diseno.marca}}, {{item.diseno.modelo}}
-        </h2>
+            <div class="imagecontainer">
+                <img [src]="item.links_imagen" height="200" width="330" class="imagenAuto">
+                <label>{{item.links_imagen.name}}</label>
+            </div>
+            <div class="card-body">
+                <i class="fa fa-car" aria-hidden="true"></i>
+                <h2 class="card-title" style="text-transform:capitalize;">{{item.diseno.marca}}, {{item.diseno.modelo}}
+                </h2>
 
-        <h3 class="card-text">Año: {{item.year_vehiculo}}</h3>
-        <h3 class="card-text"> Motor: {{item.caracteristica.motor}}</h3>
-      </div>
-      <div class="card-footer">
-        <h4 class="card-text">Seguridad: {{item.caracteristica.seguridad}}</h4>
-        <h4 class="card-text">Tecnologia: {{item.caracteristica.tecnologia}}</h4>
-        <br>
-        <buton class="btn btn-primary" routerLink="/cotizacion">Cotizar</buton>
-      </div>
+                <h3 class="card-text">Año: {{item.year_vehiculo}}</h3>
+                <h3 class="card-text"> Motor: {{item.caracteristica.motor}}</h3>
+            </div>
+            <div class="card-footer">
+                <h4 class="card-text">Seguridad: {{item.caracteristica.seguridad}}</h4>
+                <h4 class="card-text">Tecnologia: {{item.caracteristica.tecnologia}}</h4>
+                <br>
+                <button class="btn btn-primary" (click)="alerta()">Cotizar</button>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<!--
-<div style="text-align:center">
-  <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
-  <div><img [src]="url" *ngIf="url"></div>
-  <p>
-    <input type="file" (change)="selectFile($event)">
-  </p>
-</div>-->
-<!--<div class="facturarepuesto2">
-  <div class="card">
-    <form [formGroup]="catalogoform" (ngSubmit)="guardarCatalogo()">
-      <h3 class="card-title" style="text-align: center; font-style: bold;">INGRESAR NUEVO CATALOGO</h3>
-      <div>
-        <label style="text-align: center;text-transform:uppercase;">diseño de vehiculo</label>
-        <select name="diseno" id="diseno" formControlName="diseno" class="form-control">
-          <option [ngValue]="diseno" *ngFor="let diseno of DisenoList">{{diseno.id_diseno}}</option>
-        </select>
-        <br>
-        <label style="text-align: center;text-transform:uppercase;"> año del vehiculo</label>
-        <input type="number" formControlName="year_vehiculo" class="form-control" min="1999" max="2021"
-          placeholder="Ejm: 2015">
-        <br>
-        <label style="text-align: center;text-transform:uppercase;">fk id caracteristicas</label>
-        <select name="caracteristica" id="caracteristica" formControlName="caracteristica" class="form-control">
-          <option [ngValue]="caracteristica" *ngFor="let caracteristica of caracteristicaList">
-            {{caracteristica.id_caracteristica}}</option>
-        </select>
-        <br>
-        <label style="text-align: center;text-transform:uppercase;">imagen del vehiculo</label>
-        <input type="text" formControlName="links_imagen" class="form-control">
-        <br>
-        <button type="submit" class="btn btn-success" [disabled]="catalogoform.invalid">GUARDAR</button>
-      </div>
-    </form>
-  </div>
-</div>
-<br><br>
-
-<h3 class="card-title" style="text-align: center;">LISTADO DE CATALOGOS</h3>
-<div class="facturarepuesto">
-
-
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th style="text-align: center;text-transform:uppercase;"> vehiculo </th>
-        <th style="text-align: center;text-transform:uppercase;"> marca </th>
-        <th style="text-align: center;text-transform:uppercase;"> modelo </th>
-        <th style="text-align: center;text-transform:uppercase;"> año del vehiculo </th>
-        <th style="text-align: center;text-transform:uppercase;"> caracteristicas </th>
-        <th style="text-align: center;text-transform:uppercase;"> imagen del vehiculo </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let catalogo of catalogoList">
-        <td style="text-align: center;text-transform:uppercase;">{{catalogo.id_vehiculo_catalogo}}</td>
-        <td style="text-align: center;text-transform:uppercase;">{{catalogo.diseno.marca}}</td>
-        <td style="text-align: center;text-transform:uppercase;">{{catalogo.diseno.modelo}}</td>
-        <td style="text-align: center;text-transform:uppercase;">{{catalogo.year_vehiculo}} </td>
-        <td style="text-align: center;text-transform:uppercase;">{{catalogo.caracteristica.id_caracteristica}} </td>
-        <td style="text-align: center;text-transform:uppercase;">{{catalogo.links_imagen}}</td>
-        <br>
-        <br>
-        <td><button type="submit" class="btneditar btn-warning" (click)="editarCatalogo(catalogo)">Editar</button>
-          <br>
-          <br>
-          <button type="submit" class="btneliminar btn-danger" (click)="eliminarCatalogo(catalogo)">Eliminar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table></div>
--->

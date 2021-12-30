@@ -8,7 +8,7 @@ import { Clientes } from 'src/app/modelos/clientes';
   providedIn: 'root'
 })
 export class ClienteService {
-  private API_SEVER = "http://localhost:8080/cliente/api/v1";
+  private API_SEVER = "https://starmotors1.herokuapp.com/cliente/api/v1";
 
   constructor(
      private httpClient: HttpClient

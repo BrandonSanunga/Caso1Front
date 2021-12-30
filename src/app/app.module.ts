@@ -53,6 +53,7 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { PdfMakeWrapper } from "pdfmake-wrapper";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { EmailComponent } from './components/informe-reclamo/dialogos/email/email.component';
+import { AuthModule } from '@auth0/auth0-angular';
 
 // If any issue using previous fonts import. you can try this:
 // import pdfFonts from "pdfmake/build/vfs_fonts";
@@ -117,6 +118,12 @@ PdfMakeWrapper.setFonts(pdfFonts);
     MatInputModule,
     NgSelectModule,
     MatFormFieldModule,
+    AuthModule.forRoot({
+      domain: 'dev-3bj0gy9j.us.auth0.com',
+      clientId: 'm0RhDC4JPYapBUVh2v2lgAWYUxWwLHOv',
+      cacheLocation: 'localstorage',
+      useRefreshTokens: true
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

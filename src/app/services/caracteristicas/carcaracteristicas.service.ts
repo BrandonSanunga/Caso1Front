@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CarcaracteristicasService {
-  private API_SERVER="http://localhost:8080/caracteristicas/api/v1/"
+  private API_SERVER="https://starmotors1.herokuapp.com/caracteristicas/api/v1/"
   constructor(
     private httpClient: HttpClient
   ) { }

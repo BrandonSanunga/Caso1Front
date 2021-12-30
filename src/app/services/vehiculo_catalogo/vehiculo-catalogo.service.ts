@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class VehiculoCatalogoService {
-  private API_SERVER="http://localhost:8080/vehiculo_catalogo/api/v1/"
+  private API_SERVER="https://starmotors1.herokuapp.com/vehiculo_catalogo/api/v1/"
     constructor(
     private httpClient: HttpClient
   ) { }

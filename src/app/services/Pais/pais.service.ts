@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PaisService {
-  private API_SEVER = "http://localhost:8080/pais/api/v1/all";
+  private API_SEVER = "https://starmotors1.herokuapp.com/pais/api/v1/all";
 
   constructor(private httpClient: HttpClient) { }
 

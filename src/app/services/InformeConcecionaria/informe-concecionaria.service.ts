@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class InformeConcecionariaService {
 
-  private API_SEVER = "http://localhost:8080/informeC/api/v1/";
+  private API_SEVER = "https://starmotors1.herokuapp.com/informeC/api/v1/";
 
 
   constructor(private httpClient: HttpClient) { }

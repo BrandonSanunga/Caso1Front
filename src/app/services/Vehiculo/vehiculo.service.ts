@@ -18,7 +18,7 @@ export class VehiculoService {
     return this.httpClient.get(this.API_SEVER+"all");
 
   }
-  
+
   public create(Vehiculo: any): Observable<any>{
     return this.httpClient.post<any>(this.API_SERVER,Vehiculo);
   }
@@ -32,6 +32,6 @@ export class VehiculoService {
   getEstado(estado:any):Observable<any>{
     return this.httpClient.get<any>(this.API_SEVER+"est/"+estado);
   }
-  
+
 
 }

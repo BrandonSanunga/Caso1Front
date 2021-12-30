@@ -14,6 +14,10 @@ export class FormGarantiaVehiculoComponent implements OnInit {
   garantiavehiculo:any=[];
   garantia:any={detallegarantia:[]};
   detallegarantia:any=[]
+  estado:any =true;
+  res!:any;
+  Vehiculoform!: FormGroup;
+
 
 
   constructor(private servicioG:GarantiaVehiculoService,
@@ -22,9 +26,11 @@ export class FormGarantiaVehiculoComponent implements OnInit {
 
   ngOnInit(): void {
  
+ 
   }
   agregarD(){
     this.garantia.detallegarantia.push({});
+    this.res=this.estado;
   
   }
   guardar(){
@@ -48,7 +54,7 @@ export class FormGarantiaVehiculoComponent implements OnInit {
         'Content-Tipe':'application/json'
       })
     }
-    return this.http.post<any>("http://localhost:8080/garantia/api/v1/save",this.garantia,httpo)
+    return this.http.post<any>("https://starmotors1.herokuapp.com/garantia/api/v1/save",this.garantia,httpo)
   }
   eliminarG(garantiavehiculo:any){
     this.servicioG.delete(garantiavehiculo.idGarantia).subscribe( 

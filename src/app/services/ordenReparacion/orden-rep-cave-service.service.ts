@@ -11,7 +11,7 @@ export class OrdenRepCaveServiceService {
   reset() {
     throw new Error('Method not implemented.');
   }
-  private url="http://localhost:8080/ /ordencave/api/v1"
+  private url="https://starmotors1.herokuapp.com/ordencave/api/v1"
 constructor(private  http:HttpClient) { }
 
   buscarId(id:any):Observable<any>{
