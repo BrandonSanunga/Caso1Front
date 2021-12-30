@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InformeReclamoTallerService } from 'src/app/services/informeReclamo/informe-reclamo-services.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-email',
@@ -24,7 +25,8 @@ export class EmailComponent implements OnInit {
   }
   enviarCorreo(){
      this.informeRelcamoService.enviarCorreo(this.encavezado,this.descripcion,this.correo).subscribe(data=>{
-      alert("Mensaje enviado")
+      Swal.fire("CORREO ENVIADO", "El correo se envió con exito!", "success");
+      //alert("Mensaje enviado")
       this.encavezado=""
       this.descripcion=""
      })

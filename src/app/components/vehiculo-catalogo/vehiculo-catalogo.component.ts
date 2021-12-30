@@ -10,6 +10,7 @@ import { async } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImagenCatalogoService } from 'src/app/services/ImagenCatalogo/imagen-catalogo.service';
 import { AuthService } from '@auth0/auth0-angular';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-vehiculo-catalogo',
@@ -29,7 +30,7 @@ export class VehiculoCatalogoComponent implements OnInit {
   retrievedImage: any;
   base64Data: any;
   retrieveResonse: any;
-  imageDirectory: any= "http://localhost:8080/imagencatalogo/api/v1/get/";
+  imageDirectory: any= "https://starmotors1.herokuapp.com/imagencatalogo/api/v1/get/";
   imageName: any;
   public archivos: any= [];
   public previsualizacion!: String;
@@ -86,4 +87,8 @@ export class VehiculoCatalogoComponent implements OnInit {
   verCatalogo(){
     this.root.navigate(['catalogo/admin'])
 
-  }}
+  }
+  alerta(){
+    Swal.fire("Cotización", "para cotizar descarge laaplicación móvil en el siguiente link https://starmotors1.herokuapp.com/swagger-ui.html#/", "success");
+  }
+}
