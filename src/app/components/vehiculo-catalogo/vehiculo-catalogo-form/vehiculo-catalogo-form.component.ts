@@ -6,9 +6,12 @@ import { DisenoService } from 'src/app/services/diseno/diseno.service';
 import { VehiculoCatalogoService } from 'src/app/services/vehiculo_catalogo/vehiculo-catalogo.service';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
-import { AgregarimagenComponent } from './agregarimagen/agregarimagen.component';
-import { ImagenCatalogoService } from 'src/app/services/ImagenCatalogo/imagen-catalogo.service';
+//import { CaracteristicasVehiculoComponent } from '../../caracteristicas-vehiculo/caracteristicas-vehiculo.component';
+
+//import { AgregarimagenComponent } from './agregarimagen/agregarimagen.component';
+//import { ImagenCatalogoService } from 'src/app/services/ImagenCatalogo/imagen-catalogo.service';
 import Swal from "sweetalert2";
+import { CaracteristicasVehiculoComponent } from '../../caracteristicas-vehiculo/caracteristicas-vehiculo.component';
 
 
 @Component({
@@ -24,6 +27,7 @@ export class VehiculoCatalogoFormComponent implements OnInit {
   imagenList: any;
   caracteristicaList: any;
   imagen: any;
+  caracteristicas: any;
   retrievedImage: any;
   base64Data: any;
   retrieveResonse: any;
@@ -38,7 +42,7 @@ export class VehiculoCatalogoFormComponent implements OnInit {
     public root: Router,
     public dialog: MatDialog,
     public caracteristicasservice: CarcaracteristicasService,
-    public imagenservice: ImagenCatalogoService,
+    //public imagenservice: ImagenCatalogoService,
     private httpClient: HttpClient,
 
   ) { }
@@ -51,26 +55,33 @@ export class VehiculoCatalogoFormComponent implements OnInit {
       caracteristica: ['', Validators.required],
       links_imagen: ['', Validators.required],
     });
+    this.getDisenos();
+    this.getCaracteristicas();
+    this.getCatalogo();
+  }
+
+
+  getDisenos() {
     this.disenoService.getAllDisenos().subscribe(resp => {
       this.DisenoList = resp;
       //console.log(resp);
     },
       error => { console.error(console.error) });
-
+  }
+  getCaracteristicas() {
     this.caracteristicasservice.getAllCaracteristicas().subscribe(resp => {
       this.caracteristicaList = resp;
       //console.log(resp);
     },
       error => { console.error(console.error) });
-
+  }
+  getCatalogo() {
     this.catalogoservice.getAllCatalogo().subscribe(resp => {
       this.catalogoList = resp;
       //console.log(resp);
     },
       error => { console.error(console.error) });
-
   }
-
   guardarCatalogo(): void {
     this.catalogoservice.saveCatalogo(this.catalogoform.value).subscribe(resp => {
       //console.log(resp);
@@ -112,13 +123,23 @@ export class VehiculoCatalogoFormComponent implements OnInit {
     })
 
   }
-  verCatalogo() {
-    this.root.navigate(['/catalogo'])
-  }
-  openDialogVehiculo() {
-    localStorage.setItem("vehiculoDialog",this.imagen)
-    const dialogRef = this.dialog.open(AgregarimagenComponent);
+  verCaracteristicas() {
+    localStorage.setItem("CaracteristicasDialog", this.caracteristicas)
+    const dialogRef = this.dialog.open(CaracteristicasVehiculoComponent, {height: '700px'});
     dialogRef.afterClosed().subscribe(result => {
     });
   }
+
+  verCatalogo() {
+    this.root.navigate(['/catalogo'])
+  }
 }
+  /*
+openDialogVehiculo() {
+  localStorage.setItem("vehiculoDialog",this.imagen)
+  const dialogRef = this.dialog.open(AgregarimagenComponent);
+  dialogRef.afterClosed().subscribe(result => {
+  });
+}
+
+}*/

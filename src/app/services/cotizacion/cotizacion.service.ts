@@ -8,7 +8,7 @@ import { Cotizacion } from "src/app/modelos/cotizacion/cotizacion.model";
   providedIn: "root",
 })
 export class CotizacionService {
-  private API_SEVER = "http://localhost:8080/cotizaciones/api/v1";
+  private API_SEVER = "https://starmotors1.herokuapp.com/cotizaciones/api/v1";
   constructor(private http: HttpClient) {}
 
   crearCotizacion(cotizacion: Cotizacion): Observable<Cotizacion> {

@@ -42,7 +42,7 @@ export class AgregarimagenComponent implements OnInit {
   //seleccionar imagen
   public onFileChanged(event: any) {
     this.selectedFile = event.target.files[0];
-    console.log(this.httpClient.get('http://localhost:8080/imagencatalogo/api/v1/get/' + this.imageName));
+    console.log(this.httpClient.get('https://starmotors1.herokuapp.com/imagencatalogo/api/v1/get/' + this.imageName));
     this.extraerBase64(this.selectedFile ).then((imagen: any) => {
       this.previsualizacion = imagen.base;
       console.log(imagen)
@@ -58,7 +58,7 @@ export class AgregarimagenComponent implements OnInit {
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
     alert("Imagen ( " + this.selectedFile.name + " ) Guardada Correctamente");
     this.dialog.closeAll();
-    this.httpClient.post('http://localhost:8080/imagencatalogo/api/v1/upload', uploadImageData, { observe: 'response' })
+    this.httpClient.post('https://starmotors1.herokuapp.com/imagencatalogo/api/v1/upload', uploadImageData, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           alert("Imagen Guardada Correctamente");
@@ -72,7 +72,7 @@ export class AgregarimagenComponent implements OnInit {
   }
 
   getImage() {
-    this.httpClient.get('http://localhost:8080/imagencatalogo/api/v1/get/' + this.imageName)
+    this.httpClient.get('https://starmotors1.herokuapp.com/imagencatalogo/api/v1/get/' + this.imageName)
       .subscribe(
         res => {
           this.retrieveResonse = res;

@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators';
 export class ImagenCatalogoService {
 
 
-  private API_SERVER="http://localhost:8080/imagencatalogo/api/v1/"
+  private API_SERVER="https://starmotors1.herokuapp.com/imagencatalogo/api/v1/"
   constructor(
     private httpClient: HttpClient
   ) { }

@@ -54,7 +54,7 @@ export class FormGarantiaVehiculoComponent implements OnInit {
         'Content-Tipe':'application/json'
       })
     }
-    return this.http.post<any>("http://localhost:8080/garantia/api/v1/save",this.garantia,httpo)
+    return this.http.post<any>("https://starmotors1.herokuapp.com/garantia/api/v1/save",this.garantia,httpo)
   }
   eliminarG(garantiavehiculo:any){
     this.servicioG.delete(garantiavehiculo.idGarantia).subscribe( 

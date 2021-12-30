@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DisenoService {
-  private API_SERVER="http://localhost:8080/diseno/api/v1/"
+  private API_SERVER="https://starmotors1.herokuapp.com/diseno/api/v1/"
   constructor(
     private httpClient: HttpClient
   ) { }

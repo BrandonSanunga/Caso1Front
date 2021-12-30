@@ -53,7 +53,7 @@ export class RepuestosComponent implements OnInit {
         '¡Repuesto ' +resp.nombre_repuesto+ ' agregado con exito!',
         "success"
       );
-      //console.log(resp);
+      console.log(resp);
     }
       ,
       error => { console.error(console.error) })

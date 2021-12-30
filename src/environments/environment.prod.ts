@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  urlBase: 'http://localhost:8080/',
+  urlBase: 'https://starmotors1.herokuapp.com/',
 };

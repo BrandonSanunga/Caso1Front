@@ -8,8 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class GarantiaVehiculoService {
-  private API_SEVER = "http://localhost:8080/garantia/api/v1/";
-  private API = "http://localhost:8080/detalleg/api/v1/";
+  private API_SEVER = "https://starmotors1.herokuapp.com/garantia/api/v1/";
+  private API = "https://starmotors1.herokuapp.com/detalleg/api/v1/";
 
   constructor(private httpClient: HttpClient) { }
 
