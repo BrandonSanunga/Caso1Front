@@ -8,6 +8,7 @@ import { InformeReclamo } from 'src/app/modelos/iforme-reclamo';
 })
 export class InformeReclamoTallerService {
   private URL='https://starmotors1.herokuapp.com/inforech/api/v1'
+  //private URL='http://localhost:8080/inforech/api/v1'
   constructor(private http:HttpClient) { }
 
   postInforme(informeReclamo:InformeReclamo):Observable<any>{

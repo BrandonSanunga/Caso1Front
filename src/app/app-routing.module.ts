@@ -27,6 +27,7 @@ import { ListaEntregarRepuestosComponent } from "./components/lista-entregar-rep
 import { AddCotizacionComponent } from "./components/cotizacion/add-cotizacion/add-cotizacion.component";
 import { ListCotizacionComponent } from "./components/cotizacion/list-cotizacion/list-cotizacion.component";
 import { AuthGuard } from "./guards/auth.guard";
+import { FacturaReparacionComponent } from "./components/factura-reparacion/factura-reparacion.component";
 
 
 const routes: Routes = [
@@ -37,12 +38,13 @@ const routes: Routes = [
   { path: "inspeccion", component: InspeccionComponent },
   { path: "orden-reparacion", component: OrdenReparacionComponent },
   { path: "factura", component: FacturacliComponent },
+  { path: "factura-reparacion", component: FacturaReparacionComponent },
   { path: "factura/:idc", component: FacturacliComponent },
   { path: "facturas", component: DetallefacliComponent },
   { path: "cotizacion", component: AddCotizacionComponent },
   { path: "cotizacion/:id", component: AddCotizacionComponent },
   { path: "cotizaciones", component: ListCotizacionComponent },
-  { path: "solicitud/garantia", component: SoligarantiaComponent, canActivate:[AuthGuard]},
+  { path: "solicitud/garantia", component: SoligarantiaComponent},
   { path: "taller", component: TallerComponent },
   { path: "taller/orden/:id", component: InformeReparacionComponent },
   { path: "taller/repuestoAgregado", component: RepuestoAgregadoComponent },
