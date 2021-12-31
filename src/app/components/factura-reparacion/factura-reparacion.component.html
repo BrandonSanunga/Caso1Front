@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-body">
+            <h3 class="card-title text-center">FACTURAS DE REPARACION</h3>
+            <hr />
+        <div
+            class="alert alert-info text-center"
+            *ngIf="facturasReparacion?.length == 0"
+        >
+            NO HAY DATOS DISPONIBLES
+          </div>
+
+          <table
+            class="
+              table table-bordered table-responsive-sm table-sm
+              text-center
+            "
+            *ngIf="facturasReparacion!.length > 0"
+          >
+            <thead class="bg-pri white">
+              <tr>
+                <th>CLIENTE</th>
+                <th>DESCRIPCION</th>
+                <th>PORCENTAJE</th>
+                <th>TOTAL</th>
+                <th>EXPORTAR</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let factura of facturasReparacion">
+                    <td>
+                        <select [(ngModel)]="cliente">
+                            <option [ngValue]="" disabled>Seleccionar cliente</option>
+                            <option *ngFor="let cliente of clientes" [ngValue]="cliente.clienteObject.nombres">{{cliente.clienteObject.nombres}}</option>
+                        </select>
+                    </td>
+                    <td>{{ factura.descricion}}</td>
+                    <td>{{ factura.porcentaje}} %</td>
+                    <td>$ {{ factura.total | number}}</td>
+                    <td>
+                        <button [disabled]="cliente.invalid" class="btn btn-success" (click)="reclamoPDF(factura)">PDF</button>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
