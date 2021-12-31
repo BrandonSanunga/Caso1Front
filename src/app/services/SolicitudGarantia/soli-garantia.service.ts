@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SoliGarantiaService {
-  private API_SEVER = "https://starmotors1.herokuapp.com/solicitud/garantia/api/v1/";
+  private API_SEVER = "http://localhost:8080/solicitud/garantia/api/v1/";
 
   constructor(
     private httpClient: HttpClient
@@ -35,5 +35,9 @@ export class SoliGarantiaService {
 
   public getSoliGarantiaByID(id:any):Observable<any>{
     return this.httpClient.get(this.API_SEVER+"find/"+id);
+  }
+
+  public reporteFactura(inicio:any,fin:any):Observable<any>{
+    return this.httpClient.get(this.API_SEVER+"facturas/"+inicio+"/"+fin);
   }
 }
