@@ -31,6 +31,7 @@ export class InspeccionComponent implements OnInit {
   ngOnInit(): void {
     this.vervehiculo()
     this.cargaInspeccion()
+  this.optenerInforme()
   }
 
   cargaInspeccion(){
@@ -38,6 +39,7 @@ export class InspeccionComponent implements OnInit {
     this.inspeServiceCave.all().subscribe(data=>{
        if(data!=null){
       for(let i of data){
+        console.log(i)
         if(i.informeReclamo.idinformeRecha==id){
           this.inspeccionCave=i
           this.inspeServiceCuerpo.all().subscribe(data=>{
@@ -59,7 +61,7 @@ export class InspeccionComponent implements OnInit {
     if(data!=null){
       if(this.inspeccionCuerpos!=null)
           {
-            document.getElementById("btnGuardar")?.remove()
+          //  document.getElementById("btnGuardar")?.remove()
           }
     }else{
           document.getElementById("idbtnActualizar")?.remove()
@@ -80,6 +82,7 @@ export class InspeccionComponent implements OnInit {
   optenerInforme(){
     var id=localStorage.getItem("idInformeReclamo")
     this.informeService.getById(id).subscribe(data=>{
+
       this.cliente.cedulaClient=data.client.cedulaClient;
       this.cliente.celularClient=data.client.celularClient;
       this.cliente.direccionClient=data.client.direccionClient;

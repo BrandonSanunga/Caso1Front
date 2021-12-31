@@ -9,8 +9,8 @@ import { OrdenRepCuerpo } from 'src/app/modelos/ordenReclamo/orden-rep-cuerpo';
 })
 export class OrdenRepCuerpServiceService {
 
-  //private API_SERVER="https://starmotors1.herokuapp.com/ordecuerpo/api/v1/"
-  private API_SERVER="http://localhost:8080/ordecuerpo/api/v1/"
+  private API_SERVER="https://starmotors1.herokuapp.com/ordecuerpo/api/v1/"
+  //private API_SERVER="http://localhost:8080/ordecuerpo/api/v1/"
 
   constructor(
     private httpClient: HttpClient

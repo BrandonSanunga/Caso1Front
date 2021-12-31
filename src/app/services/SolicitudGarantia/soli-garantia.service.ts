@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SoliGarantiaService {
-  private API_SEVER = "http://localhost:8080/solicitud/garantia/api/v1/";
+  private API_SEVER = "https://starmotors1.herokuapp.com/solicitud/garantia/api/v1/";
 
   constructor(
     private httpClient: HttpClient

@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class VehiculoService {
-  private API_SEVER = "http://localhost:8080/vehiculo/api/v1/";
-  private API_SERVER = "http://localhost:8080/vehiculo/api/v1/save";
+  private API_SEVER = "https://starmotors1.herokuapp.com/vehiculo/api/v1/";
+  private API_SERVER = "https://starmotors1.herokuapp.com/vehiculo/api/v1/save";
 
   constructor(
      private httpClient: HttpClient
