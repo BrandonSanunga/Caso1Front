@@ -10,7 +10,7 @@ import { OrdenRepCuerpo } from 'src/app/modelos/ordenReclamo/orden-rep-cuerpo';
 export class OrdenRepCuerpServiceService {
 
   private API_SERVER="https://starmotors1.herokuapp.com/ordecuerpo/api/v1/"
-  //private API_SERVER="http://localhost:8080/ordecuerpo/api/v1/"
+ //private API_SERVER="http://localhost:8080/ordecuerpo/api/v1/"
 
   constructor(
     private httpClient: HttpClient
@@ -21,7 +21,7 @@ export class OrdenRepCuerpServiceService {
 
   }
   public saveOrdenCuerpo(OrdenRepCuerpo: any): Observable<any>{
-    return this.httpClient.post(this.API_SERVER+"save",OrdenRepCuerpo);
+    return this.httpClient.post(this.API_SERVER+"save/",OrdenRepCuerpo);
   }
   public delete(id: any):Observable<any>{
     return this.httpClient.delete(this.API_SERVER+"delete/"+id)

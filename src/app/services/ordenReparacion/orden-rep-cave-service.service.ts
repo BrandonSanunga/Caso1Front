@@ -19,8 +19,8 @@ export class OrdenRepCaveServiceService {
     return this.httpClient.get(this.API_SERVER+"all");
 
   }
-  public saveOrdenRep(ordenCabReparacion: any): Observable<any>{
-    return this.httpClient.post(this.API_SERVER+"save",ordenCabReparacion);
+  public saveOrdenRep(ordenCabReparacion: any,id:any): Observable<any>{
+    return this.httpClient.post(this.API_SERVER+`save/${id}`,ordenCabReparacion);
   }
   public delete(id: any):Observable<any>{
     return this.httpClient.delete(this.API_SERVER+"delete/"+id)

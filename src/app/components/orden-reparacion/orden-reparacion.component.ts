@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 })
 export class OrdenReparacionComponent implements OnInit {
   inspeCuerpo: any;
+  idinspeCuerpo:any;
+  idordencavecera:any="1";
   ordenCabeceraList: any;
   OrdenCuerpoList: any;
   InspeccionList: any;
@@ -82,7 +84,7 @@ export class OrdenReparacionComponent implements OnInit {
 
   guardar(){
     this.guardarCabecera();
-    //this.guardarOrdenCuerpo();
+    this.guardarOrdenCuerpo();
     Swal.fire(
       "Nueva Orden Reparacion",
       'Orden Reparacion Guardada con exito!',
@@ -90,7 +92,8 @@ export class OrdenReparacionComponent implements OnInit {
   );
   }
   guardarCabecera(): void {
-    this.ordenCabeceraService.saveOrdenRep(this.OrdenRepCabeceraForm.value).subscribe(resp => {
+   // var idinspeccion = localStorage.setItem("inspeccionid")
+    this.ordenCabeceraService.saveOrdenRep(this.OrdenRepCabeceraForm.value,21).subscribe(resp => {
       this.OrdenRepCabeceraForm.reset();
       this.ordenCabeceraList=this.ordenCabeceraList.filter((ordenCa:{ idordenCave: any; }) => resp.idordenCave ==ordenCa.idordenCave);
       this.ordenCabeceraList.push(resp);
@@ -143,7 +146,16 @@ export class OrdenReparacionComponent implements OnInit {
       error => { console.error(console.error) });
   }
   guardarOrdenCuerpo(): void {
+   /* var idinspeccion = "localestorage"
+    this.ordenCabeceraService.getAllOrdenRep().subscribe(data=>{
+      for(let i of data){
+        if(i.inspeCuerpo.idinspecuerpo == idinspeccion){
+          this.idordencavecera = i.ordenRepCavecera
+        }
+      }
+    }) */
     this.OrdenCuerpoService.saveOrdenCuerpo(this.OrdenRepCuerpoForm.value).subscribe(resp => {
+      console.log(resp)
       this.OrdenCuerpoList.reset();
       this.OrdenCuerpoList=this.ordenCabeceraList.filter((ordenCa:{ idordenCave: any; }) => resp.idordenCave ==ordenCa.idordenCave);
       this.OrdenCuerpoList.push(resp);
