@@ -44,7 +44,7 @@ const routes: Routes = [
   { path: "cotizacion", component: AddCotizacionComponent },
   { path: "cotizacion/:id", component: AddCotizacionComponent },
   { path: "cotizaciones", component: ListCotizacionComponent },
-  { path: "solicitud/garantia", component: SoligarantiaComponent, canActivate:[AuthGuard]},
+  { path: "solicitud/garantia", component: SoligarantiaComponent},
   { path: "taller", component: TallerComponent },
   { path: "taller/orden/:id", component: InformeReparacionComponent },
   { path: "taller/repuestoAgregado", component: RepuestoAgregadoComponent },

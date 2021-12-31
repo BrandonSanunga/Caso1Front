@@ -47,6 +47,56 @@
     </div>
 </div>
 
+<div class="container" style="padding-top: 5%;">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">REPORTE DE FACTURAS</h3>
+
+                <label>DESDE:</label>
+                <input [(ngModel)]="desde" type="date">
+
+                <label style="padding-left: 20%;">HASTA:</label>
+                <input [(ngModel)]="hasta" type="date" id="hasta">
+
+                <button class="btn btn-primary" (click)="reporte()" *ngIf="hasta && desde">VER REPORTE</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="padding-top: 5%;">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">MOSTRAR REPORTE DE FACTURAS</h3>
+
+                <table class="table table-bordered table-responsive-sm table-sm
+                text-center">
+                    <thead>
+                        <tr>
+                            <th>#FACTURA</th>
+                            <th>DETALLE</th>
+                            <th>CLIENTE</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let solicitud of facturasReportList">
+                            <td>{{solicitud.id}}</td>
+                            <td>{{solicitud.descripcion}}</td>
+                            <td>{{solicitud.cliente.nombresClient}}</td>
+                            <td>{{solicitud.total}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--
 <div class="container">
     <form [formGroup]="solGarantiaForm" (ngSubmit)="guardarSolicitud()">

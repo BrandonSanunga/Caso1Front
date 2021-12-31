@@ -149,7 +149,7 @@ export class InformeReclamoComponent implements OnInit {
         this.informeReclamomodelo.client=this.cliente;
          this.informeReclamomodelo.descripcionInforme=this.reclamo2?.fk_id_solicitud?.descripcion;
          this.informeReclamomodelo.reclamogarantia=this.reclamo2
-        // this.informeReclamomodelo.respuestaCliente=
+         this.informeReclamomodelo.respuestaCliente="sn"
          this.informeReclamomodelo.tipoInforme="Aceptado";
          this.informeReclamomodelo.fechaEmicion=fecha;
          this.informeReclamoSerivce.postInforme(this.informeReclamomodelo).subscribe(data=>{
