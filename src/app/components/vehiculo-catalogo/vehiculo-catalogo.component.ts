@@ -6,7 +6,6 @@ import { DisenoService } from 'src/app/services/diseno/diseno.service';
 import { VehiculoCatalogoService } from 'src/app/services/vehiculo_catalogo/vehiculo-catalogo.service';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
-import { async } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImagenCatalogoService } from 'src/app/services/ImagenCatalogo/imagen-catalogo.service';
 import { AuthService } from '@auth0/auth0-angular';
@@ -89,6 +88,10 @@ export class VehiculoCatalogoComponent implements OnInit {
 
   }
   alerta(){
-    Swal.fire("Cotización", "para cotizar descarge laaplicación móvil en el siguiente link https://starmotors1.herokuapp.com/swagger-ui.html#/", "success");
+    Swal.fire({
+      title:"Cotización",
+      html:'<label>Para visualizar la cotizacion. Se debe descargar la aplicacion desde el siguiente enlace. </label> <br><br> <a href=" https://drive.google.com/drive/folders/1jWDry9bqhCERG8shZaenvz0wp0NHYj0L"> Descargar la aplicacion</a> ',
+      icon: "info"
+    })
   }
 }

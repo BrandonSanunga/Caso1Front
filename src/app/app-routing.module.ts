@@ -58,10 +58,7 @@ const routes: Routes = [
   { path: "reclamo-garantia", component: ReclamoGarantiaComponent},
   { path: "catalogo/admin", component: VehiculoCatalogoFormComponent, canActivate:[AuthGuard] },
   { path: "formVehiculo", component: FormVehiculoComponent },
-  {
-    path: "lista-entregar-repuestos",
-    component: ListaEntregarRepuestosComponent,
-  },
+  { path: "lista-entregar-repuestos",component: ListaEntregarRepuestosComponent},
   { path: "**", pathMatch: "full", redirectTo:"catalogo"},
 ];
 
