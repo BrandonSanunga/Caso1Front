@@ -51,13 +51,23 @@ export class ListaReclamoComponent implements OnInit {
     return datosTabla.map((row:any) => [row.idinformeRecha,row.fechaEmicion.substring(0,10),row.client.cedulaClient,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.year_vehiculo,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.pais.nombre,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.color,row.tipoInforme,row.respuestaCliente]);
   }
   async generaraPDF(){
+    console.log(this.listaInforme)
     const pdf = new PdfMakeWrapper();
-    pdf.pageOrientation('landscape')
-    pdf.pageSize('A4')
-    pdf.add(pdf.ln(2))
-    pdf.add(new Txt(this.tipoReportetitle).bold().italics().alignment('center').end);
-    pdf.add(pdf.ln(2))
-    pdf.add(new Table([
+    pdf.info({
+      title: 'Reclamo de Garantía',
+      author: 'StarMotors',
+      subject: 'Vista PDF de un reclamo realizado',
+  });
+
+    pdf.pageSize('A4');
+    pdf.pageOrientation('landscape');
+    pdf.add(
+      new Txt(this.tipoReportetitle).alignment('center').color('red').bold().fontSize(30).italics().end
+    )
+    pdf.add(
+      pdf.ln(1)
+    )
+   pdf.add(new Table([
       ['id','Fecha','Cliente', 'Marca', 'Modelo', 'Año de fabricación','Pais de origen','Color','Tipo Informe',' Respuesta Cliente '],
       ]).widths(['*','*','*','*','*','*','*','*','*','*']).layout(
         {
@@ -69,7 +79,8 @@ export class ListaReclamoComponent implements OnInit {
       pdf.add(new Table([
         ...this.extractData(this.listaInforme)
       ]).widths('*').end)
-  pdf.create().open();
+      pdf.watermark(new Txt('StarMotors').color('#ff7979').alignment('center').fontSize(40).end);
+      pdf.create().open();
   console.log(pdf)
   }
   filtroreclamo(){
