@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { InformeReclamo } from 'src/app/modelos/iforme-reclamo';
 import { InformeReclamoTallerService } from 'src/app/services/informeReclamo/informe-reclamo-services.service';
 import { ReclamoGarantiaService } from 'src/app/services/ReclamoGarantia/reclamo-garantia.service';
+import Swal from "sweetalert2";
+import { PdfMakeWrapper, Txt, Table } from 'pdfmake-wrapper';
 
 @Component({
   selector: 'app-lista-reclamo',
@@ -36,7 +38,7 @@ export class ListaReclamoComponent implements OnInit {
 
   cantidad:any=[]
   temporal:any=[]
-
+  tipoReportetitle:any="REPORTE GENERAL"
   arr:any=[];
   filtrocantida:any=[]
   constructor(private root:Router, private inforReclamoService:InformeReclamoTallerService, private reclamoservice:ReclamoGarantiaService) { }
@@ -44,6 +46,31 @@ export class ListaReclamoComponent implements OnInit {
   ngOnInit(): void {
     this.CargarTable();
     console.log(this.listaInforme)
+  }
+  extractData(datosTabla:any){
+    return datosTabla.map((row:any) => [row.idinformeRecha,row.fechaEmicion.substring(0,10),row.client.cedulaClient,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.year_vehiculo,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.pais.nombre,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.color,row.tipoInforme,row.respuestaCliente]);
+  }
+  async generaraPDF(){
+    const pdf = new PdfMakeWrapper();
+    pdf.pageOrientation('landscape')
+    pdf.pageSize('A4')
+    pdf.add(pdf.ln(2))
+    pdf.add(new Txt(this.tipoReportetitle).bold().italics().alignment('center').end);
+    pdf.add(pdf.ln(2))
+    pdf.add(new Table([
+      ['id','Fecha','Cliente', 'Marca', 'Modelo', 'Año de fabricación','Pais de origen','Color','Tipo Informe',' Respuesta Cliente '],
+      ]).widths(['*','*','*','*','*','*','*','*','*','*']).layout(
+        {
+          fillColor:(rowIndex?:number, node?:any, columnIndex?:number)=>{
+            return rowIndex ===0 ? '#CCCCCC': '';
+          }
+        }
+      ).end)
+      pdf.add(new Table([
+        ...this.extractData(this.listaInforme)
+      ]).widths('*').end)
+  pdf.create().open();
+  console.log(pdf)
   }
   filtroreclamo(){
     let mayor=[0]
@@ -97,21 +124,63 @@ for(let i of result){
    }
     }
 }
+this.tipoReportetitle="REPORTE RECLAMO"
 this.listaInforme=[]
   this.listaInforme=this.filtrocantida
   var cantidadvehiculo=this.listaInforme.length
   var marcvehiculo=this.listaInforme.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca
-  this.mayorcantida=marcvehiculo
+  this.mayorcantida=cantidadvehiculo
 }
 filtroFecha(){
+  this.tipoReportetitle="REPORTE POR FECHAS"
+  var arrayfech=[]
   if(this.comprobartabla.size>this.listaInforme.size){
     this.CargarTable()
-  }
-  if(this.tipoinformecavehiculo == null && this.marcavehiculo==null && this.modelocavehiculo==null && this.anofabricavehiculo==null && this.paiscavehiculo==null && this.colorcavehiculo==null){
+  }else{
+  if(this.fechainicio == null && this.fechafin==null){
     this.CargarTable()
+  }else if(this.fechainicio!=null && this.fechafin==null){
+    var verprimfech = this.listaInforme
+    this.listaInforme=[]
+    for(let h of verprimfech){
+      var lispinf=h.fechaEmicion
+      if(Date.parse(this.fechainicio)<= Date.parse(lispinf.substring(0,10))){
+        console.log(h.fechaEmicion.substring(0,10))
+        this.listaInforme.push(h)
+      }
+    }
+  }else if(this.fechainicio==null && this.fechafin!=null){
+    var verprimfech2 = this.listaInforme
+    this.listaInforme=[]
+    for(let h of verprimfech2){
+      var lispinf=h.fechaEmicion
+      if(Date.parse(this.fechafin)>= Date.parse(lispinf.substring(0,10))){
+        console.log(h.fechaEmicion.substring(0,10))
+        this.listaInforme.push(h)
+      }
+    }
+  }else if(this.fechainicio!=null && this.fechafin!=null){
+     if(Date.parse(this.fechainicio) >= Date.parse(this.fechafin) ){
+    Swal.fire("Ingreso de fechas incorrecto", "Fechas incorrectas", "error");
+  }else{
+    var verprimfech2 = this.listaInforme
+    this.listaInforme=[]
+    for(let h of verprimfech2){
+      var lispinf=h.fechaEmicion
+      if(Date.parse(this.fechainicio)<= Date.parse(lispinf.substring(0,10)) && Date.parse(this.fechafin)>= Date.parse(lispinf.substring(0,10))){
+        arrayfech.push(h)
+        console.log(h.fechaEmicion.substring(0,10))
+        this.listaInforme.push(h)
+      }
+    }
+  }
   }
 }
+  this.fechafin=null
+  this.fechainicio=null
+}
 filtrovehiculo(){
+  this.tipoReportetitle="REPORTE DE VEHICULOS"
 if(this.comprobartabla.size>this.listaInforme.size){
     this.CargarTable()
   }
@@ -242,6 +311,7 @@ this.inforReclamoService.updateCancelar(id).subscribe(data=>{
 })
 }
 filtroCliente(){
+  this.tipoReportetitle="REPORTE CLIENTE"
   if(this.comprobartabla.size>this.listaInforme.size){
     this.CargarTable()
   }
