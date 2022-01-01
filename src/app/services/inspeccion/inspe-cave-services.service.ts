@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class InspeCaveTallerService {
   private url="https://starmotors1.herokuapp.com/inspecciCave/api/v1"
+  //private url = "http://localhost:8080/inspecciCave/api/v1"
   constructor(private http:HttpClient) { }
 
   buscarId(id:any):Observable<any>{

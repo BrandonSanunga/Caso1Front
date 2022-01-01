@@ -5,6 +5,7 @@ import { InformeReclamoTallerService } from 'src/app/services/informeReclamo/inf
 import { ReclamoGarantiaService } from 'src/app/services/ReclamoGarantia/reclamo-garantia.service';
 import Swal from "sweetalert2";
 import { PdfMakeWrapper, Txt, Table } from 'pdfmake-wrapper';
+import { InspeCuerpoServiceService } from 'src/app/services/inspeccion/inspe-cuerpo-service.service';
 
 @Component({
   selector: 'app-lista-reclamo',
@@ -38,17 +39,35 @@ export class ListaReclamoComponent implements OnInit {
   verResult:any=[]
   verResult2:any=[]
   cambResult2:any=[]
-
+   idinspeccion:any;
   cantidad:any=[]
   temporal:any=[]
   tipoReportetitle:any="REPORTE GENERAL"
   arr:any=[];
   filtrocantida:any=[]
-  constructor(private root:Router, private inforReclamoService:InformeReclamoTallerService, private reclamoservice:ReclamoGarantiaService) { }
+  constructor(private inspeServic:InspeCuerpoServiceService,private root:Router, private inforReclamoService:InformeReclamoTallerService, private reclamoservice:ReclamoGarantiaService) { }
 
   ngOnInit(): void {
     this.CargarTable();
-    //console.log(this.listaInforme)
+    console.log(this.listaInforme)
+  }
+  enviarInspeccion(id:any){
+    this.idinspeccion=null
+    this.inspeServic.all().subscribe(data=>{
+        for(let i of data){
+          var idcompa =i.inspeCavecera.informeReclamo.idinformeRecha
+            if(id==idcompa){
+              this.idinspeccion=i.idinspeCuerpo
+              localStorage.setItem("inspeccionid",this.idinspeccion);
+              console.log(i.idinspeCuerpo)
+            }
+        }
+        if(this.idinspeccion==null){
+          alert("Primero registre la Inspección del Vehiculo")
+        }else{
+          this.root.navigate(["/orden-reparacion"])
+        }
+      })
   }
   extractData(datosTabla:any){
     return datosTabla.map((row:any) => [row.idinformeRecha,row.fechaEmicion.substring(0,10),row.client.cedulaClient,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.year_vehiculo,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.pais.nombre,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.color,row.tipoInforme.substring(0,9),row.respuestaCliente]);

@@ -19,6 +19,7 @@ informereclamo2:InformeReclamo = new InformeReclamo();
   clientes:any
   informeReclamo:any;
   private url="https://starmotors1.herokuapp.com/inspcuerpo/api/v1"
+  //private url = "http://localhost:8080/inspcuerpo/api/v1"
   constructor(private http:HttpClient, private informService:InformeReclamoTallerService) { }
 
   buscarId(id:any):Observable<any>{

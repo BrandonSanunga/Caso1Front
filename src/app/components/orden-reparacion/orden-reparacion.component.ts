@@ -92,8 +92,8 @@ export class OrdenReparacionComponent implements OnInit {
   );
   }
   guardarCabecera(): void {
-   // var idinspeccion = localStorage.setItem("inspeccionid")
-    this.ordenCabeceraService.saveOrdenRep(this.OrdenRepCabeceraForm.value,21).subscribe(resp => {
+   var idinspeccion = localStorage.getItem("inspeccionid")
+    this.ordenCabeceraService.saveOrdenRep(this.OrdenRepCabeceraForm.value,idinspeccion).subscribe(resp => {
       this.OrdenRepCabeceraForm.reset();
       this.ordenCabeceraList=this.ordenCabeceraList.filter((ordenCa:{ idordenCave: any; }) => resp.idordenCave ==ordenCa.idordenCave);
       this.ordenCabeceraList.push(resp);

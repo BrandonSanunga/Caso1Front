@@ -137,6 +137,7 @@
          <th scope="col">Respuesta Cliente</th>
         <th scope="col" >Ver</th>
         <th scope="col">Inspeccion</th>
+        <th scope="col">Orden Reparación</th>
       </tr>
     </thead>
     <tbody id="myTable">
@@ -210,12 +211,21 @@
         </td>
         <td>
           <div class="example-flex-container">
-            <div class="example-button-container">
+            <div class="example-button-container" *ngIf="i.respuestaCliente=='ACEPTADO'">
               <button (click)="abrirInspeccion(i.reclamogarantia?.id_reclamo,i.idinformeRecha)" mat-mini-fab style="background-color: darkgray;">
                 <mat-icon>receipt</mat-icon>
               </button>
             </div>
           </div>
+          </td>
+          <td>
+            <div class="example-flex-container">
+              <div class="example-button-container" *ngIf="i.respuestaCliente=='ACEPTADO'">
+                <button (click)="enviarInspeccion(i.idinformeRecha)" mat-mini-fab style="background-color: darkgray;">
+                  <mat-icon>receipt</mat-icon>
+                </button>
+              </div>
+            </div>
           </td>
       </tr>
        </tbody>

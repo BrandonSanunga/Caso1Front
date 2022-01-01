@@ -8,7 +8,9 @@ import { InformeReclamo } from 'src/app/modelos/iforme-reclamo';
 })
 export class InformeReclamoTallerService {
   private URL='https://starmotors1.herokuapp.com/inforech/api/v1'
+  private URL2='https://starmotors1.herokuapp.com'
   //private URL='http://localhost:8080/inforech/api/v1'
+  //private URL2='http://localhost:8080'
   constructor(private http:HttpClient) { }
 
   postInforme(informeReclamo:InformeReclamo):Observable<any>{
@@ -36,29 +38,29 @@ export class InformeReclamoTallerService {
   }
 
   optenerFactura():Observable<any>{
-    return this.http.get(`https://starmotors1.herokuapp.com/facturas/api/v1/`)
+    return this.http.get(this.URL2+`/facturas/api/v1/`)
   }
 
   optenerVehiculoID(id:any):Observable<any>{
-    return this.http.get(`https://starmotors1.herokuapp.com/vehiculo/api/v1/find/${id}`);
+    return this.http.get(this.URL2+`/vehiculo/api/v1/find/${id}`);
   }
 
   optenerGarantiaID(id:any):Observable<any>{
-    return this.http.get(`https://starmotors1.herokuapp.com/garantia/api/v1/find/${id}`)
+    return this.http.get(this.URL2+`/garantia/api/v1/find/${id}`)
   }
 
   actualizarReclamocliente(id:any):Observable<any>{
-    return this.http.put(`https://starmotors1.herokuapp.com/reclamo/garantia/api/v1/${id}`,null);
+    return this.http.put(this.URL2+`/reclamo/garantia/api/v1/${id}`,null);
   }
 
   optenerRepuestosDetalle():Observable<any>{
-    return this.http.get(`https://starmotors1.herokuapp.com/ordecuerpo/api/v1/getall`);
+    return this.http.get(this.URL2+`/ordecuerpo/api/v1/getall`);
   }
   actualizarestadoRepuesto(id:any):Observable<any>{
-    return this.http.put(`https://starmotors1.herokuapp.com/ordecuerpo/api/v1/updatestadorep/${id}`,null);
+    return this.http.put(this.URL2+`/ordecuerpo/api/v1/updatestadorep/${id}`,null);
   }
   buscarRepuestoid(id:any):Observable<any>{
-    return this.http.get(`https://starmotors1.herokuapp.com/ordecuerpo/api/v1/find/${id}`);
+    return this.http.get(this.URL2+`/ordecuerpo/api/v1/find/${id}`);
   }
   enviarCorreo(cavecera:any,mensaje:any,destinatario:any):Observable<any>{
     return this.http.get(`${this.URL}/email/${cavecera}/${mensaje}/${destinatario}`);
