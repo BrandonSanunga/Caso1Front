@@ -14,7 +14,8 @@ export class ReclamoGarantiaComponent implements OnInit {
   reclamoForm!: FormGroup;
   estado: any;
   reclamoById: any;
-
+  tipoInformes:any;
+  listaconfirm:any=[];
   constructor(
     public fb: FormBuilder,
     public reclamoGarantiaService: ReclamoGarantiaService,
@@ -32,6 +33,7 @@ export class ReclamoGarantiaComponent implements OnInit {
     this.reclamoGarantiaService.getAllReclamos().subscribe(resp => {
       this.reclamosGaranList = resp;
       console.log(resp);
+      this.listaconfirm= this.reclamosGaranList
     },
       error => { console.error(console.error) })
 
@@ -62,7 +64,7 @@ export class ReclamoGarantiaComponent implements OnInit {
       author: 'StarMotors',
       subject: 'Vista PDF de un reclamo realizado',
   });
-  
+
     pdf.pageSize('A4');
     pdf.pageOrientation('landscape');
     pdf.add(
@@ -80,7 +82,7 @@ export class ReclamoGarantiaComponent implements OnInit {
     pdf.add(
       pdf.ln(1)
     )
-    
+
     pdf.add(
       new Columns([
         soli.fecha_reclamo, soli.fk_id_solicitud.fk_chasis_vehiculo.chasis,
@@ -95,5 +97,28 @@ export class ReclamoGarantiaComponent implements OnInit {
     pdf.footer('Este documento sirve para tener de manera física detalles del reclamo ante una solicitud de garantía para su posterior acepación o rechazo. No es necesaria su impresión ni descarga');
     pdf.watermark(new Txt('StarMotors').color('#ff7979').alignment('center').fontSize(40).end);
     pdf.create().open();
+  }
+  filtros(){
+    if(this.reclamosGaranList.length<this.listaconfirm.length){
+      this.reclamoGarantiaService.getAllReclamos().subscribe(resp => {
+        this.reclamosGaranList = resp;
+        console.log(resp);
+      },
+        error => { console.error(console.error) })
+    }
+    var reclamos = this.reclamosGaranList
+    this.reclamosGaranList=[]
+    for(let i of reclamos){
+      if(this.tipoInformes=="true"){
+        if(i.estado_reclamo==true){
+          this.reclamosGaranList.push(i)
+          console.log(this.reclamosGaranList)
+        }
+      }else if(this.tipoInformes=="false"){
+        if(i.estado_reclamo==false){
+          this.reclamosGaranList.push(i)
+        }
+      }
+    }
   }
 }

@@ -4,7 +4,14 @@
 <div class="container" style="text-align: center;">
     <p>La concesionaria solicita que se verifique la documentación necesaria y que se notifique en el menor tiempo posible, tanto a nosotros como al cliente dueño del vehículo para saber si su reclamo aplica o no a una reparación por garantía de compra del
         vehículo. A continuación se listan los reclamos pendientes para su revisión.</p>
-    <table class="table table-bordered">
+        <div class="row">
+        <select class="form-select" [(ngModel)]="tipoInformes" id="respuestaCl" >
+          <option value="true">Pendientes</option>
+          <option value="false">Confirmados</option>
+        </select>
+        <button style="background-color: cornflowerblue;height: 40px;" (click)="filtros()" >BUSCAR</button>
+      </div>
+        <table class="table table-bordered">
         <thead>
             <tr>
                 <th>FECHA</th>
