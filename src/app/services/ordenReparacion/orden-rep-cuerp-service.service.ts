@@ -20,8 +20,8 @@ export class OrdenRepCuerpServiceService {
     return this.httpClient.get(this.API_SERVER+"getall");
 
   }
-  public saveOrdenCuerpo(OrdenRepCuerpo: any): Observable<any>{
-    return this.httpClient.post(this.API_SERVER+"save/",OrdenRepCuerpo);
+  public saveOrdenCuerpo(trabajoSolicitado:any,trabajoRealizar:any,observaciones:any,imagenes:any,estadoOrden:any,inspeccion:any): Observable<any>{
+    return this.httpClient.post(this.API_SERVER+`save/${trabajoSolicitado}/${trabajoRealizar}/${observaciones}/${imagenes}/${estadoOrden}/${inspeccion}`,null);
   }
   public delete(id: any):Observable<any>{
     return this.httpClient.delete(this.API_SERVER+"delete/"+id)

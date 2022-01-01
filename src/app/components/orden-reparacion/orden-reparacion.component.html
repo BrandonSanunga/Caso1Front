@@ -57,17 +57,18 @@
                     <div class="col-md-2">
                       <div class="form-group">
                         <label> ID ORDEN CABECERA</label>
-                        <select name="ordenRepCavecera" id="ordenRepCavecera" formControlName="ordenRepCavecera"  class="form-control">
+                        <input type="text" value="idordencavecera" name="ordenRepCavecera" id="ordenRepCavecera" formControlName="ordenRepCavecera"  class="form-control">
+                        <!--<select name="ordenRepCavecera" id="ordenRepCavecera" formControlName="ordenRepCavecera"  class="form-control">
                           <option [ngValue]="ordenRepCavecera" *ngFor="let ordenRepCavecera of ordenCabeceraList">
                             {{ordenRepCavecera.idordenCave}}</option>
-                        </select>
+                        </select> -->
                         <div class="text-danger"></div>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
                         <label> ESTADO DE LA ORDEN</label>
-                        <select type="text" formControlName="estadoOrden" class="form-control">
+                        <select type="text" [(ngModel)]="this.estadoOrden" formControlName="estadoOrden" class="form-control">
                           <option>aprobado</option>
                         </select>
                         <div class="text-danger"></div>
@@ -76,7 +77,7 @@
                     <div class="col-md-5">
                       <div class="form-group">
                         <label> OBSERVACIONES</label>
-                        <input type="text" formControlName="observaciones" class="form-control" placeholder="Ejm: ">
+                        <input type="text" formControlName="observaciones" [(ngModel)]="this.observaciones" class="form-control" placeholder="Ejm: ">
 
                         <div class="text-danger"></div>
                       </div>
@@ -87,7 +88,7 @@
                     <div class="col-md-8">
                       <div class="form-group">
                         <label> TRABAJO SOLICITADO</label>
-                        <input type="text" formControlName="trabajoSolicitado" class="form-control">
+                        <input type="text" [(ngModel)]="this.trabajoSolicitado" formControlName="trabajoSolicitado" class="form-control">
                         <div class="text-danger"></div>
                       </div>
                     </div>
@@ -97,7 +98,7 @@
                     <div class="col-md-8">
                       <div class="form-group">
                         <label> TRABAJO A REALIZAR</label>
-                        <textarea rows="3" cols="60" name="text"  formControlName="trabajoRealizar"  class="form-control"></textarea>
+                        <textarea rows="3" cols="60" name="text"  [(ngModel)]="this.trabajoRealizar" formControlName="trabajoRealizar"  class="form-control"></textarea>
                         <div class="text-danger"></div>
                       </div>
                     </div>
@@ -106,14 +107,13 @@
                       <div class="col-md-5">
                         <div class="form-group">
                           <label> IMAGENES</label>
-                          <input type="text" formControlName="imagenes" class="form-control">
+                          <input type="text" formControlName="imagenes" [(ngModel)]="this.imagenes" class="form-control">
                           <div class="text-danger"></div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <br>
-
                 </div>
               </div>
             </div>
