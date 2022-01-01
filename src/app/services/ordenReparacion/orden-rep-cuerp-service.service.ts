@@ -9,35 +9,24 @@ import { OrdenRepCuerpo } from 'src/app/modelos/ordenReclamo/orden-rep-cuerpo';
 })
 export class OrdenRepCuerpServiceService {
 
-  private API_SEVER = "https://starmotors1.herokuapp.com/ordecuerpo/api/v1/getall";
+  private API_SERVER="https://starmotors1.herokuapp.com/ordecuerpo/api/v1/"
+ //private API_SERVER="http://localhost:8080/ordecuerpo/api/v1/"
 
-  private ordenCuerpo :OrdenRepCuerpo= new OrdenRepCuerpo;
-  private url="https://starmotors1.herokuapp.com/ordecuerpo/api/v1"
-  httpClient: any;
-  API_SERVER: string | undefined;
-  constructor(private http:HttpClient) { }
-  buscarId(id:any):Observable<any>{
-    return this.http.get(`${this.url}/find/${id}`)
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+
+  public all(): Observable<any>{
+    return this.httpClient.get(this.API_SERVER+"getall");
+
   }
-  guardar(ordenDetalle:any):Observable<any>{
-    return this.http.post(`${this.url}/save`,ordenDetalle)
+  public saveOrdenCuerpo(trabajoSolicitado:any,trabajoRealizar:any,observaciones:any,imagenes:any,estadoOrden:any,inspeccion:any): Observable<any>{
+    return this.httpClient.post(this.API_SERVER+`save/${trabajoSolicitado}/${trabajoRealizar}/${observaciones}/${imagenes}/${estadoOrden}/${inspeccion}`,null);
   }
-  update(ordenCuerpo:any,id:any):Observable<any>{
-    this.ordenCuerpo= ordenCuerpo;
-    return this.http.put(`${this.url}/update/${id}`,this.ordenCuerpo)
-  }
-  all():Observable<any>{
-    return this.http.get(`${this.url}/getall`)
+  public delete(id: any):Observable<any>{
+    return this.httpClient.delete(this.API_SERVER+"delete/"+id)
   }
 
-  public getAll(): Observable<any>{
-    return this.httpClient.get(this.API_SERVER+"all");
-  }
 
-  getEstado(estado:any):Observable<any>{
-    return this.http.get(`${this.url}/est/${estado}`)
-  }
-  
-  
 }
 

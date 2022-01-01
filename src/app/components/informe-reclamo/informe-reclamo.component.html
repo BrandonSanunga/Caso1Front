@@ -36,6 +36,9 @@
       <button class="btn btn-primary" (click)="openDialogInformeReclamo()" type="button">Reclamo Cliente</button>
       <button class="btn btn-primary" id="sendemanil" style="background-color: yellowgreen;" (click)="openDialogEmail()" type="button">Enviar correo</button>
       <button class="btn btn-primary" id="repsendemanil" style="background-color: yellowgreen;" (click)="openDialogEmail()" type="button">Renviar correo</button>
+      <div class="input-group mb-3">
+        <textarea  type="text" class="form-control" id="descripcion"  aria-describedby="basic-addon3" name="" [(ngModel)]="detallecancela" cols="30" rows="10" placeholder="Descripción del informe"></textarea>
+      </div>
     </div>
     <br><br><br>
     <div class="card-group" style="text-align: center;margin-left: 35%;">

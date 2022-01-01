@@ -36,4 +36,8 @@ export class SoliGarantiaService {
   public getSoliGarantiaByID(id:any):Observable<any>{
     return this.httpClient.get(this.API_SEVER+"find/"+id);
   }
+
+  public reporteFactura(inicio:any,fin:any):Observable<any>{
+    return this.httpClient.get(this.API_SEVER+"facturas/"+inicio+"/"+fin);
+  }
 }

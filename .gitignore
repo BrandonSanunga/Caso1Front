@@ -48,3 +48,9 @@ yarn.lock
 package-lock.json
 src/app/navbar/navbar.component.html
 src/app/services/Vehiculo/vehiculo.service.ts
+src/app/components/vehiculo-catalogo/vehiculo-catalogo-form/agregarimagen/agregarimagen.component.ts
+src/app/components/vehiculo-catalogo/vehiculo-catalogo-form/agregarimagen/agregarimagen.component.html
+src/app/components/vehiculo-catalogo/vehiculo-catalogo-form/agregarimagen/agregarimagen.component.css
+src/app/components/vehiculo-catalogo/vehiculo-catalogo-form/agregarimagen/agregarimagen.component.spec.ts
+src/app/components/vehiculo-catalogo/vehiculo-catalogo-form/agregarimagen/agregarimagen.component.html
+src/app/components/vehiculo-catalogo/vehiculo-catalogo-form/agregarimagen/agregarimagen.component.ts

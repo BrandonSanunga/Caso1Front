@@ -1,33 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { OrdenReparacion } from 'src/app/modelos/orden_reparacion/orden-reparacion';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdenRepCaveServiceService {
-  httpClient: any;
-  API_SERVER: string | undefined;
-  reset() {
-    throw new Error('Method not implemented.');
-  }
-  private url="https://starmotors1.herokuapp.com/ordencave/api/v1"
-constructor(private  http:HttpClient) { }
 
-  buscarId(id:any):Observable<any>{
-    return this.http.get(`${this.url}/find/${id}`)
-  }
-  guardar(ordenDetalle:any):Observable<any>{
-    return this.http.post(`${this.url}/save`,ordenDetalle)
-  }
-  update(ordendetalle:any,id:any):Observable<any>{
-    return this.http.put(`${this.url}/update/${id}`,ordendetalle)
-  }
-  all():Observable<any>{
-    return this.http.get(`${this.url}/all`)
-  }
-  public getAll(): Observable<any>{
+    OrdenCabModel: OrdenReparacion= new OrdenReparacion();
+  private API_SERVER="https://starmotors1.herokuapp.com/ordencave/api/v1/"
+  //private API_SERVER="http://localhost:8080/ordencave/api/v1/"
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+
+  public getAllOrdenRep(): Observable<any>{
     return this.httpClient.get(this.API_SERVER+"all");
 
+  }
+  public saveOrdenRep(ordenCabReparacion: any,id:any): Observable<any>{
+    return this.httpClient.post(this.API_SERVER+`save/${id}`,ordenCabReparacion);
+  }
+  public delete(id: any):Observable<any>{
+    return this.httpClient.delete(this.API_SERVER+"delete/"+id)
+
+  }
+
+  public getbyid(id:any): Observable<any>{
+    return this.httpClient.get(this.API_SERVER+`/find/${id}`)
   }
 }

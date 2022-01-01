@@ -1,96 +1,288 @@
 <br>
-<h1 class="card-title" style="text-align: center;">ORDEN REPARACION</h1>
+<h1 class="card-title" style="text-align: center;">ORDEN REPARACION </h1>
 <div class="caracteristicas">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <form [formGroup]="ordenform" (ngSubmit)="guardarOrden()">
-          <div class="form-body">
-            <h3 class="card-title" style="text-align: center; font-style: bold;">INGRESAR NUEVAS ORDEN</h3>
+        <form [formGroup]="OrdenRepCabeceraForm" >
+          <div class="form-head">
             <br>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <div class="form-group">
-                  <label> FECHA EMISION:</label><br>
-                  <input type="date" class="form-control" [(ngModel)]="ordenCave.fecha_emision"id="fecha_ini" name="trip-start"
-                  value="2020-07-22"
-                  min="2020-01-01" max="2020-12-31">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label> FECHA INGRESO</label> <br>
-                  <input type="date" class="form-control" [(ngModel)]="ordenCave.fechaIngreso" id="start" name="trip-start"
-                         value="2020-07-22"
-                         min="2020-01-01" max="2020-12-31">
-                          <div class="text-danger"></div>
+                  <label> FECHA EMISION</label>
+                  <input type="date" formControlName="fecha_emision" class="form-control">
+                  <div class="text-danger"></div>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <label> ESTADO:</label>
-                  <select type="number" class="form-control" [(ngModel)]="ordenCave.estado" formControlName="estado" class="form-control" >
-                    <option>Activo</option>
-                    <option>Inactivo</option>
-                  </select>
+                  <label> FECHA INGRESO</label>
+                  <input type="date" formControlName="fechaIngreso" class="form-control">
                   <div class="text-danger"></div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label> Trabajo Solicitado</label>
-                  <input type="text" class="form-control" [(ngModel)]="ordenCuerpos.trabajoSolicitado" formControlName="capacidad_carga" class="form-control" placeholder="Escribir..">
-                  <div class="text-danger"></div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label> Trabajo a Realizar</label>
-                  <input type="text" class="form-control" [(ngModel)]="ordenCuerpos.trabajoRealizar" formControlName="capacidad_carga" class="form-control" placeholder="Escribir..">
-                  <div class="text-danger"></div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Observaciones</label>
-                  <input type="text"  class="form-control" [(ngModel)]="ordenCuerpos.observaciones" formControlName="capacidad_carga" class="form-control" placeholder="Escribir..">
-                  <div class="text-danger"></div>
-                </div>
-              </div>
-
-              </div>
-
             <br>
-            <button type="submit" class="btn btn-primary" [disabled]="ordenform.invalid">GUARDAR</button>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label> INSPECCION </label>
+                  <select name="inspeCuerpo" id="inspeCuerpo" formControlName="inspeCuerpo" class="form-control">
+                    <option [ngValue]="inspeCuerpo" *ngFor="let item of InspeccionList">{{item.idinspeCuerpo}}</option>
+                  </select>
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label> COSTO DE MANO DE OBRA</label>
+                  <input type="number" step="0.01" formControlName="costoManoObra" class="form-control" min="0.1"  placeholder="Ejm: 20.2" style="">
+                  <div class="text-danger"></div>
+                </div>
+              </div>
+
+            </div>
+            <br>
+            <!--<button type="submit" class="btn btn-primary">GUARDAR</button>-->
+            <!--<button type="submit" class="btn btn-primary" [disabled]="OrdenRepCabeceraForm.invalid">GUARDAR</button>-->
           </div>
         </form>
-      </div></div></div></div>
+          <!--____________________________________________________CUERPO ORDEN_______________________________________________________________________________________-->
+          <form [formGroup]="OrdenRepCuerpoForm" >
+            <div class="card">
+              <div class="card-body">
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label> ID ORDEN CABECERA</label>
+                        <input type="text" value="idordencavecera" name="ordenRepCavecera" id="ordenRepCavecera" formControlName="ordenRepCavecera"  class="form-control">
+                        <!--<select name="ordenRepCavecera" id="ordenRepCavecera" formControlName="ordenRepCavecera"  class="form-control">
+                          <option [ngValue]="ordenRepCavecera" *ngFor="let ordenRepCavecera of ordenCabeceraList">
+                            {{ordenRepCavecera.idordenCave}}</option>
+                        </select> -->
+                        <div class="text-danger"></div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label> ESTADO DE LA ORDEN</label>
+                        <select type="text" [(ngModel)]="this.estadoOrden" formControlName="estadoOrden" class="form-control">
+                          <option>aprobado</option>
+                        </select>
+                        <div class="text-danger"></div>
+                      </div>
+                    </div>
+                    <div class="col-md-5">
+                      <div class="form-group">
+                        <label> OBSERVACIONES</label>
+                        <input type="text" formControlName="observaciones" [(ngModel)]="this.observaciones" class="form-control" placeholder="Ejm: ">
+
+                        <div class="text-danger"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <label> TRABAJO SOLICITADO</label>
+                        <input type="text" [(ngModel)]="this.trabajoSolicitado" formControlName="trabajoSolicitado" class="form-control">
+                        <div class="text-danger"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <label> TRABAJO A REALIZAR</label>
+                        <textarea rows="3" cols="60" name="text"  [(ngModel)]="this.trabajoRealizar" formControlName="trabajoRealizar"  class="form-control"></textarea>
+                        <div class="text-danger"></div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label> IMAGENES</label>
+                          <input type="text" formControlName="imagenes" [(ngModel)]="this.imagenes" class="form-control">
+                          <div class="text-danger"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                </div>
+              </div>
+            </div>
+            <br>
+        </form>
+        <button type="submit" class="btn btn-primary" style="margin-bottom: 5px; margin-left: 5px;" [disabled]="OrdenRepCuerpoForm.invalid && OrdenRepCabeceraForm.invalid" (click)="guardar()">GUARDAR</button>-
+      </div>
+    </div>
+  </div>
+</div>
+
 <br>
 <br>
 
-<table class="table table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Id </th>
-      <th scope="col">trabajo Solicitado</th>
-      <th scope="col">trabajo Realizar</th>
-      <th scope="col"> observaciones</th>
-      <th scope="col">estadoOrden</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let orden of ordenList">
-      <td style="text-align: center;">{{orden.id} </td>
-      <td>{{orden.id}}</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td style="text-align: center;text-transform:uppercase;">{{orden.id}} </td>
-      <td style="text-align: center;text-transform:uppercase;">{{ordenList.fecha_ini}} </td>
+<div class="container1" style="text-align: center;">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="text-align: center;"> ID CABECERA</th>
+        <th style="text-align: center;"> FECHA EMISION </th>
+        <th style="text-align: center;"> FECHA INGRESO </th>
+        <th style="text-align: center;"> INSPECCION </th>
+        <th style="text-align: center;"> COSTO DE MANO DE OBRA </th>
+        <th style="width: 50px"><i class="fa fa-trash"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ordenCabReparacion of ordenCabeceraList">
+        <td style="text-align: center;">{{ordenCabReparacion.idordenCave}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{ordenCabReparacion.fecha_emision}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{ordenCabReparacion.fechaIngreso}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{ordenCabReparacion.inspeCuerpo.idinspeCuerpo}}
+        </td>
+        <td style="text-align: center;text-transform:uppercase;">{{ordenCabReparacion.costoManoObra}} </td>
 
-      <td><button type="submit" class="btn btn-danger"
-          (click)="editarOrden()">Editar</button></td>
-    </tr>
-  </tbody>
-</table>
+        <td><button type="submit" class="btn btn-outline-danger px-3 py-2" (click)="eliminarOrden(ordenCabReparacion)"><i class="fa fa-trash"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th style="text-align: center;"> ID CUERPO</th>
+          <th style="text-align: center;"> ID CABECERA </th>
+          <th style="text-align: center;"> TRABAJO SOLICITADO </th>
+          <th style="text-align: center;"> TRABAJO A REALIZAR </th>
+          <th style="text-align: center;"> OBSERVACIONES </th>
+          <th style="text-align: center;"> IMAGEN </th>
+          <th style="text-align: center;"> ESTADO ORDEN </th>
+          <th style="width: 50px"><i class="fa fa-trash"></i></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ordenes of OrdenCuerpoList">
+          <td style="text-align: center;">{{ordenes.idordenCuerpo}} </td>
+          <td style="text-align: center;text-transform:uppercase;">{{ordenes.ordenRepCavecera.idordenCave}} </td>
+          <td style="text-align: center;text-transform:uppercase;">{{ordenes.trabajoSolicitado}} </td>
+          <td style="text-align: center;text-transform:uppercase;">{{ordenes.trabajoRealizar}} </td>
+          <td style="text-align: center;text-transform:uppercase;">{{ordenes.observaciones}} </td>
+          <td style="text-align: center;text-transform:uppercase;">{{ordenes.imagenes}} </td>
+          <td style="text-align: center;text-transform:uppercase;">{{ordenes.estadoOrden}} </td>
+
+          <td><button type="submit" class="btn btn-outline-danger px-3 py-2" (click)="eliminarOrdenCuerpo(ordenes)"><i
+                class="fa fa-trash"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!--
+<br>
+<!--__________________________________________________________________________________________________________________________________________________________--
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="OrdenRepCuerpoForm" (ngSubmit)="guardarOrdenCuerpo()">
+      <div class="form-body">
+        <h3 class="card-title1">INGRESAR NUEVA ORDEN REPARACION CUERPO</h3>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <label> ID ORDEN CABECERA</label>
+              <select name="ordenRepCavecera" id="ordenRepCavecera" formControlName="ordenRepCavecera" class="form-control">
+                <option [ngValue]="ordenRepCavecera" *ngFor="let ordenRepCavecera of ordenList">{{ordenRepCavecera.idordenCave}}</option>
+              </select>
+              <!--<input type="text" formControlName="asdasd" class="form-control" placeholder="Ejm: ">--
+              <div class="text-danger"></div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label> ESTADO DE LA ORDEN</label>
+              <select type="text" formControlName="estadoOrden" class="form-control">
+                <option>aprobado</option>
+              </select>
+              <div class="text-danger"></div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <label> OBSERVACIONES</label>
+              <input type="text" formControlName="observaciones" class="form-control" placeholder="Ejm: ">
+
+              <div class="text-danger"></div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+
+          <div class="col-md-5">
+            <div class="form-group">
+              <label> TRABAJO A REALIZAR</label>
+              <input type="text" formControlName="trabajoRealizar" class="form-control">
+              <div class="text-danger"></div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <label> TRABAJO SOLICITADO</label>
+              <input type="text" formControlName="trabajoSolicitado" class="form-control">
+              <div class="text-danger"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group">
+                <label> IMAGENES</label>
+                <input type="text" formControlName="imagenes" class="form-control">
+                <div class="text-danger"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary" [disabled]="OrdenRepCuerpoForm.invalid">GUARDAR</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+<h3 class="display-4 text-center my-5">LISTADO DE ORDENES REPARACION CUERPO</h3>
+<div class="container1" style="text-align: center;">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="text-align: center;"> ID </th>
+        <th style="text-align: center;"> ID CABECERA </th>
+        <th style="text-align: center;"> TRABAJO SOLICITADO </th>
+        <th style="text-align: center;"> TRABAJO A REALIZAR </th>
+        <th style="text-align: center;"> OBSERVACIONES </th>
+        <th style="text-align: center;"> IMAGEN </th>
+        <th style="text-align: center;"> ESTADO ORDEN </th>
+        <th style="width: 50px"><i class="fa fa-trash"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ordenes of OrdenCuerpoList">
+        <td style="text-align: center;">{{ordenes.idordenCuerpo}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{ordenes.ordenRepCavecera.idordenCave}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{ordenes.trabajoSolicitado}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{ordenes.trabajoRealizar}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{ordenes.observaciones}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{ordenes.imagenes}} </td>
+        <td style="text-align: center;text-transform:uppercase;">{{ordenes.estadoOrden}} </td>
+
+        <td><button type="submit" class="btn btn-outline-danger px-3 py-2" (click)="eliminarOrdenCuerpo(ordenes)"><i
+              class="fa fa-trash"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>-->
