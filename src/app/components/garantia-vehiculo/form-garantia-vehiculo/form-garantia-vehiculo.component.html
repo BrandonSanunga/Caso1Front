@@ -29,14 +29,14 @@
                 </div>
                 
         <hr>
-
+        <div class="btn-toolbar">
+            <button type="submit" class="btn btn-success" (click)="guardar()">GUARDAR</button>
+            <ul></ul>
+            <button class="btn btn-danger" [mat-dialog-close]>CANCELAR</button>
+                                       
+        </div> 
        
     </form>
-    <div class="btn-toolbar">
-        <button type="submit" class="btn btn-success" (click)="guardar()">GUARDAR</button>
-        <ul></ul>
-        <button class="btn btn-danger" (click)="cancelar()">CANCELAR</button>
-      </div>
-     
+ 
   
 </div>

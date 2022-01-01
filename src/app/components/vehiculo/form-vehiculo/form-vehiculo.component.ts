@@ -34,6 +34,7 @@ export class FormVehiculoComponent implements OnInit {
       ramv: ['',Validators.required] ,
       estado: ['true',Validators.required] ,
       precio: ['',Validators.required],
+      precio_venta:['',Validators.required],
       pais: ['',Validators.required],
       garantia: ['',Validators.required],
       vehiculoCatalogo: ['',Validators.required]

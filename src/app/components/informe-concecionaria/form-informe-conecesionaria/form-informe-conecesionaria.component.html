@@ -32,11 +32,16 @@
       <input type="text" formControlName="descricion" class="form-control">
 
 
-
+<!--
       <div *ngFor="let informe of datos">
         <label> ID </label>
-        <input class="form-control" [(ngModel)]="informe.id" readonly="readonly" [ngModelOptions]="{standalone: true}">
+        <input class="form-control" [(ngModel)]="informe.id"readonly="readonly" [ngModelOptions]="{standalone: true}" >
       </div>
+      -->
+      <label>CATALOGO</label>
+      <select name="detalle" id="detalle" formControlName="detalle" class="form-control">
+        <option [ngValue]="detalle" *ngFor="let detalle of garantiaList">{{detalle.idordenCuerpo}}</option>
+        </select>
 
       <div *ngFor="let informe of datos">
         <label> COSTO MMANO DE OBRA </label>

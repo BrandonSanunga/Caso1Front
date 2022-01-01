@@ -72,13 +72,13 @@ public reclamoPDF(soli: any) {
   pdf.info({
     title: 'Reclamo de Garantía',
     author: 'StarMotors',
-    subject: 'Vista PDF de un reclamo realizado',
+    subject: 'Vista PDF de un informe realizado',
 });
 
   pdf.pageSize('A4');
   pdf.pageOrientation('landscape');
   pdf.add(
-    new Txt('RECLAMO DE GARANTÍA').alignment('center').color('red').bold().fontSize(30).italics().end
+    new Txt('INFORME PARA LA CONCESIONARIA').alignment('center').color('red').bold().fontSize(30).italics().end
   )
   pdf.add(
     pdf.ln(1)
@@ -104,18 +104,23 @@ public reclamoPDF(soli: any) {
     ])
       .style("text-center").alignment('center').end
   )
-
+/*
   pdf.add({
     table: {
       body: [
         [
-          'col 1'
+          'col 1',
+          'col 2'
+        ],
+        [
+          'col 1',
+          'col 2'
         ]
       ]
       }
-    })
+    })*/
 
-  pdf.watermark(new Txt('StarMotors').color('#ff7979').alignment('center').fontSize(40).end);
+
   pdf.create().open();
 
 
