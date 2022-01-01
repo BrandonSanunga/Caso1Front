@@ -5,6 +5,7 @@ import { InformeReclamoTallerService } from 'src/app/services/informeReclamo/inf
 import { ReclamoGarantiaService } from 'src/app/services/ReclamoGarantia/reclamo-garantia.service';
 import Swal from "sweetalert2";
 import { PdfMakeWrapper, Txt, Table } from 'pdfmake-wrapper';
+import { InspeCuerpoServiceService } from 'src/app/services/inspeccion/inspe-cuerpo-service.service';
 
 @Component({
   selector: 'app-lista-reclamo',
@@ -35,23 +36,44 @@ export class ListaReclamoComponent implements OnInit {
   menorcantidad:any;
   fechainicio:any;
   fechafin:any;
-
+  verResult:any=[]
+  verResult2:any=[]
+  cambResult2:any=[]
+   idinspeccion:any;
   cantidad:any=[]
   temporal:any=[]
   tipoReportetitle:any="REPORTE GENERAL"
   arr:any=[];
   filtrocantida:any=[]
-  constructor(private root:Router, private inforReclamoService:InformeReclamoTallerService, private reclamoservice:ReclamoGarantiaService) { }
+  constructor(private inspeServic:InspeCuerpoServiceService,private root:Router, private inforReclamoService:InformeReclamoTallerService, private reclamoservice:ReclamoGarantiaService) { }
 
   ngOnInit(): void {
     this.CargarTable();
     console.log(this.listaInforme)
   }
+  enviarInspeccion(id:any){
+    this.idinspeccion=null
+    this.inspeServic.all().subscribe(data=>{
+        for(let i of data){
+          var idcompa =i.inspeCavecera.informeReclamo.idinformeRecha
+            if(id==idcompa){
+              this.idinspeccion=i.idinspeCuerpo
+              localStorage.setItem("inspeccionid",this.idinspeccion);
+              console.log(i.idinspeCuerpo)
+            }
+        }
+        if(this.idinspeccion==null){
+          alert("Primero registre la Inspección del Vehiculo")
+        }else{
+          this.root.navigate(["/orden-reparacion"])
+        }
+      })
+  }
   extractData(datosTabla:any){
-    return datosTabla.map((row:any) => [row.idinformeRecha,row.fechaEmicion.substring(0,10),row.client.cedulaClient,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.year_vehiculo,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.pais.nombre,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.color,row.tipoInforme,row.respuestaCliente]);
+    return datosTabla.map((row:any) => [row.idinformeRecha,row.fechaEmicion.substring(0,10),row.client.cedulaClient,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.year_vehiculo,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.pais.nombre,row.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.color,row.tipoInforme.substring(0,9),row.respuestaCliente]);
   }
   async generaraPDF(){
-    console.log(this.listaInforme)
+    //console.log(this.listaInforme)
     const pdf = new PdfMakeWrapper();
     pdf.info({
       title: 'Reclamo de Garantía',
@@ -81,7 +103,7 @@ export class ListaReclamoComponent implements OnInit {
       ]).widths('*').end)
       pdf.watermark(new Txt('StarMotors').color('#ff7979').alignment('center').fontSize(40).end);
       pdf.create().open();
-  console.log(pdf)
+  //console.log(pdf)
   }
   filtroreclamo(){
     let mayor=[0]
@@ -89,6 +111,8 @@ export class ListaReclamoComponent implements OnInit {
     this.filtrocantida=[]
     let duplicados = [];
     let cantidad = [];
+    this.verResult=[];
+    this.cambResult2=[]
     let can=0;
     let dater="";
     for(let i of this.listaInforme){
@@ -108,12 +132,19 @@ for(let a = 0; a < duplicados.length; a++){
       if(duplicados[a]==this.arr[s]){
         var dat = duplicados[a]
         const result = this.listaInforme.filter((listaInform: any)=>
+        listaInform.tipoInforme.substring(0,8) == "Aceptado" &&
         listaInform.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca == dat[1] &&
         listaInform.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo == dat[2] &&
-        listaInform.tipoInforme == "Aceptado" && listaInform.respuestaCliente == "ACEPTADO" );
-        if(result.length>1){
-          cantidad.push([this.arr[s],result.length]);
+         listaInform.respuestaCliente == "ACEPTADO"  );
+         if(result.length>=1){
+           for(let v of result){
+            this.verResult.push(v.idinformeRecha)
+           }
         }
+          if(result.length>1   ){
+            cantidad.push([this.arr[s],result.length]);
+           }
+
       }
     }else{
       can=0
@@ -121,8 +152,20 @@ for(let a = 0; a < duplicados.length; a++){
     dater=duplicados[a];
   }
 }
+const dataArr1 = new Set(this.verResult);
+let result1 = [...dataArr1];
 const dataArr = new Set(cantidad);
 let result = [...dataArr];
+
+for(let w of result){
+  for(let y of result1){
+     if(w[0][0]==y){
+      this.cambResult2.push(w)
+     }
+  }
+}
+result=[]
+result=this.cambResult2
 for(let i of result){
     if(i[1]>mayor || i[1]==mayor){
      mayor=i[1]
@@ -139,7 +182,7 @@ this.tipoReportetitle="REPORTE RECLAMO"
 this.listaInforme=[]
   this.listaInforme=this.filtrocantida
   var cantidadvehiculo=this.listaInforme.length
-  var marcvehiculo=this.listaInforme.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca
+  //var marcvehiculo=this.listaInforme.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca
   this.mayorcantida=cantidadvehiculo
 }
 filtroFecha(){
@@ -201,7 +244,7 @@ if(this.comprobartabla.size>this.listaInforme.size){
     var verprim = this.listaInforme
     this.listaInforme=[]
     for(let h of verprim){
-      var lispinf=h.tipoInforme
+      var lispinf=h.tipoInforme.substring(0,9)
       if(lispinf==this.tipoinformecavehiculo){
         this.listaInforme.push(h)
       }
@@ -254,7 +297,7 @@ if(this.comprobartabla.size>this.listaInforme.size){
   }else if(this.tipoinformecavehiculo != null || this.marcavehiculo!=null || this.modelocavehiculo!=null || this.anofabricavehiculo!=null || this.paiscavehiculo!=null || this.colorcavehiculo!=null){
     var primer = this.listaInforme
     this.listaInforme=[]
-      const result = primer.filter((listaInform: any)=>listaInform.tipoInforme === this.tipoinformecavehiculo &&
+      const result = primer.filter((listaInform: any)=>listaInform.tipoInforme.substring(0,9) === this.tipoinformecavehiculo &&
                                                         listaInform.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca == this.marcavehiculo ||
                                                         listaInform.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo == this.modelocavehiculo ||
                                                         listaInform.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.year_vehiculo == this.anofabricavehiculo ||

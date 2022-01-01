@@ -39,14 +39,15 @@ export class InspeccionComponent implements OnInit {
     this.inspeServiceCave.all().subscribe(data=>{
        if(data!=null){
       for(let i of data){
-        console.log(i)
+       // console.log(i)
         if(i.informeReclamo.idinformeRecha==id){
           this.inspeccionCave=i
           this.inspeServiceCuerpo.all().subscribe(data=>{
             for(let j of data){
               if(j.inspeCavecera.idinspeccionCavecera==this.inspeccionCave.idinspeccionCavecera){
                 this.inspeccionCuerpos=j
-                console.log("inspeccion caraga")
+                document.getElementById("btnGuardar")?.remove()
+              //  console.log("inspeccion caraga")
                 console.log(this.inspeccionCuerpos)
               }
             }
@@ -61,7 +62,7 @@ export class InspeccionComponent implements OnInit {
     if(data!=null){
       if(this.inspeccionCuerpos!=null)
           {
-          //  document.getElementById("btnGuardar")?.remove()
+           // document.getElementById("btnGuardar")?.remove()
           }
     }else{
           document.getElementById("idbtnActualizar")?.remove()
@@ -76,7 +77,7 @@ export class InspeccionComponent implements OnInit {
       this.chasisve=data.fk_id_solicitud.fk_chasis_vehiculo.chasis;
       this.marcave=data.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.marca;
       this.modelo=data.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.diseno.modelo;
-      console.log(data)
+     // console.log(data)
     })
   }
   optenerInforme(){

@@ -46,7 +46,7 @@
                       <label for="basic-url" class="form-label">Tipo Informe</label>
                       <div class="input-group mb-3">
                         <select class="form-select" [(ngModel)]="tipoinformecavehiculo" id="tipoinforme" >
-                          <option value="Aceptado">Aceptado</option>
+                          <option value="Aceptado ">Aceptado</option>
                           <option value="Rechazado">Rechazado</option>
                         </select>
                       </div>
@@ -137,6 +137,7 @@
          <th scope="col">Respuesta Cliente</th>
         <th scope="col" >Ver</th>
         <th scope="col">Inspeccion</th>
+        <th scope="col">Orden Reparación</th>
       </tr>
     </thead>
     <tbody id="myTable">
@@ -151,7 +152,7 @@
         <td>{{i.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.vehiculoCatalogo.year_vehiculo}}</td>
         <td>{{i.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.pais.nombre}}</td>
         <td>{{i.reclamogarantia.fk_id_solicitud.fk_chasis_vehiculo.color}}</td>
-        <td>{{i.tipoInforme}}</td>
+        <td>{{i.tipoInforme.substring(0,9)}}</td>
         <td>{{i.respuestaCliente}}
           <div class="card-group">
           <div *ngIf="i.respuestaCliente=='sn'">sin respuesta</div>
@@ -210,12 +211,21 @@
         </td>
         <td>
           <div class="example-flex-container">
-            <div class="example-button-container">
+            <div class="example-button-container" *ngIf="i.respuestaCliente=='ACEPTADO'">
               <button (click)="abrirInspeccion(i.reclamogarantia?.id_reclamo,i.idinformeRecha)" mat-mini-fab style="background-color: darkgray;">
                 <mat-icon>receipt</mat-icon>
               </button>
             </div>
           </div>
+          </td>
+          <td>
+            <div class="example-flex-container">
+              <div class="example-button-container" *ngIf="i.respuestaCliente=='ACEPTADO'">
+                <button (click)="enviarInspeccion(i.idinformeRecha)" mat-mini-fab style="background-color: darkgray;">
+                  <mat-icon>receipt</mat-icon>
+                </button>
+              </div>
+            </div>
           </td>
       </tr>
        </tbody>

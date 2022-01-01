@@ -13,10 +13,15 @@ import Swal from 'sweetalert2';
 export class OrdenReparacionComponent implements OnInit {
   inspeCuerpo: any;
   idinspeCuerpo:any;
-  idordencavecera:any="1";
+  idordencavecera:any;
   ordenCabeceraList: any;
   OrdenCuerpoList: any;
   InspeccionList: any;
+  trabajoSolicitado:any;
+  trabajoRealizar:any;
+  observaciones:any;
+  imagenes:any;
+  estadoOrden:any
   orden: any;
   OrdenRepCabeceraForm: any;
   OrdenRepCuerpoForm: any;
@@ -84,21 +89,25 @@ export class OrdenReparacionComponent implements OnInit {
 
   guardar(){
     this.guardarCabecera();
-    this.guardarOrdenCuerpo();
+   // this.guardarOrdenCuerpo();
     Swal.fire(
       "Nueva Orden Reparacion",
       'Orden Reparacion Guardada con exito!',
       "success"
   );
+ // this.guardarOrdenCuerpo()
   }
   guardarCabecera(): void {
-   // var idinspeccion = localStorage.setItem("inspeccionid")
-    this.ordenCabeceraService.saveOrdenRep(this.OrdenRepCabeceraForm.value,21).subscribe(resp => {
+   var idinspeccion = localStorage.getItem("inspeccionid")
+    this.ordenCabeceraService.saveOrdenRep(this.OrdenRepCabeceraForm.value,idinspeccion).subscribe(resp => {
+      console.log(resp.idordenCave)
+      this.guardarOrdenCuerpo(resp.idordenCave)
       this.OrdenRepCabeceraForm.reset();
       this.ordenCabeceraList=this.ordenCabeceraList.filter((ordenCa:{ idordenCave: any; }) => resp.idordenCave ==ordenCa.idordenCave);
       this.ordenCabeceraList.push(resp);
-      this.ordenCabeceraList.reset();
+      //this.ordenCabeceraList.reset();
       this.ordenCabeceraList.push(resp);
+
     },
       error => { console.error(error) }
     )
@@ -127,7 +136,7 @@ export class OrdenReparacionComponent implements OnInit {
     });
     this.OrdenRepCuerpoForm = this.fb.group({
       idordenCuerpo: [''],
-      ordenRepCavecera: ['', Validators.required],
+      ordenRepCavecera: [''],
       trabajoSolicitado: ['', Validators.required],
       trabajoRealizar: ['', Validators.required],
       observaciones: ['', Validators.required],
@@ -145,25 +154,18 @@ export class OrdenReparacionComponent implements OnInit {
     },
       error => { console.error(console.error) });
   }
-  guardarOrdenCuerpo(): void {
-   /* var idinspeccion = "localestorage"
-    this.ordenCabeceraService.getAllOrdenRep().subscribe(data=>{
-      for(let i of data){
-        if(i.inspeCuerpo.idinspecuerpo == idinspeccion){
-          this.idordencavecera = i.ordenRepCavecera
-        }
-      }
-    }) */
-    this.OrdenCuerpoService.saveOrdenCuerpo(this.OrdenRepCuerpoForm.value).subscribe(resp => {
-      console.log(resp)
-      this.OrdenCuerpoList.reset();
-      this.OrdenCuerpoList=this.ordenCabeceraList.filter((ordenCa:{ idordenCave: any; }) => resp.idordenCave ==ordenCa.idordenCave);
-      this.OrdenCuerpoList.push(resp);
-      this.OrdenCuerpoList.reset();
-      this.OrdenCuerpoList.push(resp);
-    },
-      error => { console.error(error) }
-    )
+  guardarOrdenCuerpo(data:any) {
+    var idinspeccion = localStorage.getItem("inspeccionid")
+          this.OrdenCuerpoService.saveOrdenCuerpo(this.trabajoSolicitado,this.trabajoRealizar,this.observaciones,this.imagenes,this.estadoOrden,data).subscribe(resp => {
+            console.log(resp)
+            this.OrdenCuerpoList.reset();
+            this.OrdenCuerpoList=this.ordenCabeceraList.filter((ordenCa:{ idordenCave: any; }) => resp.idordenCave ==ordenCa.idordenCave);
+            this.OrdenCuerpoList.push(resp);
+            this.OrdenCuerpoList.reset();
+            this.OrdenCuerpoList.push(resp);
+          },
+            error => { console.error(error) }
+          )
   }
   eliminarOrdenCuerpo(orde: any): void {
     this.OrdenCuerpoService.delete(orde.idordenCuerpo).subscribe(resp => {
