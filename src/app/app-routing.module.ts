@@ -28,6 +28,7 @@ import { AddCotizacionComponent } from "./components/cotizacion/add-cotizacion/a
 import { ListCotizacionComponent } from "./components/cotizacion/list-cotizacion/list-cotizacion.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { FacturaReparacionComponent } from "./components/factura-reparacion/factura-reparacion.component";
+import { ReporteRepuestosComponent } from "./components/reporte-repuestos/reporte-repuestos.component";
 
 
 const routes: Routes = [
@@ -61,6 +62,7 @@ const routes: Routes = [
   { path: "catalogo/admin", component: VehiculoCatalogoFormComponent, canActivate:[AuthGuard] },
   { path: "formVehiculo", component: FormVehiculoComponent },
   { path: "lista-entregar-repuestos",component: ListaEntregarRepuestosComponent},
+  { path: "ReporteRep",component: ReporteRepuestosComponent},
   { path: "**", pathMatch: "full", redirectTo:"catalogo"},
 ];
 
