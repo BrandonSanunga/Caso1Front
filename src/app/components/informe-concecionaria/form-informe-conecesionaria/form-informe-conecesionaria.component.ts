@@ -35,13 +35,17 @@ export class FormInformeConecesionariaComponent implements OnInit {
       porcentaje: ['',Validators.required] ,
       estado: ['true',Validators.required],
       total: ['',Validators.required],
-      
+      detalle: ['',Validators.required],
 
    });
   
+   
   this.cargaT();
 
- 
+  this.detalle.all().subscribe(res=>{
+    this.garantiaList=res
+    console.log(res)
+   })
 
   }
   cargaT(){
@@ -86,4 +90,5 @@ this.informeS.get(id).subscribe(res=>{
 }
 )
 }
+
 }

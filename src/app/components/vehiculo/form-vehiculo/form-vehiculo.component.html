@@ -1,9 +1,11 @@
   <div class="container" style="text-align: center;" >
-
+    <!--
      <button class="btn btn-primary" (click)="carga()" style="float: right;">Cargar</button> 
-    <br>
+    
+     <br>
      <br>
     <br>
+    -->
     <p>Insertar Vehiculo </p> 
     <form [formGroup]="Vehiculoform" (ngSubmit)="guardarV()" id="f">
   
@@ -30,7 +32,15 @@
   
         <label>  PRECIO </label>
         <input type="number" formControlName="precio" class="form-control">
-        <br>
+        
+        <label>  PRECIO VENTA </label>
+        <input type="number" formControlName="precio_venta" class="form-control">
+       <!--
+        <label>PRECIO: </label> 
+      <input class="form-control"   formControlName="precio" type="number" id="trord" onblur="document.getElementById('uno').value=this.value" />
+      <label> PRECIO VENTA: </label>la
+      <input type="number" id="uno" formControlName="precio_venta"  class="form-control" >  
+ -->
         <label>PAIS</label>
         <select name="pais" id="pais" formControlName="pais" class="form-control" >
           <option [ngValue]="pais" *ngFor="let pais of PaisList"  >{{pais.nombre}}</option>
@@ -50,9 +60,9 @@
         <div class="btn-toolbar">
           <button type="submit" class="btn btn-success" [disabled]="Vehiculoform.invalid">GUARDAR</button>
           <ul></ul>
-          <button class="btn btn-danger" (click)="cancelar()">CANCELAR</button>
-          
-          
+          <ul></ul>
+          <ul></ul>
+          <button class="btn btn-danger" [mat-dialog-close]>CANCELAR</button>
         </div>
      
     </form>
