@@ -8,74 +8,52 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <div class="containerimg">
           <img src="https://th.bing.com/th/id/OIP.b-g6X5Zq2BHtlEE0OX8NWAAAAA?pid=ImgDet&rs=1" class="img-thumbnail"
-            alt="80dp" width="80dp" />
+            alt="80dp" width="80dp" routerLink="/" />
         </div>
+
         <li class="nav-item">
           <a routerLink="/" routerLinkActive="active" class="nav-link active" aria-current="page"
             href="#">StarMotor´s</a>
         </li>
         <li class="nav-item">
-          <a routerLink="/garantiaV" routerLinkActive="active" class="nav-link" href="#">Garantia</a>
+          <a routerLink="/garantiaV" routerLinkActive="active" class="nav-link" href="#"  *ngIf="(auth.isAuthenticated$ | async)">Garantia</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/caracteristicas">Característica</a>
+          <a class="nav-link" routerLink="/caracteristicas"  *ngIf="(auth.isAuthenticated$ | async)">Característica</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link" routerLink="/catalogo">Catálogo</a>
+          <a class="nav-link" routerLink="/catalogo"  *ngIf="(auth.isAuthenticated$ | async)">Catálogo</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link" routerLink="/Vehiculo">Vehículo</a>
+          <a class="nav-link" routerLink="/Vehiculo"  *ngIf="(auth.isAuthenticated$ | async)">Vehículo</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link" routerLink="/facturas">Facturas</a>
+          <a class="nav-link" routerLink="/facturas"  *ngIf="(auth.isAuthenticated$ | async)">Facturas</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link" routerLink="/solicitud/garantia">Solicitudes</a>
+          <a class="nav-link" routerLink="/solicitud/garantia"  *ngIf="(auth.isAuthenticated$ | async)">Solicitudes</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link" routerLink="/reclamo/garantia">Reclamos</a>
+          <a class="nav-link" routerLink="/reclamo/garantia"  *ngIf="(auth.isAuthenticated$ | async)">Reclamos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/lista-reclamo">Lista Reclamo</a>
+          <a class="nav-link" routerLink="/lista-reclamo"  *ngIf="(auth.isAuthenticated$ | async)">Lista Reclamo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/orden-reparacion">Orden de Reparación</a>
+          <a class="nav-link" routerLink="/orden-reparacion"  *ngIf="(auth.isAuthenticated$ | async)">Orden de Reparación</a>
         </li>
-        <li class="nav-item">
-          <a routerLink="/taller" routerLinkActive="active" class="nav-link" href="#">TALLER</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/repuestos">Repuestos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/lista-reclamo">Informe Reclamo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/inspeccion">Inspeccion</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" routerLink="/diseno">diseño de vehiculo</a>
-        </li>
-
-
-        <li class="nav-item dropdown">
-          <a class="nav-link" routerLink="/cotizaciones">Cotizacion</a>
-        </li>
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
+        <mat-form-field class="nav-item" style="margin-top: 18px; text-align: center; width: 80px;"  *ngIf="(auth.isAuthenticated$ | async)">
+          <mat-select placeholder="Taller">
+            <mat-option routerLink="/lista-reclamo"> lista reclamo</mat-option>
+            <mat-option > ejemplo</mat-option>
+            <mat-option >dropdown</mat-option>
+          </mat-select>
+        </mat-form-field>
       </ul>
     </div>
   </div>
+  <div style="margin-right: 5px;">
+  <button class="btn btn-primary" *ngIf="!(auth.isAuthenticated$ | async)" (click)="login()">INGRESAR</button>
+  <button class="btn btn-danger" *ngIf="(auth.isAuthenticated$ | async)" (click)="logout()">SALIR</button>
+</div>
 </nav>
