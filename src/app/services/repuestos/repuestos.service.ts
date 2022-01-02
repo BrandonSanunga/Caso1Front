@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RepuestosService {
   private API_SERVER= "https://starmotors1.herokuapp.com/repuestos/api/v1/"
+  
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -21,4 +22,6 @@ export class RepuestosService {
   public delete(id: any):Observable<any>{
     return this.httpClient.delete(this.API_SERVER+"delete/"+id)
   }
+
+
 }

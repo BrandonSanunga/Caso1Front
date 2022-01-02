@@ -38,7 +38,7 @@
         <input class="form-control" [(ngModel)]="informe.id"readonly="readonly" [ngModelOptions]="{standalone: true}" >
       </div>
       -->
-      <label>CATALOGO</label>
+      <label>ORDEN</label>
       <select name="detalle" id="detalle" formControlName="detalle" class="form-control">
         <option [ngValue]="detalle" *ngFor="let detalle of garantiaList">{{detalle.idordenCuerpo}}</option>
         </select>
@@ -70,6 +70,8 @@
       <label> TOTAL </label>
       <input type="number" formControlName="total" class="form-control" id="res" [(ngModel)]="res" readonly="readonly">
 
+      <label> FECHA INGRESO</label>
+      <input type="date" formControlName="fecha" class="form-control">
      
 
       <div class="btn-toolbar">

@@ -28,6 +28,7 @@ import { AddCotizacionComponent } from "./components/cotizacion/add-cotizacion/a
 import { ListCotizacionComponent } from "./components/cotizacion/list-cotizacion/list-cotizacion.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { FacturaReparacionComponent } from "./components/factura-reparacion/factura-reparacion.component";
+import { ReporteRepuestosComponent } from "./components/reporte-repuestos/reporte-repuestos.component";
 
 
 const routes: Routes = [
@@ -60,6 +61,9 @@ const routes: Routes = [
   { path: "form/garantia", component: ReclamoGarantiaFormComponent,canActivate:[AuthGuard] },
   { path: "reclamo-garantia", component: ReclamoGarantiaComponent,canActivate:[AuthGuard]},
   { path: "catalogo/admin", component: VehiculoCatalogoFormComponent, canActivate:[AuthGuard] },
+  { path: "formVehiculo", component: FormVehiculoComponent },
+  { path: "lista-entregar-repuestos",component: ListaEntregarRepuestosComponent},
+  { path: "ReporteRep",component: ReporteRepuestosComponent},
   { path: "formVehiculo", component: FormVehiculoComponent,canActivate:[AuthGuard] },
   { path: "lista-entregar-repuestos",component: ListaEntregarRepuestosComponent,canActivate:[AuthGuard]},
   { path: "**", pathMatch: "full", redirectTo:"catalogo"},

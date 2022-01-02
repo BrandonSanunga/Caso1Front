@@ -35,6 +35,7 @@ export class FormInformeConecesionariaComponent implements OnInit {
       porcentaje: ['',Validators.required] ,
       estado: ['true',Validators.required],
       total: ['',Validators.required],
+      fecha: ['',Validators.required],
       detalle: ['',Validators.required],
 
    });
