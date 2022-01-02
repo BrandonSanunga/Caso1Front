@@ -4,6 +4,8 @@ import { PaisService } from 'src/app/services/Pais/pais.service';
 import { VehiculoService } from 'src/app/services/Vehiculo/vehiculo.service';
 import { VehiculoCatalogoService } from 'src/app/services/vehiculo_catalogo/vehiculo-catalogo.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import Swal from "sweetalert2";
+
 
 
 @Component({
@@ -66,6 +68,11 @@ export class FormVehiculoComponent implements OnInit {
       console.log(resp);
       location.href="/Vehiculo"
       this.Vehiculoform.reset;
+      Swal.fire(
+        "Nuevo Vehiculo",
+        'vehiculo ' +resp.chasis+ ' agregado con exito!',
+        "success"
+      );
 
     })
  

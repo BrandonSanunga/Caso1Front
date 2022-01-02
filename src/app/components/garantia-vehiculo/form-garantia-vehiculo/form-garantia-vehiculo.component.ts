@@ -3,6 +3,8 @@ import { GarantiaVehiculoService } from 'src/app/services/GarantiaVehiculo/garan
 import { HttpHeaders,HttpClient } from '@angular/common/http';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 
+
+
 @Component({
   selector: 'app-form-garantia-vehiculo',
   templateUrl: './form-garantia-vehiculo.component.html',
@@ -13,16 +15,14 @@ export class FormGarantiaVehiculoComponent implements OnInit {
 
   garantiavehiculo:any=[];
   garantia:any={detallegarantia:[]};
-  detallegarantia:any=[]
   estado:any =true;
   res!:any;
-  Vehiculoform!: FormGroup;
 
 
 
   constructor(private servicioG:GarantiaVehiculoService,
     private http:HttpClient,
-    public fb: FormBuilder) { }
+      ) { }
 
   ngOnInit(): void {
 
@@ -30,7 +30,7 @@ export class FormGarantiaVehiculoComponent implements OnInit {
   }
   agregarD(){
     this.garantia.detallegarantia.push({});
-    this.res=this.estado;
+   
 
   }
   guardar(){
@@ -41,6 +41,7 @@ export class FormGarantiaVehiculoComponent implements OnInit {
   }
   resultado(res:any){
     this.garantia={detallegarantia:[]};
+    alert("Gurdado:"+res.idGarantia)
   }
   eliminar(detalle:any){
     this.garantia.detallegarantia.splice(this.garantia.detallegarantia.indexOf(detalle),1)

@@ -29,6 +29,7 @@ import { ListCotizacionComponent } from "./components/cotizacion/list-cotizacion
 import { AuthGuard } from "./guards/auth.guard";
 import { FacturaReparacionComponent } from "./components/factura-reparacion/factura-reparacion.component";
 import { ReporteRepuestosComponent } from "./components/reporte-repuestos/reporte-repuestos.component";
+import { FormGarantiaVehiculoComponent } from "./components/garantia-vehiculo/form-garantia-vehiculo/form-garantia-vehiculo.component";
 
 
 const routes: Routes = [
@@ -62,6 +63,7 @@ const routes: Routes = [
   { path: "reclamo-garantia", component: ReclamoGarantiaComponent,canActivate:[AuthGuard]},
   { path: "catalogo/admin", component: VehiculoCatalogoFormComponent, canActivate:[AuthGuard] },
   { path: "formVehiculo", component: FormVehiculoComponent },
+  { path: "garant", component: FormGarantiaVehiculoComponent, canActivate:[AuthGuard]  },
   { path: "lista-entregar-repuestos",component: ListaEntregarRepuestosComponent},
   { path: "ReporteRep",component: ReporteRepuestosComponent},
   { path: "formVehiculo", component: FormVehiculoComponent,canActivate:[AuthGuard] },
