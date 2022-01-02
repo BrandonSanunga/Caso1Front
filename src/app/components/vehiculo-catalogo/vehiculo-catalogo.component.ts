@@ -90,7 +90,7 @@ export class VehiculoCatalogoComponent implements OnInit {
   alerta(){
     Swal.fire({
       title:"Cotización",
-      html:'<label>Para visualizar la cotizacion. Se debe descargar la aplicacion desde el siguiente enlace. </label> <br><br> <a href=" https://drive.google.com/drive/folders/1jWDry9bqhCERG8shZaenvz0wp0NHYj0L"> Descargar la aplicacion</a> ',
+      html:'<label>Para visualizar la cotizacion. Se debe descargar la aplicacion desde el siguiente enlace. </label> <br><br> <a href=" https://drive.google.com/drive/u/1/folders/1Z0cPmKHTxPT5Y_G8xCoFoOTvcsktQM95"> Descargar la aplicacion</a> ',
       icon: "info"
     })
   }
