@@ -37,7 +37,7 @@ export class FormGarantiaVehiculoComponent implements OnInit {
   this.serviceguardar().subscribe(
     (response:any)=> this.resultado(response)
   );
-  location.href="/garantiaV"
+   location.href="/garantiaV"
   }
   resultado(res:any){
     this.garantia={detallegarantia:[]};

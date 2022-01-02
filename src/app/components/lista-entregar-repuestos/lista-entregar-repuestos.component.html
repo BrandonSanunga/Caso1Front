@@ -23,7 +23,7 @@
         <th >{{i.idordenCuerpo}}</th>
         <td>{{i.detalleRepuestos.length}}</td>
         <td>{{i.estadoOrden}}</td>
-        <td *ngIf="i.estadoOrden==null">
+        <td *ngIf="i.estadoOrden=='EN REVISION DEL TALLER'">
           <div class="example-button-row">
             <button mat-fab color="primary" (click)="actualizarestado(i.idordenCuerpo)">Aceptar</button>
           </div></td>

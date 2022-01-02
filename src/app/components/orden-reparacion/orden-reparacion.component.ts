@@ -26,6 +26,7 @@ export class OrdenReparacionComponent implements OnInit {
   OrdenRepCabeceraForm: any;
   OrdenRepCuerpoForm: any;
   InspeccionForm: any;
+  ins:any=localStorage.getItem("inspeccionid")
 
   constructor(public fb: FormBuilder,
     public ordenCabeceraService: OrdenRepCaveServiceService,
@@ -38,18 +39,17 @@ export class OrdenReparacionComponent implements OnInit {
       idordenCave: [''],
       fecha_emision: ['', Validators.required],
       fechaIngreso: ['', Validators.required],
-      inspeCuerpo: ['', Validators.required],
+      inspeCuerpo: [this.ins],
       costoManoObra: ['', Validators.required],
     });
     this.OrdenRepCuerpoForm = this.fb.group({
       idordenCuerpo: [''],
-      ordenRepCavecera: ['', Validators.required],
+      ordenRepCavecera: [''],
       trabajoSolicitado: ['', Validators.required],
       trabajoRealizar: ['', Validators.required],
       observaciones: ['', Validators.required],
       imagenes: ['', Validators.required],
-      estadoOrden: ['', Validators.required],
-
+      estadoOrden: ['EN REVISION DEL TALLER'],
     });
     this.InspeccionForm= this.fb.group({
       idinspecuerpo:[''],
@@ -166,6 +166,12 @@ export class OrdenReparacionComponent implements OnInit {
           },
             error => { console.error(error) }
           )
+          this.trabajoSolicitado=null
+          this.trabajoRealizar=null
+          this.observaciones=null
+          this.imagenes=null
+          this.estadoOrden=null
+          window.location.reload()
   }
   eliminarOrdenCuerpo(orde: any): void {
     this.OrdenCuerpoService.delete(orde.idordenCuerpo).subscribe(resp => {

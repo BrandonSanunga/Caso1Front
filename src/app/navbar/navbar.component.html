@@ -44,11 +44,14 @@
         </li>
         <mat-form-field class="nav-item" style="margin-top: 18px; text-align: center; width: 80px;"  *ngIf="(auth.isAuthenticated$ | async)">
           <mat-select placeholder="Taller">
-            <mat-option routerLink="/lista-reclamo"> lista reclamo</mat-option>
-            <mat-option > ejemplo</mat-option>
-            <mat-option >dropdown</mat-option>
+            <mat-option  routerLink="/repuestos"> Repuestos</mat-option>
+            <mat-option   routerLink="/taller"> Taller</mat-option>
+            <mat-option   routerLink="/lista-entregar-repuestos">Entrega Repuestos</mat-option>
           </mat-select>
         </mat-form-field>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/InformeConcesionaria"  *ngIf="(auth.isAuthenticated$ | async)">Informe Concesionaria</a>
+        </li>
       </ul>
     </div>
   </div>

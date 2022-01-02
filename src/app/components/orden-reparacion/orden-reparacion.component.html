@@ -28,16 +28,16 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label> INSPECCION </label>
-                  <select name="inspeCuerpo" id="inspeCuerpo" formControlName="inspeCuerpo" class="form-control">
-                    <option [ngValue]="inspeCuerpo" *ngFor="let item of InspeccionList">{{item.idinspeCuerpo}}</option>
+                  <select  name="inspeCuerpo" id="inspeCuerpo" formControlName="inspeCuerpo" class="form-control">
+                    <option [ngValue]="inspeCuerpo">{{ins}}</option>
                   </select>
                   <div class="text-danger"></div>
                 </div>
               </div>
               <div class="col-md-3">
-                <div class="form-group">
+                <div class="form-group" style="display: none;">
                   <label> COSTO DE MANO DE OBRA</label>
-                  <input type="number" step="0.01" formControlName="costoManoObra" class="form-control" min="0.1"  placeholder="Ejm: 20.2" style="">
+                  <input type="number" step="0.01" value="0" formControlName="costoManoObra" class="form-control" min="0.1"  placeholder="Ejm: 20.2" style="">
                   <div class="text-danger"></div>
                 </div>
               </div>
@@ -55,18 +55,16 @@
                 <div class="form-body">
                   <div class="row">
                     <div class="col-md-2">
-                      <div class="form-group">
-                        <label> ID ORDEN CABECERA</label>
-                        <input type="text" value="idordencavecera" name="ordenRepCavecera" id="ordenRepCavecera" formControlName="ordenRepCavecera"  class="form-control">
-                        <!--<select name="ordenRepCavecera" id="ordenRepCavecera" formControlName="ordenRepCavecera"  class="form-control">
-                          <option [ngValue]="ordenRepCavecera" *ngFor="let ordenRepCavecera of ordenCabeceraList">
-                            {{ordenRepCavecera.idordenCave}}</option>
-                        </select> -->
-                        <div class="text-danger"></div>
+                      <div class="form-group" >
+                        <div class="form-group">
+                          <label> OBSERVACIONES</label>
+                          <input type="text" style="width: 820px;" formControlName="observaciones" [(ngModel)]="this.observaciones" class="form-control" placeholder="Ejm: ">
+                          <div class="text-danger"></div>
+                        </div>
                       </div>
                     </div>
                     <div class="col-md-3">
-                      <div class="form-group">
+                      <div class="form-group" style="display: none;">
                         <label> ESTADO DE LA ORDEN</label>
                         <select type="text" [(ngModel)]="this.estadoOrden" formControlName="estadoOrden" class="form-control">
                           <option>aprobado</option>
@@ -74,13 +72,14 @@
                         <div class="text-danger"></div>
                       </div>
                     </div>
-                    <div class="col-md-5">
-                      <div class="form-group">
-                        <label> OBSERVACIONES</label>
-                        <input type="text" formControlName="observaciones" [(ngModel)]="this.observaciones" class="form-control" placeholder="Ejm: ">
-
+                    <div class="col-md-5" style="display: none;">
+                      <label> ID ORDEN CABECERA</label>
+                        <input type="text" value="idordencavecera" name="ordenRepCavecera" id="ordenRepCavecera" formControlName="ordenRepCavecera"  class="form-control">
+                        <!--<select name="ordenRepCavecera" id="ordenRepCavecera" formControlName="ordenRepCavecera"  class="form-control">
+                          <option [ngValue]="ordenRepCavecera" *ngFor="let ordenRepCavecera of ordenCabeceraList">
+                            {{ordenRepCavecera.idordenCave}}</option>
+                        </select> -->
                         <div class="text-danger"></div>
-                      </div>
                     </div>
                   </div>
                   <br>
@@ -174,7 +173,7 @@
           <td style="text-align: center;text-transform:uppercase;">{{ordenes.trabajoRealizar}} </td>
           <td style="text-align: center;text-transform:uppercase;">{{ordenes.observaciones}} </td>
           <td style="text-align: center;text-transform:uppercase;">{{ordenes.imagenes}} </td>
-          <td style="text-align: center;text-transform:uppercase;">{{ordenes.estadoOrden}} </td>
+          <td style="text-align: center;text-transform:uppercase;" >{{ordenes.estadoOrden}} </td>
 
           <td><button type="submit" class="btn btn-outline-danger px-3 py-2" (click)="eliminarOrdenCuerpo(ordenes)"><i
                 class="fa fa-trash"></i></button></td>

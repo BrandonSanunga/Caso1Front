@@ -19,14 +19,14 @@ export class FormInformeConecesionariaComponent implements OnInit {
   res!:number;
   v2!:number;
 
-  
+
 
 
   constructor( private informeS:InformeConcecionariaService,
     public fb: FormBuilder,
     private detalle:OrdenRepCuerpServiceService,
-    private http:HttpClient) { 
-      
+    private http:HttpClient) {
+
     }
 
   ngOnInit(): void {
@@ -39,8 +39,8 @@ export class FormInformeConecesionariaComponent implements OnInit {
       detalle: ['',Validators.required],
 
    });
-  
-   
+
+
   this.cargaT();
 
   this.detalle.all().subscribe(res=>{
@@ -50,17 +50,17 @@ export class FormInformeConecesionariaComponent implements OnInit {
 
   }
   cargaT(){
-   
+
     this.detalle.all().subscribe(
       (response:any)=>this.mostrar(response)
-     
-      
+
+
     );
-    
+
   }
   mostrar(response:any){
     this.informe=response;
-  
+
   }
   guardarI(): void{
     this.informeS.create(this.Informeform.value).subscribe(resp=>{
@@ -68,13 +68,12 @@ export class FormInformeConecesionariaComponent implements OnInit {
       this.informe.push(resp);
       console.log(resp);
       location.href="/InformeConcesionaria"
-    
-      
     })}
 calcula(){
   var   num1= ((document.getElementById("v3") as HTMLInputElement).value);
 var   num2= ((document.getElementById("v1") as HTMLInputElement).value);
-var resultado= parseFloat(num2)-((parseFloat(num2)*this.v2)/100)+parseFloat(num1);
+var totalsuma = parseFloat(num1)+parseFloat(num2)
+var resultado= totalsuma-((totalsuma*this.v2)/100);
 this.res=resultado;
 
 
@@ -83,8 +82,8 @@ cargar(id:any){
 this.informeS.get(id).subscribe(res=>{
   this.datos=res
   console.log(this.datos)
- 
-  
+
+
 
 },er=>{
   console.log(er)
