@@ -38,7 +38,7 @@ export class InformeReclamoComponent implements OnInit {
   cliente:Clientes=new Clientes();
   reclamo:ReclamoGarantia=new ReclamoGarantia();
   informeReclamomodelo:InformeReclamo=new InformeReclamo();
-  constructor(private root:Router,public dialog: MatDialog,private reclamogarantiaService:ReclamoGarantiaService,private clienteServicio:ClienteService, private vehiculoServicio:VehiculoService, private informeReclamoSerivce:InformeReclamoTallerService) { }
+  constructor(private root:Router,public dialog: MatDialog,private reclamogarantiaService:ReclamoGarantiaService,private reclamogarantiaService1:ReclamoGarantiaService,private clienteServicio:ClienteService, private vehiculoServicio:VehiculoService, private informeReclamoSerivce:InformeReclamoTallerService) { }
 
   ngOnInit(): void {
     document.getElementById("repsendemanil")?.remove()
@@ -99,21 +99,26 @@ export class InformeReclamoComponent implements OnInit {
   verInformeReclamo(){
     var id = localStorage.getItem("idverifi")
     this.informeReclamoSerivce.getById(id).subscribe(data=>{
-       this.detallecancela=data.tipoInforme.substring(14)
+      try {
+        this.detallecancela=data.tipoInforme.substring(14)+""
+      } catch (error) {
+
+      }
       if(data!=null){
         this.id=this.idinforme
       document.getElementById("descripcion")?.setAttribute("disabled","true")
       document.getElementById("cancel")?.remove()
       document.getElementById("acept")?.remove()
       this.reclamogarantiaService.getfindByid(this.id).subscribe(data=>{
-        console.log(data)
         this.reclamo=data;
         this.informeReclamo=this.id
         this.chasis=data.fk_id_solicitud.fk_chasis_vehiculo.chasis
         })
       }else{
         this.id =  localStorage.getItem("informe")
-        this.reclamogarantiaService.getfindByid(this.id).subscribe(data=>{
+        console.log(id)
+        this.reclamogarantiaService1.getfindByid(this.id).subscribe(data=>{
+          console.log(data)
           this.reclamo=data;
           this.informeReclamo=this.id
           this.chasis=data.fk_id_solicitud.fk_chasis_vehiculo.chasis

@@ -63,7 +63,7 @@ export class ListaReclamoComponent implements OnInit {
             }
         }
         if(this.idinspeccion==null){
-          alert("Primero registre la Inspección del Vehiculo")
+          Swal.fire("Primero registre la Inspección del Vehiculo");
         }else{
           this.root.navigate(["/orden-reparacion"])
         }

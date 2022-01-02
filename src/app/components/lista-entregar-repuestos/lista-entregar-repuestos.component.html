@@ -13,7 +13,8 @@
         <th scope="col">#</th>
         <th scope="col">Id Orden Reparacion</th>
         <th scope="col">Cantidad Repuestos</th>
-        <th scope="col">Estado</th>
+        <th scope="col">Estado Taller</th>
+        <th scope="col">Estado Entrega</th>
         <th scope="col">Aceptar peticion</th>
       </tr>
     </thead>
@@ -23,10 +24,15 @@
         <th >{{i.idordenCuerpo}}</th>
         <td>{{i.detalleRepuestos.length}}</td>
         <td>{{i.estadoOrden}}</td>
-        <td *ngIf="i.estadoOrden=='EN REVISION DEL TALLER'">
+        <td style="display: none;">{{i.detalleRepuestos[0].id}}</td>
+        <td>{{i.detalleRepuestos[0].estado}}</td>
+        <td *ngIf="i.detalleRepuestos[0].estado!='APROBADO'">
           <div class="example-button-row">
-            <button mat-fab color="primary" (click)="actualizarestado(i.idordenCuerpo)">Aceptar</button>
+            <button mat-fab color="primary" (click)="actualizarestado(i.detalleRepuestos[0].id)">Aceptar</button>
           </div></td>
+          <td *ngIf="i.detalleRepuestos[0].estado=='APROBADO'">
+            <div class="example-button-row">
+            </div></td>
       </tr>
        </tbody>
   </table>

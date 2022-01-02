@@ -22,13 +22,14 @@ export class ListaEntregarRepuestosComponent implements OnInit {
   cargarRepuestos(){
     this.arrayRepuestos=[]
     this.ordeRepuestoService.optenerRepuestosDetalle().subscribe(data=>{
-      for(let i of data){
-        console.log(i)
-        if(i.detalleRepuestos.length!=0){
-          this.arrayRepuestos.push(i)
-
-        }
+   //  console.log(data)
+     for(let i of data){
+      console.log(i.detalleRepuestos.length)
+      if(i.detalleRepuestos.length!=0){
+        this.arrayRepuestos.push(i)
+        console.log(this.arrayRepuestos)
       }
+    }
     })
   }
   optenerCliente(idCliente:any){

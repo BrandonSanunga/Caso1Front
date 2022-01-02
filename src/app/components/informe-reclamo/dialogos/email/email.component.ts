@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 })
 export class EmailComponent implements OnInit {
   tipoCorreo:any;
-
+ segundocoore:any="andresguamanmr189@gmail.com"
   correo:any;
   chasis:any;
   nombreCliente:any;
@@ -24,12 +24,23 @@ export class EmailComponent implements OnInit {
   this.nombreCliente=localStorage.getItem("emailSaludo");
   }
   enviarCorreo(){
-     this.informeRelcamoService.enviarCorreo(this.encavezado,this.descripcion,this.correo).subscribe(data=>{
-      Swal.fire("CORREO ENVIADO", "El correo se envió con exito!", "success");
-      //alert("Mensaje enviado")
-      this.encavezado=""
-      this.descripcion=""
-     })
+    if(this.segundocoore == null || this.segundocoore==""){
+      this.informeRelcamoService.enviarCorreo(this.encavezado,this.descripcion,this.correo).subscribe(data=>{
+        Swal.fire("CORREO ENVIADO", "El correo se envió con exito!", "success");
+        //alert("Mensaje enviado")
+        this.encavezado=""
+        this.descripcion=""
+       })
+    }else{
+      this.informeRelcamoService.enviarCorreo(this.encavezado,this.descripcion,this.segundocoore).subscribe(data=>{
+        this.informeRelcamoService.enviarCorreo(this.encavezado,this.descripcion,this.correo).subscribe(data=>{
+          Swal.fire("CORREO ENVIADO", "El correo se envió con exito!", "success");
+          //alert("Mensaje enviado")
+          this.encavezado=""
+          this.descripcion=""
+         })
+       })
+    }
   }
   cargartipocorreo(){
     if(this.tipoCorreo=="Aceptado"){
